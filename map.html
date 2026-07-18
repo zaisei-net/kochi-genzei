@@ -324,7 +324,7 @@ const polyStyle = d => ({
   opacity: 0.8
 });
 
-fetch('https://raw.githubusercontent.com/niiyz/JapanCityGeoJson/master/geojson/pref/kochi.geojson')
+fetch('kochi_muni.geojson')
   .then(r => r.json())
   .then(geojson => {
     geoLayer = L.geoJSON(geojson, {
