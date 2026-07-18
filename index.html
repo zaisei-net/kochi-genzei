@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>香美市行政ウォッチ｜高知減税会</title>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg-2: #f8fafc;
+  --bg-blue: #eff6ff;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text: #1e293b;
+  --text-2: #475569;
+  --text-3: #94a3b8;
+  --blue: #2563eb;
+  --blue-light: #dbeafe;
+  --blue-mid: #3b82f6;
+  --red: #dc2626;
+  --red-light: #fef2f2;
+  --orange: #d97706;
+  --orange-light: #fffbeb;
+  --green: #16a34a;
+  --green-light: #f0fdf4;
+  --sky: #0ea5e9;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0c1220;
+    --bg-2: #131d30;
+    --bg-blue: #0f1e38;
+    --border: #1e2d45;
+    --border-strong: #2a3d5a;
+    --text: #e2e8f0;
+    --text-2: #94a3b8;
+    --text-3: #475569;
+    --blue: #60a5fa;
+    --blue-light: #1e3a5f;
+    --blue-mid: #3b82f6;
+    --red: #f87171;
+    --red-light: #1e1010;
+    --orange: #fbbf24;
+    --orange-light: #1e1508;
+    --green: #4ade80;
+    --green-light: #0a1e10;
+    --sky: #38bdf8;
+  }
+}
+:root[data-theme="light"] {
+  --bg: #ffffff;
+  --bg-2: #f8fafc;
+  --bg-blue: #eff6ff;
+  --border: #e2e8f0;
+  --border-strong: #cbd5e1;
+  --text: #1e293b;
+  --text-2: #475569;
+  --text-3: #94a3b8;
+  --blue: #2563eb;
+  --blue-light: #dbeafe;
+  --blue-mid: #3b82f6;
+  --red: #dc2626;
+  --red-light: #fef2f2;
+  --orange: #d97706;
+  --orange-light: #fffbeb;
+  --green: #16a34a;
+  --green-light: #f0fdf4;
+  --sky: #0ea5e9;
+}
+:root[data-theme="dark"] {
+  --bg: #0c1220;
+  --bg-2: #131d30;
+  --bg-blue: #0f1e38;
+  --border: #1e2d45;
+  --border-strong: #2a3d5a;
+  --text: #e2e8f0;
+  --text-2: #94a3b8;
+  --text-3: #475569;
+  --blue: #60a5fa;
+  --blue-light: #1e3a5f;
+  --blue-mid: #3b82f6;
+  --red: #f87171;
+  --red-light: #1e1010;
+  --orange: #fbbf24;
+  --orange-light: #1e1508;
+  --green: #4ade80;
+  --green-light: #0a1e10;
+  --sky: #38bdf8;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic UI", "Meiryo", "BIZ UDGothic", sans-serif;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOPBAR ── */
+.topbar {
+  border-bottom: 1px solid var(--border);
+  padding: 0.55rem 2.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.topbar-logo {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: var(--blue);
+}
+.topbar-sep { color: var(--border-strong); }
+.topbar-title {
+  font-size: 0.78rem;
+  color: var(--text-2);
+  letter-spacing: 0.08em;
+}
+.topbar-date {
+  margin-left: auto;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ── HERO ── */
+.hero {
+  padding: 4rem 2.5rem 3rem;
+  max-width: 820px;
+  margin: 0 auto;
+}
+.hero-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: var(--blue);
+  margin-bottom: 1.2rem;
+}
+.hero-tag::before {
+  content: '';
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--blue);
+}
+.hero-h1 {
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  font-weight: 300;
+  letter-spacing: 0.02em;
+  line-height: 1.25;
+  color: var(--text);
+  text-wrap: balance;
+  margin-bottom: 0.6rem;
+}
+.hero-h1 strong {
+  font-weight: 700;
+  color: var(--blue);
+}
+.hero-sub {
+  font-size: 0.9rem;
+  color: var(--text-2);
+  line-height: 1.6;
+  max-width: 60ch;
+}
+
+/* ── STATS ROW ── */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  border-top: 2px solid var(--blue);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-blue);
+}
+.stat-cell {
+  padding: 1.5rem 1.8rem;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.stat-cell:last-child { border-right: none; }
+.stat-num {
+  font-size: 2rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--blue);
+}
+.stat-num.danger { color: var(--red); }
+.stat-num.warn   { color: var(--orange); }
+.stat-label {
+  font-size: 0.7rem;
+  color: var(--text-2);
+  line-height: 1.4;
+}
+
+/* ── WRAPPER ── */
+.wrap {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2.5rem;
+}
+
+/* ── NAV PILLS ── */
+.nav-pills {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.nav-pill {
+  font-size: 0.75rem;
+  color: var(--text-2);
+  padding: 0.25rem 0.8rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 100px;
+  text-decoration: none;
+  transition: border-color 0.15s, color 0.15s;
+}
+.nav-pill:hover, .nav-pill:focus {
+  color: var(--blue);
+  border-color: var(--blue);
+  outline: none;
+}
+
+/* ── SECTION ── */
+.section {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.8rem;
+}
+.section-num {
+  flex-shrink: 0;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.15rem;
+}
+.section-num.warn { background: var(--orange); }
+.section-num.info { background: var(--sky); }
+.section-h2 {
+  font-size: clamp(1rem, 2.5vw, 1.35rem);
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+.lead {
+  font-size: 0.93rem;
+  line-height: 1.85;
+  color: var(--text-2);
+  max-width: 65ch;
+  margin-bottom: 1.5rem;
+}
+
+/* ── CALLOUT ── */
+.callout {
+  background: var(--red-light);
+  border-left: 3px solid var(--red);
+  border-radius: 0 6px 6px 0;
+  padding: 1rem 1.2rem;
+  font-size: 0.88rem;
+  line-height: 1.75;
+  color: var(--text);
+  margin: 1.2rem 0;
+}
+.callout.warn {
+  background: var(--orange-light);
+  border-color: var(--orange);
+}
+.callout.blue {
+  background: var(--blue-light);
+  border-color: var(--blue);
+}
+.callout strong { color: var(--text); }
+
+/* ── COMPARE ── */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+}
+.compare-cell {
+  background: var(--bg);
+  padding: 1.3rem 1.5rem;
+}
+.compare-head {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: var(--text-3);
+  margin-bottom: 0.7rem;
+  text-transform: uppercase;
+}
+.compare-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+.compare-list li {
+  font-size: 0.84rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: var(--text-2);
+}
+.compare-list li::before {
+  content: '';
+  flex-shrink: 0;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  margin-top: 0.5em;
+}
+.compare-cell.good .compare-list li::before { background: var(--green); }
+.compare-cell.bad  .compare-list li::before { background: var(--red); }
+
+/* ── TABLE ── */
+.tbl-wrap { overflow-x: auto; margin: 1.5rem 0; }
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+thead tr { border-bottom: 2px solid var(--blue); }
+th {
+  color: var(--text-3);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.6rem 1rem;
+  text-align: left;
+  white-space: nowrap;
+  background: var(--bg);
+}
+td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: top;
+}
+tbody tr:last-child td { border-bottom: none; }
+tbody tr:hover td { background: var(--bg-2); }
+.badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  border-radius: 100px;
+}
+.badge-a { background: var(--green-light); color: var(--green); }
+.badge-b { background: var(--blue-light); color: var(--blue); }
+.badge-c { background: var(--orange-light); color: var(--orange); }
+.badge-d { background: var(--red-light); color: var(--red); }
+.badge-x { background: var(--red-light); color: var(--red); }
+
+/* ── CHART ── */
+.chart-wrap {
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  border-radius: 8px;
+  background: var(--bg-2);
+  padding: 1.5rem 1rem 1rem;
+}
+canvas { display: block; max-width: 100%; }
+
+/* ── ISSUE TABLE ── */
+.issue-table { margin: 1.5rem 0; }
+.issue-row {
+  display: grid;
+  grid-template-columns: auto 1fr 1fr 1.2fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+.issue-row.head {
+  border-bottom: 2px solid var(--blue);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.issue-cell {
+  padding: 0.65rem 0.8rem;
+  font-size: 0.85rem;
+}
+.issue-num {
+  font-size: 0.72rem;
+  font-weight: 700;
+  width: 1.8rem;
+  height: 1.8rem;
+  background: var(--bg-blue);
+  color: var(--blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin: 0.5rem 0.6rem;
+}
+
+/* ── FOOTER ── */
+footer {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  padding: 2.5rem 2.5rem;
+  margin-top: 0;
+}
+footer .wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.footer-logo {
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: var(--blue);
+}
+.footer-note {
+  font-size: 0.75rem;
+  color: var(--text-3);
+  max-width: 72ch;
+  line-height: 1.65;
+}
+
+@media (max-width: 620px) {
+  .topbar, .hero, footer { padding-left: 1.2rem; padding-right: 1.2rem; }
+  .wrap { padding: 0 1.2rem; }
+  .hero { padding-top: 2.5rem; }
+  .compare { grid-template-columns: 1fr; }
+  .issue-row { grid-template-columns: auto 1fr; }
+  .issue-row .issue-cell:nth-child(3),
+  .issue-row .issue-cell:nth-child(4) { grid-column: 2; padding-top: 0; }
+  .issue-row.head .issue-cell:nth-child(3),
+  .issue-row.head .issue-cell:nth-child(4) { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<nav class="topbar" aria-label="サイトナビゲーション">
+  <span class="topbar-logo">高知減税会</span>
+  <span class="topbar-sep">／</span>
+  <span class="topbar-title">香美市行政ウォッチ</span>
+  <span class="topbar-date">令和8年（2026年）7月　市議選まで約50日</span>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-tag">市民調査レポート</div>
+  <h1 class="hero-h1">香美市は<strong>行政改革</strong>を<br>していない</h1>
+  <p class="hero-sub">総務省「地方行政サービス改革の取組状況等に関する調査（令和7年12月19日公表）」および市公表資料にもとづき、公開データのみで検証した。</p>
+</header>
+
+<!-- STATS -->
+<div class="stats-row" role="region" aria-label="主要指標">
+  <div class="stat-cell">
+    <span class="stat-num danger">⑤</span>
+    <span class="stat-label">行政評価　全項目<br>「導入予定なし」</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num danger">0%</span>
+    <span class="stat-label">公民館・図書館・<br>公営住宅の指定管理率</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num danger">6件</span>
+    <span class="stat-label">総合戦略D評価（悪化）<br>R6年度は0件</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num warn">0.2%</span>
+    <span class="stat-label">振興計画中の行政改革費<br>（170億円中2,900万円）</span>
+  </div>
+  <div class="stat-cell">
+    <span class="stat-num danger">39%</span>
+    <span class="stat-label">総合戦略C+D評価の割合<br>R6年度は16%だった</span>
+  </div>
+</div>
+
+<!-- MAIN -->
+<main class="wrap">
+
+  <!-- NAV -->
+  <nav class="nav-pills" aria-label="セクションへのリンク">
+    <a href="#s1" class="nav-pill">① 行政評価の不在</a>
+    <a href="#s2" class="nav-pill">② 指定管理・民間委託</a>
+    <a href="#s3" class="nav-pill">③ KPI達成状況</a>
+    <a href="#s4" class="nav-pill">④ 予算配分</a>
+    <a href="#s5" class="nav-pill">⑤ 市議選への論点</a>
+  </nav>
+
+  <!-- S1 -->
+  <section class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">1</div>
+      <h2 class="section-h2">行政評価が存在しない——「振興計画で代替」という言い訳</h2>
+    </div>
+    <p class="lead">
+      総務省調査（R7年12月）において、香美市は行政評価の3項目すべてについて「⑤導入予定なし」と回答した。政策・施策・事務事業のいずれも評価制度がなく、今後の導入予定もない。
+    </p>
+    <div class="callout">
+      <strong>総務省調査への回答（香美市・市区町村版、行政評価欄）</strong><br>
+      政策レベル評価 → <strong>⑤ 導入予定なし</strong><br>
+      施策レベル評価 → <strong>⑤ 導入予定なし</strong><br>
+      事務事業レベル評価 → <strong>⑤ 導入予定なし</strong>
+    </div>
+    <p class="lead" style="margin-top:1.2rem;">
+      市は「第10次振興計画の進捗管理」や「地方創生総合戦略PDCAシート」が代替していると主張するが、
+      これらは行政評価の本質的な要件を満たしていない。
+    </p>
+    <div class="compare">
+      <div class="compare-cell good">
+        <div class="compare-head">本来の行政評価（他自治体の標準）</div>
+        <ul class="compare-list">
+          <li>事業ごとのコスト計測・公表</li>
+          <li>費用対効果の分析</li>
+          <li>廃止・縮小の判断基準の明示</li>
+          <li>議会・市民への説明責任</li>
+        </ul>
+      </div>
+      <div class="compare-cell bad">
+        <div class="compare-head">香美市の「代替」（振興計画進捗管理）</div>
+        <ul class="compare-list">
+          <li>KPI数値の進捗確認のみ</li>
+          <li>費用計測なし</li>
+          <li>C・D評価でも廃止判断なし</li>
+          <li>結果の議会説明が不透明</li>
+        </ul>
+      </div>
+    </div>
+    <div class="callout warn">
+      <strong>参考：高知県（都道府県）の行政評価公表状況</strong><br>
+      施策評価・事務事業評価とも「③ 公表していない」と総務省調査に回答。県も評価結果を市民に公開していない。
+    </div>
+  </section>
+
+  <!-- S2 -->
+  <section class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num" aria-hidden="true">2</div>
+      <h2 class="section-h2">指定管理・民間委託がほぼゼロ——直営が温存されている</h2>
+    </div>
+    <p class="lead">
+      総務省調査によると、香美市の公共施設は多くが直営のままで、
+      指定管理者制度や民間委託がほとんど導入されていない。
+    </p>
+    <div class="chart-wrap">
+      <canvas id="chartShitei" width="780" height="260" aria-label="施設別指定管理導入率グラフ"></canvas>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>施設種別</th>
+            <th>総数</th>
+            <th>指定管理</th>
+            <th>直営</th>
+            <th>導入率</th>
+            <th>評価</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>公民館</td>
+            <td>13館</td>
+            <td>0館</td>
+            <td>13館</td>
+            <td>0%</td>
+            <td><span class="badge badge-x">直営</span></td>
+          </tr>
+          <tr>
+            <td>図書館</td>
+            <td>3館</td>
+            <td>0館</td>
+            <td>3館</td>
+            <td>0%</td>
+            <td><span class="badge badge-x">直営</span></td>
+          </tr>
+          <tr>
+            <td>公営住宅</td>
+            <td>23棟</td>
+            <td>0棟</td>
+            <td>23棟</td>
+            <td>0%</td>
+            <td><span class="badge badge-x">直営</span></td>
+          </tr>
+          <tr>
+            <td>競技場・体育館等</td>
+            <td>12施設</td>
+            <td>1施設</td>
+            <td>11施設</td>
+            <td>8%</td>
+            <td><span class="badge badge-c">要改善</span></td>
+          </tr>
+          <tr>
+            <td>学校用務員</td>
+            <td>—</td>
+            <td>委託なし</td>
+            <td>直営・専任あり</td>
+            <td>0%</td>
+            <td><span class="badge badge-x">直営</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      公民館13館・図書館3館・公営住宅23棟がすべて直営。民間のノウハウや競争原理がまったく働いていない。
+      住民サービスの質向上とコスト削減の機会を逸失し続けている。
+    </div>
+  </section>
+
+  <!-- S3 -->
+  <section class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num warn" aria-hidden="true">3</div>
+      <h2 class="section-h2">KPI達成状況が急速に悪化——D評価6件、C評価14件</h2>
+    </div>
+    <p class="lead">
+      行政評価の「代替」とされる地方創生総合戦略PDCAシートを分析すると、
+      R7年度（2025年度）の達成状況はR6年度から大幅に悪化している。
+    </p>
+    <div class="chart-wrap">
+      <canvas id="chartKpi" width="780" height="300" aria-label="KPI達成状況 R6→R7推移グラフ"></canvas>
+    </div>
+    <p style="font-size:0.75rem;color:var(--text-3);margin-top:-0.5rem;margin-bottom:1.5rem;">
+      A＝達成　B＝概ね達成　C＝達成不十分　D＝悪化・未達
+    </p>
+    <p class="lead">特に深刻なD評価（目標を達成できず悪化）の事業：</p>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>事業名（KPI）</th>
+            <th>R7目標</th>
+            <th>R7実績</th>
+            <th>評価</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>デジタル企業の誘致件数</td>
+            <td>累計3社</td>
+            <td>0社</td>
+            <td><span class="badge badge-d">D</span></td>
+          </tr>
+          <tr>
+            <td>出会い応援ポイント付与数</td>
+            <td>年100件</td>
+            <td>5件</td>
+            <td><span class="badge badge-d">D</span></td>
+          </tr>
+          <tr>
+            <td>新規就農者数</td>
+            <td>年5人</td>
+            <td>0人</td>
+            <td><span class="badge badge-d">D</span></td>
+          </tr>
+          <tr>
+            <td>チャレンジショップ利用客数</td>
+            <td>年5,000人</td>
+            <td>977人</td>
+            <td><span class="badge badge-d">D</span></td>
+          </tr>
+          <tr>
+            <td>移住定住者への就労支援件数</td>
+            <td>年10件</td>
+            <td>1件</td>
+            <td><span class="badge badge-d">D</span></td>
+          </tr>
+          <tr>
+            <td>子育て支援センター利用者数</td>
+            <td>年4,000人</td>
+            <td>2,412人</td>
+            <td><span class="badge badge-d">D</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="callout">
+      <strong>重要：</strong>D評価・C評価の事業に対して廃止・縮小の判断がなされた形跡がない。
+      「評価した」だけで事業は継続される仕組みになっており、税金の無駄遣いに歯止めがかかっていない。
+    </div>
+  </section>
+
+  <!-- S4 -->
+  <section class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num warn" aria-hidden="true">4</div>
+      <h2 class="section-h2">第10次振興計画：行政改革費はわずか0.2%</h2>
+    </div>
+    <p class="lead">
+      R8〜R10年度の3年間の第10次香美市振興計画実施計画では、
+      総事業費約170億円のうち行政改革関連予算はわずか約2,900万円（0.2%）にすぎない。
+    </p>
+    <div class="chart-wrap">
+      <canvas id="chartBudget" width="600" height="260" aria-label="振興計画予算配分グラフ"></canvas>
+    </div>
+    <div class="callout warn">
+      総務省が推進する行政改革（指定管理導入・行政評価・ICT活用）への投資がほぼゼロに等しい。
+      一方で各種事業の「箱もの」「補助金ありき」の支出は維持されている。
+    </div>
+  </section>
+
+  <!-- S5 -->
+  <section class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num info" aria-hidden="true">5</div>
+      <h2 class="section-h2">令和8年9月6日　香美市議会議員選挙で問うべき論点</h2>
+    </div>
+
+    <div class="issue-table">
+      <div class="issue-row head">
+        <div class="issue-cell" style="padding-left:0.2rem;"></div>
+        <div class="issue-cell">論点</div>
+        <div class="issue-cell">現状</div>
+        <div class="issue-cell">求める変化</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-num">1</div>
+        <div class="issue-cell"><strong>行政評価の導入</strong></div>
+        <div class="issue-cell" style="color:var(--red);">全項目「導入予定なし」</div>
+        <div class="issue-cell">費用対効果の公開評価・廃止基準の明示</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-num">2</div>
+        <div class="issue-cell"><strong>指定管理・民間委託の拡大</strong></div>
+        <div class="issue-cell" style="color:var(--red);">公民館・図書館・公営住宅100%直営</div>
+        <div class="issue-cell">段階的な指定管理化でコスト削減・質向上</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-num">3</div>
+        <div class="issue-cell"><strong>KPI未達事業の見直し</strong></div>
+        <div class="issue-cell" style="color:var(--red);">D評価6件でも廃止判断なし</div>
+        <div class="issue-cell">2年連続C/D評価事業は廃止or抜本見直しを義務化</div>
+      </div>
+      <div class="issue-row">
+        <div class="issue-num">4</div>
+        <div class="issue-cell"><strong>情報公開の徹底</strong></div>
+        <div class="issue-cell" style="color:var(--red);">行政評価結果・事業コストが非公表</div>
+        <div class="issue-cell">全事業の費用・評価結果をウェブ公開</div>
+      </div>
+    </div>
+
+    <div class="callout blue" style="margin-top:2rem;">
+      <strong>高知減税会の立場：</strong>一円の増税にも反対します。増税の前に、行政が自らの無駄・非効率を徹底的に見直すことが先決です。行政評価の不在は「税金の使い道を市民が検証できない」という民主主義の根幹に関わる問題です。
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-logo">高知減税会（構想段階）</div>
+    <p class="footer-note">
+      <strong style="color:var(--text-2);">出典：</strong>
+      総務省「地方行政サービス改革の取組状況等に関する調査（令和7年12月19日公表）」市町村版・都道府県版 ／
+      香美市「第10次香美市振興計画実施計画（50994.pdf）」／
+      香美市「第2期まち・ひと・しごと創生総合戦略進捗管理シート R7年度（50992.pdf）・R6年度（47243.pdf）」
+    </p>
+    <p class="footer-note">このページは公開資料にもとづいて作成した市民調査レポートです。数値・評価は原典をご確認ください。</p>
+  </div>
+</footer>
+
+<script>
+function cssVar(name) {
+  return getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+}
+
+// ── CHART 1: 指定管理導入率 ──
+(function() {
+  const canvas = document.getElementById('chartShitei');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.parentElement.clientWidth - 32 || 780;
+  const H = 260;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+
+  const blue = cssVar('--blue');
+  const red = cssVar('--red');
+  const orange = cssVar('--orange');
+  const text2 = cssVar('--text-2');
+  const text3 = cssVar('--text-3');
+  const border = cssVar('--border');
+  const bg2 = cssVar('--bg-2');
+  const text = cssVar('--text');
+
+  const data = [
+    { label: '公民館（13館）', rate: 0 },
+    { label: '図書館（3館）', rate: 0 },
+    { label: '公営住宅（23棟）', rate: 0 },
+    { label: '競技場等（12施設）', rate: 8 },
+  ];
+
+  const pad = { top: 16, right: 80, bottom: 36, left: 140 };
+  const cW = W - pad.left - pad.right;
+  const cH = H - pad.top - pad.bottom;
+  const rowH = cH / data.length;
+  const barH = rowH * 0.42;
+
+  // grid lines
+  [0, 25, 50, 75, 100].forEach(v => {
+    const x = pad.left + (v / 100) * cW;
+    ctx.beginPath();
+    ctx.moveTo(x, pad.top);
+    ctx.lineTo(x, pad.top + cH);
+    ctx.strokeStyle = border;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.fillStyle = text3;
+    ctx.font = '11px monospace';
+    ctx.textAlign = 'center';
+    ctx.fillText(v + '%', x, pad.top + cH + 22);
+  });
+
+  data.forEach((d, i) => {
+    const y = pad.top + i * rowH + (rowH - barH) / 2;
+    const bW = (d.rate / 100) * cW;
+
+    // bg track
+    ctx.fillStyle = border;
+    ctx.fillRect(pad.left, y, cW, barH);
+
+    // filled portion
+    if (bW > 0) {
+      ctx.fillStyle = orange;
+      ctx.fillRect(pad.left, y, bW, barH);
+    }
+
+    // label
+    ctx.fillStyle = text;
+    ctx.font = '12.5px "Hiragino Kaku Gothic ProN", sans-serif';
+    ctx.textAlign = 'right';
+    ctx.fillText(d.label, pad.left - 10, y + barH / 2 + 4.5);
+
+    // value
+    const valColor = d.rate === 0 ? red : orange;
+    ctx.fillStyle = valColor;
+    ctx.font = 'bold 13px monospace';
+    ctx.textAlign = 'left';
+    ctx.fillText(d.rate + '%', pad.left + cW + 10, y + barH / 2 + 4.5);
+  });
+
+  // axis line
+  ctx.beginPath();
+  ctx.moveTo(pad.left, pad.top);
+  ctx.lineTo(pad.left, pad.top + cH);
+  ctx.strokeStyle = cssVar('--border-strong');
+  ctx.lineWidth = 1.5;
+  ctx.stroke();
+})();
+
+// ── CHART 2: KPI推移 ──
+(function() {
+  const canvas = document.getElementById('chartKpi');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = canvas.parentElement.clientWidth - 32 || 780;
+  const H = 300;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+
+  const red    = cssVar('--red');
+  const orange = cssVar('--orange');
+  const green  = cssVar('--green');
+  const blue   = cssVar('--blue');
+  const text3  = cssVar('--text-3');
+  const border = cssVar('--border');
+  const text   = cssVar('--text');
+  const bg     = cssVar('--bg');
+
+  // R6: A22 B20 C8 D0 = 50
+  // R7: A13 B18 C14 D6 = 51
+  const groups = [
+    { label: 'R6年度\n（50事業）', vals: [22, 20, 8, 0] },
+    { label: 'R7年度\n（51事業）', vals: [13, 18, 14, 6] },
+  ];
+  const cats   = [
+    { label: 'A 達成', color: green },
+    { label: 'B 概ね達成', color: blue },
+    { label: 'C 達成不十分', color: orange },
+    { label: 'D 悪化・未達', color: red },
+  ];
+
+  const pad = { top: 20, right: 20, bottom: 70, left: 46 };
+  const cW = W - pad.left - pad.right;
+  const cH = H - pad.top - pad.bottom;
+  const maxY = 52;
+  const groupW = cW / groups.length;
+  const barW = groupW * 0.38;
+
+  // grid
+  [0, 10, 20, 30, 40, 50].forEach(v => {
+    const y = pad.top + cH - (v / maxY) * cH;
+    ctx.beginPath();
+    ctx.moveTo(pad.left, y);
+    ctx.lineTo(pad.left + cW, y);
+    ctx.strokeStyle = border;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.fillStyle = text3;
+    ctx.font = '11px monospace';
+    ctx.textAlign = 'right';
+    ctx.fillText(v, pad.left - 6, y + 4);
+  });
+
+  // stacked bars
+  groups.forEach((g, gi) => {
+    const bx = pad.left + gi * groupW + (groupW - barW) / 2;
+    let cum = 0;
+    // draw from bottom: A bottom, D top
+    const rev = [...cats].map((c, ci) => ({ ...c, val: g.vals[ci] })).reverse();
+    rev.forEach(cat => {
+      const bh = (cat.val / maxY) * cH;
+      const by = pad.top + cH - cum - bh;
+      ctx.fillStyle = cat.color;
+      ctx.fillRect(bx, by, barW, bh);
+      if (cat.val > 0) {
+        ctx.fillStyle = '#fff';
+        ctx.font = 'bold 11.5px monospace';
+        ctx.textAlign = 'center';
+        ctx.fillText(cat.val, bx + barW / 2, by + bh / 2 + 4.5);
+      }
+      cum += bh;
+    });
+
+    // x label (two lines)
+    const lines = g.label.split('\n');
+    ctx.fillStyle = text;
+    ctx.font = 'bold 12px "Hiragino Kaku Gothic ProN", sans-serif';
+    ctx.textAlign = 'center';
+    lines.forEach((line, li) => {
+      ctx.fillText(line, bx + barW / 2, pad.top + cH + 18 + li * 16);
+    });
+  });
+
+  // legend
+  const lx = pad.left;
+  const ly = pad.top + cH + 48;
+  cats.forEach((c, i) => {
+    const x = lx + i * (cW / 4);
+    ctx.fillStyle = c.color;
+    ctx.fillRect(x, ly, 10, 10);
+    ctx.fillStyle = text3;
+    ctx.font = '11px sans-serif';
+    ctx.textAlign = 'left';
+    ctx.fillText(c.label, x + 14, ly + 9);
+  });
+
+  // axes
+  ctx.strokeStyle = cssVar('--border-strong');
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(pad.left, pad.top);
+  ctx.lineTo(pad.left, pad.top + cH);
+  ctx.lineTo(pad.left + cW, pad.top + cH);
+  ctx.stroke();
+})();
+
+// ── CHART 3: 予算配分 ──
+(function() {
+  const canvas = document.getElementById('chartBudget');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const W = Math.min(canvas.parentElement.clientWidth - 32 || 600, 600);
+  const H = 260;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.scale(dpr, dpr);
+
+  const red    = cssVar('--red');
+  const border = cssVar('--border');
+  const text   = cssVar('--text');
+  const text2  = cssVar('--text-2');
+  const text3  = cssVar('--text-3');
+  const bg2    = cssVar('--bg-2');
+  const blue   = cssVar('--blue');
+  const blueLight = cssVar('--blue-light');
+
+  // Horizontal bar
+  const pad = { top: 60, right: 40, bottom: 60, left: 40 };
+  const bx = pad.left;
+  const by = pad.top;
+  const bw = W - pad.left - pad.right;
+  const bh = 52;
+
+  const reform = 0.002; // 0.2%
+
+  // Background
+  ctx.fillStyle = blueLight;
+  ctx.fillRect(bx, by, bw, bh);
+
+  // Red portion (reform)
+  const rw = bw * reform;
+  ctx.fillStyle = red;
+  ctx.fillRect(bx, by, rw, bh);
+
+  // Labels
+  ctx.fillStyle = text;
+  ctx.font = 'bold 13px "Hiragino Kaku Gothic ProN", sans-serif';
+  ctx.textAlign = 'left';
+  ctx.fillText('振興計画総事業費　約170億円（R8〜R10年度）', bx, by - 16);
+
+  // Red label (arrow)
+  ctx.fillStyle = red;
+  ctx.font = 'bold 11px monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText('行政改革費', bx, by + bh + 20);
+  ctx.fillText('2,900万円（0.2%）', bx, by + bh + 35);
+
+  // Blue label
+  ctx.fillStyle = blue;
+  ctx.font = 'bold 11px monospace';
+  ctx.textAlign = 'right';
+  ctx.fillText('その他事業費 約170億円（99.8%）', bx + bw, by + bh + 20);
+
+  // tick marks
+  ctx.fillStyle = text3;
+  ctx.font = '10px monospace';
+  [0, 25, 50, 75, 100].forEach(v => {
+    const x = bx + (v / 100) * bw;
+    ctx.beginPath();
+    ctx.moveTo(x, by - 4);
+    ctx.lineTo(x, by);
+    ctx.strokeStyle = cssVar('--border-strong');
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    ctx.textAlign = 'center';
+    ctx.fillText(v + '%', x, by - 8);
+  });
+
+  // border
+  ctx.strokeStyle = cssVar('--border-strong');
+  ctx.lineWidth = 1;
+  ctx.strokeRect(bx, by, bw, bh);
+})();
+</script>
+</body>
+</html>
