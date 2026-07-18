@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高知県 行政改革マップ｜高知減税会</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<style>
+:root {
+  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff;
+  --border: #e2e8f0; --text: #1e293b; --text-2: #475569; --text-3: #94a3b8;
+  --blue: #2563eb; --blue-light: #dbeafe;
+  --red: #dc2626; --orange: #d97706; --green: #16a34a;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a; --bg-2: #1e293b; --bg-blue: #1e3a5f;
+    --border: #334155; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #64748b;
+    --blue-light: #1e3a5f;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f172a; --bg-2: #1e293b; --bg-blue: #1e3a5f;
+  --border: #334155; --text: #f1f5f9; --text-2: #94a3b8; --text-3: #64748b;
+  --blue-light: #1e3a5f;
+}
+:root[data-theme="light"] {
+  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff;
+  --border: #e2e8f0; --text: #1e293b; --text-2: #475569; --text-3: #94a3b8;
+  --blue-light: #dbeafe;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); display: flex; flex-direction: column; height: 100dvh; }
+
+.topbar { background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 20px; display: flex; align-items: center; gap: 16px; height: 48px; flex-shrink: 0; z-index: 1000; }
+.topbar-logo { font-size: 14px; font-weight: 700; color: var(--blue); white-space: nowrap; }
+.topbar-logo span { color: var(--text-2); font-weight: 400; }
+.topbar-nav { display: flex; gap: 4px; }
+.topbar-nav a { font-size: 12px; color: var(--text-2); padding: 3px 10px; border-radius: 20px; border: 1px solid var(--border); text-decoration: none; }
+.topbar-nav a:hover, .topbar-nav a.active { background: var(--blue-light); color: var(--blue); border-color: var(--blue-light); }
+.topbar-spacer { flex: 1; }
+.theme-btn { background: none; border: 1px solid var(--border); border-radius: 20px; padding: 3px 10px; font-size: 12px; color: var(--text-2); cursor: pointer; }
+
+.map-container { flex: 1; position: relative; }
+#map { width: 100%; height: 100%; }
+
+/* Info panel */
+.info-panel {
+  position: absolute; top: 12px; right: 12px; z-index: 900;
+  background: var(--bg); border: 1px solid var(--border); border-radius: 10px;
+  padding: 16px; width: 260px; box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+  max-height: calc(100% - 24px); overflow-y: auto;
+}
+.info-panel h2 { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 12px; }
+.legend { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-2); }
+.legend-dot { width: 14px; height: 14px; border-radius: 50%; flex-shrink: 0; border: 2px solid rgba(255,255,255,0.5); }
+.stat-row { display: flex; justify-content: space-between; align-items: center; font-size: 12px; padding: 5px 0; border-bottom: 1px solid var(--border); }
+.stat-row:last-child { border-bottom: none; }
+.stat-row .label { color: var(--text-2); }
+.stat-row .val { font-weight: 700; font-variant-numeric: tabular-nums; }
+.val-red { color: var(--red); }
+.val-orange { color: var(--orange); }
+.val-green { color: var(--green); }
+
+/* Filter buttons */
+.filter-group { margin-bottom: 14px; }
+.filter-group label { font-size: 11px; color: var(--text-3); font-weight: 600; letter-spacing: 0.04em; display: block; margin-bottom: 5px; }
+.filter-btns { display: flex; gap: 4px; flex-wrap: wrap; }
+.filter-btn { font-size: 11px; padding: 3px 8px; border-radius: 20px; border: 1px solid var(--border); background: var(--bg); color: var(--text-2); cursor: pointer; }
+.filter-btn:hover, .filter-btn.active { background: var(--blue-light); color: var(--blue); border-color: var(--blue); }
+
+/* Popup custom styles */
+.leaflet-popup-content-wrapper { border-radius: 8px !important; box-shadow: 0 4px 16px rgba(0,0,0,0.12) !important; }
+.popup-title { font-size: 15px; font-weight: 700; color: #1e293b; margin-bottom: 8px; }
+.popup-badge { display: inline-flex; align-items: center; font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 4px; }
+.popup-grid { display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: 12px; margin-top: 6px; }
+.popup-grid dt { color: #64748b; }
+.popup-grid dd { font-weight: 500; color: #1e293b; }
+.popup-link { display: block; margin-top: 8px; font-size: 12px; color: #2563eb; }
+
+/* Side list toggle */
+.list-toggle { position: absolute; bottom: 12px; left: 12px; z-index: 900; }
+.list-toggle button { background: var(--bg); border: 1px solid var(--border); border-radius: 8px; padding: 8px 14px; font-size: 12px; color: var(--text-2); cursor: pointer; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.list-toggle button:hover { border-color: var(--blue); color: var(--blue); }
+
+/* Source */
+.source-bar { background: var(--bg-2); border-top: 1px solid var(--border); padding: 6px 16px; font-size: 11px; color: var(--text-3); flex-shrink: 0; }
+
+@media (max-width: 640px) {
+  .info-panel { width: calc(100vw - 24px); right: 12px; top: 8px; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-logo">高知減税会 <span>/ 行政ウォッチ</span></div>
+  <nav class="topbar-nav">
+    <a href="kochi.html">高知県概覧</a>
+    <a href="index.html">香美市</a>
+    <a href="map.html" class="active">地図</a>
+  </nav>
+  <div class="topbar-spacer"></div>
+  <button class="theme-btn" onclick="toggleTheme()">テーマ切替</button>
+</header>
+
+<div class="map-container">
+  <div id="map"></div>
+
+  <div class="info-panel">
+    <h2>高知県 行政改革マップ</h2>
+
+    <div class="filter-group">
+      <label>表示フィルター</label>
+      <div class="filter-btns">
+        <button class="filter-btn active" onclick="setFilter('all',this)">全て</button>
+        <button class="filter-btn" onclick="setFilter('予定なし',this)">予定なし</button>
+        <button class="filter-btn" onclick="setFilter('代替・試行',this)">代替・試行</button>
+        <button class="filter-btn" onclick="setFilter('実施済',this)">実施済</button>
+      </div>
+    </div>
+
+    <div class="legend">
+      <div style="font-size:11px;color:var(--text-3);font-weight:600;letter-spacing:0.04em;margin-bottom:2px;">行政評価（最低評価で色分け）</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#dc2626;"></div>予定なし（1項目以上）</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#d97706;"></div>代替・試行（最低）</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#16a34a;"></div>全項目 実施済</div>
+      <div class="legend-item"><div class="legend-dot" style="background:#3b82f6;border:2px solid #1d4ed8;"></div>市議選予定（香美市）</div>
+    </div>
+
+    <div style="font-size:11px;color:var(--text-3);font-weight:600;letter-spacing:0.04em;margin-bottom:6px;">集計</div>
+    <div class="stat-row"><span class="label">対象市町村</span><span class="val">34</span></div>
+    <div class="stat-row"><span class="label">行政評価 全項目実施済</span><span class="val val-green">6</span></div>
+    <div class="stat-row"><span class="label">行政評価 代替・試行</span><span class="val val-orange">16</span></div>
+    <div class="stat-row"><span class="label">行政評価 予定なし含む</span><span class="val val-red">12</span></div>
+    <div class="stat-row"><span class="label">指定管理 導入ゼロ</span><span class="val val-red">20</span></div>
+  </div>
+
+  <div class="list-toggle">
+    <button onclick="fitBounds()">高知県全体を表示</button>
+  </div>
+</div>
+
+<div class="source-bar">
+  出典：総務省「地方行政サービス改革の取組状況等に関する調査（令和7年12月19日公表）」｜高知減税会 作成
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+const MUNI = [
+  {code:"392014",name:"高知市",type:"中核市",lat:33.5597,lng:133.5311,seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:11,shitei_rate:50,election:false},
+  {code:"392022",name:"室戸市",type:"都市Ⅰ-1",lat:33.2921,lng:134.1587,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"実施済",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"392031",name:"安芸市",type:"都市Ⅰ-1",lat:33.4969,lng:133.9053,seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"392049",name:"南国市",type:"都市Ⅰ-1",lat:33.5841,lng:133.6457,seisaku:"予定なし",shisaku:"予定なし",jimu:"実施済",shitei_cnt:0,shitei_rate:null,election:false},
+  {code:"392057",name:"土佐市",type:"都市Ⅰ-1",lat:33.4975,lng:133.4259,seisaku:"代替・試行",shisaku:"実施済",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"392065",name:"須崎市",type:"都市Ⅰ-1",lat:33.4014,lng:133.2835,seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:1,shitei_rate:100,election:false},
+  {code:"392081",name:"宿毛市",type:"都市Ⅰ-1",lat:32.9369,lng:132.7268,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:null,election:false},
+  {code:"392090",name:"土佐清水市",type:"都市Ⅰ-1",lat:32.7824,lng:132.9580,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:null,election:false},
+  {code:"39210",name:"四万十市",type:"都市Ⅰ-1",lat:32.9899,lng:132.9327,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:3,shitei_rate:100,election:false},
+  {code:"392111",name:"香南市",type:"都市Ⅰ-1",lat:33.5609,lng:133.6864,seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:1,shitei_rate:20,election:false},
+  {code:"392120",name:"香美市",type:"都市Ⅰ-1",lat:33.6241,lng:133.6869,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:1,shitei_rate:100,election:true},
+  {code:"393011",name:"東洋町",type:"町村Ⅰ-0",lat:33.5085,lng:134.2824,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:100,election:false},
+  {code:"393029",name:"奈半利町",type:"町村Ⅰ-0",lat:33.4239,lng:134.0177,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:null,election:false},
+  {code:"393037",name:"田野町",type:"町村Ⅰ-0",lat:33.4432,lng:134.0542,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:1,shitei_rate:50,election:false},
+  {code:"393045",name:"安田町",type:"町村Ⅰ-0",lat:33.4603,lng:134.0931,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"393053",name:"北川村",type:"町村Ⅰ-0",lat:33.5451,lng:134.0596,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:100,election:false},
+  {code:"393061",name:"馬路村",type:"町村Ⅰ-0",lat:33.5697,lng:134.0247,seisaku:"実施済",shisaku:"実施済",jimu:"代替・試行",shitei_cnt:0,shitei_rate:null,election:false},
+  {code:"393070",name:"芸西村",type:"町村Ⅰ-0",lat:33.5386,lng:133.8061,seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"393410",name:"本山町",type:"町村Ⅰ-0",lat:33.7399,lng:133.6257,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"393444",name:"大豊町",type:"町村Ⅰ-0",lat:33.7624,lng:133.7119,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"393631",name:"土佐町",type:"町村Ⅰ-0",lat:33.7016,lng:133.4864,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"393649",name:"大川村",type:"町村Ⅰ-0",lat:33.7394,lng:133.3745,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:100,election:false},
+  {code:"393860",name:"いの町",type:"町村Ⅴ-2",lat:33.5405,lng:133.4296,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:100,election:false},
+  {code:"393878",name:"仁淀川町",type:"町村Ⅱ-1",lat:33.5747,lng:133.2613,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:50,election:false},
+  {code:"394017",name:"中土佐町",type:"町村Ⅱ-0",lat:33.3461,lng:133.1619,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:null,election:false},
+  {code:"394025",name:"佐川町",type:"町村Ⅲ-2",lat:33.5037,lng:133.3068,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:null,election:false},
+  {code:"394033",name:"越知町",type:"町村Ⅱ-2",lat:33.5472,lng:133.3225,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"394050",name:"梼原町",type:"町村Ⅰ-0",lat:33.3947,lng:132.9431,seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:1,shitei_rate:50,election:false},
+  {code:"394106",name:"日高村",type:"町村Ⅱ-2",lat:33.5052,lng:133.3827,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"394114",name:"津野町",type:"町村Ⅱ-0",lat:33.4333,lng:133.0897,seisaku:"予定なし",shisaku:"予定なし",jimu:"実施済",shitei_cnt:1,shitei_rate:50,election:false},
+  {code:"394122",name:"四万十町",type:"町村Ⅳ-0",lat:33.2070,lng:133.0907,seisaku:"予定なし",shisaku:"実施済",jimu:"実施済",shitei_cnt:3,shitei_rate:100,election:false},
+  {code:"394246",name:"大月町",type:"町村Ⅱ-0",lat:32.8426,lng:132.7044,seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"394271",name:"三原村",type:"町村Ⅰ-1",lat:32.9164,lng:132.8131,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false},
+  {code:"394289",name:"黒潮町",type:"町村Ⅲ-0",lat:32.9921,lng:133.0476,seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false}
+];
+
+function worstGrade(d) {
+  const vals = [d.seisaku, d.shisaku, d.jimu];
+  if (vals.includes('予定なし')) return '予定なし';
+  if (vals.includes('代替・試行')) return '代替・試行';
+  return '実施済';
+}
+
+function gradeColor(g) {
+  if (g === '予定なし') return '#dc2626';
+  if (g === '代替・試行') return '#d97706';
+  return '#16a34a';
+}
+
+function badgeHtml(v) {
+  const colors = {
+    '実施済': ['#dcfce7','#16a34a'],
+    '代替・試行': ['#fef3c7','#d97706'],
+    '予定なし': ['#fee2e2','#dc2626'],
+    '不明': ['#f1f5f9','#94a3b8']
+  };
+  const [bg, fg] = colors[v] || colors['不明'];
+  return `<span class="popup-badge" style="background:${bg};color:${fg}">${v}</span>`;
+}
+
+function rateText(cnt, rate) {
+  if (cnt === 0 && rate === null) return '対象施設なし';
+  if (cnt === 0) return `0件（導入ゼロ）`;
+  return `${cnt}件 / 導入率${rate}%`;
+}
+
+// Init map
+const map = L.map('map', {
+  center: [33.45, 133.35],
+  zoom: 9,
+  zoomControl: true
+});
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+  maxZoom: 18
+}).addTo(map);
+
+// Create markers
+const markers = [];
+
+MUNI.forEach(d => {
+  const grade = worstGrade(d);
+  const color = d.election ? '#2563eb' : gradeColor(grade);
+  const border = d.election ? '#1d4ed8' : (grade === '予定なし' ? '#991b1b' : grade === '代替・試行' ? '#92400e' : '#15803d');
+  const radius = d.type.startsWith('中核') ? 16 : d.type.startsWith('都市') ? 12 : 9;
+
+  const marker = L.circleMarker([d.lat, d.lng], {
+    radius,
+    fillColor: color,
+    color: border,
+    weight: 2,
+    opacity: 1,
+    fillOpacity: 0.85
+  });
+
+  const electionBadge = d.election
+    ? `<div style="background:#eff6ff;color:#2563eb;border:1px solid #bfdbfe;border-radius:5px;padding:5px 8px;font-size:11px;margin-bottom:8px;font-weight:600;">🗳 令和8年9月6日 市議会議員選挙</div>`
+    : '';
+
+  const detailLink = d.election
+    ? `<a class="popup-link" href="index.html">香美市 詳細レポートを見る →</a>` : '';
+
+  marker.bindPopup(`
+    <div style="min-width:200px;">
+      ${electionBadge}
+      <div class="popup-title">${d.name}</div>
+      <div style="font-size:11px;color:#64748b;margin-bottom:8px;">${d.type}</div>
+      <div style="font-size:11px;color:#64748b;font-weight:600;margin-bottom:4px;">行政評価</div>
+      <dl class="popup-grid">
+        <dt>政策</dt><dd>${badgeHtml(d.seisaku)}</dd>
+        <dt>施策</dt><dd>${badgeHtml(d.shisaku)}</dd>
+        <dt>事務事業</dt><dd>${badgeHtml(d.jimu)}</dd>
+      </dl>
+      <div style="font-size:11px;color:#64748b;font-weight:600;margin:8px 0 4px;">指定管理者制度</div>
+      <div style="font-size:12px;color:#1e293b;">${rateText(d.shitei_cnt, d.shitei_rate)}</div>
+      ${detailLink}
+    </div>
+  `, { maxWidth: 280 });
+
+  marker._muniData = d;
+  marker.addTo(map);
+  markers.push(marker);
+
+  // Label on high zoom
+  marker.on('add', function() {
+    if (map.getZoom() >= 11 || d.type.startsWith('中核') || d.type.startsWith('都市')) {
+      marker.bindTooltip(d.name, {
+        permanent: map.getZoom() >= 10,
+        direction: 'right',
+        className: 'muni-label',
+        offset: [radius + 2, 0]
+      });
+    }
+  });
+});
+
+// Add tooltip labels on zoom
+map.on('zoomend', function() {
+  const z = map.getZoom();
+  markers.forEach(m => {
+    const d = m._muniData;
+    const showPerm = z >= 10 || d.type.startsWith('中核') || (z >= 9 && d.type.startsWith('都市'));
+    if (m.getTooltip()) {
+      if (showPerm) m.getTooltip().options.permanent = true;
+      else m.getTooltip().options.permanent = false;
+    } else if (z >= 9) {
+      m.bindTooltip(d.name, {
+        permanent: showPerm,
+        direction: 'right',
+        offset: [m.options.radius + 2, 0]
+      });
+    }
+    m.openTooltip && m.closeTooltip();
+  });
+});
+
+// Initial tooltip labels for cities
+map.on('load', updateLabels);
+setTimeout(updateLabels, 300);
+
+function updateLabels() {
+  const z = map.getZoom();
+  markers.forEach(m => {
+    const d = m._muniData;
+    const showLabel = d.type.startsWith('中核') || d.type.startsWith('都市') || z >= 10;
+    if (showLabel && !m.getTooltip()) {
+      m.bindTooltip(d.name, {
+        permanent: true,
+        direction: 'right',
+        offset: [m.options.radius + 2, 0]
+      });
+    }
+  });
+}
+
+let activeFilter = 'all';
+
+function setFilter(grade, btn) {
+  activeFilter = grade;
+  document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  markers.forEach(m => {
+    const d = m._muniData;
+    const g = worstGrade(d);
+    let show = false;
+    if (grade === 'all') show = true;
+    else if (grade === d.name) show = true;
+    else show = (g === grade);
+    m.setStyle({ fillOpacity: show ? 0.85 : 0.12, opacity: show ? 1 : 0.2 });
+  });
+}
+
+function fitBounds() {
+  const latlngs = MUNI.map(d => [d.lat, d.lng]);
+  map.fitBounds(latlngs, { padding: [40, 40] });
+}
+
+function toggleTheme() {
+  const root = document.documentElement;
+  if (root.dataset.theme === 'dark') root.dataset.theme = 'light';
+  else if (root.dataset.theme === 'light') root.dataset.theme = 'dark';
+  else {
+    const dark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    root.dataset.theme = dark ? 'light' : 'dark';
+  }
+}
+</script>
+</body>
+</html>
