@@ -117,6 +117,15 @@ a:hover { text-decoration: underline; }
 .check-item-title { font-size: 13px; font-weight: 700; color: var(--text); }
 .check-item-body { font-size: 12px; color: var(--text-2); line-height: 1.7; }
 
+/* Finance bar chart */
+.fin-bar-row { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--text-2); margin-bottom: 6px; }
+.fin-bar-row > span:first-child { width: 110px; flex-shrink: 0; font-size: 11px; }
+.fin-bar { height: 20px; width: var(--w); min-width: 4px; background: var(--teal); border-radius: 3px; position: relative; display: flex; align-items: center; padding: 0 6px; }
+.fin-bar span { font-size: 10px; color: #fff; white-space: nowrap; overflow: hidden; }
+.fin-bar.fin-bar-gray { background: var(--border-strong); }
+.fin-bar.fin-bar-gray span { color: var(--text); }
+.fin-bar.fin-bar-red { background: var(--red); }
+
 /* Survey tabs */
 .survey-tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 0; }
 .stab { font-size: 13px; font-weight: 600; padding: 8px 18px; border: none; background: none; color: var(--text-2); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
@@ -190,31 +199,255 @@ footer strong { color: var(--text-2); }
 
 <div class="stats-strip">
   <div class="stat-item">
-    <div class="stat-num">約1.7万</div>
-    <div class="stat-label">県職員数（知事部局等）</div>
-    <div class="stat-note">教育・警察含む</div>
+    <div class="stat-num">4,674<span style="font-size:16px;font-weight:500;">億円</span></div>
+    <div class="stat-label">一般会計歳出（R6決算）</div>
+    <div class="stat-note">歳入4,777億円、実質収支+36億円</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">約5,500億</div>
-    <div class="stat-label">一般会計歳出規模（R6）</div>
-    <div class="stat-note">円</div>
+    <div class="stat-num red">8,683<span style="font-size:16px;font-weight:500;">億円</span></div>
+    <div class="stat-label">県債残高（R6末）</div>
+    <div class="stat-note">県民1人当たり約131万円</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num orange">複数</div>
-    <div class="stat-label">公社・外郭団体 見直し対象</div>
-    <div class="stat-note">R7年度あり方見直し中</div>
+    <div class="stat-num orange">0.27</div>
+    <div class="stat-label">財政力指数（R6）</div>
+    <div class="stat-note">全国最低水準・交付税依存度39.6%</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num">多数</div>
-    <div class="stat-label">指定管理施設（県立）</div>
-    <div class="stat-note">業務状況評価を毎年公表</div>
+    <div class="stat-num red">98.9<span style="font-size:16px;font-weight:500;">%</span></div>
+    <div class="stat-label">経常収支比率（R6）</div>
+    <div class="stat-note">硬直化ライン90%を大幅超過</div>
   </div>
   <div class="stat-item">
-    <div class="stat-num red">継続中</div>
-    <div class="stat-label">行政改革フォローアップ</div>
-    <div class="stat-note">検討委員会が監視</div>
+    <div class="stat-num">1.2<span style="font-size:16px;font-weight:500;">万人</span></div>
+    <div class="stat-label">県職員数（R6、主要区分）</div>
+    <div class="stat-note">一般4,452・警察1,622・教育6,228</div>
   </div>
 </div>
+
+<!-- 財政概況セクション -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">令和6年度 高知県 財政概況</div>
+    <p class="section-desc">出典：総務省「自治体決算・減税ビューア」掲載の令和6年度決算データ（<a href="https://zaisei-net.github.io/Municipal-Accounting/" target="_blank" rel="noopener">zaisei-net.github.io/Municipal-Accounting/</a>）。金額は千円単位、表示は億円換算。</p>
+  </div>
+
+  <div class="commentary" style="border-left-color:var(--red);">
+    <strong>高知減税会の視点：</strong>歳入の<strong>39.6%が地方交付税</strong>（1,889億円）、<strong>12%が新規借金（地方債）</strong>（574億円）。自前の税収はわずか19.3%（920億円）。県民が稼いだ税金の約5倍を国からの移転や借金で賄っている構造は、財政規律を弱め、「増税・国依存」の連鎖を生む。経常収支比率98.9%は歳出が固定費でほぼ全部塞がれており、歳出削減による減税余地を直接示している。
+  </div>
+
+  <!-- 財政タブ -->
+  <div class="survey-tabs" id="fin-tabs">
+    <button class="stab active" onclick="switchFinTab('ftab-overview')">歳入・歳出概要</button>
+    <button class="stab" onclick="switchFinTab('ftab-revenue')">歳入内訳</button>
+    <button class="stab" onclick="switchFinTab('ftab-exp-n')">歳出（性質別）</button>
+    <button class="stab" onclick="switchFinTab('ftab-exp-p')">歳出（目的別）</button>
+    <button class="stab" onclick="switchFinTab('ftab-staff')">職員・人件費</button>
+    <button class="stab" onclick="switchFinTab('ftab-index')">財政指標</button>
+  </div>
+
+  <!-- 概要 -->
+  <div id="ftab-overview" class="stab-panel">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-bottom:20px;">
+      <div style="border:1px solid var(--border);border-radius:8px;padding:18px;background:var(--bg-2);">
+        <div style="font-size:11px;font-weight:700;color:var(--teal);margin-bottom:10px;letter-spacing:.05em;">歳入構成（上位）</div>
+        <div class="fin-bar-row"><span>地方交付税</span><div class="fin-bar" style="--w:39.6%"><span>39.6% / 1,889億円</span></div></div>
+        <div class="fin-bar-row"><span>地方税</span><div class="fin-bar" style="--w:19.3%"><span>19.3% / 920億円</span></div></div>
+        <div class="fin-bar-row"><span>国庫支出金</span><div class="fin-bar fin-bar-gray" style="--w:17.3%"><span>17.3% / 826億円</span></div></div>
+        <div class="fin-bar-row"><span>地方債（借金）</span><div class="fin-bar fin-bar-red" style="--w:12%"><span>12.0% / 574億円</span></div></div>
+        <div class="fin-bar-row"><span>その他</span><div class="fin-bar fin-bar-gray" style="--w:11.8%"><span>11.8% / 568億円</span></div></div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:18px;background:var(--bg-2);">
+        <div style="font-size:11px;font-weight:700;color:var(--teal);margin-bottom:10px;letter-spacing:.05em;">歳出構成（目的別・上位）</div>
+        <div class="fin-bar-row"><span>教育費</span><div class="fin-bar" style="--w:20.7%"><span>20.7% / 967億円</span></div></div>
+        <div class="fin-bar-row"><span>土木費</span><div class="fin-bar" style="--w:18.6%"><span>18.6% / 867億円</span></div></div>
+        <div class="fin-bar-row"><span>公債費（借金返済）</span><div class="fin-bar fin-bar-red" style="--w:15.5%"><span>15.5% / 724億円</span></div></div>
+        <div class="fin-bar-row"><span>民生費</span><div class="fin-bar fin-bar-gray" style="--w:15%"><span>15.0% / 703億円</span></div></div>
+        <div class="fin-bar-row"><span>農林水産業費</span><div class="fin-bar fin-bar-gray" style="--w:7.6%"><span>7.6% / 354億円</span></div></div>
+      </div>
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>区分</th><th style="text-align:right;">金額（億円）</th><th style="text-align:right;">前年比</th></tr></thead>
+        <tbody>
+          <tr><td>歳入合計</td><td class="td-num">4,777</td><td class="td-num" style="color:var(--red);">▲63億円</td></tr>
+          <tr><td>歳出合計</td><td class="td-num">4,674</td><td class="td-num" style="color:var(--red);">▲62億円</td></tr>
+          <tr><td>実質収支</td><td class="td-num">36</td><td class="td-num" style="color:var(--green);">+9億円</td></tr>
+          <tr><td style="color:var(--text-3);font-size:12px;">（うち翌年度繰越財源）</td><td class="td-num" style="color:var(--text-3);">27</td><td></td></tr>
+          <tr><td>標準財政規模</td><td class="td-num">2,727</td><td></td></tr>
+          <tr><td>財政調整基金</td><td class="td-num">234</td><td></td></tr>
+          <tr class="row-ng"><td><strong>県債残高</strong></td><td class="td-num"><strong>8,683</strong></td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">※金額は億円に換算（千円単位原典を÷100,000で四捨五入）。県債残高は令和6年度末残高。</p>
+  </div>
+
+  <!-- 歳入内訳 -->
+  <div id="ftab-revenue" class="stab-panel" style="display:none;">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>歳入科目</th><th style="text-align:right;">金額（億円）</th><th style="text-align:right;">構成比</th><th>注目点</th></tr></thead>
+        <tbody>
+          <tr><td><strong>地方税</strong></td><td class="td-num">920</td><td class="td-num">19.3%</td><td style="font-size:12px;color:var(--text-2);">県民・法人が直接負担</td></tr>
+          <tr><td style="padding-left:20px;font-size:12px;color:var(--text-3);">道府県民税（個人・法人）</td><td class="td-num" style="color:var(--text-3);">234</td><td></td><td></td></tr>
+          <tr><td style="padding-left:20px;font-size:12px;color:var(--text-3);">地方消費税</td><td class="td-num" style="color:var(--text-3);">379</td><td></td><td></td></tr>
+          <tr><td style="padding-left:20px;font-size:12px;color:var(--text-3);">事業税</td><td class="td-num" style="color:var(--text-3);">161</td><td></td><td></td></tr>
+          <tr><td style="padding-left:20px;font-size:12px;color:var(--text-3);">自動車税・軽油引取税等</td><td class="td-num" style="color:var(--text-3);">122</td><td></td><td></td></tr>
+          <tr><td>地方譲与税</td><td class="td-num">172</td><td class="td-num">3.6%</td><td></td></tr>
+          <tr class="highlight-row row-warn"><td><strong>地方交付税</strong></td><td class="td-num"><strong>1,889</strong></td><td class="td-num"><strong>39.6%</strong></td><td style="font-size:12px;color:var(--orange);">歳入最大項目・国依存の象徴</td></tr>
+          <tr><td>国庫支出金</td><td class="td-num">826</td><td class="td-num">17.3%</td><td style="font-size:12px;color:var(--text-2);">補助金・負担金</td></tr>
+          <tr class="row-ng"><td><strong>地方債（新規借金）</strong></td><td class="td-num"><strong>574</strong></td><td class="td-num"><strong>12.0%</strong></td><td style="font-size:12px;color:var(--red);">うち臨時財政対策債6億円</td></tr>
+          <tr><td>繰入金・繰越金等</td><td class="td-num">176</td><td class="td-num">3.7%</td><td></td></tr>
+          <tr><td>使用料・手数料・財産収入等</td><td class="td-num">88</td><td class="td-num">1.8%</td><td></td></tr>
+          <tr style="border-top:2px solid var(--border-strong);"><td><strong>歳入合計</strong></td><td class="td-num"><strong>4,777</strong></td><td class="td-num">100%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">地方交付税(39.6%)+地方債(12%)=歳入の約52%が「国からの移転」か「将来世代への転嫁」。県の税収自立度はわずか19%。</p>
+  </div>
+
+  <!-- 歳出（性質別） -->
+  <div id="ftab-exp-n" class="stab-panel" style="display:none;">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>性質別区分</th><th style="text-align:right;">金額（億円）</th><th style="text-align:right;">構成比</th><th>評価</th></tr></thead>
+        <tbody>
+          <tr class="row-warn"><td><strong>義務的経費 計</strong></td><td class="td-num"><strong>1,999</strong></td><td class="td-num"><strong>42.8%</strong></td><td class="td-warn">固定費</td></tr>
+          <tr><td style="padding-left:20px;">　うち人件費</td><td class="td-num">1,137</td><td class="td-num">24.3%</td><td></td></tr>
+          <tr><td style="padding-left:36px;font-size:12px;color:var(--text-3);">　　うち職員給</td><td class="td-num" style="color:var(--text-3);">806</td><td></td><td></td></tr>
+          <tr><td style="padding-left:20px;">　うち扶助費</td><td class="td-num">138</td><td class="td-num">2.9%</td><td></td></tr>
+          <tr class="row-ng"><td style="padding-left:20px;">　うち<strong>公債費（借金返済）</strong></td><td class="td-num"><strong>724</strong></td><td class="td-num"><strong>15.5%</strong></td><td class="td-ng">重荷</td></tr>
+          <tr><td style="padding-left:36px;font-size:12px;color:var(--text-3);">　　うち元金</td><td class="td-num" style="color:var(--text-3);">688</td><td></td><td></td></tr>
+          <tr><td style="padding-left:36px;font-size:12px;color:var(--text-3);">　　うち利子</td><td class="td-num" style="color:var(--text-3);">36</td><td></td><td></td></tr>
+          <tr><td><strong>その他の経費 計</strong></td><td class="td-num"><strong>1,527</strong></td><td class="td-num"><strong>32.7%</strong></td><td></td></tr>
+          <tr><td style="padding-left:20px;">　物件費</td><td class="td-num">251</td><td class="td-num">5.4%</td><td></td></tr>
+          <tr><td style="padding-left:20px;">　補助費等</td><td class="td-num">1,091</td><td class="td-num">23.3%</td><td></td></tr>
+          <tr><td><strong>投資的経費 計</strong></td><td class="td-num"><strong>1,148</strong></td><td class="td-num"><strong>24.6%</strong></td><td></td></tr>
+          <tr><td style="padding-left:20px;">　普通建設事業費</td><td class="td-num">1,111</td><td class="td-num">23.8%</td><td></td></tr>
+          <tr style="border-top:2px solid var(--border-strong);"><td><strong>歳出合計</strong></td><td class="td-num"><strong>4,674</strong></td><td class="td-num">100%</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">義務的経費42.8%＋投資的経費24.6%で約67%。裁量的な歳出削減が難しい構造になっている。</p>
+  </div>
+
+  <!-- 歳出（目的別） -->
+  <div id="ftab-exp-p" class="stab-panel" style="display:none;">
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>目的別区分</th><th style="text-align:right;">金額（億円）</th><th style="text-align:right;">構成比</th></tr></thead>
+        <tbody>
+          <tr><td>教育費</td><td class="td-num">967</td><td class="td-num">20.7%</td></tr>
+          <tr><td>土木費</td><td class="td-num">867</td><td class="td-num">18.6%</td></tr>
+          <tr class="row-ng"><td><strong>公債費（借金返済）</strong></td><td class="td-num"><strong>725</strong></td><td class="td-num"><strong>15.5%</strong></td></tr>
+          <tr><td>民生費</td><td class="td-num">703</td><td class="td-num">15.0%</td></tr>
+          <tr><td>農林水産業費</td><td class="td-num">354</td><td class="td-num">7.6%</td></tr>
+          <tr><td>総務費</td><td class="td-num">227</td><td class="td-num">4.9%</td></tr>
+          <tr><td>警察費</td><td class="td-num">227</td><td class="td-num">4.9%</td></tr>
+          <tr><td>衛生費</td><td class="td-num">212</td><td class="td-num">4.5%</td></tr>
+          <tr><td>商工費</td><td class="td-num">116</td><td class="td-num">2.5%</td></tr>
+          <tr><td>災害復旧費</td><td class="td-num">37</td><td class="td-num">0.8%</td></tr>
+          <tr><td>議会費</td><td class="td-num">10</td><td class="td-num">0.2%</td></tr>
+          <tr><td>労働費・その他</td><td class="td-num">12</td><td class="td-num">0.3%</td></tr>
+          <tr style="border-top:2px solid var(--border-strong);"><td><strong>歳出合計</strong></td><td class="td-num"><strong>4,674</strong></td><td class="td-num">100%</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">公債費15.5%は歳出の6番目に大きな項目。借金返済が教育・福祉を圧迫し続けている。</p>
+  </div>
+
+  <!-- 職員・人件費 -->
+  <div id="ftab-staff" class="stab-panel" style="display:none;">
+    <div class="commentary" style="margin-bottom:16px;">
+      <strong>人件費合計 1,137億円</strong>（歳出の24.3%）。職員給だけで806億円。人件費の適正化が財政改善の最大の鍵の一つ。
+    </div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>職種</th>
+            <th style="text-align:right;">職員数（人）</th>
+            <th style="text-align:right;">給与総額（億円）</th>
+            <th style="text-align:right;">平均月額給与</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>一般職員</td>
+            <td class="td-num">4,452</td>
+            <td class="td-num">139</td>
+            <td class="td-num">312,100円</td>
+          </tr>
+          <tr>
+            <td style="padding-left:20px;font-size:12px;color:var(--text-3);">うち技能労務職員</td>
+            <td class="td-num" style="color:var(--text-3);">15</td>
+            <td class="td-num" style="color:var(--text-3);">0.4</td>
+            <td class="td-num" style="color:var(--text-3);">254,000円</td>
+          </tr>
+          <tr>
+            <td>警察官</td>
+            <td class="td-num">1,622</td>
+            <td class="td-num">53</td>
+            <td class="td-num">327,900円</td>
+          </tr>
+          <tr>
+            <td>教育公務員</td>
+            <td class="td-num">6,228</td>
+            <td class="td-num">228</td>
+            <td class="td-num">365,400円</td>
+          </tr>
+          <tr style="border-top:2px solid var(--border-strong);">
+            <td><strong>合計（主要3区分）</strong></td>
+            <td class="td-num"><strong>12,302</strong></td>
+            <td class="td-num"><strong>420</strong></td>
+            <td class="td-num">—</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">※給与総額は月額給与の年間分（月額×100円換算）。手当・退職金は別途。人件費合計1,137億円には共済費等も含む。平均月額給与は100円単位原典より換算。</p>
+  </div>
+
+  <!-- 財政指標 -->
+  <div id="ftab-index" class="stab-panel" style="display:none;">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin-bottom:20px;">
+      <div style="border:1px solid var(--border);border-radius:8px;padding:16px;background:var(--bg-2);">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:4px;">財政力指数</div>
+        <div style="font-size:28px;font-weight:800;color:var(--orange);">0.27</div>
+        <div style="font-size:11px;color:var(--text-2);margin-top:4px;">全国平均0.52に対し半分以下。交付税不交付団体になるには1.0以上必要。</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:16px;background:var(--bg-2);">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:4px;">経常収支比率</div>
+        <div style="font-size:28px;font-weight:800;color:var(--red);">98.9%</div>
+        <div style="font-size:11px;color:var(--text-2);margin-top:4px;">90%超は「硬直化」。100%に近いほど新規施策・減税の余地がない。</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:16px;background:var(--bg-2);">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:4px;">実質公債費比率</div>
+        <div style="font-size:28px;font-weight:800;color:var(--orange);">12.3%</div>
+        <div style="font-size:11px;color:var(--text-2);margin-top:4px;">18%超で起債制限。現状は警戒域手前。借金返済が一般財源の12%超を占める。</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:16px;background:var(--bg-2);">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:4px;">将来負担比率</div>
+        <div style="font-size:28px;font-weight:800;color:var(--red);">178.4%</div>
+        <div style="font-size:11px;color:var(--text-2);margin-top:4px;">標準財政規模の1.78倍の将来負担。400%超で早期健全化。現在は管理可能域だが高水準。</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:16px;background:var(--bg-2);">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:4px;">実質収支比率</div>
+        <div style="font-size:28px;font-weight:800;color:var(--green);">1.3%</div>
+        <div style="font-size:11px;color:var(--text-2);margin-top:4px;">黒字。ただし収支均衡は交付税・国庫支出金に支えられたもの。</div>
+      </div>
+      <div style="border:1px solid var(--border);border-radius:8px;padding:16px;background:var(--bg-2);">
+        <div style="font-size:11px;color:var(--text-3);font-weight:600;margin-bottom:4px;">財政調整基金</div>
+        <div style="font-size:28px;font-weight:800;color:var(--teal);">234億円</div>
+        <div style="font-size:11px;color:var(--text-2);margin-top:4px;">標準財政規模比8.6%。最低ラインの目安（10%＝273億円）を下回る水準。</div>
+      </div>
+    </div>
+    <p class="source-note">出典：総務省「自治体決算・減税ビューア」 zaisei-net.github.io/Municipal-Accounting/（令和6年度決算データ）</p>
+  </div>
+</div>
+
+<hr class="section-divider">
 
 <!-- ① 行政改革・組織 -->
 <div class="section">
@@ -702,9 +935,19 @@ function toggleTheme() {
   root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
 }
 function switchTab(id) {
-  document.querySelectorAll('.stab-panel').forEach(p => p.style.display = 'none');
-  document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).style.display = '';
+  const panel = document.getElementById(id);
+  const group = panel.closest('.section');
+  group.querySelectorAll('.stab-panel').forEach(p => p.style.display = 'none');
+  group.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+  panel.style.display = '';
+  event.currentTarget.classList.add('active');
+}
+function switchFinTab(id) {
+  const panel = document.getElementById(id);
+  const group = panel.closest('.section');
+  group.querySelectorAll('.stab-panel').forEach(p => p.style.display = 'none');
+  group.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+  panel.style.display = '';
   event.currentTarget.classList.add('active');
 }
 </script>
