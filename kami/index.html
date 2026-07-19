@@ -295,6 +295,20 @@ text-decoration:none;}
   padding: 0 2.5rem;
 }
 
+/* ── ANALYZE CTA ── */
+.analyze-cta {
+  display: block; text-decoration: none;
+  border: 2px solid var(--blue); border-radius: 8px;
+  padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+  background: var(--bg-blue);
+  transition: box-shadow 0.15s, border-color 0.15s;
+}
+.analyze-cta:hover { box-shadow: 0 4px 16px rgba(37,99,235,0.15); border-color: var(--blue-mid); }
+.analyze-cta-label { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.14em; color: var(--blue); text-transform: uppercase; margin-bottom: 0.35rem; }
+.analyze-cta-title { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; }
+.analyze-cta-desc { font-size: 0.78rem; color: var(--text-2); line-height: 1.6; margin-bottom: 0.5rem; }
+.analyze-cta-arrow { font-size: 0.8rem; font-weight: 700; color: var(--blue); }
+
 /* ── NAV PILLS ── */
 .nav-pills {
   display: flex;
@@ -612,6 +626,14 @@ footer .wrap {
 
 <!-- MAIN -->
 <main class="wrap">
+
+  <!-- 行政分析ページへのCTA -->
+  <a href="/kochi-watch/kami/analyze/" class="analyze-cta">
+    <div class="analyze-cta-label">関連調査レポート</div>
+    <div class="analyze-cta-title">香美市公式サイト全1,926ページ精読分析</div>
+    <div class="analyze-cta-desc">議会・政務活動費・美術館・市バス・情報公開・入札——「書いていないこと」を記録した調査レポート</div>
+    <div class="analyze-cta-arrow">行政分析レポートを読む →</div>
+  </a>
 
   <!-- NAV -->
   <nav class="nav-pills" aria-label="セクションへのリンク">
