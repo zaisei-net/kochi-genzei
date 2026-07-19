@@ -117,6 +117,30 @@ a:hover { text-decoration: underline; }
 .check-item-title { font-size: 13px; font-weight: 700; color: var(--text); }
 .check-item-body { font-size: 12px; color: var(--text-2); line-height: 1.7; }
 
+/* Survey tabs */
+.survey-tabs { display: flex; gap: 4px; margin-bottom: 16px; border-bottom: 2px solid var(--border); padding-bottom: 0; }
+.stab { font-size: 13px; font-weight: 600; padding: 8px 18px; border: none; background: none; color: var(--text-2); cursor: pointer; border-bottom: 3px solid transparent; margin-bottom: -2px; }
+.stab:hover { color: var(--teal); }
+.stab.active { color: var(--teal); border-bottom-color: var(--teal); }
+
+/* Survey table */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: var(--bg-2); color: var(--text-2); font-size: 11px; font-weight: 600; letter-spacing: 0.03em; padding: 10px 12px; text-align: left; border-bottom: 2px solid var(--border-strong); white-space: nowrap; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tfoot td { padding: 10px 12px; border-top: 2px solid var(--border-strong); border-bottom: none; background: var(--bg-2); }
+tr:hover td { background: var(--bg-2); }
+.td-num { text-align: right; font-variant-numeric: tabular-nums; }
+.td-ok { text-align: center; color: var(--green); font-weight: 700; }
+.td-warn { text-align: center; color: var(--orange); font-weight: 700; }
+.td-ng { text-align: center; color: var(--red); font-weight: 700; }
+.row-ng td { background: color-mix(in srgb, var(--red-light) 40%, transparent); }
+.row-warn td { background: color-mix(in srgb, var(--orange-light) 40%, transparent); }
+.highlight-row td { font-weight: 700; }
+.badge-g { background: var(--green-light); color: var(--green); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.badge-r { background: var(--red-light); color: var(--red); font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 4px; white-space: nowrap; }
+.source-note { font-size: 11px; color: var(--text-3); margin-top: 12px; }
+
 /* Footer */
 footer { background: var(--bg-2); border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; }
 footer p { font-size: 12px; color: var(--text-3); margin-bottom: 4px; }
@@ -416,6 +440,196 @@ footer strong { color: var(--text-2); }
 
 <hr class="section-divider">
 
+<!-- 総務省調査データ表 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">高知県の行政改革実施状況（総務省調査）</div>
+    <p class="section-desc">出典：総務省「地方行政サービス改革の取組状況等に関する調査」（令和7年12月19日公表）。高知県が国に提出した回答データをもとに集計。</p>
+  </div>
+
+  <!-- サブタブ -->
+  <div class="survey-tabs">
+    <button class="stab active" onclick="switchTab('tab-ittaku')">民間委託</button>
+    <button class="stab" onclick="switchTab('tab-shitei')">指定管理者制度</button>
+    <button class="stab" onclick="switchTab('tab-hyoka')">行政評価</button>
+  </div>
+
+  <!-- ① 民間委託 -->
+  <div id="tab-ittaku" class="stab-panel">
+    <p style="font-size:12px;color:var(--text-2);margin-bottom:12px;">本庁舎・公共サービス13業務について、民間委託の状況を示す。「○」は委託実施あり。</p>
+    <div class="table-wrap">
+      <table id="t-ittaku">
+        <thead>
+          <tr>
+            <th>業務</th>
+            <th>委託状況</th>
+            <th>評価</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>①本庁舎の清掃</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+          <tr><td>②本庁舎の夜間警備</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+          <tr><td>③案内・受付</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+          <tr><td>④電話交換</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+          <tr><td>⑤公用車運転</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+          <tr><td>⑥学校給食（調理）</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+          <tr class="row-ng"><td>⑦学校給食（運搬）</td><td><span class="badge badge-r">直営・対象外</span></td><td class="td-ng">−</td></tr>
+          <tr class="row-ng"><td>⑧学校用務員事務</td><td><span class="badge badge-r">直営・対象外</span></td><td class="td-ng">−</td></tr>
+          <tr class="row-ng"><td>⑨水道メーター検針</td><td><span class="badge badge-r">直営・対象外</span></td><td class="td-ng">−</td></tr>
+          <tr><td>⑩道路維持補修・清掃等</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+          <tr><td>⑪情報処理・庁内情報システム維持</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+          <tr><td>⑫ホームページ作成・運営</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+          <tr><td>⑬調査・集計</td><td><span class="badge badge-g">委託あり</span></td><td class="td-ok">○</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="source-note">※⑦⑧⑨は「直営」または県の施設として対象外と回答。13業務中10業務で民間委託を実施。</p>
+  </div>
+
+  <!-- ② 指定管理者制度 -->
+  <div id="tab-shitei" class="stab-panel" style="display:none;">
+    <p style="font-size:12px;color:var(--text-2);margin-bottom:12px;">施設種別ごとの公の施設数・指定管理者導入件数・導入率。施設ゼロの種別は省略。</p>
+    <div class="table-wrap">
+      <table id="t-shitei">
+        <thead>
+          <tr>
+            <th>施設種別</th>
+            <th style="text-align:right;">公の施設数</th>
+            <th style="text-align:right;">指定管理導入</th>
+            <th style="text-align:right;">導入率</th>
+            <th>評価</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>①体育館</td>
+            <td class="td-num">8</td><td class="td-num">8</td>
+            <td class="td-num"><strong>100%</strong></td>
+            <td class="td-ok">◎</td>
+          </tr>
+          <tr>
+            <td>⑦キャンプ場等</td>
+            <td class="td-num">1</td><td class="td-num">1</td>
+            <td class="td-num"><strong>100%</strong></td>
+            <td class="td-ok">◎</td>
+          </tr>
+          <tr>
+            <td>⑯博物館・美術館等</td>
+            <td class="td-num">5</td><td class="td-num">5</td>
+            <td class="td-num"><strong>100%</strong></td>
+            <td class="td-ok">◎</td>
+          </tr>
+          <tr>
+            <td>⑰文化会館</td>
+            <td class="td-num">2</td><td class="td-num">2</td>
+            <td class="td-num"><strong>100%</strong></td>
+            <td class="td-ok">◎</td>
+          </tr>
+          <tr>
+            <td>⑪大規模公園</td>
+            <td class="td-num">15</td><td class="td-num">9</td>
+            <td class="td-num">60%</td>
+            <td class="td-warn">△</td>
+          </tr>
+          <tr>
+            <td>⑱合宿所・研修所等</td>
+            <td class="td-num">4</td><td class="td-num">2</td>
+            <td class="td-num">50%</td>
+            <td class="td-warn">△</td>
+          </tr>
+          <tr>
+            <td>⑧産業情報提供施設</td>
+            <td class="td-num">2</td><td class="td-num">1</td>
+            <td class="td-num">50%</td>
+            <td class="td-warn">△</td>
+          </tr>
+          <tr class="row-ng">
+            <td>⑩開放型研究施設等</td>
+            <td class="td-num">3</td><td class="td-num">0</td>
+            <td class="td-num">0%</td>
+            <td class="td-ng">✕</td>
+          </tr>
+          <tr class="row-ng">
+            <td>⑮図書館</td>
+            <td class="td-num">1</td><td class="td-num">0</td>
+            <td class="td-num">0%</td>
+            <td class="td-ng">✕</td>
+          </tr>
+          <tr class="row-ng">
+            <td>㉑福祉・保健センター</td>
+            <td class="td-num">1</td><td class="td-num">0</td>
+            <td class="td-num">0%</td>
+            <td class="td-ng">✕</td>
+          </tr>
+          <tr class="row-ng highlight-row">
+            <td><strong>⑫公営住宅</strong> <span class="badge badge-r">要注目</span></td>
+            <td class="td-num">62</td><td class="td-num">0</td>
+            <td class="td-num"><strong>0%</strong></td>
+            <td class="td-ng">✕</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td><strong>合計（施設ありのみ）</strong></td>
+            <td class="td-num"><strong>104</strong></td>
+            <td class="td-num"><strong>28</strong></td>
+            <td class="td-num"><strong>27%</strong></td>
+            <td>—</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <p class="source-note">※公営住宅62棟が全て直営のため全体導入率が低い。施設ゼロの種別（競技場・プール・海水浴場等11種別）は省略。</p>
+  </div>
+
+  <!-- ③ 行政評価 -->
+  <div id="tab-hyoka" class="stab-panel" style="display:none;">
+    <p style="font-size:12px;color:var(--text-2);margin-bottom:12px;">政策・施策・事務事業の3層で評価の実施状況と公表状況を確認。</p>
+    <div class="table-wrap">
+      <table id="t-hyoka">
+        <thead>
+          <tr>
+            <th>評価層</th>
+            <th>実施状況</th>
+            <th>公表状況</th>
+            <th>県の説明・理由</th>
+            <th>評価</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="row-ng">
+            <td><strong>⑴政策評価</strong></td>
+            <td><span class="badge badge-r">導入予定なし</span></td>
+            <td>—</td>
+            <td style="font-size:12px;color:var(--text-2);">「施策の方向性を定めるための上位の方針であり、評価になじまないため」</td>
+            <td class="td-ng">✕</td>
+          </tr>
+          <tr class="row-warn">
+            <td><strong>⑵施策評価</strong></td>
+            <td><span class="badge badge-g">実施済み</span></td>
+            <td><span class="badge badge-r">非公表</span></td>
+            <td style="font-size:12px;color:var(--text-2);">「主に職員の意識改革が目的であるため公表の必要はないと考えている」</td>
+            <td class="td-warn">△</td>
+          </tr>
+          <tr class="row-warn">
+            <td><strong>⑶事務事業評価</strong></td>
+            <td><span class="badge badge-g">実施済み</span></td>
+            <td><span class="badge badge-r">非公表</span></td>
+            <td style="font-size:12px;color:var(--text-2);">「主に職員の意識改革が目的であるため公表の必要はないと考えている」</td>
+            <td class="td-warn">△</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="commentary" style="margin-top:16px;">
+      <strong>高知減税会の見解：</strong>施策・事務事業評価は「実施済み」だが、結果を非公表としている。「職員の意識改革が目的」という理由は評価結果の公開拒否の根拠にならない。行政評価は県民が税金の使われ方を検証するためのツールであり、<strong>公表こそが評価の意義</strong>である。政策評価についても「評価になじまない」という自己判断ではなく、外部の視点から評価の枠組みを構築すべき。
+    </div>
+    <p class="source-note">出典：総務省「地方行政サービス改革の取組状況等に関する調査（R7.12.19公表）」高知県回答</p>
+  </div>
+</div>
+
+<hr class="section-divider">
+
 <!-- 監視チェックリスト -->
 <div class="section">
   <div class="section-header">
@@ -486,6 +700,12 @@ function toggleTheme() {
   const root = document.documentElement;
   const current = root.getAttribute('data-theme');
   root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+}
+function switchTab(id) {
+  document.querySelectorAll('.stab-panel').forEach(p => p.style.display = 'none');
+  document.querySelectorAll('.stab').forEach(b => b.classList.remove('active'));
+  document.getElementById(id).style.display = '';
+  event.currentTarget.classList.add('active');
 }
 </script>
 </body>
