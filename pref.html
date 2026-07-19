@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高知県庁ウォッチ｜高知減税会</title>
+<style>
+:root {
+  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff; --bg-teal: #f0fdfa;
+  --border: #e2e8f0; --border-strong: #cbd5e1;
+  --text: #1e293b; --text-2: #475569; --text-3: #94a3b8;
+  --blue: #2563eb; --blue-light: #dbeafe;
+  --teal: #0f766e; --teal-light: #ccfbf1;
+  --red: #dc2626; --red-light: #fee2e2;
+  --orange: #d97706; --orange-light: #fef3c7;
+  --green: #16a34a; --green-light: #dcfce7;
+  --gray-light: #f1f5f9;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a; --bg-2: #1e293b; --bg-blue: #1e3a5f; --bg-teal: #042f2e;
+    --border: #334155; --border-strong: #475569;
+    --text: #f1f5f9; --text-2: #94a3b8; --text-3: #64748b;
+    --blue-light: #1e3a5f; --teal-light: #042f2e;
+    --red-light: #450a0a; --orange-light: #431a04; --green-light: #052e16;
+    --gray-light: #1e293b;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0f172a; --bg-2: #1e293b; --bg-blue: #1e3a5f; --bg-teal: #042f2e;
+  --border: #334155; --border-strong: #475569;
+  --text: #f1f5f9; --text-2: #94a3b8; --text-3: #64748b;
+  --blue-light: #1e3a5f; --teal-light: #042f2e;
+  --red-light: #450a0a; --orange-light: #431a04; --green-light: #052e16;
+  --gray-light: #1e293b;
+}
+:root[data-theme="light"] {
+  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff; --bg-teal: #f0fdfa;
+  --border: #e2e8f0; --border-strong: #cbd5e1;
+  --text: #1e293b; --text-2: #475569; --text-3: #94a3b8;
+  --blue-light: #dbeafe; --teal-light: #ccfbf1;
+  --red-light: #fee2e2; --orange-light: #fef3c7; --green-light: #dcfce7;
+  --gray-light: #f1f5f9;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hiragino Kaku Gothic ProN', 'Noto Sans JP', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Topbar */
+.topbar { background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; gap: 24px; height: 52px; position: sticky; top: 0; z-index: 100; }
+.topbar-logo { font-size: 15px; font-weight: 700; color: var(--blue); letter-spacing: -0.01em; white-space: nowrap; }
+.topbar-logo span { color: var(--text-2); font-weight: 400; }
+.topbar-nav { display: flex; gap: 6px; flex-wrap: wrap; }
+.topbar-nav a { font-size: 13px; color: var(--text-2); padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border); text-decoration: none; }
+.topbar-nav a:hover, .topbar-nav a.active { background: var(--blue-light); color: var(--blue); border-color: var(--blue-light); }
+.topbar-spacer { flex: 1; }
+.theme-btn { background: none; border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: 12px; color: var(--text-2); cursor: pointer; }
+.theme-btn:hover { border-color: var(--blue); color: var(--blue); }
+
+/* Hero */
+.hero { background: var(--bg-teal); border-bottom: 1px solid var(--border); padding: 48px 24px 40px; }
+.hero-inner { max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: var(--teal); text-transform: uppercase; margin-bottom: 12px; }
+.hero h1 { font-size: clamp(20px, 3.5vw, 30px); font-weight: 800; color: var(--text); line-height: 1.25; margin-bottom: 12px; text-wrap: balance; }
+.hero h1 em { color: var(--teal); font-style: normal; }
+.hero-sub { font-size: 14px; color: var(--text-2); max-width: 680px; margin-bottom: 20px; line-height: 1.8; }
+.hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.hero-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 4px; background: var(--teal-light); color: var(--teal); }
+
+/* Stats strip */
+.stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; border-bottom: 1px solid var(--border); }
+.stat-item { padding: 20px 24px; border-right: 1px solid var(--border); border-top: 3px solid var(--teal); background: var(--bg); }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 26px; font-weight: 800; color: var(--teal); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.stat-num.red { color: var(--red); }
+.stat-num.orange { color: var(--orange); }
+.stat-label { font-size: 11px; color: var(--text-2); margin-top: 2px; }
+.stat-note { font-size: 10px; color: var(--text-3); margin-top: 1px; }
+
+/* Section */
+.section { max-width: 1100px; margin: 0 auto; padding: 44px 24px; }
+.section-header { margin-bottom: 24px; }
+.section-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.section-title::before { content: ''; display: inline-block; width: 4px; height: 18px; background: var(--teal); border-radius: 2px; }
+.section-desc { font-size: 13px; color: var(--text-2); padding-left: 12px; line-height: 1.7; }
+.section-divider { border: none; border-top: 1px solid var(--border); }
+
+/* Commentary box */
+.commentary { background: var(--bg-2); border: 1px solid var(--border); border-left: 4px solid var(--orange); border-radius: 6px; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: var(--text-2); line-height: 1.75; }
+.commentary strong { color: var(--orange); }
+
+/* Link card grid */
+.link-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.link-card { border: 1px solid var(--border); border-radius: 8px; background: var(--bg); padding: 16px 18px; display: flex; flex-direction: column; gap: 6px; transition: border-color 0.15s, box-shadow 0.15s; }
+.link-card:hover { border-color: var(--teal); box-shadow: 0 2px 8px rgba(15,118,110,0.1); }
+.link-card-label { font-size: 11px; font-weight: 600; letter-spacing: 0.04em; color: var(--teal); }
+.link-card-title { font-size: 14px; font-weight: 700; color: var(--text); line-height: 1.4; }
+.link-card-desc { font-size: 12px; color: var(--text-2); line-height: 1.6; flex: 1; }
+.link-card-foot { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
+.link-card-foot a { font-size: 12px; color: var(--teal); font-weight: 600; }
+.link-card-foot a::after { content: ' →'; }
+.badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
+.badge-new { background: var(--red-light); color: var(--red); }
+.badge-imp { background: var(--orange-light); color: var(--orange); }
+.badge-info { background: var(--gray-light); color: var(--text-3); }
+
+/* Watchdog checklist */
+.checklist { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.check-item { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; background: var(--bg-2); }
+.check-item-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+.check-status { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+.status-ng { background: var(--red-light); color: var(--red); }
+.status-warn { background: var(--orange-light); color: var(--orange); }
+.status-ok { background: var(--green-light); color: var(--green); }
+.check-item-title { font-size: 13px; font-weight: 700; color: var(--text); }
+.check-item-body { font-size: 12px; color: var(--text-2); line-height: 1.7; }
+
+/* Footer */
+footer { background: var(--bg-2); border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-3); margin-bottom: 4px; }
+footer strong { color: var(--text-2); }
+
+@media (max-width: 640px) {
+  .topbar { gap: 12px; padding: 0 16px; }
+  .hero { padding: 32px 16px 28px; }
+  .section { padding: 32px 16px; }
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2n) { border-right: none; }
+  .link-grid { grid-template-columns: 1fr; }
+  .checklist { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-logo">高知減税会 <span>/ 行政ウォッチ</span></div>
+  <nav class="topbar-nav">
+    <a href="kochi.html">高知県概覧</a>
+    <a href="pref.html" class="active">高知県庁</a>
+    <a href="index.html">香美市</a>
+    <a href="map.html">地図</a>
+    <a href="senkyo.html">選挙日程</a>
+    <a href="jiyuu.html">自由民権</a>
+  </nav>
+  <div class="topbar-spacer"></div>
+  <button class="theme-btn" onclick="toggleTheme()">テーマ切替</button>
+</header>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">Kochi Prefecture — Governmental Watch</div>
+    <h1>自治体としての<em>高知県庁</em>を監視する</h1>
+    <p class="hero-sub">高知県庁は職員約1万7千人、一般会計歳出約5,500億円を動かす巨大な組織です。行政改革・給与・公共施設・調達——税金の使われ方を四つの視点から追跡します。</p>
+    <div class="hero-tags">
+      <span class="hero-tag">行政改革</span>
+      <span class="hero-tag">職員給与・人件費</span>
+      <span class="hero-tag">公社・外郭団体</span>
+      <span class="hero-tag">指定管理者制度</span>
+      <span class="hero-tag">入札・調達</span>
+    </div>
+  </div>
+</section>
+
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num">約1.7万</div>
+    <div class="stat-label">県職員数（知事部局等）</div>
+    <div class="stat-note">教育・警察含む</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">約5,500億</div>
+    <div class="stat-label">一般会計歳出規模（R6）</div>
+    <div class="stat-note">円</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num orange">複数</div>
+    <div class="stat-label">公社・外郭団体 見直し対象</div>
+    <div class="stat-note">R7年度あり方見直し中</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">多数</div>
+    <div class="stat-label">指定管理施設（県立）</div>
+    <div class="stat-note">業務状況評価を毎年公表</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num red">継続中</div>
+    <div class="stat-label">行政改革フォローアップ</div>
+    <div class="stat-note">検討委員会が監視</div>
+  </div>
+</div>
+
+<!-- ① 行政改革・組織 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">① 行政改革・組織スリム化</div>
+    <p class="section-desc">県は「行政改革推進プラン」を策定し、アウトソーシング・公社改革・定員管理に取り組んでいる。高知減税会はその進捗と実効性を継続監視する。</p>
+  </div>
+
+  <div class="commentary">
+    <strong>注目ポイント：</strong>外郭団体（公社等）の「あり方見直し」は令和7年10月に方針が更新された。「存廃を含めた見直し」という表現が使われているが、具体的な廃止・統合の時期と財政効果が示されているかを確認すべき。アウトソーシングは費用削減の可能性がある一方、「積算基準」が適正かどうかのチェックも必要。
+  </div>
+
+  <div class="link-grid">
+    <div class="link-card">
+      <div class="link-card-label">行政改革の取組</div>
+      <div class="link-card-title">県政運営指針（行政改革・県政改革）</div>
+      <div class="link-card-desc">高知県の行政改革に関する基本方針と取組状況の全体像。過去の改革プランと現状の施策を確認できる。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/h21-gyoukaku-torikumi/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">外郭団体</div>
+      <div class="link-card-title">公社等外郭団体のあり方見直し・県立施設の活性化について <span class="badge badge-new">R7.10</span></div>
+      <div class="link-card-desc">令和7年10月更新。公社・外郭団体の存廃を含む見直し方針と、県立施設の活性化策が示されている。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2025101400038/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">公社改革</div>
+      <div class="link-card-title">公社改革 トップページ</div>
+      <div class="link-card-desc">高知県内の公社改革の全体方針。進行管理表で各公社の取組状況と進捗を一覧できる。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/kousya-top/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">公社改革</div>
+      <div class="link-card-title">公社等改革の進行管理表</div>
+      <div class="link-card-desc">各公社の改革ステータスを一覧できる進行管理表。廃止・統合・民営化の実施予定と達成状況を確認。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2018021600190/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">組織・定員</div>
+      <div class="link-card-title">県庁の組織・職員数</div>
+      <div class="link-card-desc">知事部局・各出先機関ごとの職員数。定員削減の実績と今後の計画を読み取るための基礎資料。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/sosiki-top/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">アウトソーシング</div>
+      <div class="link-card-title">高知県のアウトソーシング情報</div>
+      <div class="link-card-desc">県が民間委託（アウトソーシング）している業務の一覧と発注予定情報。委託範囲の拡大動向を確認できる。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/soshiki/110301/gyoukai-index.html" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">アウトソーシング</div>
+      <div class="link-card-title">アウトソーシング予算の積算基準</div>
+      <div class="link-card-desc">委託業務の費用積算ルール。積算基準が適切かどうかは県民によるコスト監視の出発点となる。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/gyoukai-sekisan/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">行政改革チェック</div>
+      <div class="link-card-title">高知県行政改革フォローアップ委員会</div>
+      <div class="link-card-desc">外部委員が行政改革の進捗を点検する委員会。審議記録から「実態が伴っているか」を読める。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/h2-gyoukakuforow-up/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ② 給与・人件費 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">② 職員給与・人件費</div>
+    <p class="section-desc">人件費は県予算の大きな割合を占める。給与水準・ラスパイレス指数・特別職の報酬が適正かどうかを確認する。</p>
+  </div>
+
+  <div class="commentary">
+    <strong>注目ポイント：</strong>地方公務員の給与は「ラスパイレス指数」で国家公務員水準との比較ができる。100を超えている場合は国より高水準。特別職（知事・副知事・議員等）の報酬は審議会の答申を経るが、その審議過程が公開されているか要チェック。令和6年度からの定年延長に伴う人件費増も注視点。
+  </div>
+
+  <div class="link-grid">
+    <div class="link-card">
+      <div class="link-card-label">給与公表</div>
+      <div class="link-card-title">県職員の給与等の状況</div>
+      <div class="link-card-desc">職員の平均給料・手当・ラスパイレス指数などを網羅した公式給与公表。毎年度更新。国水準との比較に使う。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/h21-kyuuyokoukai/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">特別職報酬</div>
+      <div class="link-card-title">高知県特別職報酬等審議会 <span class="badge badge-new">R7</span></div>
+      <div class="link-card-desc">知事・副知事・議員等の報酬水準を審議する第三者機関。審議記録・答申内容を確認することで透明性を検証できる。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/housyuusinngikai/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">給与格差</div>
+      <div class="link-card-title">職員の給与の男女の差異の公表について</div>
+      <div class="link-card-desc">令和5年度から義務化された男女賃金格差の公表。職種・職位別の構成比を通じて県庁内の給与実態が読める。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2023062200087/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">人事行政</div>
+      <div class="link-card-title">高知県人事行政の運営等の状況（過去分）</div>
+      <div class="link-card-desc">採用・昇任・分限・懲戒・服務等の人事行政全般の状況。職員の勤務実態と管理状況を継続的に追える。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/jinnjigyousei-kako/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">退職</div>
+      <div class="link-card-title">退職金（職員の権利・義務）</div>
+      <div class="link-card-desc">県職員の退職金制度の概要。給与と合わせてライフサイクルコスト（在職中＋退職後）の全体像を把握するための資料。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/taisyokukin/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">審議会日程</div>
+      <div class="link-card-title">令和7年度第2回 特別職報酬等審議会の開催 <span class="badge badge-new">R8.1</span></div>
+      <div class="link-card-desc">直近の審議会開催情報。議題・資料が公開されているかを確認し、報酬改定の動向を把握する。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2026012100048/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ③ 公共施設・指定管理 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">③ 公共施設・指定管理者制度</div>
+    <p class="section-desc">県立施設の運営は直営か指定管理か。指定管理者の業務評価は毎年実施されているか。施設の活性化・廃止・統合の議論がどこまで進んでいるかを追う。</p>
+  </div>
+
+  <div class="commentary">
+    <strong>注目ポイント：</strong>「県立施設運営活性化懇談会」は令和7年12月に始まり、令和8年3月・7月と継続開催されている（最新R8.7）。廃止・縮小・民間移管の候補施設が俎上に上っているか、懇談会の議事録を確認する必要がある。指定管理者への「業務状況評価」は令和4・5・6年度分が公開済みで、評価の質も点検の対象となる。
+  </div>
+
+  <div class="link-grid">
+    <div class="link-card">
+      <div class="link-card-label">施設活性化</div>
+      <div class="link-card-title">令和8年度第1回 県立施設運営活性化懇談会 <span class="badge badge-new">R8.7</span></div>
+      <div class="link-card-desc">最新の懇談会資料（令和8年7月）。廃止・統合・民間活用に向けた具体的な検討状況を確認できる最前線の資料。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2026070600078/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">施設活性化</div>
+      <div class="link-card-title">県立施設運営活性化懇談会（令和7年度）</div>
+      <div class="link-card-desc">令和7年12月・令和8年3月開催分の議事・資料。活性化の方向性が固まる過程を追う上で重要な前回分。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2025120300210/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">指定管理</div>
+      <div class="link-card-title">指定管理者制度 トップページ</div>
+      <div class="link-card-desc">高知県における指定管理者制度の全体像。対象施設の一覧と制度の概要が掲載されている。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/siteikannri-top/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">業務評価 R6</div>
+      <div class="link-card-title">令和6年度 指定管理者における業務状況評価 <span class="badge badge-imp">要確認</span></div>
+      <div class="link-card-desc">各指定管理施設の業務状況に対する評価結果（最新年度）。評価が形式的になっていないか点検する。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2025081000013/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">業務評価 R5</div>
+      <div class="link-card-title">令和5年度 指定管理者における業務状況評価</div>
+      <div class="link-card-desc">前年度比較用。評価点数の変化や、問題が指摘された施設の改善状況を追うためのベースライン。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2024083000106/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">業務評価 R4</div>
+      <div class="link-card-title">令和4年度 指定管理者における業務状況評価</div>
+      <div class="link-card-desc">3カ年の経年変化を把握するための資料。継続的に低評価の施設がないかを確認する。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2023071400218/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- ④ 入札・調達 -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">④ 入札・調達の透明性</div>
+    <p class="section-desc">公正な競争入札が行われているか。随意契約が不当に多くないか。委託業務の品質管理はなされているか。</p>
+  </div>
+
+  <div class="commentary">
+    <strong>注目ポイント：</strong>委託業務の「品質を確保する取組」ページが設置されているのは一定の前進だが、実際に委託先の成果物の品質管理が機能しているかは別問題。入札参加資格者名簿（令和8・9年度版）が公開されており、特定業者への集中がないかを確認できる。発注予定情報の早期公開が競争を促す前提となる。
+  </div>
+
+  <div class="link-grid">
+    <div class="link-card">
+      <div class="link-card-label">入札情報</div>
+      <div class="link-card-title">入札情報 一覧</div>
+      <div class="link-card-desc">高知県が実施する入札・公募情報の一覧。落札結果と入札参加者数を確認することで競争の実態を把握できる。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/nyuusatujouhou-index/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">発注予定</div>
+      <div class="link-card-title">高知県の委託業務 発注予定情報</div>
+      <div class="link-card-desc">民間委託業務の発注予定を事前に公開。小規模事業者が入札準備できるよう情報を提供している。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/gyoukai-info/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">品質管理</div>
+      <div class="link-card-title">委託業務の品質を確保する取組</div>
+      <div class="link-card-desc">委託先の業務品質をどう管理しているか。形式的なチェックリストに留まっていないかを見極める。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/gyoukai-hinshitsu/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">資格者名簿</div>
+      <div class="link-card-title">令和8・9年度 入札参加資格者名簿 <span class="badge badge-new">R8</span></div>
+      <div class="link-card-desc">物品・役務・建設工事の入札参加資格者リスト。特定企業・業者への集中度合いを確認できる。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/R8-9_nyusatsu_list/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">物品調達</div>
+      <div class="link-card-title">高知県物品電子調達システム</div>
+      <div class="link-card-desc">物品購入の電子調達システム。ペーパーレス・透明化が進んでいるか、利用状況を追う。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/2025041100135/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+    <div class="link-card">
+      <div class="link-card-label">県有地</div>
+      <div class="link-card-title">県有地の売却に係る入札情報等</div>
+      <div class="link-card-desc">県が保有する不要土地の売却状況。未利用・低利用の県有財産が適切に処分されているかを確認。</div>
+      <div class="link-card-foot"><a href="https://www.pref.kochi.lg.jp/doc/nyuusatu-kenyuuti/" target="_blank" rel="noopener">高知県公式</a></div>
+    </div>
+  </div>
+</div>
+
+<hr class="section-divider">
+
+<!-- 監視チェックリスト -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-title">高知減税会の監視チェックリスト</div>
+    <p class="section-desc">高知県庁に対して高知減税会が注目している論点。現状評価と次のアクション。</p>
+  </div>
+
+  <div class="checklist">
+    <div class="check-item">
+      <div class="check-item-head">
+        <div class="check-status status-warn">△</div>
+        <div class="check-item-title">公社・外郭団体の整理は進んでいるか</div>
+      </div>
+      <div class="check-item-body">「あり方見直し」の方針はR7.10に更新されたが、具体的な廃止・統合スケジュールと財政効果（削減額）が公表されるまで評価は保留。懇談会資料の継続注視が必要。</div>
+    </div>
+    <div class="check-item">
+      <div class="check-item-head">
+        <div class="check-status status-ng">✕</div>
+        <div class="check-item-title">給与水準は民間・国と比べて適正か</div>
+      </div>
+      <div class="check-item-body">ラスパイレス指数が100前後であっても、退職金・共済年金を含めたトータルの人件費比較が県から示されていない。定年延長に伴う人件費増の影響試算も要求すべき。</div>
+    </div>
+    <div class="check-item">
+      <div class="check-item-head">
+        <div class="check-status status-warn">△</div>
+        <div class="check-item-title">県立施設の廃止・民間移管は進んでいるか</div>
+      </div>
+      <div class="check-item-body">懇談会が継続開催されている点は前向きだが、「活性化」が施設の存続を前提にした議論に留まっていないか確認が必要。廃止・売却候補が明示されるかが試金石。</div>
+    </div>
+    <div class="check-item">
+      <div class="check-item-head">
+        <div class="check-status status-ng">✕</div>
+        <div class="check-item-title">入札で実質的な競争が確保されているか</div>
+      </div>
+      <div class="check-item-body">発注予定情報の公開は評価できる。しかし入札参加者数が1〜2者の案件が多い場合、競争性が形骸化している可能性がある。落札率・参加者数の経年分析を公表させることを求める。</div>
+    </div>
+    <div class="check-item">
+      <div class="check-item-head">
+        <div class="check-status status-ok">○</div>
+        <div class="check-item-title">給与・人事情報の公開は一定水準にある</div>
+      </div>
+      <div class="check-item-body">給与等の状況・男女格差・人事行政の運営状況がウェブ公表されており、情報公開の枠組みは整っている。ただし市民が読みやすい形での加工・可視化が不十分。</div>
+    </div>
+    <div class="check-item">
+      <div class="check-item-head">
+        <div class="check-status status-warn">△</div>
+        <div class="check-item-title">アウトソーシングはコスト削減に繋がっているか</div>
+      </div>
+      <div class="check-item-body">委託範囲の拡大は人件費削減の手段となりうるが、委託先との契約金額・成果が不透明なままでは「官から民へ」の名目で委託費が膨らむリスクもある。積算基準の妥当性検証が必要。</div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <p><strong>高知減税会</strong> | 一円の増税にも反対・規制緩和の実現</p>
+  <p>掲載リンク出典：高知県庁公式サイト（pref.kochi.lg.jp）行政管理課ページより収集</p>
+  <p style="margin-top:8px;">
+    <a href="kochi.html">34市町村比較</a> |
+    <a href="index.html">香美市詳細</a> |
+    <a href="map.html">地図</a> |
+    <a href="senkyo.html">選挙日程</a> |
+    <a href="jiyuu.html">自由民権の歴史</a>
+  </p>
+</footer>
+
+<script>
+function toggleTheme() {
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme');
+  root.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+}
+</script>
+</body>
+</html>
