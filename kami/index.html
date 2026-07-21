@@ -40,28 +40,6 @@
   --sky: #0ea5e9;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #121212;
-    --bg-2: #1e1e1e;
-    --bg-blue: #0d1e42;
-    --border: rgba(255,255,255,.12);
-    --border-strong: rgba(255,255,255,.20);
-    --text: rgba(255,255,255,.87);
-    --text-2: rgba(255,255,255,.60);
-    --text-3: rgba(255,255,255,.38);
-    --blue: #82B1FF;
-    --blue-light: #0d1e42;
-    --blue-mid: #82B1FF;
-    --red: #FF8A80;
-    --red-light: #2a0a12;
-    --orange: #FFCC80;
-    --orange-light: #1f0f00;
-    --green: #A5D6A7;
-    --green-light: #071a0c;
-    --sky: #80D8FF;
-  }
-}
 :root[data-theme="light"] {
   --bg: #ffffff;
   --bg-2: #f8fafc;
@@ -983,11 +961,7 @@ footer .wrap {
 </footer>
 
 <script>
-function toggleTheme() {
-  const root = document.documentElement;
-  const cur = root.getAttribute('data-theme');
-  const sys = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  if (!cur) { root.setAttribute('data-theme', sys === 'dark' ? 'light' : 'dark'); }
+function toggleTheme(){const r=document.documentElement;r.getAttribute('data-theme')==='dark'?r.removeAttribute('data-theme'):r.setAttribute('data-theme','dark');}
   else if (cur === 'dark') { root.setAttribute('data-theme', 'light'); }
   else { root.removeAttribute('data-theme'); }
 }

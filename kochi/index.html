@@ -26,13 +26,6 @@
   --orange:#c2620a;--orange-light:#fff4e8;--green:#156d3c;--green-light:#eaf6ee;
   --hero-bg:#272727;--hero-border:#1e2d42;--hero-text-2:#8fa3bb;
 }
-@media(prefers-color-scheme:dark){:root{
-  --bg:#121212;--bg-2:#1e1e1e;--bg-3:#242424;--border:rgba(255,255,255,.12);--border-strong:rgba(255,255,255,.20);
-  --text:rgba(255,255,255,.87);--text-2:rgba(255,255,255,.60);--text-3:rgba(255,255,255,.38);
-  --red:#FF8A80;--red-light:#2a0a12;--blue:#82B1FF;--blue-light:#0d1e38;
-  --orange:#FFCC80;--orange-light:#1f0f00;--green:#A5D6A7;--green-light:#071a0c;
-  --hero-bg:#272727;--hero-border:rgba(255,255,255,.12);--hero-text-2:rgba(255,255,255,.60);
-}}
 :root[data-theme="light"]{--bg:#ffffff;--bg-2:#f5f7fa;--bg-3:#eef1f7;--border:#dde2ec;--border-strong:#c5cdd9;--text:#0d1624;--text-2:#3d4f66;--text-3:#7a8fa8;--red:#c41e3a;--red-light:#fdf1f3;--blue:#1a56db;--blue-light:#eef3fe;--orange:#c2620a;--orange-light:#fff4e8;--green:#156d3c;--green-light:#eaf6ee;--hero-bg:#272727;--hero-border:#1e2d42;--hero-text-2:#8fa3bb;}
 :root[data-theme="dark"]{--bg:#121212;--bg-2:#1e1e1e;--bg-3:#242424;--border:rgba(255,255,255,.12);--border-strong:rgba(255,255,255,.20);--text:rgba(255,255,255,.87);--text-2:rgba(255,255,255,.60);--text-3:rgba(255,255,255,.38);--red:#FF8A80;--red-light:#2a0a12;--blue:#82B1FF;--blue-light:#0d1e38;--orange:#FFCC80;--orange-light:#1f0f00;--green:#A5D6A7;--green-light:#071a0c;--hero-bg:#272727;--hero-border:rgba(255,255,255,.12);--hero-text-2:rgba(255,255,255,.60);}
 
@@ -298,11 +291,10 @@ function sortTable(col){
 }
 
 function toggleTheme(){
-  const r=document.documentElement,c=r.getAttribute('data-theme');
-  const dark=window.matchMedia('(prefers-color-scheme:dark)').matches;
-  if(!c)r.setAttribute('data-theme',dark?'light':'dark');
-  else if(c==='dark')r.setAttribute('data-theme','light');
-  else r.removeAttribute('data-theme');
+  const r=document.documentElement;
+  r.getAttribute('data-theme')==='dark'
+    ?r.removeAttribute('data-theme')
+    :r.setAttribute('data-theme','dark');
 }
 
 renderTable(MUNI_DATA);

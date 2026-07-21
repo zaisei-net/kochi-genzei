@@ -27,12 +27,6 @@
   --red:#dc2626;--orange:#d97706;--green:#16a34a;
   --sans:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;
 }
-@media(prefers-color-scheme:dark){:root{
-  --bg:#121212;--bg-2:#1e1e1e;--bg-blue:#0d1e38;
-  --border:rgba(255,255,255,.12);--border-strong:rgba(255,255,255,.20);
-  --text:rgba(255,255,255,.87);--text-2:rgba(255,255,255,.60);--text-3:rgba(255,255,255,.38);
-  --blue-light:#0d1e38;
-}}
 :root[data-theme="dark"]{--bg:#121212;--bg-2:#1e1e1e;--bg-blue:#0d1e38;--border:rgba(255,255,255,.12);--border-strong:rgba(255,255,255,.20);--text:rgba(255,255,255,.87);--text-2:rgba(255,255,255,.60);--text-3:rgba(255,255,255,.38);--blue-light:#0d1e38;}
 :root[data-theme="light"]{--bg:#ffffff;--bg-2:#f8fafc;--bg-blue:#eff6ff;--border:#e2e8f0;--text:#1e293b;--text-2:#475569;--text-3:#94a3b8;--blue-light:#dbeafe;}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
@@ -391,12 +385,7 @@ function renderCards() {
   });
 }
 
-function toggleTheme() {
-  const r = document.documentElement;
-  if (r.dataset.theme==='dark') r.dataset.theme='light';
-  else if (r.dataset.theme==='light') r.dataset.theme='dark';
-  else r.dataset.theme = window.matchMedia('(prefers-color-scheme:dark)').matches ? 'light' : 'dark';
-}
+function toggleTheme(){const r=document.documentElement;r.getAttribute('data-theme')==='dark'?r.removeAttribute('data-theme'):r.setAttribute('data-theme','dark');}
 
 renderCards();
 </script>
