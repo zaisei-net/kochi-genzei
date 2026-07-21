@@ -101,15 +101,15 @@ body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;backgroun
 <body>
 
 <header class="topbar">
-  <a class="topbar-logo" href="/kochi-watch/">高知減税会</a>
+  <a class="topbar-logo" href="/kochi-genzei/">高知減税会</a>
   <nav class="topbar-nav">
-    <a href="/kochi-watch/">高知県概覧</a>
-    <a href="/kochi-watch/pref/">高知県庁</a>
-    <a href="/kochi-watch/kami/">香美市</a>
-    <a href="/kochi-watch/map/" class="active">地図</a>
-    <a href="/kochi-watch/kami/analyze/">行政分析</a>
-    <a href="/kochi-watch/senkyo/">選挙日程</a>
-    <a href="/kochi-watch/jiyuu/">自由民権</a>
+    <a href="/kochi-genzei/">高知県概覧</a>
+    <a href="/kochi-genzei/pref/">高知県庁</a>
+    <a href="/kochi-genzei/kami/">香美市</a>
+    <a href="/kochi-genzei/map/" class="active">地図</a>
+    <a href="/kochi-genzei/kami/analyze/">行政分析</a>
+    <a href="/kochi-genzei/senkyo/">選挙日程</a>
+    <a href="/kochi-genzei/jiyuu/">自由民権</a>
   </nav>
   <div class="topbar-spacer"></div>
   <button class="theme-btn" onclick="toggleTheme()">テーマ切替</button>
@@ -165,7 +165,7 @@ body{font-family:'Hiragino Kaku Gothic ProN','Noto Sans JP',sans-serif;backgroun
         <div class="stat-row"><span class="label">R8年内 告示確定</span><span class="val val-red">9件</span></div>
         <div class="stat-row"><span class="label">うち香美市議選</span><span class="val val-red">R8.9.6</span></div>
         <div class="stat-row"><span class="label">R9年予定（推定）</span><span class="val val-orange">16件</span></div>
-        <div class="stat-row"><span class="label"><a href="/kochi-watch/senkyo/" style="color:var(--blue);">→ 選挙日程ポータル</a></span><span class="val"></span></div>
+        <div class="stat-row"><span class="label"><a href="/kochi-genzei/senkyo/" style="color:var(--blue);">→ 選挙日程ポータル</a></span><span class="val"></span></div>
       </div>
     </div>
   </div>
@@ -296,7 +296,7 @@ function elecHtml(d) {
 }
 
 function popupHtml(d) {
-  const detailLink = d.name === '香美市' ? `<a class="popup-link" href="/kochi-watch/kami/">香美市 詳細レポート →</a>` : '';
+  const detailLink = d.name === '香美市' ? `<a class="popup-link" href="/kochi-genzei/kami/">香美市 詳細レポート →</a>` : '';
   return `<div style="min-width:210px;">
     ${elecHtml(d)}
     <div class="popup-title">${d.name}</div>
@@ -334,7 +334,7 @@ const polyStyle = d => ({
   opacity: 0.8
 });
 
-fetch('/kochi-watch/kochi_muni.geojson')
+fetch('/kochi-genzei/kochi_muni.geojson')
   .then(r => r.json())
   .then(geojson => {
     geoLayer = L.geoJSON(geojson, {
