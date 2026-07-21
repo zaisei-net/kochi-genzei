@@ -929,6 +929,7 @@ footer .wrap {
 
 <script>
 function toggleTheme(){const r=document.documentElement;r.getAttribute('data-theme')==='dark'?r.removeAttribute('data-theme'):r.setAttribute('data-theme','dark');}
+
   else if (cur === 'dark') { root.setAttribute('data-theme', 'light'); }
   else { root.removeAttribute('data-theme'); }
 }
@@ -1230,6 +1231,9 @@ function cssVar(name) {
   ctx.strokeRect(bx, by, bw, bh);
 })();
 </script>
+<script>document.querySelector('.topbar-nav a.active,.topbar-nav a.parent')?.scrollIntoView({block:'nearest',inline:'center'});</script>
 </body>
 </html>
+
+
 

@@ -395,7 +395,11 @@ function renderCards() {
 
 function toggleTheme(){const r=document.documentElement;r.getAttribute('data-theme')==='dark'?r.removeAttribute('data-theme'):r.setAttribute('data-theme','dark');}
 
+
 renderCards();
 </script>
+<script>document.querySelector('.topbar-nav a.active,.topbar-nav a.parent')?.scrollIntoView({block:'nearest',inline:'center'});</script>
 </body>
 </html>
+
+

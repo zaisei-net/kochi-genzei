@@ -540,6 +540,10 @@ body{background:var(--bg);color:var(--text);font-family:"Hiragino Kaku Gothic Pr
 
 <script>
 function toggleTheme(){const r=document.documentElement;r.getAttribute('data-theme')==='dark'?r.removeAttribute('data-theme'):r.setAttribute('data-theme','dark');}
+
 </script>
+<script>document.querySelector('.topbar-nav a.active,.topbar-nav a.parent')?.scrollIntoView({block:'nearest',inline:'center'});</script>
 </body>
 </html>
+
+
