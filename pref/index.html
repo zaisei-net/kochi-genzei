@@ -20,29 +20,31 @@
 <title>高知県庁ウォッチ｜高知減税会</title>
 <style>
 :root {
-  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff; --bg-teal: #f0fdfa;
+  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff;
   --border: #e2e8f0; --border-strong: #cbd5e1;
   --text: #1e293b; --text-2: #475569; --text-3: #94a3b8;
-  --blue: #2563eb; --blue-light: #dbeafe;
-  --teal: #0f766e; --teal-light: #ccfbf1;
+  --blue: #2563eb; --blue-light: #dbeafe; --blue-mid: #448AFF;
+  --teal: #2563eb; --teal-light: #dbeafe; --bg-teal: #eff6ff;
   --red: #dc2626; --red-light: #fee2e2;
   --orange: #d97706; --orange-light: #fef3c7;
   --green: #16a34a; --green-light: #dcfce7;
   --gray-light: #f1f5f9;
 }
 :root[data-theme="dark"] {
-  --bg: #121212; --bg-2: #1e1e1e; --bg-blue: #0d1e42; --bg-teal: #00363A;
+  --bg: #121212; --bg-2: #1e1e1e; --bg-blue: #0d1e38;
   --border: rgba(255,255,255,.12); --border-strong: rgba(255,255,255,.20);
   --text: rgba(255,255,255,.87); --text-2: rgba(255,255,255,.60); --text-3: rgba(255,255,255,.38);
-  --blue-light: #0d1e42; --teal-light: #00363A;
+  --blue: #82B1FF; --blue-light: #0d1e38;
+  --teal: #82B1FF; --teal-light: #0d1e38; --bg-teal: #0d1e38;
   --red-light: #2a0a12; --orange-light: #1f0f00; --green-light: #071a0c;
   --gray-light: #1e1e1e;
 }
 :root[data-theme="light"] {
-  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff; --bg-teal: #f0fdfa;
+  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff;
   --border: #e2e8f0; --border-strong: #cbd5e1;
   --text: #1e293b; --text-2: #475569; --text-3: #94a3b8;
-  --blue-light: #dbeafe; --teal-light: #ccfbf1;
+  --blue: #2563eb; --blue-light: #dbeafe;
+  --teal: #2563eb; --teal-light: #dbeafe; --bg-teal: #eff6ff;
   --red-light: #fee2e2; --orange-light: #fef3c7; --green-light: #dcfce7;
   --gray-light: #f1f5f9;
 }
@@ -53,16 +55,17 @@ a { color: var(--teal); text-decoration: none; }
 a:hover { text-decoration: underline; }
 
 /* Topbar */
-.topbar { background: var(--bg); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: center; gap: 24px; min-height:44px; position: sticky; top: 0; z-index: 100; }
-.topbar-logo { font-size: 15px; font-weight: 700; color: var(--text); letter-spacing: -0.01em; white-space: nowrap; text-decoration:none;}
+.topbar{border-bottom:1px solid var(--border);padding:0.55rem 2.5rem;display:flex;align-items:center;gap:1.5rem;position:sticky;top:0;background:var(--bg);z-index:100;}
+.topbar-logo{font-size:0.78rem;font-weight:700;letter-spacing:0.18em;color:var(--text);white-space:nowrap;text-decoration:none;}
 .topbar-logo em{font-style:normal;color:var(--blue);}
-.topbar-logo span { color: var(--text-2); font-weight: 400; }
-.topbar-nav { display: flex; gap: 6px; flex-wrap: wrap; }
-.topbar-nav a{font-size:0.67rem;color:var(--topbar-text,var(--text-2));padding:0.2rem 0.45rem;border-radius:3px;white-space:nowrap;text-decoration:none;transition:background .15s,color .15s;}
-.topbar-nav a:hover, .topbar-nav a.active { background: var(--blue-light); color: var(--blue); border-color: var(--blue-light); }
-.topbar-spacer { flex: 1; }
-.theme-btn { background: none; border: 1px solid var(--border); border-radius: 20px; padding: 4px 12px; font-size: 12px; color: var(--text-2); cursor: pointer; }
-.theme-btn:hover { border-color: var(--blue); color: var(--blue); }
+.topbar-nav{display:flex;gap:0.1rem;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.topbar-nav::-webkit-scrollbar{display:none;}
+.topbar-nav a{font-size:0.67rem;color:var(--text-2);padding:0.2rem 0.45rem;border-radius:3px;white-space:nowrap;text-decoration:none;transition:background .15s,color .15s;}
+.topbar-nav a:hover{background:var(--bg-2);color:var(--text);}
+.topbar-nav a.active{color:var(--blue);font-weight:700;background:var(--blue-light);}
+.topbar-spacer{flex:1;}
+.theme-btn{font-size:0.72rem;padding:0.25rem 0.7rem;border:1px solid var(--border-strong);border-radius:4px;background:transparent;color:var(--text-2);cursor:pointer;white-space:nowrap;}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue);}
 
 /* Hero */
 .hero { background: var(--bg-teal); border-bottom: 1px solid var(--border); padding: 48px 24px 40px; }
@@ -193,7 +196,7 @@ footer strong { color: var(--text-2); }
   <div class="hero-inner">
     <div class="hero-eyebrow">Kochi Prefecture — Governmental Watch</div>
     <h1>自治体としての<em>高知県庁</em>を監視する</h1>
-    <p class="hero-sub">高知県庁は職員約1万7千人、一般会計歳出約5,500億円を動かす巨大な組織です。行政改革・給与・公共施設・調達——税金の使われ方を四つの視点から追跡します。</p>
+    <p class="hero-sub">高知県庁は職員約1万2千人、一般会計歳出約4,674億円を動かす巨大な組織です。行政改革・給与・公共施設・調達——税金の使われ方を四つの視点から追跡します。</p>
     <div class="hero-tags">
       <span class="hero-tag">行政改革</span>
       <span class="hero-tag">職員給与・人件費</span>
