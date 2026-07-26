@@ -200,13 +200,13 @@ const EVAL = {
 
 // 自治体ページ（存在するもののみ）
 const PAGES = {
-  "香美市":    "/kochi-genzei/kami/",
-  "芸西村":    "/kochi-genzei/geisei/",
-  "越知町":    "/kochi-genzei/ochi/",
-  "安芸市":    "/kochi-genzei/aki/",
-  "土佐清水市":"/kochi-genzei/tosashimizu/",
-  "須崎市":    "/kochi-genzei/susaki/",
-  "室戸市":    "/kochi-genzei/muroto/",
+  "香美市":    {url:"/kochi-genzei/kami/",          label:"詳細レポート →"},
+  "芸西村":    {url:"/kochi-genzei/geisei/",         label:"選挙ウォッチ →"},
+  "越知町":    {url:"/kochi-genzei/ochi/",           label:"選挙ウォッチ →"},
+  "安芸市":    {url:"/kochi-genzei/aki/",            label:"選挙ウォッチ →"},
+  "土佐清水市":{url:"/kochi-genzei/tosashimizu/",   label:"選挙ウォッチ →"},
+  "須崎市":    {url:"/kochi-genzei/susaki/",         label:"選挙ウォッチ →"},
+  "室戸市":    {url:"/kochi-genzei/muroto/",         label:"選挙ウォッチ →"},
 };
 
 const ELECTIONS = [
@@ -358,7 +358,7 @@ function renderCards() {
       const days = daysUntil(e.date);
       const {bar, cd} = urgencyClass(days, e.confirmed);
       const {main: dateMain, sub: dateSub} = formatDate(e.date, e.confirmed);
-      const page = PAGES[e.name];
+      const pageEntry = PAGES[e.name];
       const cdText = countdownText(days, e.confirmed);
       const isAttn = e.note && e.note.includes('注目');
 
@@ -387,8 +387,8 @@ function renderCards() {
             ${isAttn ? `<div class="ecard-note">${e.note}</div>` : ''}
           </div>
           <div class="ecard-actions">
-            ${page
-              ? `<a href="${page}" class="btn-page">詳細レポート →</a>`
+            ${pageEntry
+              ? `<a href="${pageEntry.url}" class="btn-page">${pageEntry.label}</a>`
               : `<span class="btn-soon">ページ準備中</span>`}
           </div>
         </div>`;
