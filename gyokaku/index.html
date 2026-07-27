@@ -85,18 +85,21 @@ footer{padding:2.5rem;text-align:center;font-size:0.72rem;color:var(--text-3);bo
 </head>
 <body>
 <header class="topbar">
-  <span class="topbar-logo"><em>高知</em>減税会</span>
+  <a class="topbar-logo" href="/kochi-genzei/">高知<em>減税</em>会</a>
   <nav class="topbar-nav">
     <a href="/kochi-genzei/">トップ</a>
-    <a href="/kochi-genzei/kochi/">市町村</a>
+    <a href="/kochi-genzei/pref/">高知県庁</a>
+    <a href="/kochi-genzei/kami/">香美市</a>
+    <a href="/kochi-genzei/kochi/">34市町村</a>
+    <a href="/kochi-genzei/map/">地図</a>
+    <a href="/kochi-genzei/senkyo/">選挙日程</a>
     <a href="/kochi-genzei/pubcom/">パブコメ</a>
     <a href="/kochi-genzei/gyokaku/" class="active">行政改革</a>
-    <a href="/kochi-genzei/pref/">県庁</a>
-    <a href="/kochi-genzei/senkyo/">選挙</a>
-    <a href="/kochi-genzei/chinjo/">陳情</a>
+    <a href="/kochi-genzei/chinjo/">陳情・請願</a>
+    <a href="/kochi-genzei/jiyuu/">自由民権</a>
   </nav>
-  <span class="topbar-spacer"></span>
-  <button class="theme-btn" onclick="toggleTheme()">テーマ</button>
+  <div class="topbar-spacer"></div>
+  <button class="theme-btn" onclick="toggleTheme()">テーマ切替</button>
 </header>
 
 <div class="hero">
@@ -512,17 +515,7 @@ footer{padding:2.5rem;text-align:center;font-size:0.72rem;color:var(--text-3);bo
 </footer>
 
 <script>
-function toggleTheme(){
-  const r=document.documentElement;
-  const cur=r.getAttribute('data-theme')||'light';
-  r.setAttribute('data-theme',cur==='dark'?'light':'dark');
-  localStorage.setItem('theme',r.getAttribute('data-theme'));
-}
-(function(){
-  const s=localStorage.getItem('theme');
-  if(s)document.documentElement.setAttribute('data-theme',s);
-  else if(window.matchMedia('(prefers-color-scheme: dark)').matches)document.documentElement.setAttribute('data-theme','dark');
-})();
+function toggleTheme(){const r=document.documentElement,c=r.getAttribute('data-theme');const s=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';if(!c){r.setAttribute('data-theme',s==='dark'?'light':'dark');}else if(c==='dark'){r.setAttribute('data-theme','light');}else{r.removeAttribute('data-theme');}}
 </script>
 </body>
 </html>
