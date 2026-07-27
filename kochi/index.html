@@ -128,14 +128,14 @@ footer p{font-size:0.72rem;color:var(--text-2);}
     <span class="hero-sub-badge">総務省調査 令和7年12月19日公表</span>
   </div>
   <h1>高知県 全34市町村<br><strong>行政改革実施状況</strong></h1>
-  <p class="hero-desc">行政評価・指定管理者制度の導入状況を一覧化。「予定なし」が12市町村、指定管理導入ゼロが20市町村。</p>
+  <p class="hero-desc">意見公募手続制度・行政手続条例・行政評価・指定管理者制度の導入状況を一覧化。意見公募制度の制定は34市町村中2団体（全国最下位）。</p>
 </div>
 
 <div class="wrap">
   <div class="stats-grid">
     <div class="stat-card">
-      <div class="stat-num">34</div>
-      <div class="stat-label">調査対象<br>市町村数</div>
+      <div class="stat-num red">2</div>
+      <div class="stat-label">意見公募制度<br>制定済（全国最下位）</div>
     </div>
     <div class="stat-card">
       <div class="stat-num red">12</div>
@@ -150,22 +150,24 @@ footer p{font-size:0.72rem;color:var(--text-2);}
       <div class="stat-label">指定管理<br>導入ゼロ</div>
     </div>
     <div class="stat-card">
-      <div class="stat-num red">16</div>
-      <div class="stat-label">評価「代替・試行」<br>のみ実施</div>
+      <div class="stat-num green">31</div>
+      <div class="stat-label">行政手続条例<br>改正済</div>
     </div>
   </div>
 
   <div class="section-label">全34市町村 一覧表</div>
 
   <div class="legend">
-    <span class="legend-item"><span class="badge bg">実施済</span> 正式実施</span>
-    <span class="legend-item"><span class="badge bo">代替・試行</span> 代替措置・試行中</span>
-    <span class="legend-item"><span class="badge br">予定なし</span> 実施予定なし</span>
+    <span class="legend-item"><span class="badge bg">実施済／制定済</span> 正式実施・制定</span>
+    <span class="legend-item"><span class="badge bo">代替・試行／予定あり</span> 代替措置・試行・制定予定</span>
+    <span class="legend-item"><span class="badge br">予定なし</span> 実施・制定予定なし</span>
+    <span class="legend-item"><span class="badge bn">要綱等</span> 条例以外の形式で実施</span>
   </div>
 
   <div class="filters">
     <span class="filter-label">絞り込み：</span>
     <button class="filter-btn active" onclick="filterTable('all',this)">すべて</button>
+    <button class="filter-btn" onclick="filterTable('iken_nashi',this)">意見公募未制定</button>
     <button class="filter-btn" onclick="filterTable('yoteinashi',this)">評価「予定なし」</button>
     <button class="filter-btn" onclick="filterTable('jisshi',this)">評価「全部実施済」</button>
     <button class="filter-btn" onclick="filterTable('zero_shitei',this)">指定管理ゼロ</button>
@@ -178,18 +180,20 @@ footer p{font-size:0.72rem;color:var(--text-2);}
         <tr>
           <th onclick="sortTable(0)">市区町村 <span id="s0">↕</span></th>
           <th onclick="sortTable(1)">区分 <span id="s1">↕</span></th>
+          <th>意見公募<br><span style="font-weight:400;font-size:0.65rem;">H29調査</span></th>
+          <th>行政手続条例<br><span style="font-weight:400;font-size:0.65rem;">H28調査</span></th>
           <th>行政評価（政策）</th>
           <th>行政評価（施策）</th>
           <th>行政評価（事務）</th>
-          <th onclick="sortTable(5)">指定管理件数 <span id="s5">↕</span></th>
-          <th onclick="sortTable(6)">導入率 <span id="s6">↕</span></th>
+          <th onclick="sortTable(7)">指定管理件数 <span id="s7">↕</span></th>
+          <th onclick="sortTable(8)">導入率 <span id="s8">↕</span></th>
           <th>詳細</th>
         </tr>
       </thead>
       <tbody id="tableBody"></tbody>
     </table>
   </div>
-  <p class="source-note">出典：総務省「地方行政サービス改革の取組状況等に関する調査」（令和7年12月19日公表）｜指定管理導入率は総務省集計対象の特定公の施設における割合。「−」は対象施設なし。🗳は選挙予定あり。</p>
+  <p class="source-note">出典：意見公募・行政手続条例は総務省H29（2017年10月1日）調査｜行政評価・指定管理は総務省「地方行政サービス改革の取組状況等に関する調査」（令和7年12月19日公表）｜指定管理導入率は総務省集計対象の特定公の施設における割合。「−」は対象施設なし。🗳は選挙予定あり。</p>
 </div>
 
 <footer>
@@ -198,46 +202,47 @@ footer p{font-size:0.72rem;color:var(--text-2);}
 
 <script>
 const MUNI_DATA=[
-  {name:"高知市",type:"中核市",seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:11,shitei_rate:50,election:false},
-  {name:"室戸市",type:"都市Ⅰ-1",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"実施済",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"安芸市",type:"都市Ⅰ-1",seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"南国市",type:"都市Ⅰ-1",seisaku:"予定なし",shisaku:"予定なし",jimu:"実施済",shitei_cnt:0,shitei_rate:null,election:false},
-  {name:"土佐市",type:"都市Ⅰ-1",seisaku:"代替・試行",shisaku:"実施済",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"須崎市",type:"都市Ⅰ-1",seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:1,shitei_rate:100,election:false},
-  {name:"宿毛市",type:"都市Ⅰ-1",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:null,election:false},
-  {name:"土佐清水市",type:"都市Ⅰ-1",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:null,election:false},
-  {name:"四万十市",type:"都市Ⅰ-1",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:3,shitei_rate:100,election:false},
-  {name:"香南市",type:"都市Ⅰ-1",seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:1,shitei_rate:20,election:false},
-  {name:"香美市",type:"都市Ⅰ-1",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:1,shitei_rate:100,election:true},
-  {name:"東洋町",type:"町村Ⅰ-0",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:100,election:false},
-  {name:"奈半利町",type:"町村Ⅰ-0",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:null,election:false},
-  {name:"田野町",type:"町村Ⅰ-0",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:1,shitei_rate:50,election:false},
-  {name:"安田町",type:"町村Ⅰ-0",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"北川村",type:"町村Ⅰ-0",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:100,election:false},
-  {name:"馬路村",type:"町村Ⅰ-0",seisaku:"実施済",shisaku:"実施済",jimu:"代替・試行",shitei_cnt:0,shitei_rate:null,election:false},
-  {name:"芸西村",type:"町村Ⅰ-0",seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"本山町",type:"町村Ⅰ-0",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"大豊町",type:"町村Ⅰ-0",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"土佐町",type:"町村Ⅰ-0",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"大川村",type:"町村Ⅰ-0",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:100,election:false},
-  {name:"いの町",type:"町村Ⅴ-2",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:100,election:false},
-  {name:"仁淀川町",type:"町村Ⅱ-1",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1,shitei_rate:50,election:false},
-  {name:"中土佐町",type:"町村Ⅱ-0",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:null,election:false},
-  {name:"佐川町",type:"町村Ⅲ-2",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:null,election:false},
-  {name:"越知町",type:"町村Ⅱ-2",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"梼原町",type:"町村Ⅰ-0",seisaku:"実施済",shisaku:"実施済",jimu:"実施済",shitei_cnt:1,shitei_rate:50,election:false},
-  {name:"日高村",type:"町村Ⅱ-2",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"津野町",type:"町村Ⅱ-0",seisaku:"予定なし",shisaku:"予定なし",jimu:"実施済",shitei_cnt:1,shitei_rate:50,election:false},
-  {name:"四万十町",type:"町村Ⅳ-0",seisaku:"予定なし",shisaku:"実施済",jimu:"実施済",shitei_cnt:3,shitei_rate:100,election:false},
-  {name:"大月町",type:"町村Ⅱ-0",seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"三原村",type:"町村Ⅰ-1",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false},
-  {name:"黒潮町",type:"町村Ⅲ-0",seisaku:"予定なし",shisaku:"予定なし",jimu:"予定なし",shitei_cnt:0,shitei_rate:0,election:false}
+  {name:"高知市",  type:"中核市",   iken:"制定済",    gyosei:"別調査",  seisaku:"実施済",   shisaku:"実施済",   jimu:"実施済",   shitei_cnt:11,shitei_rate:50,  election:false},
+  {name:"室戸市",  type:"都市Ⅰ-1", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"実施済",   shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"安芸市",  type:"都市Ⅰ-1", iken:"予定なし",  gyosei:"改正済",  seisaku:"実施済",   shisaku:"実施済",   jimu:"実施済",   shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"南国市",  type:"都市Ⅰ-1", iken:"予定なし",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"実施済",   shitei_cnt:0, shitei_rate:null,election:false},
+  {name:"土佐市",  type:"都市Ⅰ-1", iken:"要綱等",    gyosei:"改正済",  seisaku:"代替・試行",shisaku:"実施済",   jimu:"代替・試行",shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"須崎市",  type:"都市Ⅰ-1", iken:"予定なし",  gyosei:"その他",  seisaku:"実施済",   shisaku:"実施済",   jimu:"実施済",   shitei_cnt:1, shitei_rate:100, election:false},
+  {name:"宿毛市",  type:"都市Ⅰ-1", iken:"制定予定",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0, shitei_rate:null,election:false},
+  {name:"土佐清水市",type:"都市Ⅰ-1",iken:"予定なし",  gyosei:"改正予定",seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:0, shitei_rate:null,election:false},
+  {name:"四万十市", type:"都市Ⅰ-1", iken:"制定予定",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:3, shitei_rate:100, election:false},
+  {name:"香南市",  type:"都市Ⅰ-1", iken:"予定なし",  gyosei:"改正済",  seisaku:"実施済",   shisaku:"実施済",   jimu:"実施済",   shitei_cnt:1, shitei_rate:20,  election:false},
+  {name:"香美市",  type:"都市Ⅰ-1", iken:"予定なし",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:1, shitei_rate:100, election:true},
+  {name:"東洋町",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1, shitei_rate:100, election:false},
+  {name:"奈半利町", type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:0, shitei_rate:null,election:false},
+  {name:"田野町",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:1, shitei_rate:50,  election:false},
+  {name:"安田町",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"北川村",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1, shitei_rate:100, election:false},
+  {name:"馬路村",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"実施済",   shisaku:"実施済",   jimu:"代替・試行",shitei_cnt:0, shitei_rate:null,election:false},
+  {name:"芸西村",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"実施済",   shisaku:"実施済",   jimu:"実施済",   shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"本山町",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"大豊町",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"その他",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"土佐町",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"大川村",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1, shitei_rate:100, election:false},
+  {name:"いの町",  type:"町村Ⅴ-2", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1, shitei_rate:100, election:false},
+  {name:"仁淀川町", type:"町村Ⅱ-1", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:1, shitei_rate:50,  election:false},
+  {name:"中土佐町", type:"町村Ⅱ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:0, shitei_rate:null,election:false},
+  {name:"佐川町",  type:"町村Ⅲ-2", iken:"予定なし",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:0, shitei_rate:null,election:false},
+  {name:"越知町",  type:"町村Ⅱ-2", iken:"予定なし",  gyosei:"改正予定",seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"梼原町",  type:"町村Ⅰ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"実施済",   shisaku:"実施済",   jimu:"実施済",   shitei_cnt:1, shitei_rate:50,  election:false},
+  {name:"日高村",  type:"町村Ⅱ-2", iken:"予定なし",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"津野町",  type:"町村Ⅱ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"実施済",   shitei_cnt:1, shitei_rate:50,  election:false},
+  {name:"四万十町", type:"町村Ⅳ-0", iken:"条例制定済", gyosei:"改正済",  seisaku:"予定なし",  shisaku:"実施済",   jimu:"実施済",   shitei_cnt:3, shitei_rate:100, election:false},
+  {name:"大月町",  type:"町村Ⅱ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"代替・試行",shisaku:"代替・試行",jimu:"代替・試行",shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"三原村",  type:"町村Ⅰ-1", iken:"制定予定",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:0, shitei_rate:0,   election:false},
+  {name:"黒潮町",  type:"町村Ⅲ-0", iken:"予定なし",  gyosei:"改正済",  seisaku:"予定なし",  shisaku:"予定なし",  jimu:"予定なし",  shitei_cnt:0, shitei_rate:0,   election:false}
 ];
 
 function badge(v){
-  if(v==='実施済')return'<span class="badge bg">実施済</span>';
-  if(v==='代替・試行')return'<span class="badge bo">代替・試行</span>';
+  if(v==='実施済'||v==='条例制定済'||v==='制定済'||v==='改正済')return`<span class="badge bg">${v}</span>`;
+  if(v==='代替・試行'||v==='制定予定'||v==='改正予定'||v==='その他')return`<span class="badge bo">${v}</span>`;
   if(v==='予定なし')return'<span class="badge br">予定なし</span>';
+  if(v==='要綱等')return'<span class="badge bn">要綱等</span>';
   return'<span class="badge bn">−</span>';
 }
 function cntCell(cnt,rate){
@@ -260,6 +265,8 @@ function renderTable(data){
     return`<tr class="${hl}">
       <td style="font-weight:600;white-space:nowrap">${d.election?'🗳 ':''}${d.name}</td>
       <td style="font-size:0.7rem;color:var(--text-3);white-space:nowrap">${d.type}</td>
+      <td>${badge(d.iken)}</td>
+      <td>${badge(d.gyosei)}</td>
       <td>${badge(d.seisaku)}</td><td>${badge(d.shisaku)}</td><td>${badge(d.jimu)}</td>
       <td>${cntCell(d.shitei_cnt,d.shitei_rate)}</td>
       <td>${rateCell(d.shitei_rate)}</td>
@@ -269,6 +276,7 @@ function renderTable(data){
 }
 
 function getFiltered(){
+  if(currentFilter==='iken_nashi')return MUNI_DATA.filter(d=>d.iken==='予定なし');
   if(currentFilter==='yoteinashi')return MUNI_DATA.filter(d=>d.seisaku==='予定なし'&&d.shisaku==='予定なし'&&d.jimu==='予定なし');
   if(currentFilter==='jisshi')return MUNI_DATA.filter(d=>d.seisaku==='実施済'&&d.shisaku==='実施済'&&d.jimu==='実施済');
   if(currentFilter==='zero_shitei')return MUNI_DATA.filter(d=>d.shitei_cnt===0);
@@ -286,7 +294,7 @@ function filterTable(type,btn){
 function sortTable(col){
   document.querySelectorAll('thead th').forEach((th,i)=>th.classList.toggle('sorted',i===col));
   if(sortCol===col)sortAsc=!sortAsc;else{sortCol=col;sortAsc=true;}
-  const keys=['name','type','seisaku','shisaku','jimu','shitei_cnt','shitei_rate'];
+  const keys=['name','type','iken','gyosei','seisaku','shisaku','jimu','shitei_cnt','shitei_rate'];
   const data=getFiltered().slice().sort((a,b)=>{
     const av=a[keys[col]]??-1,bv=b[keys[col]]??-1;
     if(typeof av==='string')return sortAsc?av.localeCompare(bv,'ja'):bv.localeCompare(av,'ja');
