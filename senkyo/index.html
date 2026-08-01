@@ -177,7 +177,7 @@ a:hover{text-decoration:underline;}
     <div class="sep"></div>
     <span class="ctrl-label">確定</span>
     <button class="fb active" data-filter="conf" data-val="all" onclick="setFilter('conf','all',this)">すべて</button>
-    <button class="fb" data-filter="conf" data-val="yes" onclick="setFilter('conf','yes',this)">告示日確定</button>
+    <button class="fb" data-filter="conf" data-val="yes" onclick="setFilter('conf','yes',this)">投票日確定</button>
   </div>
 
   <div class="legend-row">
@@ -230,7 +230,7 @@ const ELECTIONS = [
   {name:"越知町",  type:"首長", date:"2026-08-09", seats:null, confirmed:true},
   {name:"安芸市",  type:"議会", date:"2026-08-30", seats:14, confirmed:true},
   {name:"土佐清水市",type:"議会",date:"2026-08-30", seats:12, confirmed:true},
-  {name:"香美市",  type:"議会", date:"2026-09-06", seats:18, confirmed:true, note:"高知減税会 注目選挙区"},
+  {name:"香美市",  type:"議会", date:"2026-09-06", seats:16, confirmed:true, note:"高知減税会 注目選挙区"},
   {name:"須崎市",  type:"議会", date:"2026-11-01", seats:14, confirmed:true},
   {name:"室戸市",  type:"首長", date:"2026-11-15", seats:null, confirmed:true},
   // ── R9年 推定（任期満了から逆算） ──
@@ -362,7 +362,7 @@ function renderCards() {
   Object.keys(groups).sort().forEach(key => {
     const label = document.createElement('div');
     label.className = 'section-head';
-    label.textContent = monthLabel(key) + (key < '2027-01' ? ' ── 告示日確定' : ' ── 任期満了より推定');
+    label.textContent = monthLabel(key) + (key < '2027-01' ? ' ── 投票日確定' : ' ── 任期満了より推定');
     container.appendChild(label);
 
     const list = document.createElement('div');
