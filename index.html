@@ -381,12 +381,16 @@ footer strong{color:var(--hero-text);}
   .demand-row{grid-template-columns:2rem 1fr;grid-template-rows:auto auto;}
   .demand-status{grid-column:2;}
 }
-/* ── Join banner ── */
-.join-banner{background:var(--blue);padding:1.1rem 2rem;}
-.join-banner-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
-.join-banner-text{font-size:.8rem;color:rgba(255,255,255,.92);line-height:1.55;}
-.join-banner-btn{font-size:.76rem;font-weight:700;color:var(--blue);background:#fff;border-radius:4px;padding:.4rem 1rem;white-space:nowrap;text-decoration:none;flex-shrink:0;}
-.join-banner-btn:hover{opacity:.9;text-decoration:none;}</style>
+/* -- Join banner -- */
+.join-banner{background:var(--blue);padding:1.6rem 2rem;}
+.join-banner-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;}
+.join-banner-text{font-size:.95rem;color:rgba(255,255,255,.95);line-height:1.6;font-weight:500;}
+.join-banner-btn{font-size:.86rem;font-weight:700;color:var(--blue);background:#fff;border-radius:6px;padding:.6rem 1.4rem;white-space:nowrap;text-decoration:none;flex-shrink:0;}
+.join-banner-btn:hover{opacity:.9;text-decoration:none;}
+.join-strip{background:var(--blue);position:sticky;top:0;z-index:99;padding:.55rem 2rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;}
+.join-strip-text{font-size:.76rem;color:rgba(255,255,255,.92);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.join-strip-btn{font-size:.72rem;font-weight:700;color:var(--blue);background:#fff;border-radius:4px;padding:.28rem .9rem;white-space:nowrap;text-decoration:none;flex-shrink:0;}
+.join-strip-btn:hover{opacity:.9;}</style>
 </head>
 <body>
 
@@ -637,12 +641,25 @@ footer strong{color:var(--hero-text);}
 
 <!-- Footer -->
 
-<div class="join-banner">
-  <div class="join-banner-inner">
-    <p class="join-banner-text">高知の減税・規制廃止を実現する活動に参加しませんか。入会無料。</p>
-    <a class="join-banner-btn" href="https://docs.google.com/forms/d/e/1FAIpQLSd4XdjihH0iNNLaFmAqzOniXek6YO2IjhQxCzclMwXD76H7WQ/viewform" target="_blank" rel="noopener">会員登録（無料）→</a>
+<section class="recruit-section">
+  <div class="recruit-inner">
+    <div class="sh"><span class="sh-line"></span><span class="sh-label">JOIN US</span></div>
+    <div class="sh-title" style="font-size:1.6rem;font-weight:800;margin:.6rem 0 .8rem;line-height:1.3;">高知の減税・規制廃止を、<br>一緒に実現しませんか。</div>
+    <p style="font-size:.92rem;color:var(--text-2);max-width:52ch;line-height:1.75;margin-bottom:1.6rem;">入会費・年会費はすべて無料です。活動案内や情報をメールでお届けします。できる範囲での参加で構いません。</p>
+    <div style="display:flex;gap:1rem;flex-wrap:wrap;align-items:center;">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSd4XdjihH0iNNLaFmAqzOniXek6YO2IjhQxCzclMwXD76H7WQ/viewform" target="_blank" rel="noopener"
+         style="display:inline-flex;align-items:center;gap:.5rem;background:var(--blue);color:#fff;font-size:.92rem;font-weight:700;padding:.75rem 1.8rem;border-radius:6px;text-decoration:none;">
+        会員登録（無料）→
+      </a>
+      <span style="font-size:.78rem;color:var(--text-3);">登録後いつでも退会できます</span>
+    </div>
+    <div style="display:flex;gap:2rem;flex-wrap:wrap;margin-top:1.8rem;">
+      <div style="font-size:.8rem;color:var(--text-2);"><strong style="color:var(--text);display:block;margin-bottom:.2rem;">📋 活動案内</strong>パブコメ・議会傍聴・陳情の情報をお届け</div>
+      <div style="font-size:.8rem;color:var(--text-2);"><strong style="color:var(--text);display:block;margin-bottom:.2rem;">🗳️ 選挙情報</strong>市町村議選の候補者・日程を共有</div>
+      <div style="font-size:.8rem;color:var(--text-2);"><strong style="color:var(--text);display:block;margin-bottom:.2rem;">💬 交流</strong>減税・規制廃止に関心を持つ仲間とつながる</div>
+    </div>
   </div>
-</div>
+</section>
 <footer>
   <p><strong>高知減税会</strong> — １円の増税にも反対・規制緩和の実現</p>
   <p>香美市公式サイト分析調査（2026年7月）｜総務省 地方財政・行政サービス改革調査（R7.12公表）</p>
