@@ -381,7 +381,12 @@ footer strong{color:var(--hero-text);}
   .demand-row{grid-template-columns:2rem 1fr;grid-template-rows:auto auto;}
   .demand-status{grid-column:2;}
 }
-</style>
+/* ── Join banner ── */
+.join-banner{background:var(--blue);padding:1.1rem 2rem;}
+.join-banner-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;}
+.join-banner-text{font-size:.8rem;color:rgba(255,255,255,.92);line-height:1.55;}
+.join-banner-btn{font-size:.76rem;font-weight:700;color:var(--blue);background:#fff;border-radius:4px;padding:.4rem 1rem;white-space:nowrap;text-decoration:none;flex-shrink:0;}
+.join-banner-btn:hover{opacity:.9;text-decoration:none;}</style>
 </head>
 <body>
 
@@ -398,7 +403,6 @@ footer strong{color:var(--hero-text);}
     <a href="/kochi-genzei/gyokaku/">行政改革</a>
     <a href="/kochi-genzei/chinjo/">陳情・請願</a>
     <a href="/kochi-genzei/jiyuu/">自由民権</a>
-    <a href="/kochi-genzei/nyukai/">会員登録</a>
   </nav>
   <div class="topbar-spacer"></div>
   <button class="theme-btn" onclick="toggleTheme()">テーマ切替</button>
@@ -620,19 +624,6 @@ footer strong{color:var(--hero-text);}
   </div>
 </section>
 </div>
-
-<!-- 会員募集 -->
-<section class="recruit-section">
-  <div class="recruit-inner">
-    <div class="sh">
-      <span class="sh-tag">Membership</span>
-      <span class="sh-rule"></span>
-    </div>
-    <div class="sh-title">会員を募集しています</div>
-    <div class="sh-lead" style="margin-bottom:1.6rem;">パブリックコメントへの意見提出・議会傍聴・陳情活動など、できる範囲で参加できます。入会は無料。Googleフォームで2分程度で登録できます。</div>
-    <a class="btn-primary" href="/kochi-genzei/nyukai/" style="display:inline-flex;align-items:center;gap:.5rem;">会員登録はこちら →</a>
-  </div>
-</section>
 
 <!-- Sister site banner -->
 <div class="sister">
