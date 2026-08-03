@@ -793,14 +793,14 @@ async function loadMuniData() {
     const muni = isPref ? _kochiPref : _kochiMunis[muniName];
     if (!muni) { calc(); return; }
 
+    const td = muni.tax_detail || [];
+
     // 左カラム描画
     if (isPref) renderPrefCols(); else renderMuniCols();
 
     // プラン２（入湯税）は入湯税のある市町村のみ表示
     const hasNyu = !isPref && getTax(td, '入湯税').amount > 0;
     document.getElementById('plan2-section').style.display = hasNyu ? '' : 'none';
-
-    const td = muni.tax_detail || [];
 
     const setV = (id, val) => {
       const el = document.getElementById(id);
