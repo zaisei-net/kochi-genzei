@@ -227,7 +227,7 @@ tr:hover td { background: var(--bg-2); }
 <div class="section">
   <div class="section-header">
     <h2 class="section-title">減税７目標</h2>
-    <p class="section-desc">高知減税会は以下の７項目を減税の目標とします。各市町村はこれらの目標の実現に向けて、「減税計画シート」に基づく具体的な計画を策定・実行することを求めます。</p>
+    <p class="section-desc">高知減税会は以下の７項目を減税の目標とします。高知県及び各市町村はこれらの目標の実現に向けて、「減税計画シート」に基づく具体的な計画を策定・実行することを求めます。</p>
   </div>
 
   <div class="goals-grid">
@@ -282,7 +282,7 @@ tr:hover td { background: var(--bg-2); }
 <div class="section">
   <div class="section-header">
     <h2 class="section-title">減税計画シート</h2>
-    <p class="section-desc">高知県内市町村の決算データをもとに、各市町村の減税計画を入力・試算します。備考欄（<span style="color:var(--teal);font-weight:700;">①〜⑦</span>）は対応する減税目標を示します。<br>
+    <p class="section-desc">高知県及び県内各市町村の決算データをもとに、減税計画を入力・試算します。「高知県（34市町村計）」を選ぶと県内全自治体の合算データが自動入力されます。備考欄（<span style="color:var(--teal);font-weight:700;">①〜⑦</span>）は対応する減税目標を示します。<br>
     参考：<a href="https://zaisei-net.github.io/Municipal-Accounting/" target="_blank" rel="noopener">自治体 決算・減税ビューア</a>　/　<a href="/kochi-genzei/zei/">高知の税（現状分析）</a></p>
   </div>
 
@@ -297,7 +297,8 @@ tr:hover td { background: var(--bg-2); }
     </select>
     <label for="muni-name" style="font-size:13px;font-weight:600;color:var(--text);">自治体名</label>
     <select id="muni-name" class="muni-select" onchange="loadMuniData()">
-      <option value="">-- 市町村を選択 --</option>
+      <option value="">-- 選択してください --</option>
+      <option value="高知県">高知県（34市町村計）</option>
       <optgroup label="市">
         <option>高知市</option><option>室戸市</option><option>安芸市</option><option>南国市</option>
         <option>土佐市</option><option>須崎市</option><option>宿毛市</option><option>土佐清水市</option>
@@ -311,7 +312,6 @@ tr:hover td { background: var(--bg-2); }
         <option>梼原町</option><option>日高村</option><option>津野町</option><option>四万十町</option>
         <option>大月町</option><option>三原村</option><option>黒潮町</option>
       </optgroup>
-      <option value="（高知県）">（高知県）</option>
     </select>
   </div>
 
@@ -637,15 +637,29 @@ function toggleTheme() {
 
 // ─── JSON キャッシュ ───
 let _kochiMunis = null;
+let _kochiPref  = null;
 
 async function fetchKochiData() {
-  if (_kochiMunis) return _kochiMunis;
-  const url = 'https://raw.githubusercontent.com/zaisei-net/jsons/main/json/all_datasets_R6.json';
-  const r = await fetch(url);
-  const all = await r.json();
-  const pref = all.find(d => d.prefecture === '高知県');
-  _kochiMunis = pref ? pref.municipalities : {};
-  return _kochiMunis;
+  if (_kochiMunis && _kochiPref) return;
+
+  const [muniRes, prefRes] = await Promise.all([
+    fetch('https://raw.githubusercontent.com/zaisei-net/jsons/main/json/all_datasets_R6.json'),
+    fetch('https://raw.githubusercontent.com/zaisei-net/jsons/main/pref_json/all_pref_datasets_R6.json')
+  ]);
+  const [muniAll, prefAll] = await Promise.all([muniRes.json(), prefRes.json()]);
+
+  // 市町村データ
+  const muniEntry = muniAll.find(d => d.prefecture === '高知県');
+  _kochiMunis = muniEntry ? muniEntry.municipalities : {};
+
+  // 高知県（道府県）データ — ラベルの先頭スペースを正規化
+  const prefRaw = prefAll[0].municipalities['高知県'];
+  _kochiPref = {
+    expenditure: prefRaw.expenditure,
+    tax_detail: (prefRaw.tax_detail || []).map(t => ({
+      ...t, label: t.label.trim()
+    }))
+  };
 }
 
 function getTax(taxDetail, label) {
@@ -734,6 +748,13 @@ function updateMokuTable(muniName, mokus) {
         <td><input type="number" class="sheet-num-input" id="s-other-moku-red" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
         <td style="color:var(--text-3);font-size:12px;">④⑤</td>
       </tr>`;
+    } else if (label === '狩猟税') {
+      rows += `<tr style="background:var(--red-light);">
+        <td>狩猟税<small style="display:block;color:var(--text-3);">${muniName}・R6決算（地税法4条4項）</small></td>
+        <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">${amtFmt}</td>
+        <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">${amtFmt} <small>廃止</small></td>
+        <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
+      </tr>`;
     } else {
       rows += `<tr>
         <td>${label}<small style="display:block;color:var(--text-3);">${muniName}・R6決算</small></td>
@@ -744,13 +765,15 @@ function updateMokuTable(muniName, mokus) {
     }
   }
 
-  // 狩猟税は県税（地税法4条4項）のため市町村シートには含めないが注記
-  rows += `<tr>
-    <td>狩猟税<small style="display:block;color:var(--text-3);">高知県・R6：16,842千円（地税法4条4項・県税）</small></td>
-    <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--text-3);">参考</td>
-    <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">16,842 <small>廃止</small></td>
-    <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
-  </tr>`;
+  // 市町村シートのみ狩猟税（県税）を参考行として表示
+  if (muniName !== '高知県') {
+    rows += `<tr>
+      <td>狩猟税<small style="display:block;color:var(--text-3);">高知県・R6：16,842千円（地税法4条4項・県税）</small></td>
+      <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--text-3);">参考</td>
+      <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">16,842 <small>廃止</small></td>
+      <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
+    </tr>`;
+  }
 
   if (!hasRow) {
     rows = `<tr><td colspan="4" style="color:var(--text-3);text-align:center;font-size:12px;padding:10px;">目的税なし</td></tr>` + rows;
@@ -762,12 +785,11 @@ function updateMokuTable(muniName, mokus) {
 // ─── 自治体データ読み込み ───
 async function loadMuniData() {
   const muniName = document.getElementById('muni-name').value;
-  if (!muniName || muniName === '（高知県）') {
+  if (!muniName) {
     resetMokuTable();
-    // 軽自動車税は県合計のデフォルト値を入れる
-    document.getElementById('s-kei').value = 2818394;
-    document.getElementById('s-kei-ex').value = 30503;
-    document.getElementById('kei-label').textContent = '34市町村合計・R6決算';
+    document.getElementById('s-kei').value = '';
+    document.getElementById('s-kei-ex').value = '';
+    document.getElementById('kei-label').textContent = '';
     document.getElementById('s-expenditure').value = '';
     ['s-kojin-kinto','s-shotoku','s-hojin-kinto','s-hojin-kinto-ex','s-hojin-wari','s-hojin-wari-ex','s-kotei','s-kotei-ex'].forEach(id => {
       const el = document.getElementById(id); if (el) el.value = '';
@@ -780,8 +802,8 @@ async function loadMuniData() {
   meta.textContent = '読み込み中…';
 
   try {
-    const munis = await fetchKochiData();
-    const muni = munis[muniName];
+    await fetchKochiData();
+    const muni = (muniName === '高知県') ? _kochiPref : _kochiMunis[muniName];
     if (!muni) { calc(); return; }
 
     const td = muni.tax_detail || [];
@@ -809,7 +831,7 @@ async function loadMuniData() {
     // 軽自動車税
     setV('s-kei',    getTax(td, '軽自動車税').amount);
     setV('s-kei-ex', getTax(td, '軽自動車税').extra);
-    document.getElementById('kei-label').textContent = muniName + '・R6決算';
+    document.getElementById('kei-label').textContent = muniName === '高知県' ? '道府県税（軽自動車税は市町村税）' : muniName + '・R6決算';
 
     // 目的税（tax1が「目的税」のもの）
     const mokus = td
@@ -892,9 +914,6 @@ function calc() {
   document.getElementById('d-pct').textContent = exp > 0 && total > 0 ? (total / exp * 100).toFixed(2) : '―';
 }
 
-// 初期ロード: 軽自動車税のデフォルト値
-document.getElementById('s-kei').value = 2818394;
-document.getElementById('s-kei-ex').value = 30503;
 calc();
 
 // JSON を先読み（選択前にキャッシュ）
