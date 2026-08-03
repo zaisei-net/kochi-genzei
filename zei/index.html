@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-F1PBSFFVQ5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-F1PBSFFVQ5');
+</script>
+<meta charset="UTF-8">
+<meta name="description" content="高知県・県内市町村の税の状況を分析。超過課税・法定外税・法定任意税・不採算税・法定目的税を網羅的にまとめます。">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="高知減税会">
+<meta property="og:title" content="高知の税｜高知減税会">
+<meta property="og:description" content="高知県・県内市町村の税の状況を分析。超過課税・法定外税・法定任意税・不採算税・法定目的税を網羅的にまとめます。">
+<meta property="og:url" content="https://zaisei-net.github.io/kochi-genzei/zei/">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>高知の税｜高知減税会</title>
+<style>
+:root {
+  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff;
+  --border: #e2e8f0; --border-strong: #cbd5e1;
+  --text: #1e293b; --text-2: #475569; --text-3: #94a3b8;
+  --blue: #2563eb; --blue-light: #dbeafe; --blue-mid: #448AFF;
+  --teal: #2563eb; --teal-light: #dbeafe; --bg-teal: #eff6ff;
+  --red: #dc2626; --red-light: #fee2e2;
+  --orange: #d97706; --orange-light: #fef3c7;
+  --green: #16a34a; --green-light: #dcfce7;
+  --gray-light: #f1f5f9;
+  --purple: #7c3aed; --purple-light: #ede9fe;
+}
+:root[data-theme="dark"] {
+  --bg: #121212; --bg-2: #1e1e1e; --bg-blue: #0d1e38;
+  --border: rgba(255,255,255,.12); --border-strong: rgba(255,255,255,.20);
+  --text: rgba(255,255,255,.87); --text-2: rgba(255,255,255,.60); --text-3: rgba(255,255,255,.38);
+  --blue: #82B1FF; --blue-light: #0d1e38;
+  --teal: #82B1FF; --teal-light: #0d1e38; --bg-teal: #0d1e38;
+  --red-light: #2a0a12; --orange-light: #1f0f00; --green-light: #071a0c;
+  --gray-light: #1e1e1e; --purple-light: #1e0a3c;
+}
+:root[data-theme="light"] {
+  --bg: #ffffff; --bg-2: #f8fafc; --bg-blue: #eff6ff;
+  --border: #e2e8f0; --border-strong: #cbd5e1;
+  --text: #1e293b; --text-2: #475569; --text-3: #94a3b8;
+  --blue: #2563eb; --blue-light: #dbeafe;
+  --teal: #2563eb; --teal-light: #dbeafe; --bg-teal: #eff6ff;
+  --red-light: #fee2e2; --orange-light: #fef3c7; --green-light: #dcfce7;
+  --gray-light: #f1f5f9; --purple-light: #ede9fe;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Hiragino Kaku Gothic ProN','Yu Gothic UI',Meiryo,'BIZ UDGothic',sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; font-size: 15px; }
+a { color: var(--teal); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Topbar */
+.topbar{border-bottom:1px solid var(--border);padding:0.55rem 2.5rem;display:flex;align-items:center;gap:1.5rem;position:sticky;top:0;background:var(--bg);z-index:100;}
+.topbar-logo{font-size:0.78rem;font-weight:700;letter-spacing:0.18em;color:var(--text);white-space:nowrap;text-decoration:none;}
+.topbar-logo em{font-style:normal;color:var(--blue);}
+.topbar-nav{display:flex;gap:0.1rem;flex-wrap:nowrap;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;}
+.topbar-nav::-webkit-scrollbar{display:none;}
+.topbar-nav a{font-size:0.67rem;color:var(--text-2);padding:0.2rem 0.45rem;border-radius:3px;white-space:nowrap;text-decoration:none;transition:background .15s,color .15s;}
+.topbar-nav a:hover{background:var(--bg-2);color:var(--text);}
+.topbar-nav a.active{color:var(--blue);font-weight:700;background:var(--blue-light);}
+.topbar-spacer{flex:1;}
+.theme-btn{font-size:0.72rem;padding:0.25rem 0.7rem;border:1px solid var(--border-strong);border-radius:4px;background:transparent;color:var(--text-2);cursor:pointer;white-space:nowrap;}
+.theme-btn:hover{border-color:var(--blue);color:var(--blue);}
+
+/* Hero */
+.hero { background: var(--bg-teal); border-bottom: 1px solid var(--border); padding: 48px 24px 40px; }
+.hero-inner { max-width: 900px; margin: 0 auto; }
+.hero-eyebrow { font-size: 12px; font-weight: 600; letter-spacing: 0.08em; color: var(--teal); text-transform: uppercase; margin-bottom: 12px; }
+.hero h1 { font-size: clamp(20px, 3.5vw, 30px); font-weight: 800; color: var(--text); line-height: 1.25; margin-bottom: 12px; text-wrap: balance; }
+.hero h1 em { color: var(--teal); font-style: normal; }
+.hero-sub { font-size: 14px; color: var(--text-2); max-width: 680px; margin-bottom: 20px; line-height: 1.8; }
+.hero-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.hero-tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 4px; background: var(--teal-light); color: var(--teal); }
+
+/* Stats strip */
+.stats-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0; border-bottom: 1px solid var(--border); }
+.stat-item { padding: 20px 24px; border-right: 1px solid var(--border); border-top: 3px solid var(--teal); background: var(--bg); }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-size: 26px; font-weight: 800; color: var(--teal); letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.stat-num.red { color: var(--red); }
+.stat-num.orange { color: var(--orange); }
+.stat-num.green { color: var(--green); }
+.stat-label { font-size: 11px; color: var(--text-2); margin-top: 2px; }
+.stat-note { font-size: 10px; color: var(--text-3); margin-top: 1px; }
+
+/* Section */
+.section { max-width: 1100px; margin: 0 auto; padding: 44px 24px; }
+.section-header { margin-bottom: 24px; }
+.section-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.section-title::before { content: ''; display: inline-block; width: 4px; height: 18px; background: var(--teal); border-radius: 2px; }
+.section-desc { font-size: 13px; color: var(--text-2); padding-left: 12px; line-height: 1.7; }
+.section-divider { border: none; border-top: 1px solid var(--border); }
+.section-sub { font-size: 14px; font-weight: 700; color: var(--text); margin: 28px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+
+/* Commentary box */
+.commentary { background: var(--bg-2); border: 1px solid var(--border); border-left: 4px solid var(--orange); border-radius: 6px; padding: 14px 18px; margin-bottom: 20px; font-size: 13px; color: var(--text-2); line-height: 1.75; }
+.commentary strong { color: var(--orange); }
+.commentary.blue { border-left-color: var(--blue); }
+.commentary.blue strong { color: var(--blue); }
+.commentary.red { border-left-color: var(--red); }
+.commentary.red strong { color: var(--red); }
+.commentary.green { border-left-color: var(--green); }
+.commentary.green strong { color: var(--green); }
+
+/* Alert / info box */
+.info-box { background: var(--green-light); border: 1px solid var(--green); border-radius: 6px; padding: 12px 16px; font-size: 13px; color: var(--text); margin-bottom: 16px; }
+.warn-box { background: var(--orange-light); border: 1px solid var(--orange); border-radius: 6px; padding: 12px 16px; font-size: 13px; color: var(--text); margin-bottom: 16px; }
+.alert-box { background: var(--red-light); border: 1px solid var(--red); border-radius: 6px; padding: 12px 16px; font-size: 13px; color: var(--text); margin-bottom: 16px; }
+.info-box strong { color: var(--green); }
+.warn-box strong { color: var(--orange); }
+.alert-box strong { color: var(--red); }
+
+/* Table */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: var(--bg-2); color: var(--text-2); font-size: 11px; font-weight: 600; letter-spacing: 0.03em; padding: 10px 12px; text-align: left; border-bottom: 2px solid var(--border-strong); white-space: nowrap; }
+td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+tfoot td { padding: 10px 12px; border-top: 2px solid var(--border-strong); border-bottom: none; background: var(--bg-2); }
+tr:hover td { background: var(--bg-2); }
+.td-num { text-align: right; font-variant-numeric: tabular-nums; }
+.td-ok { text-align: center; color: var(--green); font-weight: 700; }
+.td-warn { text-align: center; color: var(--orange); font-weight: 700; }
+.td-ng { text-align: center; color: var(--red); font-weight: 700; }
+.row-ng td { background: color-mix(in srgb, var(--red-light) 40%, transparent); }
+.row-warn td { background: color-mix(in srgb, var(--orange-light) 40%, transparent); }
+.row-highlight td { font-weight: 700; background: color-mix(in srgb, var(--teal-light) 30%, transparent); }
+.badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
+.badge-r { background: var(--red-light); color: var(--red); }
+.badge-o { background: var(--orange-light); color: var(--orange); }
+.badge-g { background: var(--green-light); color: var(--green); }
+.badge-b { background: var(--blue-light); color: var(--blue); }
+.badge-p { background: var(--purple-light); color: var(--purple); }
+.source-note { font-size: 11px; color: var(--text-3); margin-top: 12px; }
+
+/* Muni grid */
+.muni-grid { display: flex; gap: 6px; flex-wrap: wrap; margin: 8px 0; }
+.muni-chip { font-size: 11px; padding: 2px 8px; border-radius: 12px; border: 1px solid var(--border); background: var(--bg-2); color: var(--text-2); }
+.muni-chip.over { background: var(--red-light); border-color: var(--red); color: var(--red); font-weight: 600; }
+.muni-chip.mid { background: var(--orange-light); border-color: var(--orange); color: var(--orange); font-weight: 600; }
+.muni-chip.std { background: var(--green-light); border-color: var(--green); color: var(--green); }
+
+/* Tax rate bar */
+.rate-bar-wrap { margin: 6px 0 4px; }
+.rate-bar { height: 8px; border-radius: 4px; background: var(--green); display: inline-block; transition: width .3s; }
+.rate-bar.over-max { background: var(--red); }
+.rate-bar.over-mid { background: var(--orange); }
+
+/* none-box */
+.none-box { background: var(--bg-2); border: 1px dashed var(--border-strong); border-radius: 8px; padding: 24px; text-align: center; color: var(--text-3); font-size: 13px; }
+.none-box strong { color: var(--green); font-size: 20px; display: block; margin-bottom: 4px; }
+
+/* Summary cards */
+.summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 24px; }
+.summary-card { border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; background: var(--bg); }
+.summary-card-label { font-size: 10px; font-weight: 600; letter-spacing: 0.06em; color: var(--text-3); text-transform: uppercase; margin-bottom: 6px; }
+.summary-card-title { font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.summary-card-body { font-size: 12px; color: var(--text-2); line-height: 1.6; }
+.summary-card.red { border-top: 3px solid var(--red); }
+.summary-card.orange { border-top: 3px solid var(--orange); }
+.summary-card.green { border-top: 3px solid var(--green); }
+.summary-card.blue { border-top: 3px solid var(--blue); }
+
+/* Footer */
+footer { background: var(--bg-2); border-top: 1px solid var(--border); padding: 32px 24px; text-align: center; }
+footer p { font-size: 12px; color: var(--text-3); margin-bottom: 4px; }
+footer strong { color: var(--text-2); }
+
+/* Join banner */
+.join-banner{background:var(--blue);padding:1.6rem 2rem;}
+.join-banner-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1.2rem;flex-wrap:wrap;}
+.join-banner-text{font-size:.95rem;color:rgba(255,255,255,.95);line-height:1.6;font-weight:500;}
+.join-banner-btn{font-size:.86rem;font-weight:700;color:var(--blue);background:#fff;border-radius:6px;padding:.6rem 1.4rem;white-space:nowrap;text-decoration:none;flex-shrink:0;}
+.join-banner-btn:hover{opacity:.9;text-decoration:none;}
+
+@media (max-width: 640px) {
+  .topbar { gap: 12px; padding: 0 16px; }
+  .hero { padding: 32px 16px 28px; }
+  .section { padding: 32px 16px; }
+  .stats-strip { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2n) { border-right: none; }
+  .summary-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="topbar-logo" href="/kochi-genzei/">高知<em>減税</em>会</a>
+  <nav class="topbar-nav">
+    <a href="/kochi-genzei/">トップ</a>
+    <a href="/kochi-genzei/pref/">高知県庁</a>
+    <a href="/kochi-genzei/kami/">香美市</a>
+    <a href="/kochi-genzei/map/">地図</a>
+    <a href="/kochi-genzei/senkyo/">選挙日程</a>
+    <a href="/kochi-genzei/pubcom/">パブコメ</a>
+    <a href="/kochi-genzei/gyokaku/">行政改革</a>
+    <a href="/kochi-genzei/chinjo/">陳情・請願</a>
+    <a href="/kochi-genzei/jiyuu/">自由民権</a>
+    <a href="/kochi-genzei/zei/" class="active">税</a>
+  </nav>
+  <div class="topbar-spacer"></div>
+  <button class="theme-btn" onclick="toggleTheme()">テーマ切替</button>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">TAX WATCH · 高知県</div>
+    <h1>高知県・市町村の<em>税の状況</em></h1>
+    <p class="hero-sub">超過課税・法定外税・法定任意税・不採算税・法定目的税の５つの観点から、高知県および県内34市町村の課税の実態を分析します。令和６年度課税状況調等をもとに作成。</p>
+    <div class="hero-tags">
+      <span class="hero-tag">① 超過課税</span>
+      <span class="hero-tag">② 法定外税</span>
+      <span class="hero-tag">③ 法定任意税</span>
+      <span class="hero-tag">④ 不採算税</span>
+      <span class="hero-tag">⑤ 法定目的税</span>
+    </div>
+  </div>
+</div>
+
+<div class="stats-strip">
+  <div class="stat-item">
+    <div class="stat-num red">15</div>
+    <div class="stat-label">超過課税実施市町村</div>
+    <div class="stat-note">法人税割（標準6%超）</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num green">0</div>
+    <div class="stat-label">法定外税</div>
+    <div class="stat-note">県・全市町村ともなし</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num orange">1</div>
+    <div class="stat-label">水利地益税課税町</div>
+    <div class="stat-note">いの町のみ（全国3自治体）</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">1</div>
+    <div class="stat-label">事業所税課税市</div>
+    <div class="stat-note">高知市のみ</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">0</div>
+    <div class="stat-label">都市計画税課税自治体</div>
+    <div class="stat-note">全市町村なし</div>
+  </div>
+</div>
+
+<!-- ======================================
+     ① 超過課税
+====================================== -->
+<hr class="section-divider">
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">① 超過課税</h2>
+    <p class="section-desc">地方税法の定める標準税率を超えて課税しているもの。条例で税率を定め、財政上の必要がある場合に許容される（地方税法第１条第１項第５号）。<br>高知県および15市町村が超過課税を実施しています。</p>
+  </div>
+
+  <div class="section-sub">高知県（道府県民税）</div>
+  <div class="commentary">
+    <strong>法人住民税で超過課税を実施中。</strong>法人均等割への上乗せ（森林環境税）は令和10年3月末、法人税割の超過課税は令和9年8月末に終了予定。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>税目</th>
+          <th>標準税率</th>
+          <th>適用税率</th>
+          <th>超過の内容</th>
+          <th>根拠・期間</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-ng">
+          <td>道府県民税<br><small>法人均等割</small></td>
+          <td>標準額</td>
+          <td><strong>+500円/年</strong></td>
+          <td>高知県森林環境税として上乗せ</td>
+          <td>H15.4.1〜R10.3.31</td>
+        </tr>
+        <tr class="row-ng">
+          <td>道府県民税<br><small>法人税割</small></td>
+          <td>0.7%</td>
+          <td><strong>1.8%</strong>（軽減措置1.0%）</td>
+          <td>標準を1.1%超過（軽減後0.3%超過）</td>
+          <td>S51.9.1〜R9.8.31</td>
+        </tr>
+        <tr>
+          <td>道府県民税<br><small>個人均等割</small></td>
+          <td>1,000円</td>
+          <td>1,000円</td>
+          <td>超過なし</td>
+          <td>―</td>
+        </tr>
+        <tr>
+          <td>道府県民税<br><small>個人所得割</small></td>
+          <td>4%</td>
+          <td>4%</td>
+          <td>超過なし</td>
+          <td>―</td>
+        </tr>
+        <tr>
+          <td>法人事業税</td>
+          <td>各標準税率</td>
+          <td>標準税率</td>
+          <td>超過なし</td>
+          <td>―</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="source-note">出典：高知県課税状況調（令和６年度）、高知県森林環境税条例</p>
+
+  <div class="section-sub" style="margin-top:36px;">高知県内市町村（市町村民税　法人税割）</div>
+  <div class="commentary red">
+    <strong>標準税率は6.0%。</strong>制限税率は8.4%。34市町村中15市町村が超過課税を実施しており、うち11市町村が制限税率の8.4%を適用しています。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>税率</th>
+          <th>市町村数</th>
+          <th>市町村名</th>
+          <th>標準比</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-ng">
+          <td><strong>8.4%</strong> <span class="badge badge-r">制限税率</span></td>
+          <td class="td-num">11</td>
+          <td>
+            高知市・室戸市・安芸市・南国市・土佐市・須崎市・宿毛市・土佐清水市・四万十市・いの町・日高村
+          </td>
+          <td class="td-num td-ng">+2.4%</td>
+        </tr>
+        <tr class="row-warn">
+          <td><strong>6.9%</strong></td>
+          <td class="td-num">1</td>
+          <td>佐川町</td>
+          <td class="td-num td-warn">+0.9%</td>
+        </tr>
+        <tr class="row-warn">
+          <td><strong>6.7%</strong></td>
+          <td class="td-num">3</td>
+          <td>越知町・大月町・黒潮町</td>
+          <td class="td-num td-warn">+0.7%</td>
+        </tr>
+        <tr>
+          <td><strong>6.0%</strong> <span class="badge badge-g">標準税率</span></td>
+          <td class="td-num">19</td>
+          <td>
+            香南市・香美市・東洋町・奈半利町・田野町・安田町・北川村・馬路村・芸西村・本山町・大豊町・土佐町・大川村・仁淀川町・中土佐町・梼原町・津野町・四万十町・三原村
+          </td>
+          <td class="td-ok">標準</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>合計</strong></td>
+          <td class="td-num"><strong>34</strong></td>
+          <td colspan="2"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p class="source-note">出典：令和６年度市町村課税状況等の調（高知県総務部市町村振興課）</p>
+
+  <div class="warn-box" style="margin-top:20px;">
+    <strong>減税の観点から：</strong>超過課税を実施している15市町村（特に制限税率8.4%の11市町村）は、地域の事業活動に対して最高水準の税負担を課しています。財政上の必要性と企業立地・事業継続への影響を継続的に検証すべきです。
+  </div>
+</div>
+
+<!-- ======================================
+     ② 法定外税
+====================================== -->
+<hr class="section-divider">
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">② 法定外税</h2>
+    <p class="section-desc">地方税法に規定がない独自の税目。総務大臣の同意を得た上で条例で制定できる（地方税法第259条・第669条等）。全国では産業廃棄物税・核燃料税・歴史と文化の環境税など多様な法定外税が存在する。</p>
+  </div>
+  <div class="none-box">
+    <strong>なし（0件）</strong>
+    高知県・県内全市町村において、法定外税は課税されていません。
+  </div>
+  <p class="source-note">出典：法定外税の状況（令和８年７月１日現在、総務省）全国リストに高知県・高知県内市町村の記載なし</p>
+</div>
+
+<!-- ======================================
+     ③ 法定任意税
+====================================== -->
+<hr class="section-divider">
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">③ 法定任意税</h2>
+    <p class="section-desc">地方税法に規定があるものの、課税するかどうかは各自治体の判断に委ねられている税目。課税するには条例制定が必要。</p>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card green">
+      <div class="summary-card-label">都市計画税</div>
+      <div class="summary-card-title">全市町村　非課税</div>
+      <div class="summary-card-body">高知県内34市町村のいずれも課税していない。</div>
+    </div>
+    <div class="summary-card orange">
+      <div class="summary-card-label">水利地益税</div>
+      <div class="summary-card-title">いの町のみ課税</div>
+      <div class="summary-card-body">全国でも3自治体のみが課税する希少な税目。</div>
+    </div>
+    <div class="summary-card blue">
+      <div class="summary-card-label">国民健康保険税</div>
+      <div class="summary-card-title">一部市町村で課税</div>
+      <div class="summary-card-body">税方式か保険料方式かは自治体ごとに異なる。</div>
+    </div>
+  </div>
+
+  <div class="section-sub">都市計画税</div>
+  <div class="info-box">
+    <strong>高知県内全市町村で都市計画税は課税されていません。</strong><br>
+    都市計画税は「市街化区域」内の土地・家屋に課す固定資産税の付加税的な性格を持つが、高知県内市町村は全市町村が非課税。住民・事業者の土地保有コストを低く抑えている。
+  </div>
+
+  <div class="section-sub" style="margin-top:32px;">水利地益税</div>
+  <div class="commentary">
+    <strong>いの町のみ課税（全国3自治体のうちの1つ）。</strong>農業用水路等の整備・維持に係る費用を、その恩恵を受ける土地所有者に負担させる税目（地方税法第440条）。全国的に廃止・非課税化が進んでおり、現在課税しているのは高知県内ではいの町のみ。
+  </div>
+  <div class="warn-box">
+    <strong>不採算の可能性：</strong>水利地益税の税収は一般的に非常に少額であり、徴収コストに対して税収が少ない不採算税となっている可能性があります（詳細は④不採算税の項参照）。
+  </div>
+
+  <div class="section-sub" style="margin-top:32px;">国民健康保険税</div>
+  <div class="commentary blue">
+    <strong>税方式か保険料方式かは自治体が選択できる。</strong>国民健康保険の保険料徴収については、地方税法上の「国民健康保険税」として徴収する方式と、国民健康保険条例に基づく「保険料」として徴収する方式がある。両方式で税負担は実質的に同じだが、滞納処分の方法等が異なる。<br>
+    ※高知県内市町村の方式別詳細は高知県課税状況調（国民健康保険税(料)に関する調）を参照。
+  </div>
+  <p class="source-note">出典：高知県課税状況調（令和６年度）、高知県総務部市町村振興課</p>
+</div>
+
+<!-- ======================================
+     ④ 不採算税
+====================================== -->
+<hr class="section-divider">
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">④ 不採算税（徴収コスト超過税）</h2>
+    <p class="section-desc">税収額に対して徴収費用・事務コストが過大で、経済的合理性に乏しい税目。以下のいずれかを目安として不採算と判断します。<br>
+    <strong>閾値①</strong> 年間税収が50万円以下 ／ <strong>閾値②</strong> 総税収に占める割合が0.1%以下</p>
+  </div>
+
+  <div class="commentary">
+    <strong>不採算税が問題となる背景：</strong>税収が少ないと、課税客体の調査・台帳管理・納税通知・滞納整理などの事務コストが税収を上回る逆転現象が生じる。こうした「取るための費用が取れる額を超える税」は、行政の非効率を生み出すとともに、納税者に対して不当な事務負担を強いることになる。
+  </div>
+
+  <div class="section-sub">不採算候補税目</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>税目</th>
+          <th>課税主体</th>
+          <th>税収規模（推定）</th>
+          <th>不採算の可能性</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-ng">
+          <td>水利地益税</td>
+          <td>いの町</td>
+          <td>不明（少額と推定）</td>
+          <td class="td-ng">高</td>
+          <td>全国3自治体のみ。農業用水路の受益者課税。</td>
+        </tr>
+        <tr class="row-warn">
+          <td>狩猟税</td>
+          <td>高知県</td>
+          <td>不明（少額と推定）</td>
+          <td class="td-warn">中</td>
+          <td>狩猟者数の減少傾向。詳細は⑤を参照。</td>
+        </tr>
+        <tr class="row-warn">
+          <td>入湯税</td>
+          <td>一部市町村</td>
+          <td>市町村により差異</td>
+          <td class="td-warn">小規模市町村で高</td>
+          <td>温泉入浴客数が少ない場合、徴収コストが税収を超える可能性。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn-box" style="margin-top:16px;">
+    <strong>データ調査中：</strong>各税目の正確な税収額（令和６年度決算ベース）は高知県課税状況調・自治体決算ビューア等で確認中です。閾値と照合した結論は随時更新します。
+  </div>
+  <p class="source-note">閾値設定の考え方：税収50万円以下は1人の職員が数日間対応するだけで徴収費用が税収を超える水準。構成比0.1%は総税収への寄与が事実上ゼロに等しいことを示す。</p>
+</div>
+
+<!-- ======================================
+     ⑤ 法定目的税
+====================================== -->
+<hr class="section-divider">
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">⑤ 法定税（目的税）</h2>
+    <p class="section-desc">地方税法に規定された税のうち、特定の行政目的・使途に充てることが定められた税目。高知県・市町村が課税しているものをまとめます。</p>
+  </div>
+
+  <div class="section-sub">狩猟税（高知県）</div>
+  <div class="commentary">
+    <strong>高知県が課税する道府県税の目的税。</strong>鳥獣の保護及び管理並びに狩猟の適正化に関する法律に基づく狩猟者登録に対して課税（地方税法第700条の45）。税収は「鳥獣保護事業費」に充当される。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>免許の種類</th>
+          <th>鳥獣被害防止特措法に基づく<br>交付金等の納付者</th>
+          <th>非納付者</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>第１種銃猟免許（散弾銃等）</td>
+          <td class="td-num">16,500円</td>
+          <td class="td-num">11,000円</td>
+        </tr>
+        <tr>
+          <td>網猟免許 / わな猟免許</td>
+          <td class="td-num">8,200円</td>
+          <td class="td-num">5,500円</td>
+        </tr>
+        <tr>
+          <td>第２種銃猟免許（空気銃）</td>
+          <td class="td-num">5,500円</td>
+          <td class="td-num">5,500円</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn-box" style="margin-top:12px;">
+    <strong>不採算の観点：</strong>全国的に狩猟者登録数は減少傾向にあり、税収は少額と見込まれます。令和６年度の税収決算額は調査中。
+  </div>
+  <p class="source-note">出典：<a href="https://www.pref.kochi.lg.jp/doc/syuryouzei/" target="_blank" rel="noopener">高知県公式サイト「狩猟税について」</a></p>
+
+  <div class="section-sub" style="margin-top:36px;">入湯税（各市町村）</div>
+  <div class="commentary">
+    <strong>温泉入浴客に課す市町村目的税（地方税法第701条）。</strong>鉱泉浴場（温泉施設）に入湯する者に、1人1日あたり標準税率150円を課す。税収は環境衛生施設・消防施設の整備・観光振興などに充てられる。
+  </div>
+  <div class="warn-box">
+    <strong>実施市町村データ調査中。</strong>高知県課税状況調（令和６年度）の入湯税関連データを確認次第更新予定。温泉施設がある市町村の多くで課税されているものと見込まれます。
+  </div>
+
+  <div class="section-sub" style="margin-top:36px;">事業所税（高知市のみ）</div>
+  <div class="commentary">
+    <strong>高知市のみが課税（地方税法第701条の32）。</strong>人口30万人以上の市等（指定都市・一定規模以上の市）に課税権限がある市町村税の目的税。高知県内では高知市のみが該当し、他の33市町村は非課税。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>税目</th>
+          <th>課税客体</th>
+          <th>税率・免税点</th>
+          <th>充当先</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>事業所税<br><small>資産割</small></td>
+          <td>事業所床面積</td>
+          <td>600円/㎡<br>（免税点：1,000㎡以下）</td>
+          <td rowspan="2">都市環境整備</td>
+        </tr>
+        <tr>
+          <td>事業所税<br><small>従業者割</small></td>
+          <td>従業者給与総額</td>
+          <td>0.25%<br>（免税点：従業者100人以下）</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="source-note">出典：高知市「事業所税」、地方税法第701条の32</p>
+</div>
+
+<!-- ======================================
+     参考：全体まとめ
+====================================== -->
+<hr class="section-divider">
+<div class="section">
+  <div class="section-header">
+    <h2 class="section-title">高知の税　全体概況</h2>
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>区分</th>
+          <th>税目</th>
+          <th>実施状況</th>
+          <th>評価</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-ng">
+          <td>① 超過課税</td>
+          <td>道府県民税 法人税割（高知県）</td>
+          <td>1.8%（標準0.7%）S51〜R9.8</td>
+          <td class="td-ng">課税中</td>
+        </tr>
+        <tr class="row-ng">
+          <td>① 超過課税</td>
+          <td>道府県民税 法人均等割（高知県）</td>
+          <td>+500円 H15〜R10.3</td>
+          <td class="td-ng">課税中</td>
+        </tr>
+        <tr class="row-ng">
+          <td>① 超過課税</td>
+          <td>市町村民税 法人税割（15市町村）</td>
+          <td>6.7〜8.4%（標準6%）</td>
+          <td class="td-ng">課税中</td>
+        </tr>
+        <tr>
+          <td>② 法定外税</td>
+          <td>（全税目）</td>
+          <td>県・全市町村でなし</td>
+          <td class="td-ok">非課税</td>
+        </tr>
+        <tr>
+          <td>③ 法定任意税</td>
+          <td>都市計画税</td>
+          <td>全市町村でなし</td>
+          <td class="td-ok">非課税</td>
+        </tr>
+        <tr class="row-warn">
+          <td>③ 法定任意税</td>
+          <td>水利地益税</td>
+          <td>いの町のみ</td>
+          <td class="td-warn">課税中</td>
+        </tr>
+        <tr>
+          <td>③ 法定任意税</td>
+          <td>国民健康保険税</td>
+          <td>一部市町村（税方式）</td>
+          <td class="td-warn">調査中</td>
+        </tr>
+        <tr class="row-warn">
+          <td>④ 不採算税（候補）</td>
+          <td>水利地益税（いの町）</td>
+          <td>税収少額と推定</td>
+          <td class="td-warn">要検証</td>
+        </tr>
+        <tr class="row-warn">
+          <td>④ 不採算税（候補）</td>
+          <td>狩猟税（高知県）</td>
+          <td>税収少額と推定</td>
+          <td class="td-warn">要検証</td>
+        </tr>
+        <tr>
+          <td>⑤ 法定目的税</td>
+          <td>狩猟税（高知県）</td>
+          <td>課税中（税率確定）</td>
+          <td class="td-warn">不採算候補</td>
+        </tr>
+        <tr>
+          <td>⑤ 法定目的税</td>
+          <td>入湯税（一部市町村）</td>
+          <td>調査中</td>
+          <td class="td-warn">調査中</td>
+        </tr>
+        <tr>
+          <td>⑤ 法定目的税</td>
+          <td>事業所税（高知市）</td>
+          <td>高知市のみ</td>
+          <td class="td-ng">課税中</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="source-note">出典：令和６年度市町村課税状況等の調（高知県）、法定外税の状況（令和８年７月１日現在、総務省）、高知県公式サイト</p>
+</div>
+
+<div class="join-banner">
+  <div class="join-banner-inner">
+    <span class="join-banner-text">高知県の税・財政に関心がある方、高知減税会の活動にご参加ください。</span>
+    <a class="join-banner-btn" href="/kochi-genzei/">トップページへ</a>
+  </div>
+</div>
+
+<footer>
+  <p><strong>高知減税会</strong></p>
+  <p>データの誤り・更新情報はお知らせください</p>
+  <p>最終更新：令和８年（2026年）</p>
+</footer>
+
+<script>
+function toggleTheme() {
+  const root = document.documentElement;
+  const cur = root.getAttribute('data-theme');
+  const next = cur === 'dark' ? 'light' : 'dark';
+  root.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+}
+(function() {
+  const saved = localStorage.getItem('theme');
+  if (saved) { document.documentElement.setAttribute('data-theme', saved); return; }
+  if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+})();
+</script>
+</body>
+</html>

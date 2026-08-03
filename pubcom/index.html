@@ -89,6 +89,7 @@ footer{background:var(--bg-2);border-top:1px solid var(--border);padding:1.5rem 
     <a href="/kochi-genzei/gyokaku/">行政改革</a>
     <a href="/kochi-genzei/chinjo/">陳情・請願</a>
     <a href="/kochi-genzei/jiyuu/">自由民権</a>
+    <a href="/kochi-genzei/zei/">税</a>
   </nav>
   <div class="topbar-spacer"></div>
   <button class="theme-btn" onclick="toggleTheme()">テーマ切替</button>
@@ -110,27 +111,9 @@ footer{background:var(--bg-2);border-top:1px solid var(--border);padding:1.5rem 
 
 <section class="section" id="current">
   <h2 class="section-h2">募集中の意見公募・パブリックコメント</h2>
-  <p style="font-size:0.82rem;color:var(--text-2);margin-bottom:1rem;">高知県・各市町村の公式サイトで確認した意見公募案件です。終了日が近いものを上に表示。<span style="color:var(--text-3);">最終確認: 2026年7月27日</span></p>
-  <div class="pc-list">
-    <div class="pc-card open" style="border-left:4px solid var(--red);background:var(--red-light);">
-      <span class="pc-status open" style="background:var(--red-light);color:var(--red);border:1px solid var(--red);">緊急・締切近</span>
-      <div class="pc-body">
-        <div class="pc-org">梼原町（「意見募集」名義）</div>
-        <div class="pc-title">高知高陵交通(株) 須崎〜梼原線 運賃改定に係る意見募集</div>
-        <div class="pc-date">締切：<strong>令和8年7月30日（木）17時まで</strong>　提出：メール / 郵送 / FAX</div>
-        <a class="pc-link" href="https://www.town.yusuhara.lg.jp/life/detail.php?hdnKey=674" target="_blank" rel="noopener">梼原町 意見募集ページ ↗</a>
-      </div>
-    </div>
-    <div class="pc-card open">
-      <span class="pc-status open">募集中</span>
-      <div class="pc-body">
-        <div class="pc-org">高知県</div>
-        <div class="pc-title">「高知県産業廃棄物処理指導要綱」の一部改正（案）</div>
-        <div class="pc-date">意見公募期間：令和8年7月7日 〜 <strong>令和8年8月5日</strong></div>
-        <a class="pc-link" href="https://www.pref.kochi.lg.jp/category/bunya/kenseijoho/public_comment/" target="_blank" rel="noopener">高知県パブコメ一覧で確認 ↗</a>
-      </div>
-    </div>
-  </div>
+  <p style="font-size:0.82rem;color:var(--text-2);margin-bottom:1rem;">高知県・各市町村の公式サイトで確認した意見公募案件です。終了日が近いものを上に表示。締切を過ぎた案件は自動で「終了」表示になります。<span id="pc-check-date" style="color:var(--text-3);"></span></p>
+  <div id="pc-list" class="pc-list"></div>
+  <div id="pc-empty" class="empty-note" style="display:none;">現在、確認済みの募集中案件はありません。各自治体の公式サイトを直接ご確認ください。</div>
   <div class="info-box" style="margin-top:1rem;font-size:0.78rem;border-left:4px solid var(--blue);">
     <h4 style="color:var(--blue);">用語について</h4>
     <p style="color:var(--text-2);margin-top:0.3rem;">高知県内の自治体は「パブリックコメント」のほか「<strong>意見公募</strong>」「<strong>意見募集</strong>」「<strong>住民意見等の募集</strong>」など異なる用語を使います。いずれも住民が行政の計画・条例案に意見を出せる手続きです。当ページはすべての用語を対象に調査しています。</p>
@@ -426,6 +409,109 @@ footer{background:var(--bg-2);border-top:1px solid var(--border);padding:1.5rem 
 </footer>
 <script>
 function toggleTheme(){const r=document.documentElement,c=r.getAttribute('data-theme');const s=window.matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';if(!c){r.setAttribute('data-theme',s==='dark'?'light':'dark');}else if(c==='dark'){r.setAttribute('data-theme','light');}else{r.removeAttribute('data-theme');}}
+
+// ──────────────────────────────────────
+// パブコメ データ（新しい案件をここに追加）
+// deadline: ISO 8601形式 (YYYY-MM-DD または YYYY-MM-DDTHH:MM)
+// checked: データ確認日
+// ──────────────────────────────────────
+const PUBCOMS = [
+  {
+    org: '梼原町',
+    orgNote: '「意見募集」名義',
+    title: '高知高陵交通(株) 須崎〜梼原線 運賃改定に係る意見募集',
+    deadline: '2026-07-30T17:00',
+    period: '締切：令和8年7月30日（木）17時まで',
+    submit: 'メール / 郵送 / FAX',
+    url: 'https://www.town.yusuhara.lg.jp/life/detail.php?hdnKey=674',
+    urlLabel: '梼原町 意見募集ページ',
+    checked: '2026-07-27'
+  },
+  {
+    org: '高知県',
+    title: '「高知県産業廃棄物処理指導要綱」の一部改正（案）',
+    deadline: '2026-08-05',
+    period: '令和8年7月7日 〜 令和8年8月5日',
+    submit: '',
+    url: 'https://www.pref.kochi.lg.jp/category/bunya/kenseijoho/public_comment/',
+    urlLabel: '高知県パブコメ一覧で確認',
+    checked: '2026-07-27'
+  }
+];
+
+(function renderPubcoms() {
+  const now = new Date();
+
+  // 確認日を表示（データの中で最新）
+  const latestCheck = PUBCOMS.map(p => p.checked || '').filter(Boolean).sort().pop();
+  if (latestCheck) {
+    const d = new Date(latestCheck);
+    document.getElementById('pc-check-date').textContent =
+      `（データ確認: ${d.getFullYear()}年${d.getMonth()+1}月${d.getDate()}日）`;
+  }
+
+  // 締切順でソート（過去→現在→未来）
+  const sorted = [...PUBCOMS].sort((a,b) => new Date(a.deadline) - new Date(b.deadline));
+
+  // 開中・終了分けてレンダリング
+  let openHtml = '', closedHtml = '';
+  for (const pc of sorted) {
+    const dl = new Date(pc.deadline);
+    const msLeft = dl - now;
+    const daysLeft = Math.ceil(msLeft / 86400000);
+    const isOpen = daysLeft > 0;
+    const isUrgent = isOpen && daysLeft <= 3;
+
+    const orgText = pc.orgNote ? `${pc.org}（${pc.orgNote}）` : pc.org;
+    const submitHtml = pc.submit ? `　提出：${pc.submit}` : '';
+    const linkHtml = pc.url
+      ? `<a class="pc-link" href="${pc.url}" target="_blank" rel="noopener">${pc.urlLabel} ↗</a>` : '';
+
+    if (isOpen) {
+      const urgentStyle = isUrgent
+        ? ' style="border-left:4px solid var(--red);background:var(--red-light);"' : '';
+      const statusStyle = isUrgent
+        ? ' style="background:var(--red-light);color:var(--red);border:1px solid var(--red);"' : '';
+      const statusLabel = isUrgent ? '緊急・締切近' : '募集中';
+      const cdText = daysLeft === 1 ? '明日締切' : `あと${daysLeft}日`;
+      openHtml += `
+    <div class="pc-card open"${urgentStyle}>
+      <span class="pc-status open"${statusStyle}>${statusLabel}</span>
+      <div class="pc-body">
+        <div class="pc-org">${orgText}</div>
+        <div class="pc-title">${pc.title}</div>
+        <div class="pc-date">期間：${pc.period}${submitHtml} <span style="font-size:0.68rem;color:var(--orange);font-weight:700;">（${cdText}）</span></div>
+        ${linkHtml}
+      </div>
+    </div>`;
+    } else {
+      closedHtml += `
+    <div class="pc-card closed">
+      <span class="pc-status closed">終了</span>
+      <div class="pc-body">
+        <div class="pc-org">${orgText}</div>
+        <div class="pc-title">${pc.title}</div>
+        <div class="pc-date" style="color:var(--text-3);">${pc.period}</div>
+        ${linkHtml}
+      </div>
+    </div>`;
+    }
+  }
+
+  const listEl = document.getElementById('pc-list');
+  const emptyEl = document.getElementById('pc-empty');
+
+  if (openHtml) {
+    listEl.innerHTML = openHtml;
+    if (closedHtml) {
+      listEl.innerHTML += `<p style="font-size:0.75rem;color:var(--text-3);margin:16px 0 4px;">── 終了済み ──</p>` + closedHtml;
+    }
+    emptyEl.style.display = 'none';
+  } else {
+    listEl.innerHTML = closedHtml ? `<p style="font-size:0.75rem;color:var(--text-3);margin:0 0 4px;">── 終了済み ──</p>` + closedHtml : '';
+    emptyEl.style.display = closedHtml ? 'none' : '';
+  }
+})();
 </script>
 </body>
 </html>
