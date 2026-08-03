@@ -544,13 +544,24 @@ function renderPrefCols() {
   </tbody>
 </table>
 
-<div class="sheet-col-title" style="margin-top:22px">その他普通税（一定税率等）</div>
+<div class="sheet-col-title" style="margin-top:22px">普通税（一定税率・減税プラン対象外）</div>
 <table class="stax-table">
   <thead><tr><th>税名</th><th>収入済額（千円）</th><th>備考</th></tr></thead>
   <tbody>
-    <tr><td>道府県たばこ税<small style="display:block;color:var(--text-3)">一定税率・起債制限なし</small></td><td>${_T('s-pref-tabako')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
+    <tr><td>道府県たばこ税<small style="display:block;color:var(--text-3)">一定税率</small></td><td>${_T('s-pref-tabako')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
     <tr><td>軽油引取税<small style="display:block;color:var(--text-3)">一定税率</small></td><td>${_T('s-keiyu')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
-    <tr><td>地方消費税<small style="display:block;color:var(--text-3)">国税に上乗せ・地方へ交付</small></td><td>${_T('s-shohi')}</td><td style="color:var(--text-3);font-size:12px">―</td></tr>
+    <tr><td>地方消費税<small style="display:block;color:var(--text-3)">国税に上乗せ・地方へ交付</small></td><td>${_T('s-shohi')}</td><td style="color:var(--text-3);font-size:12px">参考</td></tr>
+  </tbody>
+</table>
+
+<div class="sheet-col-title" style="margin-top:22px">法定外普通税</div>
+<table class="stax-table">
+  <thead><tr><th>税名</th><th>収入済額（千円）</th><th>廃止・削減額（千円）</th><th style="color:var(--text-3)">備考</th></tr></thead>
+  <tbody>
+    <tr><td>法定外普通税<small style="display:block;color:var(--text-3)">現状ゼロ・新設阻止</small></td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px">0</td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px">―</td>
+    <td style="color:var(--text-3);font-weight:700;font-size:14px">②</td></tr>
   </tbody>
 </table>
 
@@ -593,12 +604,23 @@ function renderMuniCols() {
   </tbody>
 </table>
 
-<div class="sheet-col-title" style="margin-top:22px">その他普通税（一定税率等）</div>
+<div class="sheet-col-title" style="margin-top:22px">普通税（一定税率・課税停止・減税プラン対象外）</div>
 <table class="stax-table">
   <thead><tr><th>税名</th><th>収入済額（千円）</th><th>備考</th></tr></thead>
   <tbody>
-    <tr><td>市町村たばこ税<small style="display:block;color:var(--text-3)">一定税率・起債制限なし</small></td><td>${_T('s-muni-tabako')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
-    <tr><td>特別土地保有税<small style="display:block;color:var(--text-3)">H15年度以降 新規課税停止</small></td><td style="color:var(--text-3);text-align:right;font-size:12px">課税停止</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
+    <tr><td>市町村たばこ税<small style="display:block;color:var(--text-3)">一定税率</small></td><td>${_T('s-muni-tabako')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
+    <tr><td>特別土地保有税<small style="display:block;color:var(--text-3)">H15年度以降 新規課税停止</small></td><td style="color:var(--text-3);text-align:right;font-size:12px">課税停止</td><td style="color:var(--text-3);font-size:12px">課税停止</td></tr>
+  </tbody>
+</table>
+
+<div class="sheet-col-title" style="margin-top:22px">法定外普通税</div>
+<table class="stax-table">
+  <thead><tr><th>税名</th><th>収入済額（千円）</th><th>廃止・削減額（千円）</th><th style="color:var(--text-3)">備考</th></tr></thead>
+  <tbody>
+    <tr><td>法定外普通税<small style="display:block;color:var(--text-3)">現状ゼロ・新設阻止</small></td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px">0</td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px">―</td>
+    <td style="color:var(--text-3);font-weight:700;font-size:14px">②</td></tr>
   </tbody>
 </table>`;
 }
@@ -636,80 +658,110 @@ function getTax(taxDetail, label) {
 }
 
 
+// ─── 目的税テーブル用ヘルパー ───
+function _mR(label, note, amount, mark) { // 廃止行（赤背景）
+  const a = amount.toLocaleString('ja-JP');
+  return `<tr style="background:var(--red-light);">
+    <td>${label}<small style="display:block;color:var(--text-3);">${note}</small></td>
+    <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">${a}</td>
+    <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">${a} <small>廃止</small></td>
+    <td style="color:var(--red);font-weight:700;font-size:14px;">${mark}</td>
+  </tr>`;
+}
+function _mI(label, note, amount, inputId, mark) { // 入力行（削減額入力）
+  return `<tr>
+    <td>${label}<small style="display:block;color:var(--text-3);">${note}</small></td>
+    <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">${amount.toLocaleString('ja-JP')}</td>
+    <td><input type="number" class="sheet-num-input" id="${inputId}" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
+    <td style="color:var(--teal);font-weight:700;font-size:14px;">${mark}</td>
+  </tr>`;
+}
+function _mN(label, note, mark) { // 現状ゼロ行（参考・廃止可能だが金額なし）
+  return `<tr>
+    <td>${label}<small style="display:block;color:var(--text-3);">${note}</small></td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px;">―</td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px;">―</td>
+    <td style="color:var(--text-3);font-weight:700;font-size:14px;">${mark}</td>
+  </tr>`;
+}
+function _mRef(label, note) { // 参考行（減税プラン対象外）
+  return `<tr>
+    <td>${label}<small style="display:block;color:var(--text-3);">${note}</small></td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px;">参考</td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px;">対象外</td>
+    <td style="color:var(--text-3);font-size:12px;">―</td>
+  </tr>`;
+}
+function _mZero(label, note) { // 法定外・現状ゼロ行
+  return `<tr>
+    <td>${label}<small style="display:block;color:var(--text-3);">${note}</small></td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px;">0</td>
+    <td style="text-align:right;color:var(--text-3);font-size:12px;">―</td>
+    <td style="color:var(--text-3);font-weight:700;font-size:14px;">②</td>
+  </tr>`;
+}
+
 function updateMokuTable(muniName, mokus) {
-  // mokus = [{ label, amount }] 目的税のみ
-  // 廃止対象: 水利地益税③④、香美市の入湯税④、狩猟税は県税のため除外
-  // 入湯税引下げ対象: 香美市以外の入湯税⑤
-  const ABOLISH_NYU = ['香美市']; // 廃止（④）
-  let rows = '';
-  let hasRow = false;
-
-  for (const { label, amount } of mokus) {
-    if (!amount) continue;
-    if (label === '法定目的税') continue; // 子行（狩猟税）と重複するため除外
-    hasRow = true;
-    const amtFmt = amount.toLocaleString('ja-JP');
-
-    if (label === '水利地益税等') {
-      rows += `<tr style="background:var(--red-light);">
-        <td>水利地益税<small style="display:block;color:var(--text-3);">${muniName}・R6決算（地税法5条6項2号）</small></td>
-        <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">${amtFmt}</td>
-        <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">${amtFmt} <small>廃止</small></td>
-        <td style="color:var(--red);font-weight:700;font-size:14px;">③④</td>
-      </tr>`;
-    } else if (label === '入湯税') {
-      const isAbolish = ABOLISH_NYU.includes(muniName);
-      if (isAbolish) {
-        rows += `<tr style="background:var(--red-light);">
-          <td>入湯税（廃止）<small style="display:block;color:var(--text-3);">${muniName}・R6決算（地税法5条4項）</small></td>
-          <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">${amtFmt}</td>
-          <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">${amtFmt} <small>廃止</small></td>
-          <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
-        </tr>`;
-      } else {
-        rows += `<tr>
-          <td>入湯税（引下げ）<small style="display:block;color:var(--text-3);">${muniName}・R6決算（地税法5条4項）</small></td>
-          <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">${amtFmt}</td>
-          <td><input type="number" class="sheet-num-input" id="s-nyu-reduce" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-          <td style="color:var(--teal);font-weight:700;font-size:14px;">⑤</td>
-        </tr>`;
-      }
-    } else if (label === '事業所税') {
-      rows += `<tr>
-        <td>事業所税<small style="display:block;color:var(--text-3);">${muniName}・R6決算（地税法5条5項）</small></td>
-        <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">${amtFmt}</td>
-        <td><input type="number" class="sheet-num-input" id="s-other-moku-red" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-        <td style="color:var(--text-3);font-size:12px;">④⑤</td>
-      </tr>`;
-    } else if (label === '狩猟税') {
-      rows += `<tr style="background:var(--red-light);">
-        <td>狩猟税<small style="display:block;color:var(--text-3);">${muniName}・R6決算（地税法4条4項）</small></td>
-        <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">${amtFmt}</td>
-        <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">${amtFmt} <small>廃止</small></td>
-        <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
-      </tr>`;
-    } else {
-      rows += `<tr>
-        <td>${label}<small style="display:block;color:var(--text-3);">${muniName}・R6決算</small></td>
-        <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">${amtFmt}</td>
-        <td><input type="number" class="sheet-num-input" id="s-other-moku-red" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-        <td style="color:var(--text-3);font-size:12px;">④⑤</td>
-      </tr>`;
+  const isPref = muniName === '高知県';
+  const get = (...labels) => {
+    for (const lb of labels) {
+      const f = mokus.find(m => m.label === lb || m.label === lb + '等');
+      if (f && f.amount > 0) return f;
     }
-  }
+    return null;
+  };
+  let rows = '';
 
-  // 市町村シートのみ狩猟税（県税）を参考行として表示
-  if (muniName !== '高知県') {
+  if (isPref) {
+    // 狩猟税（地税法4条4項「課するものとする」・廃止対象④）
+    const karyo = get('狩猟税');
+    rows += karyo
+      ? _mR('狩猟税', `${muniName}・R6決算（地税法4条4項）`, karyo.amount, '④')
+      : _mN('狩猟税', '地税法4条4項（課するものとする）', '④');
+    // 水利地益税（地税法4条5項「課することができる」・③④）
+    const suiri = get('水利地益税');
+    rows += suiri
+      ? _mR('水利地益税', `${muniName}・R6決算（地税法4条5項）`, suiri.amount, '③④')
+      : _mN('水利地益税', '地税法4条5項（課することができる）', '③④');
+    // 法定外目的税
+    rows += _mZero('法定外目的税', '現状ゼロ・新設阻止（②）');
+  } else {
+    // 入湯税（地税法5条4項「課するものとする」）
+    const nyu = get('入湯税');
+    if (nyu) {
+      rows += muniName === '香美市'
+        ? _mR('入湯税（廃止）', `${muniName}・R6決算（地税法5条4項）`, nyu.amount, '④')
+        : _mI('入湯税（引下げ）', `${muniName}・R6決算（地税法5条4項）`, nyu.amount, 's-nyu-reduce', '⑤');
+    } else {
+      rows += _mN('入湯税', '地税法5条4項（課するものとする）', '⑤');
+    }
+    // 事業所税（地税法5条5項「課するものとする」・高知市のみ）
+    const jigyo = get('事業所税');
+    if (jigyo) {
+      rows += _mI('事業所税', `${muniName}・R6決算（地税法5条5項）`, jigyo.amount, 's-other-moku-red', '④⑤');
+    }
+    // 水利地益税（地税法5条6項2号「課することができる」）
+    const suiri = get('水利地益税');
+    rows += suiri
+      ? _mR('水利地益税', `${muniName}・R6決算（地税法5条6項2号）`, suiri.amount, '③④')
+      : _mN('水利地益税', '地税法5条6項2号（課することができる）', '③④');
+    // 都市計画税（地税法5条6項1号「課することができる」）
+    rows += _mN('都市計画税', '地税法5条6項1号（課することができる）', '③');
+    // 共同施設税（地税法5条6項3号「課することができる」）
+    rows += _mN('共同施設税', '地税法5条6項3号（課することができる）', '③');
+    // 宅地開発税（地税法5条6項4号「課することができる」）
+    rows += _mN('宅地開発税', '地税法5条6項4号（課することができる）', '③');
+    // 国民健康保険税（参考のみ・減税プラン対象外）
+    rows += _mRef('国民健康保険税', '地税法703条の4（課することができる）・減税プラン対象外');
+    // 狩猟税（参考・県税）
     rows += `<tr>
       <td>狩猟税<small style="display:block;color:var(--text-3);">高知県・R6：16,842千円（地税法4条4項・県税）</small></td>
       <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--text-3);">参考</td>
       <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">16,842 <small>廃止</small></td>
       <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
     </tr>`;
-  }
-
-  if (!hasRow) {
-    rows = `<tr><td colspan="4" style="color:var(--text-3);text-align:center;font-size:12px;padding:10px;">目的税なし</td></tr>` + rows;
+    // 法定外目的税
+    rows += _mZero('法定外目的税', '現状ゼロ・新設阻止（②）');
   }
 
   document.getElementById('moku-tbody').innerHTML = rows;
