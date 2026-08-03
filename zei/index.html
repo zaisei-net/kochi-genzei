@@ -217,7 +217,7 @@ footer strong { color: var(--text-2); }
       <span class="hero-tag">① 超過課税</span>
       <span class="hero-tag">② 法定外税</span>
       <span class="hero-tag">③ 法定任意税</span>
-      <span class="hero-tag">④ 不採算税</span>
+      <span class="hero-tag">④ 赤字税・不採算税</span>
       <span class="hero-tag">⑤ 法定目的税</span>
     </div>
   </div>
@@ -474,29 +474,40 @@ footer strong { color: var(--text-2); }
 </div>
 
 <!-- ======================================
-     ④ 不採算税
+     ④ 赤字税・不採算税
 ====================================== -->
 <hr class="section-divider">
 <div class="section">
   <div class="section-header">
-    <h2 class="section-title">④ 不採算税（徴収コスト超過税）</h2>
-    <p class="section-desc">税収額に対して徴収費用・事務コストが過大で、経済的合理性に乏しい税目。以下のいずれかを目安として不採算と判断します。<br>
-    <strong>閾値①</strong> 年間税収が50万円以下 ／ <strong>閾値②</strong> 総税収に占める割合が0.1%以下</p>
+    <h2 class="section-title">④ 赤字税・不採算税</h2>
+    <p class="section-desc">税収が少ないことにより生じる問題税目。<strong>赤字税</strong>と<strong>不採算税</strong>は異なる概念です。</p>
   </div>
 
-  <div class="commentary">
-    <strong>不採算税が問題となる背景：</strong>税収が少ないと、課税客体の調査・台帳管理・納税通知・滞納整理などの事務コストが税収を上回る逆転現象が生じる。こうした「取るための費用が取れる額を超える税」は、行政の非効率を生み出すとともに、納税者に対して不当な事務負担を強いることになる。
+  <div class="summary-grid">
+    <div class="summary-card red">
+      <div class="summary-card-label">赤字税</div>
+      <div class="summary-card-title">税収 ＜ 徴収コスト</div>
+      <div class="summary-card-body">徴収事務（台帳管理・納税通知・滞納整理等）に掛かるコストが税収を上回り、実質的に赤字となる税。集めれば集めるほど行政が損をする。</div>
+    </div>
+    <div class="summary-card orange">
+      <div class="summary-card-label">不採算税</div>
+      <div class="summary-card-title">税収は黒字だが極めて非効率</div>
+      <div class="summary-card-body">赤字ではないが税収が非常に少なく、徴収事務の非効率性が高い。また少額の課税でも納税者・事業者の経済活動に悪影響（手続き負担・設備コスト等）を与える。</div>
+    </div>
   </div>
 
-  <div class="section-sub">不採算候補税目</div>
+  <div class="section-sub">赤字税（税収が徴収コストを下回ると推定される税目）</div>
+  <div class="commentary red">
+    <strong>目安：年間税収が概ね50万円以下。</strong>職員1人が数日間対応するだけで人件費が税収を超える水準。徴収することで行政コストを確実に上回る。
+  </div>
   <div class="table-wrap">
     <table>
       <thead>
         <tr>
           <th>税目</th>
           <th>課税主体</th>
-          <th>税収規模（推定）</th>
-          <th>不採算の可能性</th>
+          <th>税収（R6決算）</th>
+          <th>判定</th>
           <th>備考</th>
         </tr>
       </thead>
@@ -504,38 +515,55 @@ footer strong { color: var(--text-2); }
         <tr class="row-ng">
           <td>水利地益税</td>
           <td>いの町</td>
-          <td class="td-num"><strong>288千円</strong>（R6決算）</td>
-          <td class="td-ng">不採算確定</td>
-          <td>閾値50万円を大幅に下回る。全国3自治体のみ課税の希少税目。</td>
+          <td class="td-num"><strong>288千円</strong></td>
+          <td class="td-ng">赤字税</td>
+          <td>全国3自治体のみ課税。農業用水路の受益者課税。</td>
         </tr>
         <tr class="row-ng">
           <td>入湯税</td>
           <td>香美市</td>
-          <td class="td-num"><strong>492千円</strong>（R6決算）</td>
-          <td class="td-ng">不採算確定</td>
-          <td>閾値50万円以下。構成比0%（総税収比）。</td>
-        </tr>
-        <tr class="row-warn">
-          <td>狩猟税</td>
-          <td>高知県</td>
-          <td class="td-num"><strong>16,842千円</strong>（R6決算）</td>
-          <td class="td-warn">構成比0.018%</td>
-          <td>総税収比0.1%以下。50万円は超えるが構成比閾値は下回る。詳細は⑤を参照。</td>
-        </tr>
-        <tr class="row-warn">
-          <td>入湯税</td>
-          <td>土佐市・四万十町ほか</td>
-          <td class="td-num">1,061〜2,380千円</td>
-          <td class="td-warn">構成比0.1%以下</td>
-          <td>税収は50万円超だが総税収比0.1%以下。個別検討を要する。</td>
+          <td class="td-num"><strong>492千円</strong></td>
+          <td class="td-ng">赤字税</td>
+          <td>50万円以下。温泉施設数が少なく課税客体が極小。</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="info-box" style="margin-top:16px;">
-    <strong>水利地益税・香美市入湯税は不採算確定。</strong>令和６年度市町村決算データに基づき、いの町水利地益税（288千円）・香美市入湯税（492千円）が閾値50万円以下と確認されました。
+
+  <div class="section-sub" style="margin-top:32px;">不採算税（赤字ではないが極めて非効率な税目）</div>
+  <div class="commentary">
+    <strong>目安：総税収に占める割合が0.1%以下、かつ納税者への経済的悪影響が大きい税目。</strong>徴収自体は黒字でも、手続き負担・設備投資・行政事務の非効率性を総合すると社会的損失が税収を大きく上回る。
   </div>
-  <p class="source-note">閾値設定の考え方：税収50万円以下は1人の職員が数日間対応するだけで徴収費用が税収を超える水準。構成比0.1%は総税収への寄与が事実上ゼロに等しいことを示す。</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>税目</th>
+          <th>課税主体</th>
+          <th>税収（R6決算）</th>
+          <th>総税収比</th>
+          <th>経済的悪影響</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="row-warn">
+          <td>狩猟税</td>
+          <td>高知県</td>
+          <td class="td-num">16,842千円</td>
+          <td class="td-num td-warn">0.018%</td>
+          <td>登録狩猟者の減少抑制に逆効果。鳥獣被害対策の担い手を課税で圧迫。</td>
+        </tr>
+        <tr class="row-warn">
+          <td>入湯税</td>
+          <td>土佐市・四万十町・中土佐町・北川村・四万十市</td>
+          <td class="td-num">1,061〜9,359千円</td>
+          <td class="td-num td-warn">0.1〜0.3%</td>
+          <td>観光客・宿泊施設に価格上乗せ圧力。観光振興と矛盾する側面がある。</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="source-note">出典：令和６年度市町村決算状況調（高知県）、都道府県決算カード（令和６年度）</p>
 </div>
 
 <!-- ======================================
@@ -767,22 +795,22 @@ footer strong { color: var(--text-2); }
           <td class="td-warn">課税中</td>
         </tr>
         <tr class="row-ng">
-          <td>④ 不採算税</td>
+          <td>④ 赤字税</td>
           <td>水利地益税（いの町）</td>
           <td>288千円（R6決算）</td>
-          <td class="td-ng">不採算確定</td>
+          <td class="td-ng">赤字税確定</td>
         </tr>
         <tr class="row-ng">
-          <td>④ 不採算税</td>
+          <td>④ 赤字税</td>
           <td>入湯税（香美市）</td>
           <td>492千円（R6決算）</td>
-          <td class="td-ng">不採算確定</td>
+          <td class="td-ng">赤字税確定</td>
         </tr>
         <tr class="row-warn">
-          <td>④ 不採算税（候補）</td>
+          <td>④ 不採算税</td>
           <td>狩猟税（高知県）</td>
           <td>16,842千円（R6）・構成比0.018%</td>
-          <td class="td-warn">構成比閾値以下</td>
+          <td class="td-warn">不採算税</td>
         </tr>
         <tr>
           <td>⑤ 法定目的税</td>
