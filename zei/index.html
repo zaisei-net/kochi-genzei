@@ -431,16 +431,46 @@ footer strong { color: var(--text-2); }
   <div class="commentary">
     <strong>いの町のみ課税（全国3自治体のうちの1つ）。</strong>農業用水路等の整備・維持に係る費用を、その恩恵を受ける土地所有者に負担させる税目（地方税法第440条）。全国的に廃止・非課税化が進んでおり、現在課税しているのは高知県内ではいの町のみ。
   </div>
-  <div class="warn-box">
-    <strong>不採算の可能性：</strong>水利地益税の税収は一般的に非常に少額であり、徴収コストに対して税収が少ない不採算税となっている可能性があります（詳細は④不採算税の項参照）。
+  <div class="alert-box">
+    <strong>不採算確定：</strong>いの町の令和６年度水利地益税収は <strong>288千円（約28.8万円）</strong>。不採算閾値の50万円を大幅に下回っており、徴収コストが税収を上回る不採算税と判断されます（詳細は④不採算税の項参照）。
   </div>
 
   <div class="section-sub" style="margin-top:32px;">国民健康保険税</div>
   <div class="commentary blue">
     <strong>税方式か保険料方式かは自治体が選択できる。</strong>国民健康保険の保険料徴収については、地方税法上の「国民健康保険税」として徴収する方式と、国民健康保険条例に基づく「保険料」として徴収する方式がある。両方式で税負担は実質的に同じだが、滞納処分の方法等が異なる。<br>
-    ※高知県内市町村の方式別詳細は高知県課税状況調（国民健康保険税(料)に関する調）を参照。
+    <strong>高知県内34市町村のうち、高知市のみ保険料方式（料）を採用。残り33市町村は国民健康保険税（税方式）を採用している。</strong>
   </div>
-  <p class="source-note">出典：高知県課税状況調（令和６年度）、高知県総務部市町村振興課</p>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>方式</th>
+          <th>市町村数</th>
+          <th>該当市町村</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>保険料方式（料）</td>
+          <td class="td-num">1</td>
+          <td>高知市</td>
+        </tr>
+        <tr>
+          <td>国民健康保険税（税方式）</td>
+          <td class="td-num">33</td>
+          <td>室戸市・安芸市・南国市・土佐市・須崎市・宿毛市・土佐清水市・四万十市・香南市・香美市・東洋町・奈半利町・田野町・安田町・北川村・馬路村・芸西村・本山町・大豊町・土佐町・大川村・いの町・仁淀川町・中土佐町・佐川町・越知町・梼原町・津野町・四万十町・大月町・三原村・黒潮町・日高村</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>合計</strong></td>
+          <td class="td-num"><strong>34</strong></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p class="source-note">出典：高知県国民健康保険課税状況調（令和５年度）</p>
 </div>
 
 <!-- ======================================
@@ -474,29 +504,36 @@ footer strong { color: var(--text-2); }
         <tr class="row-ng">
           <td>水利地益税</td>
           <td>いの町</td>
-          <td>不明（少額と推定）</td>
-          <td class="td-ng">高</td>
-          <td>全国3自治体のみ。農業用水路の受益者課税。</td>
+          <td class="td-num"><strong>288千円</strong>（R6決算）</td>
+          <td class="td-ng">不採算確定</td>
+          <td>閾値50万円を大幅に下回る。全国3自治体のみ課税の希少税目。</td>
+        </tr>
+        <tr class="row-ng">
+          <td>入湯税</td>
+          <td>香美市</td>
+          <td class="td-num"><strong>492千円</strong>（R6決算）</td>
+          <td class="td-ng">不採算確定</td>
+          <td>閾値50万円以下。構成比0%（総税収比）。</td>
         </tr>
         <tr class="row-warn">
           <td>狩猟税</td>
           <td>高知県</td>
-          <td>不明（少額と推定）</td>
-          <td class="td-warn">中</td>
-          <td>狩猟者数の減少傾向。詳細は⑤を参照。</td>
+          <td>調査中</td>
+          <td class="td-warn">中（要確認）</td>
+          <td>狩猟者数の減少傾向。都道府県決算データで確認中。詳細は⑤を参照。</td>
         </tr>
         <tr class="row-warn">
           <td>入湯税</td>
-          <td>一部市町村</td>
-          <td>市町村により差異</td>
-          <td class="td-warn">小規模市町村で高</td>
-          <td>温泉入浴客数が少ない場合、徴収コストが税収を超える可能性。</td>
+          <td>土佐市・四万十町ほか</td>
+          <td class="td-num">1,061〜2,380千円</td>
+          <td class="td-warn">構成比0.1%以下</td>
+          <td>税収は50万円超だが総税収比0.1%以下。個別検討を要する。</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div class="warn-box" style="margin-top:16px;">
-    <strong>データ調査中：</strong>各税目の正確な税収額（令和６年度決算ベース）は高知県課税状況調・自治体決算ビューア等で確認中です。閾値と照合した結論は随時更新します。
+  <div class="info-box" style="margin-top:16px;">
+    <strong>水利地益税・香美市入湯税は不採算確定。</strong>令和６年度市町村決算データに基づき、いの町水利地益税（288千円）・香美市入湯税（492千円）が閾値50万円以下と確認されました。
   </div>
   <p class="source-note">閾値設定の考え方：税収50万円以下は1人の職員が数日間対応するだけで徴収費用が税収を超える水準。構成比0.1%は総税収への寄与が事実上ゼロに等しいことを示す。</p>
 </div>
@@ -550,11 +587,91 @@ footer strong { color: var(--text-2); }
 
   <div class="section-sub" style="margin-top:36px;">入湯税（各市町村）</div>
   <div class="commentary">
-    <strong>温泉入浴客に課す市町村目的税（地方税法第701条）。</strong>鉱泉浴場（温泉施設）に入湯する者に、1人1日あたり標準税率150円を課す。税収は環境衛生施設・消防施設の整備・観光振興などに充てられる。
+    <strong>温泉入浴客に課す市町村目的税（地方税法第701条）。</strong>鉱泉浴場（温泉施設）に入湯する者に、1人1日あたり標準税率150円を課す。税収は環境衛生施設・消防施設の整備・観光振興などに充てられる。高知県内では10市町村が課税（令和６年度決算）。
   </div>
-  <div class="warn-box">
-    <strong>実施市町村データ調査中。</strong>高知県課税状況調（令和６年度）の入湯税関連データを確認次第更新予定。温泉施設がある市町村の多くで課税されているものと見込まれます。
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>市町村</th>
+          <th>税収（千円）</th>
+          <th>構成比</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>高知市</td>
+          <td class="td-num">24,064</td>
+          <td class="td-num">0.1%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>芸西村</td>
+          <td class="td-num">11,450</td>
+          <td class="td-num">2.9%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>四万十市</td>
+          <td class="td-num">9,359</td>
+          <td class="td-num">0.3%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>土佐清水市</td>
+          <td class="td-num">6,867</td>
+          <td class="td-num">0.6%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>いの町</td>
+          <td class="td-num">4,274</td>
+          <td class="td-num">0.2%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>土佐市</td>
+          <td class="td-num">2,380</td>
+          <td class="td-num">0.1%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>北川村</td>
+          <td class="td-num">1,235</td>
+          <td class="td-num">0.6%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>中土佐町</td>
+          <td class="td-num">1,180</td>
+          <td class="td-num">0.2%</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td>四万十町</td>
+          <td class="td-num">1,061</td>
+          <td class="td-num">0.1%</td>
+          <td></td>
+        </tr>
+        <tr class="row-ng">
+          <td>香美市</td>
+          <td class="td-num"><strong>492</strong></td>
+          <td class="td-num">0%</td>
+          <td><span class="badge badge-r">不採算（50万円以下）</span></td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td><strong>合計（10市町村）</strong></td>
+          <td class="td-num"><strong>62,362</strong></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
   </div>
+  <p class="source-note">出典：令和６年度市町村決算状況調（高知県）</p>
 
   <div class="section-sub" style="margin-top:36px;">事業所税（高知市のみ）</div>
   <div class="commentary">
@@ -646,20 +763,26 @@ footer strong { color: var(--text-2); }
         <tr>
           <td>③ 法定任意税</td>
           <td>国民健康保険税</td>
-          <td>一部市町村（税方式）</td>
-          <td class="td-warn">調査中</td>
+          <td>33市町村が税方式、高知市のみ保険料方式</td>
+          <td class="td-warn">課税中</td>
         </tr>
-        <tr class="row-warn">
-          <td>④ 不採算税（候補）</td>
+        <tr class="row-ng">
+          <td>④ 不採算税</td>
           <td>水利地益税（いの町）</td>
-          <td>税収少額と推定</td>
-          <td class="td-warn">要検証</td>
+          <td>288千円（R6決算）</td>
+          <td class="td-ng">不採算確定</td>
+        </tr>
+        <tr class="row-ng">
+          <td>④ 不採算税</td>
+          <td>入湯税（香美市）</td>
+          <td>492千円（R6決算）</td>
+          <td class="td-ng">不採算確定</td>
         </tr>
         <tr class="row-warn">
           <td>④ 不採算税（候補）</td>
           <td>狩猟税（高知県）</td>
-          <td>税収少額と推定</td>
-          <td class="td-warn">要検証</td>
+          <td>税収調査中</td>
+          <td class="td-warn">要確認</td>
         </tr>
         <tr>
           <td>⑤ 法定目的税</td>
@@ -669,9 +792,9 @@ footer strong { color: var(--text-2); }
         </tr>
         <tr>
           <td>⑤ 法定目的税</td>
-          <td>入湯税（一部市町村）</td>
-          <td>調査中</td>
-          <td class="td-warn">調査中</td>
+          <td>入湯税（10市町村）</td>
+          <td>合計62,362千円（R6決算）</td>
+          <td class="td-warn">香美市は不採算</td>
         </tr>
         <tr>
           <td>⑤ 法定目的税</td>
