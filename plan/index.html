@@ -738,7 +738,7 @@ function updateMokuTable(muniName, mokus) {
     // 事業所税（地税法5条5項「課するものとする」・高知市のみ）
     const jigyo = get('事業所税');
     if (jigyo) {
-      rows += _mI('事業所税', `${muniName}・R6決算（地税法5条5項）`, jigyo.amount, 's-other-moku-red', '④⑤');
+      rows += _mI('事業所税', `${muniName}・R6決算（地税法5条5項）`, jigyo.amount, 's-other-moku-red', '⑤');
     }
     // 水利地益税（地税法5条6項2号「課することができる」）
     const suiri = get('水利地益税');
