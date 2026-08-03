@@ -796,8 +796,9 @@ async function loadMuniData() {
     // 左カラム描画
     if (isPref) renderPrefCols(); else renderMuniCols();
 
-    // プラン２（入湯税）は市町村のみ表示
-    document.getElementById('plan2-section').style.display = isPref ? 'none' : '';
+    // プラン２（入湯税）は入湯税のある市町村のみ表示
+    const hasNyu = !isPref && getTax(td, '入湯税').amount > 0;
+    document.getElementById('plan2-section').style.display = hasNyu ? '' : 'none';
 
     const td = muni.tax_detail || [];
 
