@@ -352,7 +352,7 @@ tr:hover td { background: var(--bg-2); }
           </div>
         </div>
 
-        <div class="plan-section">
+        <div class="plan-section" id="plan2-section">
           <div class="plan-name">プラン２）入湯税の引下げ <span style="font-weight:400;color:var(--teal);">⑤</span></div>
           <div class="plan-row">
             <span class="plan-row-label">必要額</span>
@@ -721,6 +721,7 @@ async function loadMuniData() {
   if (!muniName) {
     document.getElementById('sheet-left-col').innerHTML =
       '<div style="color:var(--text-3);font-size:13px;padding:20px 0;">自治体を選択してください</div>';
+    document.getElementById('plan2-section').style.display = '';
     const expEl = document.getElementById('s-expenditure');
     if (expEl) expEl.value = '';
     calc();
@@ -738,6 +739,9 @@ async function loadMuniData() {
 
     // 左カラム描画
     if (isPref) renderPrefCols(); else renderMuniCols();
+
+    // プラン２（入湯税）は市町村のみ表示
+    document.getElementById('plan2-section').style.display = isPref ? 'none' : '';
 
     const td = muni.tax_detail || [];
 
