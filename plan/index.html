@@ -125,66 +125,61 @@ tr:hover td { background: var(--bg-2); }
 .goal-card.priority-mid { border-left: 4px solid var(--orange); }
 .goal-card.priority-low { border-left: 4px solid var(--blue); }
 
-/* 減税計画シート */
-.sheet-wrap { background: var(--bg-2); border: 1px solid var(--border); border-radius: 12px; padding: 32px; margin-bottom: 24px; }
-.sheet-title { font-size: 18px; font-weight: 800; color: var(--text); margin-bottom: 6px; }
-.sheet-subtitle { font-size: 12px; color: var(--text-3); margin-bottom: 28px; }
-.sheet-header-row { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; margin-bottom: 28px; }
-.sheet-block { margin-bottom: 28px; }
-.sheet-block-title { font-size: 13px; font-weight: 700; color: var(--text); padding: 8px 14px; background: var(--bg-teal); border-radius: 6px 6px 0 0; border: 1px solid var(--border); border-bottom: none; }
-.sheet-block-body { border: 1px solid var(--border); border-radius: 0 0 6px 6px; overflow: hidden; }
-.sheet-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--border); background: var(--bg); }
-.sheet-row:last-child { border-bottom: none; }
-.sheet-row.computed { background: var(--bg-2); }
-.sheet-row.total-row { background: var(--bg-teal); font-weight: 700; }
-.sheet-label { font-size: 13px; color: var(--text-2); }
-.sheet-label small { display: block; font-size: 11px; color: var(--text-3); margin-top: 2px; }
-.sheet-input-wrap { display: flex; align-items: center; gap: 6px; }
-.sheet-input { width: 140px; padding: 6px 10px; border: 1px solid var(--border-strong); border-radius: 5px; background: var(--bg); color: var(--text); font-size: 13px; font-family: inherit; text-align: right; font-variant-numeric: tabular-nums; transition: border-color .15s; }
-.sheet-input:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 2px var(--teal-light); }
-.sheet-unit { font-size: 12px; color: var(--text-3); white-space: nowrap; }
-.sheet-computed { font-size: 13px; font-weight: 700; color: var(--teal); text-align: right; font-variant-numeric: tabular-nums; min-width: 160px; }
-.sheet-computed.highlight { font-size: 15px; }
-.sheet-computed.red { color: var(--red); }
+/* ====== 減税計画シート ====== */
+.sheet-wrap { background: var(--bg); border: 2px solid var(--border-strong); border-radius: 4px; padding: 28px 32px; margin-bottom: 24px; font-size: 14px; }
+.sheet-title-row { display: flex; align-items: baseline; gap: 20px; margin-bottom: 20px; flex-wrap: wrap; }
+.sheet-title-big { font-size: 26px; font-weight: 900; color: var(--text); letter-spacing: -0.01em; }
+.sheet-meta-fields { display: flex; align-items: baseline; gap: 8px; font-size: 13px; color: var(--text-2); }
+.sheet-meta-input { border: none; border-bottom: 1.5px solid var(--border-strong); background: transparent; color: var(--text); font-size: 13px; font-family: inherit; padding: 2px 4px; width: 130px; }
+.sheet-meta-input:focus { outline: none; border-bottom-color: var(--teal); }
+.sheet-meta-label { font-size: 13px; color: var(--text-2); }
 
-/* Plan section */
-.plan-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
-@media(max-width:640px){ .plan-grid { grid-template-columns: 1fr; } }
-.plan-card { border: 2px solid var(--border); border-radius: 8px; padding: 20px; background: var(--bg); }
-.plan-card.p1 { border-color: var(--teal); }
-.plan-card.p2 { border-color: var(--orange); }
-.plan-card-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 16px; }
-.plan-card.p1 .plan-card-title { color: var(--teal); }
-.plan-card.p2 .plan-card-title { color: var(--orange); }
-.plan-stat { margin-top: 12px; }
-.plan-stat-label { font-size: 11px; color: var(--text-3); margin-bottom: 2px; }
-.plan-stat-value { font-size: 20px; font-weight: 800; color: var(--teal); font-variant-numeric: tabular-nums; }
-.plan-card.p2 .plan-stat-value { color: var(--orange); }
-.plan-stat-sub { font-size: 11px; color: var(--text-2); margin-top: 2px; }
+/* 歳出総額 row */
+.sheet-expense-row { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border); }
+.sheet-exp-label { font-size: 15px; font-weight: 700; color: var(--text); width: 90px; }
+.sheet-num-input { border: none; border-bottom: 1.5px solid var(--border-strong); background: transparent; color: var(--text); font-size: 15px; font-family: inherit; text-align: right; font-variant-numeric: tabular-nums; width: 160px; padding: 2px 4px; }
+.sheet-num-input:focus { outline: none; border-bottom-color: var(--teal); }
+.sheet-num-static { display: inline-block; min-width: 120px; text-align: right; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text); border-bottom: 1.5px solid var(--border); padding: 2px 4px; }
+.sheet-num-static.prefill { color: var(--teal); border-bottom-color: var(--teal); }
+.sheet-num-static.red { color: var(--red); border-bottom-color: var(--red); }
+.unit { font-size: 13px; color: var(--text-2); }
 
-/* Summary */
-.summary-box { border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; background: var(--bg); }
-.summary-box-title { font-size: 13px; font-weight: 700; color: var(--text-2); margin-bottom: 16px; }
-.summary-table { width: 100%; font-size: 13px; border-collapse: collapse; }
-.summary-table td { padding: 6px 0; color: var(--text-2); }
-.summary-table td:last-child { text-align: right; font-weight: 700; color: var(--text); font-variant-numeric: tabular-nums; }
+/* 2カラムレイアウト */
+.sheet-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+@media(max-width:720px){ .sheet-cols { grid-template-columns: 1fr; } }
 
-/* Input helper */
-.helper-link { font-size: 11px; color: var(--teal); margin-top: 4px; display: inline-block; }
+.sheet-col-title { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 12px; }
+.sheet-section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.06em; color: var(--text-3); text-transform: uppercase; margin: 14px 0 8px; }
 
-/* Muni selector */
-.muni-row { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
-.muni-row label { font-size: 13px; font-weight: 600; color: var(--text); }
-.muni-select { padding: 7px 12px; border: 1px solid var(--border-strong); border-radius: 6px; background: var(--bg); color: var(--text); font-size: 13px; font-family: inherit; cursor: pointer; }
+/* 市町村民税テーブル */
+.stax-table { width: 100%; border-collapse: collapse; margin-bottom: 16px; }
+.stax-table th { font-size: 11px; font-weight: 600; color: var(--text-3); padding: 5px 6px; border-bottom: 1.5px solid var(--border-strong); text-align: center; white-space: nowrap; }
+.stax-table th:first-child { text-align: left; }
+.stax-table td { padding: 7px 6px; border-bottom: 1px solid var(--border); font-size: 13px; vertical-align: middle; }
+.stax-table td:first-child { color: var(--text-2); }
+.stax-table td:not(:first-child) { text-align: right; }
+.stax-table .total-row td { background: var(--bg-2); font-weight: 700; border-top: 1.5px solid var(--border-strong); }
+.stax-table .excess-row td { background: var(--orange-light); }
+
+/* プランセクション（右カラム） */
+.plan-section { margin-bottom: 20px; }
+.plan-name { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; padding: 6px 10px; background: var(--bg-2); border-radius: 4px; }
+.plan-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+.plan-row-label { font-size: 12px; color: var(--text-2); min-width: 60px; }
+.plan-total-section { border-top: 2px solid var(--border-strong); padding-top: 14px; margin-top: 14px; }
+.plan-total-label { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.plan-result { font-size: 22px; font-weight: 900; color: var(--teal); font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+.plan-result.red { color: var(--red); }
+.plan-pct-row { margin-top: 16px; border-top: 1px solid var(--border); padding-top: 12px; }
+.plan-pct-label { font-size: 12px; color: var(--text-2); margin-bottom: 4px; }
+.plan-pct-formula { font-size: 11px; color: var(--text-3); margin-bottom: 6px; }
+.plan-pct-value { font-size: 26px; font-weight: 900; color: var(--red); font-variant-numeric: tabular-nums; }
+.note-small { font-size: 11px; color: var(--text-3); margin-top: 4px; line-height: 1.5; }
+
+/* 自治体セレクター */
+.muni-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.muni-select { padding: 6px 10px; border: 1px solid var(--border-strong); border-radius: 5px; background: var(--bg); color: var(--text); font-size: 13px; font-family: inherit; cursor: pointer; }
 .muni-select:focus { outline: none; border-color: var(--teal); }
-.load-btn { padding: 7px 16px; background: var(--teal); color: #fff; border: none; border-radius: 6px; font-size: 13px; font-family: inherit; cursor: pointer; font-weight: 600; transition: opacity .15s; }
-.load-btn:hover { opacity: 0.85; }
-.load-status { font-size: 12px; color: var(--text-3); }
-
-@media(max-width:700px){
-  .sheet-header-row { grid-template-columns: 1fr; }
-  .sheet-input { width: 120px; }
-}
 </style>
 </head>
 <body>
@@ -287,207 +282,271 @@ tr:hover td { background: var(--bg-2); }
 <div class="section">
   <div class="section-header">
     <h2 class="section-title">減税計画シート</h2>
-    <p class="section-desc">令和６年度決算データをもとに、７つの減税目標ごとに具体的な計画・削減見込み額を示します。<br>
+    <p class="section-desc">高知県内市町村の決算データをもとに、各市町村の減税計画を入力・試算します。備考欄（<span style="color:var(--teal);font-weight:700;">①〜⑦</span>）は対応する減税目標を示します。<br>
     参考：<a href="https://zaisei-net.github.io/Municipal-Accounting/" target="_blank" rel="noopener">自治体 決算・減税ビューア</a>　/　<a href="/kochi-genzei/zei/">高知の税（現状分析）</a></p>
   </div>
 
+  <!-- 自治体・年度 -->
+  <div class="muni-row">
+    <label for="sheet-year" style="font-size:13px;font-weight:600;color:var(--text);">年度</label>
+    <select id="sheet-year" class="muni-select" oninput="calc()">
+      <option value="令和６">令和６</option>
+      <option value="令和５">令和５</option>
+      <option value="令和４">令和４</option>
+      <option value="令和３">令和３</option>
+    </select>
+    <label for="muni-name" style="font-size:13px;font-weight:600;color:var(--text);">自治体名</label>
+    <select id="muni-name" class="muni-select" oninput="calc()">
+      <option value="">-- 市町村を選択 --</option>
+      <optgroup label="市">
+        <option>高知市</option><option>室戸市</option><option>安芸市</option><option>南国市</option>
+        <option>土佐市</option><option>須崎市</option><option>宿毛市</option><option>土佐清水市</option>
+        <option>四万十市</option><option>香南市</option><option>香美市</option>
+      </optgroup>
+      <optgroup label="町村">
+        <option>東洋町</option><option>奈半利町</option><option>田野町</option><option>安田町</option>
+        <option>北川村</option><option>馬路村</option><option>芸西村</option><option>本山町</option>
+        <option>大豊町</option><option>土佐町</option><option>大川村</option><option>いの町</option>
+        <option>仁淀川町</option><option>中土佐町</option><option>佐川町</option><option>越知町</option>
+        <option>梼原町</option><option>日高村</option><option>津野町</option><option>四万十町</option>
+        <option>大月町</option><option>三原村</option><option>黒潮町</option>
+      </optgroup>
+      <option value="（高知県）">（高知県）</option>
+    </select>
+  </div>
+
   <div class="sheet-wrap">
-    <div class="sheet-title">減　税　計　画　シ　ー　ト</div>
-    <div class="sheet-subtitle">高知県内市町村　令和６年度決算ベース　―　数値は千円単位</div>
-
-    <!-- ① 超過課税の廃止 -->
-    <div class="sheet-block">
-      <div class="sheet-block-title">① 超過課税の廃止　―　法人税割を標準税率（6.0%）へ引き下げ</div>
-      <div class="sheet-block-body">
-        <div class="sheet-row">
-          <div class="sheet-label"><strong>対象市町村</strong><small>制限税率8.4%（11市町村）</small></div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">高知市・室戸市・安芸市・南国市・土佐市・須崎市・宿毛市・土佐清水市・四万十市・いの町・日高村</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label"><strong>対象市町村</strong><small>6.9%（1市町村）</small></div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">佐川町</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label"><strong>対象市町村</strong><small>6.7%（3市町村）</small></div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">越知町・大月町・黒潮町</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label">計画</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">各市町村の条例改正により法人税割税率を標準税率6.0%へ引き下げ</div>
-        </div>
-        <div class="sheet-row computed total-row">
-          <div class="sheet-label">削減見込み</div>
-          <div class="sheet-computed">各市町村の法人税割税収 × 超過率で試算（<a href="https://zaisei-net.github.io/Municipal-Accounting/" target="_blank" rel="noopener" style="font-size:11px;">決算ビューア参照</a>）</div>
-        </div>
-      </div>
+    <div class="sheet-title-row">
+      <div class="sheet-title-big">減　税　計　画　シ　ー　ト</div>
+      <span class="sheet-meta-label" id="meta-display" style="font-size:13px;color:var(--text-2);"></span>
     </div>
 
-    <!-- ② 法定外税の新設阻止 -->
-    <div class="sheet-block">
-      <div class="sheet-block-title">② 法定外税の新設阻止　―　宿泊税等の新設に反対</div>
-      <div class="sheet-block-body">
-        <div class="sheet-row">
-          <div class="sheet-label">現状</div>
-          <div class="sheet-computed" style="color:var(--green);font-size:12px;">高知県・県内全市町村ともゼロ（達成済み）</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label">計画</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">宿泊税（観光客に課す法定外目的税）等の新設に反対・阻止。現状維持を確保する。</div>
-        </div>
-        <div class="sheet-row computed total-row">
-          <div class="sheet-label">削減見込み</div>
-          <div class="sheet-computed">― （新設阻止のため）</div>
-        </div>
-      </div>
+    <!-- 歳出総額 -->
+    <div class="sheet-expense-row">
+      <span class="sheet-exp-label">歳出総額</span>
+      <input type="number" class="sheet-num-input" id="s-expenditure" placeholder="0" min="0" oninput="calc()">
+      <span class="unit">千円</span>
+      <a href="https://zaisei-net.github.io/Municipal-Accounting/" target="_blank" rel="noopener" style="font-size:11px;margin-left:10px;">決算ビューア参照</a>
     </div>
 
-    <!-- ③ 法定任意目的税の廃止 -->
-    <div class="sheet-block">
-      <div class="sheet-block-title">③ 法定任意目的税の廃止　―　水利地益税（いの町）を廃止　※国保税を除く</div>
-      <div class="sheet-block-body">
-        <div class="sheet-row">
-          <div class="sheet-label">根拠</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">課税するかどうかを自治体が選択できる「法定任意税」は全て目的税</div>
+    <div class="sheet-cols">
+
+      <!-- ===== 左カラム：税収データ ===== -->
+      <div>
+
+        <!-- 市町村民税 -->
+        <div class="sheet-col-title">市町村民税</div>
+        <table class="stax-table">
+          <thead>
+            <tr>
+              <th>項目</th>
+              <th>収入済額（千円）</th>
+              <th>超過課税分（千円）</th>
+              <th style="color:var(--teal);">備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>個人均等割</td>
+              <td><input type="number" class="sheet-num-input" id="s-kojin-kinto" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
+              <td style="color:var(--text-3);text-align:right;font-size:12px;">―</td>
+              <td style="color:var(--teal);font-weight:700;font-size:14px;">⑥</td>
+            </tr>
+            <tr>
+              <td>所得割</td>
+              <td><input type="number" class="sheet-num-input" id="s-shotoku" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
+              <td style="color:var(--text-3);text-align:right;font-size:12px;">―</td>
+              <td style="color:var(--teal);font-weight:700;font-size:14px;">⑥</td>
+            </tr>
+            <tr>
+              <td>法人均等割</td>
+              <td><input type="number" class="sheet-num-input" id="s-hojin-kinto" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
+              <td style="color:var(--text-3);text-align:right;font-size:12px;">―</td>
+              <td style="color:var(--teal);font-weight:700;font-size:14px;">⑥</td>
+            </tr>
+            <tr>
+              <td>法人税割</td>
+              <td><input type="number" class="sheet-num-input" id="s-hojin-wari" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
+              <td><input type="number" class="sheet-num-input" id="s-hojin-wari-ex" placeholder="0" min="0" oninput="calc()" style="width:100%;color:var(--red);"></td>
+              <td style="color:var(--red);font-weight:700;font-size:14px;">①⑥</td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2" style="color:var(--text-2);">超過課税合計（自動計算）</td>
+              <td id="d-excess-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red);">0</td>
+              <td style="color:var(--red);font-weight:700;">①</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 目的税 -->
+        <div class="sheet-col-title" style="margin-top:22px;">目的税</div>
+        <table class="stax-table">
+          <thead>
+            <tr>
+              <th>税名</th>
+              <th>収入済額（千円）</th>
+              <th>廃止・削減額（千円）</th>
+              <th style="color:var(--teal);">備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="background:var(--red-light);">
+              <td>水利地益税<small style="display:block;color:var(--text-3);">いの町・R6決算</small></td>
+              <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">288</td>
+              <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">288 <small>廃止</small></td>
+              <td style="color:var(--red);font-weight:700;font-size:14px;">③④</td>
+            </tr>
+            <tr style="background:var(--red-light);">
+              <td>入湯税（廃止）<small style="display:block;color:var(--text-3);">香美市・R6決算</small></td>
+              <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">492</td>
+              <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">492 <small>廃止</small></td>
+              <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
+            </tr>
+            <tr style="background:var(--red-light);">
+              <td>狩猟税<small style="display:block;color:var(--text-3);">高知県・R6決算</small></td>
+              <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">16,842</td>
+              <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">16,842 <small>廃止</small></td>
+              <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
+            </tr>
+            <tr>
+              <td>入湯税（引下げ）<small style="display:block;color:var(--text-3);">9市町村・R6決算合計</small></td>
+              <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">61,870</td>
+              <td><input type="number" class="sheet-num-input" id="s-nyu-reduce" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
+              <td style="color:var(--teal);font-weight:700;font-size:14px;">⑤</td>
+            </tr>
+            <tr>
+              <td>その他目的税<small style="display:block;color:var(--text-3);">（都市計画税等）</small></td>
+              <td><input type="number" class="sheet-num-input" id="s-other-moku" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
+              <td><input type="number" class="sheet-num-input" id="s-other-moku-red" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
+              <td style="color:var(--text-3);font-size:12px;">④⑤</td>
+            </tr>
+            <tr class="total-row">
+              <td colspan="2" style="color:var(--text-2);">廃止・削減合計（自動計算）</td>
+              <td id="d-moku-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red);">17,622</td>
+              <td style="color:var(--red);font-weight:700;">③④⑤</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- その他普通税 -->
+        <div class="sheet-col-title" style="margin-top:22px;">その他普通税</div>
+        <table class="stax-table">
+          <thead>
+            <tr>
+              <th>税名</th>
+              <th>収入済額（千円）</th>
+              <th>10%削減見込み（千円）</th>
+              <th style="color:var(--teal);">備考</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>軽自動車税（種別割）<small style="display:block;color:var(--text-3);">34市町村合計・R6決算</small></td>
+              <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">2,818,394</td>
+              <td style="text-align:right;font-weight:700;color:var(--blue);font-variant-numeric:tabular-nums;">281,839</td>
+              <td style="color:var(--blue);font-weight:700;font-size:14px;">⑦</td>
+            </tr>
+            <tr>
+              <td>固定資産税</td>
+              <td><input type="number" class="sheet-num-input" id="s-kotei" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
+              <td id="d-kotei-10" style="text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);">0</td>
+              <td style="color:var(--blue);font-weight:700;font-size:14px;">⑦</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- ===== 右カラム：減税プラン ===== -->
+      <div>
+        <div class="sheet-col-title">減税プラン</div>
+
+        <div class="plan-section">
+          <div class="plan-name">プラン１）超過課税・不採算目的税の廃止 <span style="font-weight:400;color:var(--red);">①③④</span></div>
+          <div class="plan-row">
+            <span class="plan-row-label">必要額</span>
+            <span id="p1-auto" style="font-size:18px;font-weight:800;color:var(--red);font-variant-numeric:tabular-nums;min-width:100px;text-align:right;">17,622</span>
+            <span class="unit">千円（自動計算）</span>
+          </div>
+          <p class="note-small">超過課税額合計 ＋ 水利地益税 288 ＋ 入湯税（香美市）492 ＋ 狩猟税 16,842。法人税割超過課税分は入力後に加算。</p>
+          <div class="plan-row" style="margin-top:8px;">
+            <span class="plan-row-label">削減率</span>
+            <span id="p1-rate" style="font-size:14px;font-weight:700;color:var(--red);">―</span>
+          </div>
         </div>
-        <div class="sheet-row" style="background:var(--orange-light);">
-          <div class="sheet-label">水利地益税　いの町<small>廃止対象・R6決算</small></div>
-          <div class="sheet-computed red">288 千円</div>
+
+        <div class="plan-section">
+          <div class="plan-name">プラン２）入湯税の引下げ <span style="font-weight:400;color:var(--teal);">⑤</span></div>
+          <div class="plan-row">
+            <span class="plan-row-label">必要額</span>
+            <input type="number" class="sheet-num-input" id="p2-amount" placeholder="0" min="0" oninput="calc()" style="width:110px;">
+            <span class="unit">千円</span>
+          </div>
+          <p class="note-small">例：150円→100円への引き下げ ≒ 61,870千円×33% ＝ 約20,623千円</p>
+          <div class="plan-row" style="margin-top:8px;">
+            <span class="plan-row-label">削減率</span>
+            <span id="p2-rate" style="font-size:14px;font-weight:700;color:var(--teal);">―</span>
+          </div>
         </div>
-        <div class="sheet-row">
-          <div class="sheet-label">計画</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">いの町議会での条例廃止</div>
+
+        <div class="plan-section">
+          <div class="plan-name">プラン３）住民税10%引下げ <span style="font-weight:400;color:var(--teal);">⑥</span></div>
+          <div class="plan-row">
+            <span class="plan-row-label">必要額</span>
+            <input type="number" class="sheet-num-input" id="p3-amount" placeholder="0" min="0" oninput="calc()" style="width:110px;">
+            <span class="unit">千円</span>
+          </div>
+          <p class="note-small">均等割：標準3,500円×10%＝▲350円。所得割：6%→5.4%。<br>（参考）高知県内均等割のみ：332,362人×350円 ≈ <strong>116,327千円</strong></p>
+          <div class="plan-row" style="margin-top:8px;">
+            <span class="plan-row-label">削減率</span>
+            <span id="p3-rate" style="font-size:14px;font-weight:700;color:var(--teal);">―</span>
+          </div>
         </div>
-        <div class="sheet-row computed total-row">
-          <div class="sheet-label">削減見込み合計</div>
-          <div class="sheet-computed red">288 千円</div>
+
+        <div class="plan-section">
+          <div class="plan-name">プラン４）その他普通税10%引下げ <span style="font-weight:400;color:var(--blue);">⑦</span></div>
+          <div class="plan-row">
+            <span class="plan-row-label">必要額</span>
+            <input type="number" class="sheet-num-input" id="p4-amount" placeholder="0" min="0" oninput="calc()" style="width:110px;">
+            <span class="unit">千円</span>
+          </div>
+          <p class="note-small">（参考）軽自動車税のみ：2,818,394千円×10% ＝ <strong>281,839千円</strong></p>
+          <div class="plan-row" style="margin-top:8px;">
+            <span class="plan-row-label">削減率</span>
+            <span id="p4-rate" style="font-size:14px;font-weight:700;color:var(--blue);">―</span>
+          </div>
+        </div>
+
+        <!-- 合計 -->
+        <div class="plan-total-section">
+          <div class="plan-total-label">減税プランに必要な歳出削減額</div>
+          <div><span class="plan-result" id="d-total-reduction">―</span><span class="unit"> 千円</span></div>
+          <div class="plan-pct-row">
+            <div class="plan-pct-label">必要歳出削減額 ／ 歳出総額 × 100</div>
+            <div><span class="plan-pct-value" id="d-pct">―</span><span class="unit"> %</span></div>
+          </div>
+        </div>
+
+        <!-- 備考凡例 -->
+        <div style="margin-top:20px;padding:12px 14px;background:var(--bg-2);border-radius:6px;border:1px solid var(--border);">
+          <div style="font-size:11px;font-weight:700;color:var(--text-2);margin-bottom:8px;">備考欄　目標番号の対応</div>
+          <table style="width:100%;font-size:11px;border-collapse:collapse;">
+            <tr><td style="padding:2px 4px;color:var(--red);font-weight:700;white-space:nowrap;">① 超過課税廃止</td><td style="padding:2px 4px;color:var(--text-2);">法人税割の超過課税分</td></tr>
+            <tr><td style="padding:2px 4px;color:var(--text-3);font-weight:700;">② 法定外税阻止</td><td style="padding:2px 4px;color:var(--text-3);">現状ゼロ・新設阻止</td></tr>
+            <tr><td style="padding:2px 4px;color:var(--red);font-weight:700;">③ 法定任意目的税廃止</td><td style="padding:2px 4px;color:var(--text-2);">水利地益税（いの町）</td></tr>
+            <tr><td style="padding:2px 4px;color:var(--red);font-weight:700;">④ 赤字・不採算税廃止</td><td style="padding:2px 4px;color:var(--text-2);">狩猟税・入湯税（香美市）等</td></tr>
+            <tr><td style="padding:2px 4px;color:var(--teal);font-weight:700;">⑤ 法定目的税引下げ</td><td style="padding:2px 4px;color:var(--text-2);">入湯税（廃止以外の市町村）</td></tr>
+            <tr><td style="padding:2px 4px;color:var(--teal);font-weight:700;">⑥ 住民税10%引下げ</td><td style="padding:2px 4px;color:var(--text-2);">個人均等割・所得割・法人税割</td></tr>
+            <tr><td style="padding:2px 4px;color:var(--blue);font-weight:700;">⑦ 普通税10%引下げ</td><td style="padding:2px 4px;color:var(--text-2);">軽自動車税・固定資産税等</td></tr>
+          </table>
         </div>
       </div>
-    </div>
-
-    <!-- ④ 赤字税・不採算税の廃止 -->
-    <div class="sheet-block">
-      <div class="sheet-block-title">④ 赤字税・不採算税の廃止（目的税）　―　狩猟税・入湯税（一部）・水利地益税を廃止</div>
-      <div class="sheet-block-body">
-        <div class="sheet-row" style="background:var(--red-light);">
-          <div class="sheet-label">狩猟税　高知県<small>不採算税（目的税）・R6決算</small></div>
-          <div class="sheet-computed red">16,842 千円</div>
-        </div>
-        <div class="sheet-row" style="background:var(--red-light);">
-          <div class="sheet-label">入湯税　香美市<small>赤字税・不採算税（目的税）・R6決算</small></div>
-          <div class="sheet-computed red">492 千円</div>
-        </div>
-        <div class="sheet-row" style="background:var(--red-light);">
-          <div class="sheet-label">水利地益税　いの町<small>赤字税（目的税）・R6決算　※③と同一</small></div>
-          <div class="sheet-computed red">288 千円</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label">計画</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">各自治体・高知県の条例改正により廃止（水利地益税は③と同一、重複計上しない）</div>
-        </div>
-        <div class="sheet-row computed total-row">
-          <div class="sheet-label">削減見込み合計（水利地益税除く）</div>
-          <div class="sheet-computed red">17,334 千円</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ⑤ 法定目的税の引下げ -->
-    <div class="sheet-block">
-      <div class="sheet-block-title">⑤ 法定目的税の引下げ　―　入湯税（廃止対象外の市町村）の税率引き下げ</div>
-      <div class="sheet-block-body">
-        <div class="sheet-row">
-          <div class="sheet-label">対象</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">入湯税を課税する市町村のうち、④で廃止しないもの（9市町村）</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label">現状の税収（廃止対象外9市町村・R6決算）</div>
-          <div class="sheet-computed">61,870 千円</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label">計画</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">各市町村での条例改正により現行税率150円から引き下げ（または不課税措置）</div>
-        </div>
-        <div class="sheet-row computed total-row">
-          <div class="sheet-label">削減見込み</div>
-          <div class="sheet-computed">引き下げ幅により試算（例: 150円→100円ならば約20,623千円削減）</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ⑥ 住民税10%引下げ -->
-    <div class="sheet-block">
-      <div class="sheet-block-title">⑥ 住民税の10%引下げ　―　均等割・所得割ともに10%引き下げ</div>
-      <div class="sheet-block-body">
-        <div class="sheet-row">
-          <div class="sheet-label">個人均等割　納税義務者数（R6年度・県内合計）</div>
-          <div class="sheet-computed">332,362 人</div>
-        </div>
-        <div class="sheet-row" style="background:var(--blue-light);">
-          <div class="sheet-label">個人均等割　10%引下げ<small>現行標準3,500円 → 3,150円（▲350円）× 332,362人</small></div>
-          <div class="sheet-computed" style="color:var(--blue);">約 116,327 千円</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label">所得割　納税義務者数（R6年度・県内合計）</div>
-          <div class="sheet-computed">278,565 人</div>
-        </div>
-        <div class="sheet-row" style="background:var(--blue-light);">
-          <div class="sheet-label">所得割　10%引下げ<small>現行標準税率6% → 5.4%（▲0.6ポイント）</small></div>
-          <div class="sheet-computed" style="color:var(--blue);">各市町村の所得割税収 × 10%（<a href="https://zaisei-net.github.io/Municipal-Accounting/" target="_blank" rel="noopener" style="font-size:11px;">決算ビューア参照</a>）</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label">法人市民税（均等割・法人税割）　10%引下げ</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">各市町村の法人市民税税収 × 10%（決算ビューア参照）</div>
-        </div>
-        <div class="sheet-row computed total-row">
-          <div class="sheet-label">削減見込み（個人均等割のみ概算）</div>
-          <div class="sheet-computed" style="color:var(--blue);">約 116,327 千円〜</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ⑦ 普通税10%引下げ -->
-    <div class="sheet-block">
-      <div class="sheet-block-title">⑦ その他普通税の10%引下げ　―　標準税率未満への引き下げを求める（国への要請を含む）</div>
-      <div class="sheet-block-body">
-        <div class="sheet-row" style="background:var(--blue-light);">
-          <div class="sheet-label">軽自動車税（種別割）　10%引下げ<small>R6決算・高知県内34市町村合計 2,818,394千円</small></div>
-          <div class="sheet-computed" style="color:var(--blue);">281,839 千円</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label">固定資産税　10%引下げ</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">各市町村の固定資産税税収 × 10%（決算ビューア参照）</div>
-        </div>
-        <div class="sheet-row">
-          <div class="sheet-label">実現方法</div>
-          <div class="sheet-computed" style="font-size:12px;text-align:right;">国への標準税率引下げ要請・各市町村での条例改正</div>
-        </div>
-        <div class="sheet-row computed total-row">
-          <div class="sheet-label">削減見込み（軽自動車税のみ概算）</div>
-          <div class="sheet-computed" style="color:var(--blue);">281,839 千円〜</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 合計サマリー -->
-    <div class="summary-box" style="margin-top:24px;">
-      <div class="summary-box-title">▸ 削減見込み概算サマリー（令和６年度決算ベース・高知県内合計）</div>
-      <table class="summary-table">
-        <tbody>
-          <tr><td>③ 水利地益税廃止（いの町）</td><td>288 千円</td></tr>
-          <tr><td>④ 狩猟税廃止（高知県）</td><td>16,842 千円</td></tr>
-          <tr><td>④ 入湯税廃止（香美市）</td><td>492 千円</td></tr>
-          <tr><td>⑥ 個人均等割10%引下げ（概算）</td><td>約 116,327 千円</td></tr>
-          <tr><td>⑦ 軽自動車税10%引下げ（概算）</td><td>281,839 千円</td></tr>
-          <tr style="border-top:2px solid var(--border-strong);"><td><strong>概算合計（①②⑤⑥⑦の一部は別途試算）</strong></td><td><strong>約 415,788 千円〜</strong></td></tr>
-        </tbody>
-      </table>
-      <p class="source-note" style="margin-top:10px;">※①超過課税廃止・⑤入湯税引下げ・⑥所得割等は各市町村の決算データで別途試算。<a href="https://zaisei-net.github.io/Municipal-Accounting/" target="_blank" rel="noopener">決算・減税ビューア</a>をご活用ください。</p>
     </div>
   </div>
 
   <p class="source-note">
     出典：高知県各市町村 令和６年度決算・課税状況調・軽自動車税調等　/
-    <a href="/kochi-genzei/zei/">高知の税（現状分析）</a>
+    <a href="/kochi-genzei/zei/">高知の税（現状分析）</a>　/
+    <a href="https://zaisei-net.github.io/Municipal-Accounting/" target="_blank" rel="noopener">決算・減税ビューア</a>
   </p>
 </div>
 
@@ -570,6 +629,51 @@ function toggleTheme() {
   const saved = localStorage.getItem('theme');
   if (saved) document.documentElement.setAttribute('data-theme', saved);
 })();
+
+function n(id) { const v = parseFloat(document.getElementById(id).value); return isNaN(v) ? 0 : v; }
+function fmt(v) { return v > 0 ? v.toLocaleString('ja-JP') : '0'; }
+function pct(v, exp) { return exp > 0 ? (v / exp * 100).toFixed(2) + ' %' : '―'; }
+
+function calc() {
+  // meta
+  const yr = document.getElementById('sheet-year').value;
+  const mn = document.getElementById('muni-name').value;
+  const m = document.getElementById('meta-display');
+  m.textContent = (yr && mn) ? yr + '年度　' + mn : (yr || mn || '');
+
+  const exp = n('s-expenditure');
+
+  // 超過課税合計（法人税割のみ入力可）
+  const excess = n('s-hojin-wari-ex');
+  document.getElementById('d-excess-total').textContent = fmt(excess);
+
+  // 目的税廃止・削減合計 = 固定分 + 入力分
+  const fixedMoku = 288 + 492 + 16842; // 水利地益税+入湯税香美市+狩猟税
+  const mokuTotal = fixedMoku + n('s-nyu-reduce') + n('s-other-moku-red');
+  document.getElementById('d-moku-total').textContent = fmt(mokuTotal);
+
+  // 固定資産税10%
+  const kotei10 = Math.round(n('s-kotei') * 0.1);
+  document.getElementById('d-kotei-10').textContent = kotei10 > 0 ? kotei10.toLocaleString('ja-JP') : '0';
+
+  // プラン1 = 超過課税 + 目的税廃止固定分 + 削減分
+  const p1 = excess + mokuTotal;
+  document.getElementById('p1-auto').textContent = p1.toLocaleString('ja-JP');
+  document.getElementById('p1-rate').textContent = pct(p1, exp);
+
+  // プラン2～4
+  const p2 = n('p2-amount'), p3 = n('p3-amount'), p4 = n('p4-amount');
+  document.getElementById('p2-rate').textContent = pct(p2, exp);
+  document.getElementById('p3-rate').textContent = pct(p3, exp);
+  document.getElementById('p4-rate').textContent = pct(p4, exp);
+
+  // 合計
+  const total = p1 + p2 + p3 + p4;
+  document.getElementById('d-total-reduction').textContent = total > 0 ? total.toLocaleString('ja-JP') : '―';
+  document.getElementById('d-pct').textContent = exp > 0 && total > 0 ? (total / exp * 100).toFixed(2) : '―';
+}
+
+calc();
 </script>
 </body>
 </html>
