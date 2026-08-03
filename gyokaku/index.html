@@ -55,6 +55,7 @@ a{color:inherit;text-decoration:none;}
 .stat-num{font-size:2rem;font-weight:900;letter-spacing:-0.04em;line-height:1;font-variant-numeric:tabular-nums;}
 .stat-num.red{color:var(--red);}
 .stat-num.green{color:var(--green);}
+.stat-num.orange{color:var(--orange);}
 .stat-label{font-size:0.68rem;color:var(--text-2);margin-top:0.3rem;line-height:1.35;}
 
 .section-label{font-size:0.68rem;font-weight:800;letter-spacing:0.2em;color:var(--text-3);display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;}
@@ -156,6 +157,10 @@ footer p{font-size:0.72rem;color:var(--text-2);}
       <div class="stat-label">行政評価<br>全項目「実施済」</div>
     </div>
     <div class="stat-card">
+      <div class="stat-num orange">13</div>
+      <div class="stat-label">行政評価<br>代替・試行あり</div>
+    </div>
+    <div class="stat-card">
       <div class="stat-num red">20</div>
       <div class="stat-label">指定管理<br>導入ゼロ</div>
     </div>
@@ -169,7 +174,7 @@ footer p{font-size:0.72rem;color:var(--text-2);}
 
   <div class="legend">
     <span class="legend-item"><span class="badge bg">実施済／制定済</span> 正式実施・制定</span>
-    <span class="legend-item"><span class="badge bo">代替・試行／予定あり</span> 代替措置・試行・制定予定</span>
+    <span class="legend-item"><span class="badge bo">代替・試行／予定あり</span> 代替措置・試行・制定予定（総務省調査区分②「試行中・代替措置あり」＝正式実施ではない）</span>
     <span class="legend-item"><span class="badge br">予定なし</span> 実施・制定予定なし</span>
     <span class="legend-item"><span class="badge bn">要綱等</span> 条例以外の形式で実施</span>
   </div>
