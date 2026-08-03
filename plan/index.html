@@ -298,7 +298,7 @@ tr:hover td { background: var(--bg-2); }
     <label for="muni-name" style="font-size:13px;font-weight:600;color:var(--text);">自治体名</label>
     <select id="muni-name" class="muni-select" onchange="loadMuniData()">
       <option value="">-- 選択してください --</option>
-      <option value="高知県">高知県（34市町村計）</option>
+      <option value="高知県">高知県</option>
       <optgroup label="市">
         <option>高知市</option><option>室戸市</option><option>安芸市</option><option>南国市</option>
         <option>土佐市</option><option>須崎市</option><option>宿毛市</option><option>土佐清水市</option>
@@ -331,135 +331,8 @@ tr:hover td { background: var(--bg-2); }
 
     <div class="sheet-cols">
 
-      <!-- ===== 左カラム：税収データ ===== -->
-      <div>
-
-        <!-- 市町村民税 -->
-        <div class="sheet-col-title">市町村民税</div>
-        <table class="stax-table">
-          <thead>
-            <tr>
-              <th>項目</th>
-              <th>収入済額（千円）</th>
-              <th>超過課税分（千円）</th>
-              <th style="color:var(--teal);">備考</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>個人均等割</td>
-              <td><input type="number" class="sheet-num-input" id="s-kojin-kinto" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-              <td style="color:var(--text-3);text-align:right;font-size:12px;">―</td>
-              <td style="color:var(--teal);font-weight:700;font-size:14px;">⑥</td>
-            </tr>
-            <tr>
-              <td>所得割</td>
-              <td><input type="number" class="sheet-num-input" id="s-shotoku" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-              <td style="color:var(--text-3);text-align:right;font-size:12px;">―</td>
-              <td style="color:var(--teal);font-weight:700;font-size:14px;">⑥</td>
-            </tr>
-            <tr>
-              <td>法人均等割</td>
-              <td><input type="number" class="sheet-num-input" id="s-hojin-kinto" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-              <td><input type="number" class="sheet-num-input" id="s-hojin-kinto-ex" placeholder="0" min="0" oninput="calc()" style="width:100%;color:var(--red);"></td>
-              <td style="color:var(--red);font-weight:700;font-size:14px;">①⑥</td>
-            </tr>
-            <tr>
-              <td>法人税割</td>
-              <td><input type="number" class="sheet-num-input" id="s-hojin-wari" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-              <td><input type="number" class="sheet-num-input" id="s-hojin-wari-ex" placeholder="0" min="0" oninput="calc()" style="width:100%;color:var(--red);"></td>
-              <td style="color:var(--red);font-weight:700;font-size:14px;">①⑥</td>
-            </tr>
-            <tr class="total-row">
-              <td colspan="2" style="color:var(--text-2);">超過課税合計（自動計算）</td>
-              <td id="d-excess-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red);">0</td>
-              <td style="color:var(--red);font-weight:700;">①</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <!-- 目的税 -->
-        <div class="sheet-col-title" style="margin-top:22px;">目的税</div>
-        <table class="stax-table">
-          <thead>
-            <tr>
-              <th>税名</th>
-              <th>収入済額（千円）</th>
-              <th>廃止・削減額（千円）</th>
-              <th style="color:var(--teal);">備考</th>
-            </tr>
-          </thead>
-          <tbody id="moku-tbody">
-            <tr style="background:var(--red-light);">
-              <td>水利地益税<small style="display:block;color:var(--text-3);">いの町・R6決算</small></td>
-              <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">288</td>
-              <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">288 <small>廃止</small></td>
-              <td style="color:var(--red);font-weight:700;font-size:14px;">③④</td>
-            </tr>
-            <tr style="background:var(--red-light);">
-              <td>入湯税（廃止）<small style="display:block;color:var(--text-3);">香美市・R6決算</small></td>
-              <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">492</td>
-              <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">492 <small>廃止</small></td>
-              <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
-            </tr>
-            <tr style="background:var(--red-light);">
-              <td>狩猟税<small style="display:block;color:var(--text-3);">高知県・R6決算</small></td>
-              <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">16,842</td>
-              <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">16,842 <small>廃止</small></td>
-              <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
-            </tr>
-            <tr>
-              <td>入湯税（引下げ）<small style="display:block;color:var(--text-3);">9市町村・R6決算合計</small></td>
-              <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">61,870</td>
-              <td><input type="number" class="sheet-num-input" id="s-nyu-reduce" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-              <td style="color:var(--teal);font-weight:700;font-size:14px;">⑤</td>
-            </tr>
-            <tr>
-              <td>その他目的税<small style="display:block;color:var(--text-3);">（都市計画税等）</small></td>
-              <td><input type="number" class="sheet-num-input" id="s-other-moku" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-              <td><input type="number" class="sheet-num-input" id="s-other-moku-red" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-              <td style="color:var(--text-3);font-size:12px;">④⑤</td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr class="total-row">
-              <td colspan="2" style="color:var(--text-2);">廃止・削減合計（自動計算）</td>
-              <td id="d-moku-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red);">17,622</td>
-              <td style="color:var(--red);font-weight:700;">③④⑤</td>
-            </tr>
-          </tfoot>
-        </table>
-
-        <!-- その他普通税 -->
-        <div class="sheet-col-title" style="margin-top:22px;">その他普通税</div>
-        <table class="stax-table">
-          <thead>
-            <tr>
-              <th>税名</th>
-              <th>収入済額（千円）</th>
-              <th>超過課税分（千円）</th>
-              <th>10%削減見込み（千円）</th>
-              <th style="color:var(--teal);">備考</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>軽自動車税（種別割）<small id="kei-label" style="display:block;color:var(--text-3);">34市町村合計・R6決算</small></td>
-              <td><input type="number" class="sheet-num-input" id="s-kei" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-              <td><input type="number" class="sheet-num-input" id="s-kei-ex" placeholder="0" min="0" oninput="calc()" style="width:100%;color:var(--red);"></td>
-              <td id="d-kei-10" style="text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);">0</td>
-              <td style="color:var(--blue);font-weight:700;font-size:14px;">①⑦</td>
-            </tr>
-            <tr>
-              <td>固定資産税</td>
-              <td><input type="number" class="sheet-num-input" id="s-kotei" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-              <td><input type="number" class="sheet-num-input" id="s-kotei-ex" placeholder="0" min="0" oninput="calc()" style="width:100%;color:var(--red);"></td>
-              <td id="d-kotei-10" style="text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);">0</td>
-              <td style="color:var(--blue);font-weight:700;font-size:14px;">①⑦</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <!-- ===== 左カラム：動的生成 ===== -->
+      <div id="sheet-left-col" style="color:var(--text-3);font-size:13px;padding:20px 0;">自治体を選択してください</div>
 
       <!-- ===== 右カラム：減税プラン ===== -->
       <div>
@@ -635,6 +508,101 @@ function toggleTheme() {
   if (saved) document.documentElement.setAttribute('data-theme', saved);
 })();
 
+// ─── 左カラム HTML テンプレート生成 ───
+function _T(id, red) {
+  return `<input type="number" class="sheet-num-input" id="${id}" placeholder="0" min="0" oninput="calc()" style="width:100%;${red?'color:var(--red);':''}">`;
+}
+const _NONE = `<td style="color:var(--text-3);text-align:right;font-size:12px;">―</td>`;
+
+function renderPrefCols() {
+  document.getElementById('sheet-left-col').innerHTML = `
+<div class="sheet-col-title">道府県民税</div>
+<table class="stax-table">
+  <thead><tr><th>項目</th><th>収入済額（千円）</th><th>超過課税分（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
+  <tbody>
+    <tr><td>個人均等割</td><td>${_T('s-kojin-kinto')}</td>${_NONE}<td style="color:var(--teal);font-weight:700">⑥</td></tr>
+    <tr><td>所得割</td><td>${_T('s-shotoku')}</td>${_NONE}<td style="color:var(--teal);font-weight:700">⑥</td></tr>
+    <tr><td>法人均等割</td><td>${_T('s-hojin-kinto')}</td><td>${_T('s-hojin-kinto-ex',1)}</td><td style="color:var(--red);font-weight:700">①⑥</td></tr>
+    <tr><td>法人税割</td><td>${_T('s-hojin-wari')}</td><td>${_T('s-hojin-wari-ex',1)}</td><td style="color:var(--red);font-weight:700">①⑥</td></tr>
+    <tr><td>利子割</td><td>${_T('s-rishi')}</td>${_NONE}<td style="color:var(--teal);font-weight:700">⑥</td></tr>
+    <tr><td>配当割</td><td>${_T('s-haitou')}</td>${_NONE}<td style="color:var(--teal);font-weight:700">⑥</td></tr>
+    <tr><td>株式等譲渡所得割</td><td>${_T('s-kabushiki')}</td>${_NONE}<td style="color:var(--teal);font-weight:700">⑥</td></tr>
+    <tr class="total-row"><td colspan="2" style="color:var(--text-2)">超過課税合計（自動計算）</td><td id="d-excess-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red)">0</td><td style="color:var(--red);font-weight:700">①</td></tr>
+  </tbody>
+</table>
+
+<div class="sheet-col-title" style="margin-top:22px">その他普通税（標準税率）</div>
+<table class="stax-table">
+  <thead><tr><th>税名</th><th>収入済額（千円）</th><th>超過課税分（千円）</th><th>10%削減見込み（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
+  <tbody>
+    <tr><td>事業税（個人）</td><td>${_T('s-jigyou-kojin')}</td>${_NONE}<td id="d-jigyou-kojin-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
+    <tr><td>事業税（法人）</td><td>${_T('s-jigyou-hojin')}</td>${_NONE}<td id="d-jigyou-hojin-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
+    <tr><td>不動産取得税</td><td>${_T('s-fudosan')}</td>${_NONE}<td id="d-fudosan-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
+    <tr><td>ゴルフ場利用税<small style="display:block;color:var(--text-3)">標準税率あり・起債制限あり</small></td><td>${_T('s-golf')}</td>${_NONE}<td id="d-golf-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
+    <tr><td>自動車税（種別割）</td><td>${_T('s-jidosha')}</td><td>${_T('s-jidosha-ex',1)}</td><td id="d-jidosha-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--red);font-weight:700">①⑦</td></tr>
+    <tr><td>鉱区税</td><td>${_T('s-kouiku')}</td>${_NONE}<td id="d-kouiku-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
+  </tbody>
+</table>
+
+<div class="sheet-col-title" style="margin-top:22px">その他普通税（一定税率等）</div>
+<table class="stax-table">
+  <thead><tr><th>税名</th><th>収入済額（千円）</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>道府県たばこ税<small style="display:block;color:var(--text-3)">一定税率・起債制限なし</small></td><td>${_T('s-pref-tabako')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
+    <tr><td>軽油引取税<small style="display:block;color:var(--text-3)">一定税率</small></td><td>${_T('s-keiyu')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
+    <tr><td>地方消費税<small style="display:block;color:var(--text-3)">国税に上乗せ・地方へ交付</small></td><td>${_T('s-shohi')}</td><td style="color:var(--text-3);font-size:12px">―</td></tr>
+  </tbody>
+</table>
+
+<div class="sheet-col-title" style="margin-top:22px">目的税</div>
+<table class="stax-table">
+  <thead><tr><th>税名</th><th>収入済額（千円）</th><th>廃止・削減額（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
+  <tbody id="moku-tbody"><tr><td colspan="4" style="color:var(--text-3);text-align:center;padding:10px">読み込み中…</td></tr></tbody>
+  <tfoot><tr class="total-row"><td colspan="2" style="color:var(--text-2)">廃止・削減合計（自動計算）</td><td id="d-moku-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red)">0</td><td style="color:var(--red);font-weight:700">④</td></tr></tfoot>
+</table>`;
+}
+
+function renderMuniCols() {
+  document.getElementById('sheet-left-col').innerHTML = `
+<div class="sheet-col-title">市町村民税</div>
+<table class="stax-table">
+  <thead><tr><th>項目</th><th>収入済額（千円）</th><th>超過課税分（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
+  <tbody>
+    <tr><td>個人均等割</td><td>${_T('s-kojin-kinto')}</td>${_NONE}<td style="color:var(--teal);font-weight:700">⑥</td></tr>
+    <tr><td>所得割</td><td>${_T('s-shotoku')}</td>${_NONE}<td style="color:var(--teal);font-weight:700">⑥</td></tr>
+    <tr><td>法人均等割</td><td>${_T('s-hojin-kinto')}</td><td>${_T('s-hojin-kinto-ex',1)}</td><td style="color:var(--red);font-weight:700">①⑥</td></tr>
+    <tr><td>法人税割</td><td>${_T('s-hojin-wari')}</td><td>${_T('s-hojin-wari-ex',1)}</td><td style="color:var(--red);font-weight:700">①⑥</td></tr>
+    <tr class="total-row"><td colspan="2" style="color:var(--text-2)">超過課税合計（自動計算）</td><td id="d-excess-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red)">0</td><td style="color:var(--red);font-weight:700">①</td></tr>
+  </tbody>
+</table>
+
+<div class="sheet-col-title" style="margin-top:22px">目的税</div>
+<table class="stax-table">
+  <thead><tr><th>税名</th><th>収入済額（千円）</th><th>廃止・削減額（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
+  <tbody id="moku-tbody"><tr><td colspan="4" style="color:var(--text-3);text-align:center;padding:10px">読み込み中…</td></tr></tbody>
+  <tfoot><tr class="total-row"><td colspan="2" style="color:var(--text-2)">廃止・削減合計（自動計算）</td><td id="d-moku-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red)">0</td><td style="color:var(--red);font-weight:700">③④⑤</td></tr></tfoot>
+</table>
+
+<div class="sheet-col-title" style="margin-top:22px">その他普通税（標準税率）</div>
+<table class="stax-table">
+  <thead><tr><th>税名</th><th>収入済額（千円）</th><th>超過課税分（千円）</th><th>10%削減見込み（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
+  <tbody>
+    <tr><td>固定資産税</td><td>${_T('s-kotei')}</td><td>${_T('s-kotei-ex',1)}</td><td id="d-kotei-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--red);font-weight:700">①⑦</td></tr>
+    <tr><td>軽自動車税（種別割）</td><td>${_T('s-kei')}</td><td>${_T('s-kei-ex',1)}</td><td id="d-kei-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--red);font-weight:700">①⑦</td></tr>
+    <tr><td>鉱産税</td><td>${_T('s-kousan')}</td>${_NONE}<td id="d-kousan-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
+  </tbody>
+</table>
+
+<div class="sheet-col-title" style="margin-top:22px">その他普通税（一定税率等）</div>
+<table class="stax-table">
+  <thead><tr><th>税名</th><th>収入済額（千円）</th><th>備考</th></tr></thead>
+  <tbody>
+    <tr><td>市町村たばこ税<small style="display:block;color:var(--text-3)">一定税率・起債制限なし</small></td><td>${_T('s-muni-tabako')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
+    <tr><td>特別土地保有税<small style="display:block;color:var(--text-3)">H15年度以降 新規課税停止</small></td><td style="color:var(--text-3);text-align:right;font-size:12px">課税停止</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
+  </tbody>
+</table>`;
+}
+
 // ─── JSON キャッシュ ───
 let _kochiMunis = null;
 let _kochiPref  = null;
@@ -667,42 +635,6 @@ function getTax(taxDetail, label) {
   return item ? { amount: item.amount || 0, extra: item.extra_tax || 0 } : { amount: 0, extra: 0 };
 }
 
-// ─── 目的税テーブル（初期状態: 県全体固定値） ───
-const MOKU_DEFAULT_ROWS = `
-<tr style="background:var(--red-light);">
-  <td>水利地益税<small style="display:block;color:var(--text-3);">いの町・R6決算</small></td>
-  <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">288</td>
-  <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">288 <small>廃止</small></td>
-  <td style="color:var(--red);font-weight:700;font-size:14px;">③④</td>
-</tr>
-<tr style="background:var(--red-light);">
-  <td>入湯税（廃止）<small style="display:block;color:var(--text-3);">香美市・R6決算</small></td>
-  <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">492</td>
-  <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">492 <small>廃止</small></td>
-  <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
-</tr>
-<tr style="background:var(--red-light);">
-  <td>狩猟税<small style="display:block;color:var(--text-3);">高知県・R6決算（地税法4条4項）</small></td>
-  <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">16,842</td>
-  <td style="text-align:right;font-weight:700;color:var(--red);font-variant-numeric:tabular-nums;">16,842 <small>廃止</small></td>
-  <td style="color:var(--red);font-weight:700;font-size:14px;">④</td>
-</tr>
-<tr>
-  <td>入湯税（引下げ）<small style="display:block;color:var(--text-3);">9市町村・R6決算合計（地税法5条4項）</small></td>
-  <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--teal);">61,870</td>
-  <td><input type="number" class="sheet-num-input" id="s-nyu-reduce" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-  <td style="color:var(--teal);font-weight:700;font-size:14px;">⑤</td>
-</tr>
-<tr>
-  <td>その他目的税<small style="display:block;color:var(--text-3);">（都市計画税等）</small></td>
-  <td><input type="number" class="sheet-num-input" id="s-other-moku" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-  <td><input type="number" class="sheet-num-input" id="s-other-moku-red" placeholder="0" min="0" oninput="calc()" style="width:100%;"></td>
-  <td style="color:var(--text-3);font-size:12px;">④⑤</td>
-</tr>`;
-
-function resetMokuTable() {
-  document.getElementById('moku-tbody').innerHTML = MOKU_DEFAULT_ROWS;
-}
 
 function updateMokuTable(muniName, mokus) {
   // mokus = [{ label, amount }] 目的税のみ
@@ -714,6 +646,7 @@ function updateMokuTable(muniName, mokus) {
 
   for (const { label, amount } of mokus) {
     if (!amount) continue;
+    if (label === '法定目的税') continue; // 子行（狩猟税）と重複するため除外
     hasRow = true;
     const amtFmt = amount.toLocaleString('ja-JP');
 
@@ -786,14 +719,10 @@ function updateMokuTable(muniName, mokus) {
 async function loadMuniData() {
   const muniName = document.getElementById('muni-name').value;
   if (!muniName) {
-    resetMokuTable();
-    document.getElementById('s-kei').value = '';
-    document.getElementById('s-kei-ex').value = '';
-    document.getElementById('kei-label').textContent = '';
-    document.getElementById('s-expenditure').value = '';
-    ['s-kojin-kinto','s-shotoku','s-hojin-kinto','s-hojin-kinto-ex','s-hojin-wari','s-hojin-wari-ex','s-kotei','s-kotei-ex'].forEach(id => {
-      const el = document.getElementById(id); if (el) el.value = '';
-    });
+    document.getElementById('sheet-left-col').innerHTML =
+      '<div style="color:var(--text-3);font-size:13px;padding:20px 0;">自治体を選択してください</div>';
+    const expEl = document.getElementById('s-expenditure');
+    if (expEl) expEl.value = '';
     calc();
     return;
   }
@@ -803,8 +732,12 @@ async function loadMuniData() {
 
   try {
     await fetchKochiData();
-    const muni = (muniName === '高知県') ? _kochiPref : _kochiMunis[muniName];
+    const isPref = muniName === '高知県';
+    const muni = isPref ? _kochiPref : _kochiMunis[muniName];
     if (!muni) { calc(); return; }
+
+    // 左カラム描画
+    if (isPref) renderPrefCols(); else renderMuniCols();
 
     const td = muni.tax_detail || [];
 
@@ -816,22 +749,40 @@ async function loadMuniData() {
     // 歳出総額
     setV('s-expenditure', muni.expenditure);
 
-    // 市町村民税
-    setV('s-kojin-kinto',   getTax(td, '個人均等割').amount);
-    setV('s-shotoku',       getTax(td, '所得割').amount);
-    setV('s-hojin-kinto',   getTax(td, '法人均等割').amount);
-    setV('s-hojin-kinto-ex',getTax(td, '法人均等割').extra);
-    setV('s-hojin-wari',    getTax(td, '法人税割').amount);
-    setV('s-hojin-wari-ex', getTax(td, '法人税割').extra);
+    // 共通：民税
+    setV('s-kojin-kinto',    getTax(td, '個人均等割').amount);
+    setV('s-shotoku',        getTax(td, '所得割').amount);
+    setV('s-hojin-kinto',    getTax(td, '法人均等割').amount);
+    setV('s-hojin-kinto-ex', getTax(td, '法人均等割').extra);
+    setV('s-hojin-wari',     getTax(td, '法人税割').amount);
+    setV('s-hojin-wari-ex',  getTax(td, '法人税割').extra);
 
-    // 固定資産税
-    setV('s-kotei',    getTax(td, '固定資産税').amount);
-    setV('s-kotei-ex', getTax(td, '固定資産税').extra);
-
-    // 軽自動車税
-    setV('s-kei',    getTax(td, '軽自動車税').amount);
-    setV('s-kei-ex', getTax(td, '軽自動車税').extra);
-    document.getElementById('kei-label').textContent = muniName === '高知県' ? '道府県税（軽自動車税は市町村税）' : muniName + '・R6決算';
+    if (isPref) {
+      // 道府県税固有
+      setV('s-rishi',        getTax(td, '利子割').amount);
+      setV('s-haitou',       getTax(td, '配当割').amount);
+      setV('s-kabushiki',    getTax(td, '株式等譲渡所得割').amount);
+      // 事業税（個人分・法人分）
+      setV('s-jigyou-kojin', getTax(td, '個人分').amount);
+      setV('s-jigyou-hojin', getTax(td, '法人分').amount);
+      // その他
+      setV('s-fudosan',      getTax(td, '不動産取得税').amount);
+      setV('s-golf',         getTax(td, 'ゴルフ場利用税').amount);
+      setV('s-jidosha',      getTax(td, '自動車税（種別割）').amount || getTax(td, '自動車税').amount);
+      setV('s-jidosha-ex',   getTax(td, '自動車税（種別割）').extra  || getTax(td, '自動車税').extra);
+      setV('s-kouiku',       getTax(td, '鉱区税').amount);
+      setV('s-pref-tabako',  getTax(td, '道府県たばこ税').amount);
+      setV('s-keiyu',        getTax(td, '軽油引取税').amount);
+      setV('s-shohi',        getTax(td, '地方消費税').amount);
+    } else {
+      // 市町村税固有
+      setV('s-kotei',        getTax(td, '固定資産税').amount);
+      setV('s-kotei-ex',     getTax(td, '固定資産税').extra);
+      setV('s-kei',          getTax(td, '軽自動車税').amount || getTax(td, '軽自動車税（種別割）').amount);
+      setV('s-kei-ex',       getTax(td, '軽自動車税').extra  || getTax(td, '軽自動車税（種別割）').extra);
+      setV('s-kousan',       getTax(td, '鉱産税').amount);
+      setV('s-muni-tabako',  getTax(td, '市町村たばこ税').amount);
+    }
 
     // 目的税（tax1が「目的税」のもの）
     const mokus = td
@@ -857,6 +808,11 @@ function n(id) {
 function fmt(v) { return v > 0 ? v.toLocaleString('ja-JP') : '0'; }
 function pct(v, exp) { return exp > 0 ? (v / exp * 100).toFixed(2) + ' %' : '―'; }
 
+function setTxt(id, val) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+
 function calc() {
   const yr = document.getElementById('sheet-year').value;
   const mn = document.getElementById('muni-name').value;
@@ -864,40 +820,34 @@ function calc() {
 
   const exp = n('s-expenditure');
 
-  // 超過課税合計 = 法人均等割 + 法人税割 + 固定資産税 + 軽自動車税 の超過分
-  const excess = n('s-hojin-kinto-ex') + n('s-hojin-wari-ex') + n('s-kotei-ex') + n('s-kei-ex');
-  document.getElementById('d-excess-total').textContent = fmt(excess);
+  // 超過課税合計（存在しないフィールドはn()が0を返す）
+  const excess = n('s-hojin-kinto-ex') + n('s-hojin-wari-ex')
+               + n('s-kotei-ex') + n('s-kei-ex') + n('s-jidosha-ex');
+  setTxt('d-excess-total', fmt(excess));
 
-  // 目的税廃止・削減合計（id="s-nyu-reduce", "s-other-moku-red" は tbody 内に動的生成）
-  // 固定廃止分（高知県全体シート時: 288+492+16842=17622 が tbody の固定行）
-  // 動的行は input から n() で取得
-  const nyuReduce   = n('s-nyu-reduce');
-  const otherMokuRed= n('s-other-moku-red');
-
-  // tbodyのhidden固定廃止額（DOM から読み取る）
+  // 目的税廃止・削減合計（DOM 廃止セルを合計 + 入力欄）
   let fixedMoku = 0;
   document.querySelectorAll('#moku-tbody tr').forEach(tr => {
     const cells = tr.querySelectorAll('td');
-    if (cells.length >= 3) {
-      const abolishCell = cells[2];
-      if (abolishCell.textContent.includes('廃止')) {
-        const num = parseFloat(abolishCell.textContent.replace(/[^0-9.]/g, ''));
-        if (!isNaN(num)) fixedMoku += num;
-      }
+    if (cells.length >= 3 && cells[2].textContent.includes('廃止')) {
+      const num = parseFloat(cells[2].textContent.replace(/[^0-9.]/g, ''));
+      if (!isNaN(num)) fixedMoku += num;
     }
   });
-  // 狩猟税16,842は県税のため fixedMoku に必ず加算（廃止対象）
-  const hasKaryoRow = [...document.querySelectorAll('#moku-tbody td')].some(td => td.textContent.includes('16,842 廃止'));
-  if (!hasKaryoRow) fixedMoku += 16842; // 市町村選択時は狩猟税は手動加算
+  const mokuTotal = fixedMoku + n('s-nyu-reduce') + n('s-other-moku-red');
+  setTxt('d-moku-total', fmt(mokuTotal));
 
-  const mokuTotal = fixedMoku + nyuReduce + otherMokuRed;
-  document.getElementById('d-moku-total').textContent = fmt(mokuTotal);
-
-  // その他普通税10%削減
-  const kotei10 = Math.round(n('s-kotei') * 0.1);
-  document.getElementById('d-kotei-10').textContent = kotei10 > 0 ? kotei10.toLocaleString('ja-JP') : '0';
-  const kei10 = Math.round(n('s-kei') * 0.1);
-  document.getElementById('d-kei-10').textContent = kei10 > 0 ? kei10.toLocaleString('ja-JP') : '0';
+  // 10%削減見込み（道府県税）
+  setTxt('d-jigyou-kojin-10', fmt(Math.round(n('s-jigyou-kojin') * 0.1)));
+  setTxt('d-jigyou-hojin-10', fmt(Math.round(n('s-jigyou-hojin') * 0.1)));
+  setTxt('d-fudosan-10',      fmt(Math.round(n('s-fudosan')      * 0.1)));
+  setTxt('d-golf-10',         fmt(Math.round(n('s-golf')         * 0.1)));
+  setTxt('d-jidosha-10',      fmt(Math.round(n('s-jidosha')      * 0.1)));
+  setTxt('d-kouiku-10',       fmt(Math.round(n('s-kouiku')       * 0.1)));
+  // 10%削減見込み（市町村税）
+  setTxt('d-kotei-10',        fmt(Math.round(n('s-kotei')        * 0.1)));
+  setTxt('d-kei-10',          fmt(Math.round(n('s-kei')          * 0.1)));
+  setTxt('d-kousan-10',       fmt(Math.round(n('s-kousan')       * 0.1)));
 
   // プラン1 = 超過課税 + 目的税廃止・削減
   const p1 = excess + mokuTotal;
