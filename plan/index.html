@@ -800,6 +800,9 @@ async function loadMuniData() {
     document.getElementById('plan2-section').style.display = '';
     const expEl = document.getElementById('s-expenditure');
     if (expEl) expEl.value = '';
+    ['p2-amount','p3-amount','p4-amount'].forEach(id => {
+      const el = document.getElementById(id); if (el) el.value = '';
+    });
     calc();
     return;
   }
@@ -864,6 +867,39 @@ async function loadMuniData() {
       setV('s-kousan',       getTax(td, '鉱産税').amount);
       setV('s-muni-tabako',  getTax(td, '市町村たばこ税').amount);
     }
+
+    // ─── プラン自動入力 ───
+    // プラン２: 入湯税引下げ（33%削減想定 / 香美市は廃止のため対象外）
+    const nyuAmt = getTax(td, '入湯税').amount;
+    if (nyuAmt > 0 && muniName !== '香美市') {
+      setV('p2-amount', Math.round(nyuAmt * 0.33));
+    } else {
+      const p2 = document.getElementById('p2-amount');
+      if (p2) p2.value = '';
+    }
+
+    // プラン３: 住民税（民税）10%引下げ
+    const juminBase = getTax(td, '個人均等割').amount + getTax(td, '所得割').amount
+                    + getTax(td, '法人均等割').amount + getTax(td, '法人税割').amount
+                    + (isPref ? (getTax(td, '利子割').amount + getTax(td, '配当割').amount
+                                + getTax(td, '株式等譲渡所得割').amount) : 0);
+    setV('p3-amount', Math.round(juminBase * 0.1));
+
+    // プラン４: その他普通税10%引下げ（住民税系を除く普通税合計）
+    let otherFutsu = 0;
+    if (isPref) {
+      otherFutsu = getTax(td, '個人分').amount + getTax(td, '法人分').amount
+                 + getTax(td, '地方消費税').amount + getTax(td, '不動産取得税').amount
+                 + getTax(td, '道府県たばこ税').amount + getTax(td, 'ゴルフ場利用税').amount
+                 + getTax(td, '軽油引取税').amount
+                 + (getTax(td, '自動車税（種別割）').amount || getTax(td, '自動車税').amount)
+                 + getTax(td, '鉱区税').amount;
+    } else {
+      otherFutsu = getTax(td, '固定資産税').amount
+                 + (getTax(td, '軽自動車税').amount || getTax(td, '軽自動車税（種別割）').amount || 0)
+                 + getTax(td, '市町村たばこ税').amount + getTax(td, '鉱産税').amount;
+    }
+    setV('p4-amount', Math.round(otherFutsu * 0.1));
 
     // 目的税（tax1が「目的税」のもの）
     const mokus = td
