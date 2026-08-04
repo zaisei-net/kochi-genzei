@@ -247,11 +247,11 @@ footer strong{color:var(--text-2);}
 <div class="quick-nav">
   <span class="quick-nav-label">セクション：</span>
   <a href="#section-overview">全体像</a>
-  <a href="#section-pref">高知県税</a>
-  <a href="#section-muni">市町村税</a>
   <a href="#section-excess">超過課税</a>
   <a href="#section-data">データ集</a>
   <a href="#section-summary">全体概況</a>
+  <a href="#section-pref">県税（参考）</a>
+  <a href="#section-muni">市町村税（参考）</a>
   <span class="quick-nav-label" style="margin-left:8px;">｜</span>
   <a href="/kochi-genzei/plan/" style="color:var(--blue);background:var(--blue-light);border-color:var(--blue);">減税計画 →</a>
 </div>
@@ -375,11 +375,273 @@ footer strong{color:var(--text-2);}
   </div>
 </div>
 
-<!-- ===== I. 高知県税（道府県税） ===== -->
+<!-- ===== I. 超過課税 ===== -->
+<hr class="section-divider">
+<div class="section" id="section-excess">
+  <div class="section-header">
+    <h2 class="section-title">超過課税</h2>
+    <p class="section-desc">地方税法の定める標準税率を超えて課税しているものの一覧。</p>
+  </div>
+
+  <div class="section-sub">高知県（県民税）</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>税目</th><th>標準税率</th><th>適用税率</th><th>超過の内容</th><th>期間</th></tr>
+      </thead>
+      <tbody>
+        <tr class="row-ng"><td>県民税　個人均等割</td><td>1,000円</td><td><strong>1,500円</strong></td><td>高知県森林環境税として500円上乗せ</td><td>H15.4.1〜R10.3.31</td></tr>
+        <tr class="row-ng"><td>県民税　法人均等割</td><td>標準額</td><td><strong>+500円/年</strong></td><td>高知県森林環境税として上乗せ</td><td>H15.4.1〜R10.3.31</td></tr>
+        <tr class="row-ng"><td>県民税　法人税割</td><td>0.7%</td><td><strong>1.8%</strong>（軽減1.0%）</td><td>標準を1.1%超過（軽減後0.3%超過）</td><td>S51.9.1〜R9.8.31</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="source-note">出典：高知県森林環境税条例、令和６年度課税状況調（高知県）</p>
+
+  <div class="section-sub" style="margin-top:32px;">市町村（法人税割）</div>
+  <div class="commentary red">
+    34市町村中<strong>15市町村が超過課税。</strong>標準6.0%・制限税率8.4%。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>税率</th><th>市町村数</th><th>市町村名</th><th>標準比</th></tr>
+      </thead>
+      <tbody>
+        <tr class="row-ng"><td><strong>8.4%</strong> <span class="badge badge-r">制限税率</span></td><td class="td-num">11</td><td>高知市・室戸市・安芸市・南国市・土佐市・須崎市・宿毛市・土佐清水市・四万十市・いの町・日高村</td><td class="td-num td-ng">+2.4%</td></tr>
+        <tr class="row-warn"><td><strong>6.9%</strong></td><td class="td-num">1</td><td>佐川町</td><td class="td-num td-warn">+0.9%</td></tr>
+        <tr class="row-warn"><td><strong>6.7%</strong></td><td class="td-num">3</td><td>越知町・大月町・黒潮町</td><td class="td-num td-warn">+0.7%</td></tr>
+        <tr><td><strong>6.0%</strong> <span class="badge badge-g">標準</span></td><td class="td-num">19</td><td>香南市・香美市・東洋町・奈半利町・田野町・安田町・北川村・馬路村・芸西村・本山町・大豊町・土佐町・大川村・仁淀川町・中土佐町・梼原町・津野町・四万十町・三原村</td><td class="td-ok">標準</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td><strong>合計</strong></td><td class="td-num"><strong>34</strong></td><td colspan="2"></td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <p class="source-note">出典：令和６年度 市町村課税状況等の調（高知県総務部市町村振興課）</p>
+
+  <div class="section-sub" style="margin-top:32px;">市町村（法人均等割）</div>
+  <div class="commentary red">
+    <strong>10市町村が標準額の1.2倍を課税。</strong>高知市・室戸市・安芸市・南国市・土佐市・須崎市・宿毛市・土佐清水市・四万十市・いの町。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>区分</th><th>標準額</th><th>超過額（10市町）</th><th>超過市町村（10）</th></tr>
+      </thead>
+      <tbody>
+        <tr class="row-ng"><td>①号法人（資本金1千万円以下・従業者50人以下等）</td><td>50,000円</td><td><strong>60,000円</strong></td><td rowspan="9" style="vertical-align:middle;">高知市・室戸市・安芸市・南国市・土佐市・須崎市・宿毛市・土佐清水市・四万十市・いの町</td></tr>
+        <tr class="row-ng"><td>②号法人</td><td>120,000円</td><td><strong>144,000円</strong></td></tr>
+        <tr class="row-ng"><td>③号法人</td><td>130,000円</td><td><strong>156,000円</strong></td></tr>
+        <tr class="row-ng"><td>④号法人</td><td>150,000円</td><td><strong>180,000円</strong></td></tr>
+        <tr class="row-ng"><td>⑤号法人</td><td>160,000円</td><td><strong>192,000円</strong></td></tr>
+        <tr class="row-ng"><td>⑥号法人</td><td>400,000円</td><td><strong>480,000円</strong></td></tr>
+        <tr class="row-ng"><td>⑦号法人</td><td>410,000円</td><td><strong>492,000円</strong></td></tr>
+        <tr class="row-ng"><td>⑧号法人</td><td>1,750,000円</td><td><strong>2,100,000円</strong></td></tr>
+        <tr class="row-ng"><td>⑨号法人</td><td>3,000,000円</td><td><strong>3,600,000円</strong></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="source-note">出典：令和６年度 市町村税の税率採用状況（高知県総務部市町村振興課）</p>
+
+  <div class="section-sub" style="margin-top:32px;">市町村（固定資産税）</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>税率</th><th>市町村数</th><th>市町村名</th><th>標準比</th></tr>
+      </thead>
+      <tbody>
+        <tr class="row-ng"><td><strong>1.5%</strong></td><td class="td-num">2</td><td>高知市・土佐市</td><td class="td-num td-ng">+0.1%</td></tr>
+        <tr><td><strong>1.4%</strong> <span class="badge badge-g">標準</span></td><td class="td-num">32</td><td>その他32市町村</td><td class="td-ok">標準</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn-box" style="margin-top:8px;">
+    <strong>減税の観点：</strong>すべての超過課税（県・市町村）の廃止・標準税率化を求めます。<a href="/kochi-genzei/plan/" style="font-size:10px;color:var(--orange);background:var(--orange-light);padding:1px 6px;border-radius:3px;margin-left:8px;font-weight:700;text-decoration:none;">減税計画①</a>
+  </div>
+</div>
+
+<!-- ===== II. データ集 ===== -->
+<hr class="section-divider">
+<div class="section" id="section-data">
+  <div class="section-header">
+    <h2 class="section-title">データ集</h2>
+    <p class="section-desc">市町村別の各種税務データを掲載します。</p>
+  </div>
+
+  <div class="section-sub">市町村別　個人市町村民税　納税義務者数（令和６年度）</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>市町村</th><th>均等割 納税者数（人）</th><th>所得割 納税者数（人）</th><th>均等割のみ（人）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>高知市</td><td class="td-num">161,295</td><td class="td-num">140,805</td><td class="td-num">20,490</td></tr>
+        <tr><td>室戸市</td><td class="td-num">4,834</td><td class="td-num">3,645</td><td class="td-num">1,189</td></tr>
+        <tr><td>安芸市</td><td class="td-num">7,838</td><td class="td-num">6,219</td><td class="td-num">1,619</td></tr>
+        <tr><td>南国市</td><td class="td-num">23,627</td><td class="td-num">19,830</td><td class="td-num">3,797</td></tr>
+        <tr><td>土佐市</td><td class="td-num">12,680</td><td class="td-num">10,223</td><td class="td-num">2,457</td></tr>
+        <tr><td>須崎市</td><td class="td-num">9,194</td><td class="td-num">7,369</td><td class="td-num">1,825</td></tr>
+        <tr><td>宿毛市</td><td class="td-num">8,789</td><td class="td-num">7,039</td><td class="td-num">1,750</td></tr>
+        <tr><td>土佐清水市</td><td class="td-num">5,216</td><td class="td-num">3,933</td><td class="td-num">1,283</td></tr>
+        <tr><td>四万十市</td><td class="td-num">15,607</td><td class="td-num">12,930</td><td class="td-num">2,677</td></tr>
+        <tr><td>香南市</td><td class="td-num">16,849</td><td class="td-num">13,948</td><td class="td-num">2,901</td></tr>
+        <tr><td>香美市</td><td class="td-num">11,652</td><td class="td-num">9,438</td><td class="td-num">2,214</td></tr>
+        <tr><td>東洋町</td><td class="td-num">830</td><td class="td-num">639</td><td class="td-num">191</td></tr>
+        <tr><td>奈半利町</td><td class="td-num">1,239</td><td class="td-num">936</td><td class="td-num">303</td></tr>
+        <tr><td>田野町</td><td class="td-num">1,176</td><td class="td-num">951</td><td class="td-num">225</td></tr>
+        <tr><td>安田町</td><td class="td-num">1,070</td><td class="td-num">820</td><td class="td-num">250</td></tr>
+        <tr><td>北川村</td><td class="td-num">613</td><td class="td-num">470</td><td class="td-num">143</td></tr>
+        <tr><td>馬路村</td><td class="td-num">449</td><td class="td-num">387</td><td class="td-num">62</td></tr>
+        <tr><td>芸西村</td><td class="td-num">1,764</td><td class="td-num">1,395</td><td class="td-num">369</td></tr>
+        <tr><td>本山町</td><td class="td-num">1,494</td><td class="td-num">1,234</td><td class="td-num">260</td></tr>
+        <tr><td>大豊町</td><td class="td-num">1,286</td><td class="td-num">976</td><td class="td-num">310</td></tr>
+        <tr><td>土佐町</td><td class="td-num">1,680</td><td class="td-num">1,328</td><td class="td-num">352</td></tr>
+        <tr><td>大川村</td><td class="td-num">173</td><td class="td-num">141</td><td class="td-num">32</td></tr>
+        <tr><td>いの町</td><td class="td-num">10,616</td><td class="td-num">8,616</td><td class="td-num">2,000</td></tr>
+        <tr><td>仁淀川町</td><td class="td-num">1,898</td><td class="td-num">1,430</td><td class="td-num">468</td></tr>
+        <tr><td>中土佐町</td><td class="td-num">2,545</td><td class="td-num">1,969</td><td class="td-num">576</td></tr>
+        <tr><td>佐川町</td><td class="td-num">5,785</td><td class="td-num">4,652</td><td class="td-num">1,133</td></tr>
+        <tr><td>越知町</td><td class="td-num">2,210</td><td class="td-num">1,751</td><td class="td-num">459</td></tr>
+        <tr><td>梼原町</td><td class="td-num">1,348</td><td class="td-num">1,070</td><td class="td-num">278</td></tr>
+        <tr><td>日高村</td><td class="td-num">2,306</td><td class="td-num">1,806</td><td class="td-num">500</td></tr>
+        <tr><td>津野町</td><td class="td-num">2,418</td><td class="td-num">1,908</td><td class="td-num">510</td></tr>
+        <tr><td>四万十町</td><td class="td-num">6,889</td><td class="td-num">5,379</td><td class="td-num">1,510</td></tr>
+        <tr><td>大月町</td><td class="td-num">1,888</td><td class="td-num">1,440</td><td class="td-num">448</td></tr>
+        <tr><td>三原村</td><td class="td-num">614</td><td class="td-num">485</td><td class="td-num">129</td></tr>
+        <tr><td>黒潮町</td><td class="td-num">4,490</td><td class="td-num">3,403</td><td class="td-num">1,087</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td><strong>市計</strong></td><td class="td-num"><strong>277,581</strong></td><td class="td-num"><strong>235,379</strong></td><td class="td-num"><strong>42,202</strong></td></tr>
+        <tr><td><strong>町村計</strong></td><td class="td-num"><strong>54,781</strong></td><td class="td-num"><strong>43,186</strong></td><td class="td-num"><strong>11,595</strong></td></tr>
+        <tr><td><strong>合計</strong></td><td class="td-num"><strong>332,362</strong></td><td class="td-num"><strong>278,565</strong></td><td class="td-num"><strong>53,797</strong></td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <p class="source-note">出典：令和６年度課税状況調（１）市町村民税の納税義務者数等（高知県総務部市町村振興課）</p>
+  <div class="warn-box" style="margin-top:8px;">
+    <strong>減税の観点：</strong>均等割のみ課税者53,797人は全納税者（332,362人）の約16%。所得割が非課税となる低所得・高齢層にも一律課税する均等割の引き下げ・廃止が最も直接的な逆進性の是正につながります。<a href="/kochi-genzei/plan/" style="font-size:10px;color:var(--orange);background:var(--orange-light);padding:1px 6px;border-radius:3px;margin-left:8px;font-weight:700;text-decoration:none;">減税計画⑥</a>
+  </div>
+
+  <div class="section-sub" style="margin-top:32px;">市町村別　軽自動車税（種別割）調定額（令和６年度）</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>市町村</th><th>調定額（千円）</th><th>構成比（県内合計）</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>高知市</td><td class="td-num">1,099,975</td><td class="td-num">39.0%</td></tr>
+        <tr><td>室戸市</td><td class="td-num">55,896</td><td class="td-num">2.0%</td></tr>
+        <tr><td>安芸市</td><td class="td-num">81,215</td><td class="td-num">2.9%</td></tr>
+        <tr><td>南国市</td><td class="td-num">212,222</td><td class="td-num">7.5%</td></tr>
+        <tr><td>土佐市</td><td class="td-num">123,883</td><td class="td-num">4.4%</td></tr>
+        <tr><td>須崎市</td><td class="td-num">95,597</td><td class="td-num">3.4%</td></tr>
+        <tr><td>宿毛市</td><td class="td-num">88,416</td><td class="td-num">3.1%</td></tr>
+        <tr><td>土佐清水市</td><td class="td-num">53,879</td><td class="td-num">1.9%</td></tr>
+        <tr><td>四万十市</td><td class="td-num">154,417</td><td class="td-num">5.5%</td></tr>
+        <tr><td>香南市</td><td class="td-num">145,164</td><td class="td-num">5.2%</td></tr>
+        <tr><td>香美市</td><td class="td-num">109,845</td><td class="td-num">3.9%</td></tr>
+        <tr><td>東洋町</td><td class="td-num">9,346</td><td class="td-num">0.3%</td></tr>
+        <tr><td>奈半利町</td><td class="td-num">14,575</td><td class="td-num">0.5%</td></tr>
+        <tr><td>田野町</td><td class="td-num">12,091</td><td class="td-num">0.4%</td></tr>
+        <tr><td>安田町</td><td class="td-num">12,700</td><td class="td-num">0.5%</td></tr>
+        <tr><td>北川村</td><td class="td-num">7,085</td><td class="td-num">0.3%</td></tr>
+        <tr><td>馬路村</td><td class="td-num">4,531</td><td class="td-num">0.2%</td></tr>
+        <tr><td>芸西村</td><td class="td-num">17,430</td><td class="td-num">0.6%</td></tr>
+        <tr><td>本山町</td><td class="td-num">16,021</td><td class="td-num">0.6%</td></tr>
+        <tr><td>大豊町</td><td class="td-num">17,213</td><td class="td-num">0.6%</td></tr>
+        <tr><td>土佐町</td><td class="td-num">18,767</td><td class="td-num">0.7%</td></tr>
+        <tr><td>大川村</td><td class="td-num">2,005</td><td class="td-num">0.1%</td></tr>
+        <tr><td>いの町</td><td class="td-num">94,342</td><td class="td-num">3.3%</td></tr>
+        <tr><td>仁淀川町</td><td class="td-num">24,308</td><td class="td-num">0.9%</td></tr>
+        <tr><td>中土佐町</td><td class="td-num">27,287</td><td class="td-num">1.0%</td></tr>
+        <tr><td>佐川町</td><td class="td-num">62,126</td><td class="td-num">2.2%</td></tr>
+        <tr><td>越知町</td><td class="td-num">26,230</td><td class="td-num">0.9%</td></tr>
+        <tr><td>梼原町</td><td class="td-num">16,101</td><td class="td-num">0.6%</td></tr>
+        <tr><td>日高村</td><td class="td-num">24,977</td><td class="td-num">0.9%</td></tr>
+        <tr><td>津野町</td><td class="td-num">26,333</td><td class="td-num">0.9%</td></tr>
+        <tr><td>四万十町</td><td class="td-num">86,445</td><td class="td-num">3.1%</td></tr>
+        <tr><td>大月町</td><td class="td-num">21,380</td><td class="td-num">0.8%</td></tr>
+        <tr><td>三原村</td><td class="td-num">7,955</td><td class="td-num">0.3%</td></tr>
+        <tr><td>黒潮町</td><td class="td-num">48,637</td><td class="td-num">1.7%</td></tr>
+      </tbody>
+      <tfoot>
+        <tr><td><strong>市計（11市）</strong></td><td class="td-num"><strong>2,220,509</strong></td><td class="td-num"><strong>78.8%</strong></td></tr>
+        <tr><td><strong>町村計（23町村）</strong></td><td class="td-num"><strong>597,885</strong></td><td class="td-num"><strong>21.2%</strong></td></tr>
+        <tr><td><strong>合計</strong></td><td class="td-num"><strong>2,818,394</strong></td><td class="td-num"><strong>100%</strong></td></tr>
+      </tfoot>
+    </table>
+  </div>
+  <p class="source-note">出典：令和６年度軽自動車税に関する調（高知県総務部市町村振興課）</p>
+</div>
+
+<!-- ===== III. 全体概況 ===== -->
+<hr class="section-divider">
+<div class="section" id="section-summary">
+  <div class="section-header">
+    <h2 class="section-title">高知の税　全体概況</h2>
+    <p class="section-desc">地方税法第4条・第5条の全税目についての現状と高知減税会の評価。</p>
+  </div>
+
+  <div class="section-sub-2">高知県税（道府県税）</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>税目</th><th>種別</th><th>実施状況</th><th>評価</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>道府県民税　個人所得割</td><td>普通税</td><td>4%（標準）</td><td class="td-ok">標準</td></tr>
+        <tr class="row-ng"><td>道府県民税　個人均等割</td><td>普通税</td><td>1,500円（標準1,000円）H15〜R10.3</td><td class="td-ng">廃止求める</td></tr>
+        <tr class="row-ng"><td>道府県民税　法人税割</td><td>普通税</td><td>1.8%（標準0.7%）S51〜R9.8</td><td class="td-ng">廃止求める</td></tr>
+        <tr class="row-ng"><td>道府県民税　法人均等割</td><td>普通税</td><td>+500円（標準額超過）H15〜R10.3</td><td class="td-ng">廃止求める</td></tr>
+        <tr><td>事業税</td><td>普通税</td><td>標準税率・超過なし</td><td class="td-ok">標準</td></tr>
+        <tr><td>地方消費税</td><td>普通税</td><td>2.2%（標準）</td><td class="td-ok">標準</td></tr>
+        <tr><td>不動産取得税</td><td>普通税</td><td>3%（特例）・超過なし</td><td class="td-ok">標準</td></tr>
+        <tr><td>道府県たばこ税</td><td>普通税</td><td>930円/千本・超過なし</td><td class="td-ok">標準</td></tr>
+        <tr class="row-warn"><td>ゴルフ場利用税</td><td>普通税</td><td>標準税率・超過なし</td><td class="td-warn">廃止求める</td></tr>
+        <tr class="row-warn"><td>軽油引取税</td><td>普通税</td><td>32.1円/ℓ（暫定税率が恒久化）</td><td class="td-warn">引下げ求める</td></tr>
+        <tr><td>自動車税（種別割）</td><td>普通税</td><td>標準税率・超過なし</td><td class="td-ok">標準</td></tr>
+        <tr class="row-warn"><td>鉱区税</td><td>普通税</td><td>課税中（R6：6,589千円）</td><td class="td-warn">廃止求める</td></tr>
+        <tr class="row-warn"><td>狩猟税</td><td>目的税</td><td>16,842千円（R6）・県税収比0.018%</td><td class="td-warn">廃止求める</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section-sub-2" style="margin-top:24px;">市町村税</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr><th>税目</th><th>種別</th><th>実施状況</th><th>評価</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>市町村民税　個人所得割</td><td>普通税</td><td>6%（標準）・全34市町村</td><td class="td-ok">標準</td></tr>
+        <tr><td>市町村民税　個人均等割</td><td>普通税</td><td>3,000円（標準）・全34市町村</td><td class="td-ok">標準（引下げ求める）</td></tr>
+        <tr class="row-ng"><td>市町村民税　法人税割</td><td>普通税</td><td>15市町村が6.7〜8.4%（標準6%超）</td><td class="td-ng">廃止求める</td></tr>
+        <tr class="row-ng"><td>市町村民税　法人均等割</td><td>普通税</td><td>10市町村が標準額の1.2倍</td><td class="td-ng">廃止求める</td></tr>
+        <tr class="row-ng"><td>固定資産税（超過課税分）</td><td>普通税</td><td>高知市・土佐市が1.5%（標準1.4%）</td><td class="td-ng">廃止求める</td></tr>
+        <tr><td>固定資産税（標準課税分）</td><td>普通税</td><td>1.4%（標準）・32市町村</td><td class="td-ok">標準</td></tr>
+        <tr class="row-warn"><td>軽自動車税（種別割）</td><td>普通税</td><td>標準税率・全34市町村</td><td class="td-warn">引下げ求める</td></tr>
+        <tr><td>市町村たばこ税</td><td>普通税</td><td>6,552円/千本・超過なし</td><td class="td-ok">標準</td></tr>
+        <tr class="row-warn"><td>鉱産税</td><td>普通税</td><td>6市町村が課税（R6：27,981千円）</td><td class="td-warn">廃止求める</td></tr>
+        <tr><td>特別土地保有税</td><td>普通税</td><td>H15以降　全国一律課税停止中</td><td class="td-ok">課税停止（廃止が望ましい）</td></tr>
+        <tr class="row-warn"><td>入湯税</td><td>目的税</td><td>10市町村が課税・合計62,362千円（R6）</td><td class="td-warn">廃止求める</td></tr>
+        <tr class="row-warn"><td>事業所税</td><td>目的税</td><td>高知市のみ課税</td><td class="td-warn">免税点引上げ求める</td></tr>
+        <tr><td>都市計画税</td><td>目的税</td><td>全34市町村でなし</td><td class="td-ok">非課税（維持求める）</td></tr>
+        <tr class="row-warn"><td>水利地益税</td><td>目的税</td><td>いの町のみ・288千円（R6）</td><td class="td-warn">廃止求める</td></tr>
+        <tr><td>国民健康保険税</td><td>目的税</td><td>33市町村が税方式・高知市は料方式</td><td class="td-ok">課税中</td></tr>
+        <tr><td>法定外税</td><td>法定外</td><td>県・全市町村でなし</td><td class="td-ok">非課税（維持求める）</td></tr>
+        <tr><td>宿泊税（法定外目的税）</td><td>法定外</td><td>未導入</td><td class="td-ok">未導入（新設反対）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="source-note">出典：令和６年度市町村課税状況等の調（高知県）、法定外税の状況（総務省）、高知県公式サイト</p>
+</div>
+
+<!-- ===== 参考：高知県税 各税目の詳細 ===== -->
 <hr class="section-divider">
 <div class="section" id="section-pref">
   <div class="section-header">
-    <h2 class="section-title">I. 高知県税（道府県税）</h2>
+    <h2 class="section-title">参考：高知県税 各税目の詳細</h2>
     <p class="section-desc">地方税法第4条第1項・第2項に定める道府県税。高知県が課税主体となる。普通税9種・目的税1種（法定）＋法定外税（高知県はゼロ）。</p>
   </div>
 
@@ -603,11 +865,11 @@ footer strong{color:var(--text-2);}
   </div>
 </div>
 
-<!-- ===== II. 市町村税 ===== -->
+<!-- ===== 参考：市町村税 各税目の詳細 ===== -->
 <hr class="section-divider">
 <div class="section" id="section-muni">
   <div class="section-header">
-    <h2 class="section-title">II. 市町村税</h2>
+    <h2 class="section-title">参考：市町村税 各税目の詳細</h2>
     <p class="section-desc">地方税法第5条第1項・第2項に定める市町村税。高知県内34市町村が課税主体となる。普通税6種・目的税5種（法定）＋法定外税（高知県内はゼロ）。</p>
   </div>
 
@@ -845,268 +1107,6 @@ footer strong{color:var(--text-2);}
   <div class="warn-box" style="margin-top:8px;">
     <strong>減税の観点：</strong>現在ゼロである状態の維持を求めます。宿泊税をはじめとする法定外税の新設に反対します。<a href="/kochi-genzei/plan/" style="font-size:10px;color:var(--green);background:var(--green-light);padding:1px 6px;border-radius:3px;margin-left:8px;font-weight:700;text-decoration:none;">減税計画②</a>
   </div>
-</div>
-
-<!-- ===== III. 超過課税 ===== -->
-<hr class="section-divider">
-<div class="section" id="section-excess">
-  <div class="section-header">
-    <h2 class="section-title">III. 超過課税</h2>
-    <p class="section-desc">地方税法の定める標準税率を超えて課税しているものの一覧。</p>
-  </div>
-
-  <div class="section-sub">高知県（県民税）</div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>税目</th><th>標準税率</th><th>適用税率</th><th>超過の内容</th><th>期間</th></tr>
-      </thead>
-      <tbody>
-        <tr class="row-ng"><td>県民税　個人均等割</td><td>1,000円</td><td><strong>1,500円</strong></td><td>高知県森林環境税として500円上乗せ</td><td>H15.4.1〜R10.3.31</td></tr>
-        <tr class="row-ng"><td>県民税　法人均等割</td><td>標準額</td><td><strong>+500円/年</strong></td><td>高知県森林環境税として上乗せ</td><td>H15.4.1〜R10.3.31</td></tr>
-        <tr class="row-ng"><td>県民税　法人税割</td><td>0.7%</td><td><strong>1.8%</strong>（軽減1.0%）</td><td>標準を1.1%超過（軽減後0.3%超過）</td><td>S51.9.1〜R9.8.31</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="source-note">出典：高知県森林環境税条例、令和６年度課税状況調（高知県）</p>
-
-  <div class="section-sub" style="margin-top:32px;">市町村（法人税割）</div>
-  <div class="commentary red">
-    34市町村中<strong>15市町村が超過課税。</strong>標準6.0%・制限税率8.4%。
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>税率</th><th>市町村数</th><th>市町村名</th><th>標準比</th></tr>
-      </thead>
-      <tbody>
-        <tr class="row-ng"><td><strong>8.4%</strong> <span class="badge badge-r">制限税率</span></td><td class="td-num">11</td><td>高知市・室戸市・安芸市・南国市・土佐市・須崎市・宿毛市・土佐清水市・四万十市・いの町・日高村</td><td class="td-num td-ng">+2.4%</td></tr>
-        <tr class="row-warn"><td><strong>6.9%</strong></td><td class="td-num">1</td><td>佐川町</td><td class="td-num td-warn">+0.9%</td></tr>
-        <tr class="row-warn"><td><strong>6.7%</strong></td><td class="td-num">3</td><td>越知町・大月町・黒潮町</td><td class="td-num td-warn">+0.7%</td></tr>
-        <tr><td><strong>6.0%</strong> <span class="badge badge-g">標準</span></td><td class="td-num">19</td><td>香南市・香美市・東洋町・奈半利町・田野町・安田町・北川村・馬路村・芸西村・本山町・大豊町・土佐町・大川村・仁淀川町・中土佐町・梼原町・津野町・四万十町・三原村</td><td class="td-ok">標準</td></tr>
-      </tbody>
-      <tfoot>
-        <tr><td><strong>合計</strong></td><td class="td-num"><strong>34</strong></td><td colspan="2"></td></tr>
-      </tfoot>
-    </table>
-  </div>
-  <p class="source-note">出典：令和６年度 市町村課税状況等の調（高知県総務部市町村振興課）</p>
-
-  <div class="section-sub" style="margin-top:32px;">市町村（法人均等割）</div>
-  <div class="commentary red">
-    <strong>10市町村が標準額の1.2倍を課税。</strong>高知市・室戸市・安芸市・南国市・土佐市・須崎市・宿毛市・土佐清水市・四万十市・いの町。
-  </div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>区分</th><th>標準額</th><th>超過額（10市町）</th><th>超過市町村（10）</th></tr>
-      </thead>
-      <tbody>
-        <tr class="row-ng"><td>①号法人（資本金1千万円以下・従業者50人以下等）</td><td>50,000円</td><td><strong>60,000円</strong></td><td rowspan="9" style="vertical-align:middle;">高知市・室戸市・安芸市・南国市・土佐市・須崎市・宿毛市・土佐清水市・四万十市・いの町</td></tr>
-        <tr class="row-ng"><td>②号法人</td><td>120,000円</td><td><strong>144,000円</strong></td></tr>
-        <tr class="row-ng"><td>③号法人</td><td>130,000円</td><td><strong>156,000円</strong></td></tr>
-        <tr class="row-ng"><td>④号法人</td><td>150,000円</td><td><strong>180,000円</strong></td></tr>
-        <tr class="row-ng"><td>⑤号法人</td><td>160,000円</td><td><strong>192,000円</strong></td></tr>
-        <tr class="row-ng"><td>⑥号法人</td><td>400,000円</td><td><strong>480,000円</strong></td></tr>
-        <tr class="row-ng"><td>⑦号法人</td><td>410,000円</td><td><strong>492,000円</strong></td></tr>
-        <tr class="row-ng"><td>⑧号法人</td><td>1,750,000円</td><td><strong>2,100,000円</strong></td></tr>
-        <tr class="row-ng"><td>⑨号法人</td><td>3,000,000円</td><td><strong>3,600,000円</strong></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="source-note">出典：令和６年度 市町村税の税率採用状況（高知県総務部市町村振興課）</p>
-
-  <div class="section-sub" style="margin-top:32px;">市町村（固定資産税）</div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>税率</th><th>市町村数</th><th>市町村名</th><th>標準比</th></tr>
-      </thead>
-      <tbody>
-        <tr class="row-ng"><td><strong>1.5%</strong></td><td class="td-num">2</td><td>高知市・土佐市</td><td class="td-num td-ng">+0.1%</td></tr>
-        <tr><td><strong>1.4%</strong> <span class="badge badge-g">標準</span></td><td class="td-num">32</td><td>その他32市町村</td><td class="td-ok">標準</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="warn-box" style="margin-top:8px;">
-    <strong>減税の観点：</strong>すべての超過課税（県・市町村）の廃止・標準税率化を求めます。<a href="/kochi-genzei/plan/" style="font-size:10px;color:var(--orange);background:var(--orange-light);padding:1px 6px;border-radius:3px;margin-left:8px;font-weight:700;text-decoration:none;">減税計画①</a>
-  </div>
-</div>
-
-<!-- ===== IV. データ集 ===== -->
-<hr class="section-divider">
-<div class="section" id="section-data">
-  <div class="section-header">
-    <h2 class="section-title">IV. データ集</h2>
-    <p class="section-desc">市町村別の各種税務データを掲載します。</p>
-  </div>
-
-  <div class="section-sub">市町村別　個人市町村民税　納税義務者数（令和６年度）</div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>市町村</th><th>均等割 納税者数（人）</th><th>所得割 納税者数（人）</th><th>均等割のみ（人）</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>高知市</td><td class="td-num">161,295</td><td class="td-num">140,805</td><td class="td-num">20,490</td></tr>
-        <tr><td>室戸市</td><td class="td-num">4,834</td><td class="td-num">3,645</td><td class="td-num">1,189</td></tr>
-        <tr><td>安芸市</td><td class="td-num">7,838</td><td class="td-num">6,219</td><td class="td-num">1,619</td></tr>
-        <tr><td>南国市</td><td class="td-num">23,627</td><td class="td-num">19,830</td><td class="td-num">3,797</td></tr>
-        <tr><td>土佐市</td><td class="td-num">12,680</td><td class="td-num">10,223</td><td class="td-num">2,457</td></tr>
-        <tr><td>須崎市</td><td class="td-num">9,194</td><td class="td-num">7,369</td><td class="td-num">1,825</td></tr>
-        <tr><td>宿毛市</td><td class="td-num">8,789</td><td class="td-num">7,039</td><td class="td-num">1,750</td></tr>
-        <tr><td>土佐清水市</td><td class="td-num">5,216</td><td class="td-num">3,933</td><td class="td-num">1,283</td></tr>
-        <tr><td>四万十市</td><td class="td-num">15,607</td><td class="td-num">12,930</td><td class="td-num">2,677</td></tr>
-        <tr><td>香南市</td><td class="td-num">16,849</td><td class="td-num">13,948</td><td class="td-num">2,901</td></tr>
-        <tr><td>香美市</td><td class="td-num">11,652</td><td class="td-num">9,438</td><td class="td-num">2,214</td></tr>
-        <tr><td>東洋町</td><td class="td-num">830</td><td class="td-num">639</td><td class="td-num">191</td></tr>
-        <tr><td>奈半利町</td><td class="td-num">1,239</td><td class="td-num">936</td><td class="td-num">303</td></tr>
-        <tr><td>田野町</td><td class="td-num">1,176</td><td class="td-num">951</td><td class="td-num">225</td></tr>
-        <tr><td>安田町</td><td class="td-num">1,070</td><td class="td-num">820</td><td class="td-num">250</td></tr>
-        <tr><td>北川村</td><td class="td-num">613</td><td class="td-num">470</td><td class="td-num">143</td></tr>
-        <tr><td>馬路村</td><td class="td-num">449</td><td class="td-num">387</td><td class="td-num">62</td></tr>
-        <tr><td>芸西村</td><td class="td-num">1,764</td><td class="td-num">1,395</td><td class="td-num">369</td></tr>
-        <tr><td>本山町</td><td class="td-num">1,494</td><td class="td-num">1,234</td><td class="td-num">260</td></tr>
-        <tr><td>大豊町</td><td class="td-num">1,286</td><td class="td-num">976</td><td class="td-num">310</td></tr>
-        <tr><td>土佐町</td><td class="td-num">1,680</td><td class="td-num">1,328</td><td class="td-num">352</td></tr>
-        <tr><td>大川村</td><td class="td-num">173</td><td class="td-num">141</td><td class="td-num">32</td></tr>
-        <tr><td>いの町</td><td class="td-num">10,616</td><td class="td-num">8,616</td><td class="td-num">2,000</td></tr>
-        <tr><td>仁淀川町</td><td class="td-num">1,898</td><td class="td-num">1,430</td><td class="td-num">468</td></tr>
-        <tr><td>中土佐町</td><td class="td-num">2,545</td><td class="td-num">1,969</td><td class="td-num">576</td></tr>
-        <tr><td>佐川町</td><td class="td-num">5,785</td><td class="td-num">4,652</td><td class="td-num">1,133</td></tr>
-        <tr><td>越知町</td><td class="td-num">2,210</td><td class="td-num">1,751</td><td class="td-num">459</td></tr>
-        <tr><td>梼原町</td><td class="td-num">1,348</td><td class="td-num">1,070</td><td class="td-num">278</td></tr>
-        <tr><td>日高村</td><td class="td-num">2,306</td><td class="td-num">1,806</td><td class="td-num">500</td></tr>
-        <tr><td>津野町</td><td class="td-num">2,418</td><td class="td-num">1,908</td><td class="td-num">510</td></tr>
-        <tr><td>四万十町</td><td class="td-num">6,889</td><td class="td-num">5,379</td><td class="td-num">1,510</td></tr>
-        <tr><td>大月町</td><td class="td-num">1,888</td><td class="td-num">1,440</td><td class="td-num">448</td></tr>
-        <tr><td>三原村</td><td class="td-num">614</td><td class="td-num">485</td><td class="td-num">129</td></tr>
-        <tr><td>黒潮町</td><td class="td-num">4,490</td><td class="td-num">3,403</td><td class="td-num">1,087</td></tr>
-      </tbody>
-      <tfoot>
-        <tr><td><strong>市計</strong></td><td class="td-num"><strong>277,581</strong></td><td class="td-num"><strong>235,379</strong></td><td class="td-num"><strong>42,202</strong></td></tr>
-        <tr><td><strong>町村計</strong></td><td class="td-num"><strong>54,781</strong></td><td class="td-num"><strong>43,186</strong></td><td class="td-num"><strong>11,595</strong></td></tr>
-        <tr><td><strong>合計</strong></td><td class="td-num"><strong>332,362</strong></td><td class="td-num"><strong>278,565</strong></td><td class="td-num"><strong>53,797</strong></td></tr>
-      </tfoot>
-    </table>
-  </div>
-  <p class="source-note">出典：令和６年度課税状況調（１）市町村民税の納税義務者数等（高知県総務部市町村振興課）</p>
-  <div class="warn-box" style="margin-top:8px;">
-    <strong>減税の観点：</strong>均等割のみ課税者53,797人は全納税者（332,362人）の約16%。所得割が非課税となる低所得・高齢層にも一律課税する均等割の引き下げ・廃止が最も直接的な逆進性の是正につながります。<a href="/kochi-genzei/plan/" style="font-size:10px;color:var(--orange);background:var(--orange-light);padding:1px 6px;border-radius:3px;margin-left:8px;font-weight:700;text-decoration:none;">減税計画⑥</a>
-  </div>
-
-  <div class="section-sub" style="margin-top:32px;">市町村別　軽自動車税（種別割）調定額（令和６年度）</div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>市町村</th><th>調定額（千円）</th><th>構成比（県内合計）</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>高知市</td><td class="td-num">1,099,975</td><td class="td-num">39.0%</td></tr>
-        <tr><td>室戸市</td><td class="td-num">55,896</td><td class="td-num">2.0%</td></tr>
-        <tr><td>安芸市</td><td class="td-num">81,215</td><td class="td-num">2.9%</td></tr>
-        <tr><td>南国市</td><td class="td-num">212,222</td><td class="td-num">7.5%</td></tr>
-        <tr><td>土佐市</td><td class="td-num">123,883</td><td class="td-num">4.4%</td></tr>
-        <tr><td>須崎市</td><td class="td-num">95,597</td><td class="td-num">3.4%</td></tr>
-        <tr><td>宿毛市</td><td class="td-num">88,416</td><td class="td-num">3.1%</td></tr>
-        <tr><td>土佐清水市</td><td class="td-num">53,879</td><td class="td-num">1.9%</td></tr>
-        <tr><td>四万十市</td><td class="td-num">154,417</td><td class="td-num">5.5%</td></tr>
-        <tr><td>香南市</td><td class="td-num">145,164</td><td class="td-num">5.2%</td></tr>
-        <tr><td>香美市</td><td class="td-num">109,845</td><td class="td-num">3.9%</td></tr>
-        <tr><td>東洋町</td><td class="td-num">9,346</td><td class="td-num">0.3%</td></tr>
-        <tr><td>奈半利町</td><td class="td-num">14,575</td><td class="td-num">0.5%</td></tr>
-        <tr><td>田野町</td><td class="td-num">12,091</td><td class="td-num">0.4%</td></tr>
-        <tr><td>安田町</td><td class="td-num">12,700</td><td class="td-num">0.5%</td></tr>
-        <tr><td>北川村</td><td class="td-num">7,085</td><td class="td-num">0.3%</td></tr>
-        <tr><td>馬路村</td><td class="td-num">4,531</td><td class="td-num">0.2%</td></tr>
-        <tr><td>芸西村</td><td class="td-num">17,430</td><td class="td-num">0.6%</td></tr>
-        <tr><td>本山町</td><td class="td-num">16,021</td><td class="td-num">0.6%</td></tr>
-        <tr><td>大豊町</td><td class="td-num">17,213</td><td class="td-num">0.6%</td></tr>
-        <tr><td>土佐町</td><td class="td-num">18,767</td><td class="td-num">0.7%</td></tr>
-        <tr><td>大川村</td><td class="td-num">2,005</td><td class="td-num">0.1%</td></tr>
-        <tr><td>いの町</td><td class="td-num">94,342</td><td class="td-num">3.3%</td></tr>
-        <tr><td>仁淀川町</td><td class="td-num">24,308</td><td class="td-num">0.9%</td></tr>
-        <tr><td>中土佐町</td><td class="td-num">27,287</td><td class="td-num">1.0%</td></tr>
-        <tr><td>佐川町</td><td class="td-num">62,126</td><td class="td-num">2.2%</td></tr>
-        <tr><td>越知町</td><td class="td-num">26,230</td><td class="td-num">0.9%</td></tr>
-        <tr><td>梼原町</td><td class="td-num">16,101</td><td class="td-num">0.6%</td></tr>
-        <tr><td>日高村</td><td class="td-num">24,977</td><td class="td-num">0.9%</td></tr>
-        <tr><td>津野町</td><td class="td-num">26,333</td><td class="td-num">0.9%</td></tr>
-        <tr><td>四万十町</td><td class="td-num">86,445</td><td class="td-num">3.1%</td></tr>
-        <tr><td>大月町</td><td class="td-num">21,380</td><td class="td-num">0.8%</td></tr>
-        <tr><td>三原村</td><td class="td-num">7,955</td><td class="td-num">0.3%</td></tr>
-        <tr><td>黒潮町</td><td class="td-num">48,637</td><td class="td-num">1.7%</td></tr>
-      </tbody>
-      <tfoot>
-        <tr><td><strong>市計（11市）</strong></td><td class="td-num"><strong>2,220,509</strong></td><td class="td-num"><strong>78.8%</strong></td></tr>
-        <tr><td><strong>町村計（23町村）</strong></td><td class="td-num"><strong>597,885</strong></td><td class="td-num"><strong>21.2%</strong></td></tr>
-        <tr><td><strong>合計</strong></td><td class="td-num"><strong>2,818,394</strong></td><td class="td-num"><strong>100%</strong></td></tr>
-      </tfoot>
-    </table>
-  </div>
-  <p class="source-note">出典：令和６年度軽自動車税に関する調（高知県総務部市町村振興課）</p>
-</div>
-
-<!-- ===== 全体概況 ===== -->
-<hr class="section-divider">
-<div class="section" id="section-summary">
-  <div class="section-header">
-    <h2 class="section-title">高知の税　全体概況</h2>
-    <p class="section-desc">地方税法第4条・第5条の全税目についての現状と高知減税会の評価。</p>
-  </div>
-
-  <div class="section-sub-2">高知県税（道府県税）</div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>税目</th><th>種別</th><th>実施状況</th><th>評価</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>道府県民税　個人所得割</td><td>普通税</td><td>4%（標準）</td><td class="td-ok">標準</td></tr>
-        <tr class="row-ng"><td>道府県民税　個人均等割</td><td>普通税</td><td>1,500円（標準1,000円）H15〜R10.3</td><td class="td-ng">廃止求める</td></tr>
-        <tr class="row-ng"><td>道府県民税　法人税割</td><td>普通税</td><td>1.8%（標準0.7%）S51〜R9.8</td><td class="td-ng">廃止求める</td></tr>
-        <tr class="row-ng"><td>道府県民税　法人均等割</td><td>普通税</td><td>+500円（標準額超過）H15〜R10.3</td><td class="td-ng">廃止求める</td></tr>
-        <tr><td>事業税</td><td>普通税</td><td>標準税率・超過なし</td><td class="td-ok">標準</td></tr>
-        <tr><td>地方消費税</td><td>普通税</td><td>2.2%（標準）</td><td class="td-ok">標準</td></tr>
-        <tr><td>不動産取得税</td><td>普通税</td><td>3%（特例）・超過なし</td><td class="td-ok">標準</td></tr>
-        <tr><td>道府県たばこ税</td><td>普通税</td><td>930円/千本・超過なし</td><td class="td-ok">標準</td></tr>
-        <tr class="row-warn"><td>ゴルフ場利用税</td><td>普通税</td><td>標準税率・超過なし</td><td class="td-warn">廃止求める</td></tr>
-        <tr class="row-warn"><td>軽油引取税</td><td>普通税</td><td>32.1円/ℓ（暫定税率が恒久化）</td><td class="td-warn">引下げ求める</td></tr>
-        <tr><td>自動車税（種別割）</td><td>普通税</td><td>標準税率・超過なし</td><td class="td-ok">標準</td></tr>
-        <tr class="row-warn"><td>鉱区税</td><td>普通税</td><td>課税中（R6：6,589千円）</td><td class="td-warn">廃止求める</td></tr>
-        <tr class="row-warn"><td>狩猟税</td><td>目的税</td><td>16,842千円（R6）・県税収比0.018%</td><td class="td-warn">廃止求める</td></tr>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="section-sub-2" style="margin-top:24px;">市町村税</div>
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr><th>税目</th><th>種別</th><th>実施状況</th><th>評価</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>市町村民税　個人所得割</td><td>普通税</td><td>6%（標準）・全34市町村</td><td class="td-ok">標準</td></tr>
-        <tr><td>市町村民税　個人均等割</td><td>普通税</td><td>3,000円（標準）・全34市町村</td><td class="td-ok">標準（引下げ求める）</td></tr>
-        <tr class="row-ng"><td>市町村民税　法人税割</td><td>普通税</td><td>15市町村が6.7〜8.4%（標準6%超）</td><td class="td-ng">廃止求める</td></tr>
-        <tr class="row-ng"><td>市町村民税　法人均等割</td><td>普通税</td><td>10市町村が標準額の1.2倍</td><td class="td-ng">廃止求める</td></tr>
-        <tr class="row-ng"><td>固定資産税（超過課税分）</td><td>普通税</td><td>高知市・土佐市が1.5%（標準1.4%）</td><td class="td-ng">廃止求める</td></tr>
-        <tr><td>固定資産税（標準課税分）</td><td>普通税</td><td>1.4%（標準）・32市町村</td><td class="td-ok">標準</td></tr>
-        <tr class="row-warn"><td>軽自動車税（種別割）</td><td>普通税</td><td>標準税率・全34市町村</td><td class="td-warn">引下げ求める</td></tr>
-        <tr><td>市町村たばこ税</td><td>普通税</td><td>6,552円/千本・超過なし</td><td class="td-ok">標準</td></tr>
-        <tr class="row-warn"><td>鉱産税</td><td>普通税</td><td>6市町村が課税（R6：27,981千円）</td><td class="td-warn">廃止求める</td></tr>
-        <tr><td>特別土地保有税</td><td>普通税</td><td>H15以降　全国一律課税停止中</td><td class="td-ok">課税停止（廃止が望ましい）</td></tr>
-        <tr class="row-warn"><td>入湯税</td><td>目的税</td><td>10市町村が課税・合計62,362千円（R6）</td><td class="td-warn">廃止求める</td></tr>
-        <tr class="row-warn"><td>事業所税</td><td>目的税</td><td>高知市のみ課税</td><td class="td-warn">免税点引上げ求める</td></tr>
-        <tr><td>都市計画税</td><td>目的税</td><td>全34市町村でなし</td><td class="td-ok">非課税（維持求める）</td></tr>
-        <tr class="row-warn"><td>水利地益税</td><td>目的税</td><td>いの町のみ・288千円（R6）</td><td class="td-warn">廃止求める</td></tr>
-        <tr><td>国民健康保険税</td><td>目的税</td><td>33市町村が税方式・高知市は料方式</td><td class="td-ok">課税中</td></tr>
-        <tr><td>法定外税</td><td>法定外</td><td>県・全市町村でなし</td><td class="td-ok">非課税（維持求める）</td></tr>
-        <tr><td>宿泊税（法定外目的税）</td><td>法定外</td><td>未導入</td><td class="td-ok">未導入（新設反対）</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="source-note">出典：令和６年度市町村課税状況等の調（高知県）、法定外税の状況（総務省）、高知県公式サイト</p>
 </div>
 
 <div class="join-banner">
