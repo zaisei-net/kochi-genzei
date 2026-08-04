@@ -136,6 +136,10 @@ tr:hover td { background: var(--bg-2); }
 .sheet-exp-label { font-size: 15px; font-weight: 700; color: var(--text); width: 90px; }
 .sheet-num-input { border: none; border-bottom: 1.5px solid var(--border-strong); background: transparent; color: var(--text); font-size: 15px; font-family: inherit; text-align: right; font-variant-numeric: tabular-nums; width: 160px; padding: 2px 4px; }
 .sheet-num-input:focus { outline: none; border-bottom-color: var(--teal); }
+/* 閲覧モード（デフォルト）：数値入力を非インタラクティブに */
+.sheet-wrap:not(.taiken-mode) .sheet-num-input { pointer-events: none; border-bottom-color: transparent; -webkit-appearance: none; -moz-appearance: textfield; }
+.sheet-wrap:not(.taiken-mode) .sheet-num-input::-webkit-outer-spin-button,
+.sheet-wrap:not(.taiken-mode) .sheet-num-input::-webkit-inner-spin-button { display: none; }
 .sheet-num-static { display: inline-block; min-width: 120px; text-align: right; font-size: 14px; font-weight: 700; font-variant-numeric: tabular-nums; color: var(--text); border-bottom: 1.5px solid var(--border); padding: 2px 4px; }
 .sheet-num-static.prefill { color: var(--teal); border-bottom-color: var(--teal); }
 .sheet-num-static.red { color: var(--red); border-bottom-color: var(--red); }
@@ -335,10 +339,14 @@ tr:hover td { background: var(--bg-2); }
     </select>
   </div>
 
-  <div class="sheet-wrap">
+  <div class="sheet-wrap" id="sheet-wrap">
     <div class="sheet-title-row">
       <div class="sheet-title-big">減　税　計　画　シ　ー　ト</div>
       <span class="sheet-meta-label" id="meta-display" style="font-size:13px;color:var(--text-2);"></span>
+      <button id="taiken-btn" onclick="toggleTaiken()" style="font-size:11px;padding:4px 12px;border-radius:4px;border:1px solid var(--teal);color:var(--teal);background:var(--teal-light);cursor:pointer;font-weight:700;white-space:nowrap;">体験する ▶</button>
+    </div>
+    <div id="taiken-banner" style="display:none;margin-bottom:12px;padding:8px 14px;background:var(--orange-light);border:1px solid var(--orange);border-radius:6px;font-size:12px;color:var(--orange);">
+      <strong>体験モード：</strong>数値を自由に変更して試算できます。
     </div>
 
     <!-- 歳出総額 -->
@@ -522,6 +530,17 @@ function toggleTheme() {
   const cur = root.getAttribute('data-theme') || 'light';
   root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
   localStorage.setItem('theme', cur === 'dark' ? 'light' : 'dark');
+}
+function toggleTaiken() {
+  const wrap = document.getElementById('sheet-wrap');
+  const btn  = document.getElementById('taiken-btn');
+  const banner = document.getElementById('taiken-banner');
+  const on = wrap.classList.toggle('taiken-mode');
+  btn.textContent = on ? '◀ 閲覧に戻す' : '体験する ▶';
+  btn.style.borderColor = on ? 'var(--orange)' : 'var(--teal)';
+  btn.style.color       = on ? 'var(--orange)' : 'var(--teal)';
+  btn.style.background  = on ? 'var(--orange-light)' : 'var(--teal-light)';
+  banner.style.display  = on ? '' : 'none';
 }
 (function() {
   const saved = localStorage.getItem('theme');
