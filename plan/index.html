@@ -376,7 +376,7 @@ tr:hover td { background: var(--bg-2); }
           <div class="plan-name">プラン２）入湯税の引下げ <span style="font-weight:400;color:var(--teal);">⑤</span></div>
           <div class="plan-row">
             <span class="plan-row-label">必要額</span>
-            <input type="number" class="sheet-num-input" id="p2-amount" placeholder="0" min="0" oninput="calc()" style="width:110px;">
+            <input type="number" class="sheet-num-input" id="p2-amount" placeholder="0" min="0" oninput="this.style.color='';calc()" style="width:110px;">
             <span class="unit">千円</span>
           </div>
           <p class="note-small">例：150円→100円への引き下げ ≒ 62,362千円×33% ＝ 約20,579千円</p>
@@ -390,7 +390,7 @@ tr:hover td { background: var(--bg-2); }
           <div class="plan-name">プラン３）住民税10%引下げ <span style="font-weight:400;color:var(--teal);">⑥</span></div>
           <div class="plan-row">
             <span class="plan-row-label">必要額</span>
-            <input type="number" class="sheet-num-input" id="p3-amount" placeholder="0" min="0" oninput="calc()" style="width:110px;">
+            <input type="number" class="sheet-num-input" id="p3-amount" placeholder="0" min="0" oninput="this.style.color='';calc()" style="width:110px;">
             <span class="unit">千円</span>
           </div>
           <p class="note-small">個人市民税均等割：標準3,000円×10%＝▲300円。所得割：6%→5.4%。<br>（参考）高知県内市民税均等割のみ：332,362人×300円 ≈ <strong>99,709千円</strong><br><small>※R5まで均等割は3,500円（復興特別税+500円）。R6から3,000円に戻った。県民税均等割（標準1,000円）は別途。</small></p>
@@ -404,7 +404,7 @@ tr:hover td { background: var(--bg-2); }
           <div class="plan-name">プラン４）その他普通税10%引下げ <span style="font-weight:400;color:var(--blue);">⑦</span></div>
           <div class="plan-row">
             <span class="plan-row-label">必要額</span>
-            <input type="number" class="sheet-num-input" id="p4-amount" placeholder="0" min="0" oninput="calc()" style="width:110px;">
+            <input type="number" class="sheet-num-input" id="p4-amount" placeholder="0" min="0" oninput="this.style.color='';calc()" style="width:110px;">
             <span class="unit">千円</span>
           </div>
           <p class="note-small">（参考）軽自動車税のみ：2,818,394千円×10% ＝ <strong>281,839千円</strong></p>
@@ -869,13 +869,20 @@ async function loadMuniData() {
     }
 
     // ─── プラン自動入力 ───
+    const setAutoV = (id, val, color) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.value = (val || val === 0) ? val : '';
+      el.style.color = val ? color : '';
+    };
+
     // プラン２: 入湯税引下げ（33%削減想定 / 香美市は廃止のため対象外）
     const nyuAmt = getTax(td, '入湯税').amount;
     if (nyuAmt > 0 && muniName !== '香美市') {
-      setV('p2-amount', Math.round(nyuAmt * 0.33));
+      setAutoV('p2-amount', Math.round(nyuAmt * 0.33), 'var(--teal)');
     } else {
       const p2 = document.getElementById('p2-amount');
-      if (p2) p2.value = '';
+      if (p2) { p2.value = ''; p2.style.color = ''; }
     }
 
     // プラン３: 住民税（民税）10%引下げ
@@ -883,7 +890,7 @@ async function loadMuniData() {
                     + getTax(td, '法人均等割').amount + getTax(td, '法人税割').amount
                     + (isPref ? (getTax(td, '利子割').amount + getTax(td, '配当割').amount
                                 + getTax(td, '株式等譲渡所得割').amount) : 0);
-    setV('p3-amount', Math.round(juminBase * 0.1));
+    setAutoV('p3-amount', Math.round(juminBase * 0.1), 'var(--teal)');
 
     // プラン４: その他普通税10%引下げ（住民税系を除く普通税合計）
     let otherFutsu = 0;
@@ -899,7 +906,7 @@ async function loadMuniData() {
                  + (getTax(td, '軽自動車税').amount || getTax(td, '軽自動車税（種別割）').amount || 0)
                  + getTax(td, '市町村たばこ税').amount + getTax(td, '鉱産税').amount;
     }
-    setV('p4-amount', Math.round(otherFutsu * 0.1));
+    setAutoV('p4-amount', Math.round(otherFutsu * 0.1), 'var(--blue)');
 
     // 目的税（tax1が「目的税」のもの）
     const mokus = td
