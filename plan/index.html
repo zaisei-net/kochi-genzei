@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ja">
 <head>
 <!-- Google tag (gtag.js) -->
@@ -236,7 +236,7 @@ tr:hover td { background: var(--bg-2); }
 ①市町村民税<strong>法人税割</strong>（15市町村・6.7〜8.4%、うち11市町村が制限税率8.4%）<br>
 ②市町村民税<strong>法人均等割</strong>（10市町村・標準額の1.2倍）<br>
 ③<strong>固定資産税</strong>（高知市・土佐市・1.5%、標準1.4%）<br>
-④道府県民税<strong>法人税割・個人均等割・法人均等割</strong>（高知県・各超過課税実施中）</div>
+④県民税<strong>法人税割・個人均等割・法人均等割</strong>（高知県・各超過課税実施中）</div>
     </div>
     <div class="goal-card">
       <div class="goal-num">②</div>
@@ -386,7 +386,7 @@ tr:hover td { background: var(--bg-2); }
             <input type="number" class="sheet-num-input" id="p3-amount" placeholder="0" min="0" oninput="calc()" style="width:110px;">
             <span class="unit">千円</span>
           </div>
-          <p class="note-small">個人市民税均等割：標準3,000円×10%＝▲300円。所得割：6%→5.4%。<br>（参考）高知県内市民税均等割のみ：332,362人×300円 ≈ <strong>99,709千円</strong><br><small>※R5まで均等割は3,500円（復興特別税+500円）。R6から3,000円に戻った。道府県民税均等割（標準1,000円）は別途。</small></p>
+          <p class="note-small">個人市民税均等割：標準3,000円×10%＝▲300円。所得割：6%→5.4%。<br>（参考）高知県内市民税均等割のみ：332,362人×300円 ≈ <strong>99,709千円</strong><br><small>※R5まで均等割は3,500円（復興特別税+500円）。R6から3,000円に戻った。県民税均等割（標準1,000円）は別途。</small></p>
           <div class="plan-row" style="margin-top:8px;">
             <span class="plan-row-label">削減率</span>
             <span id="p3-rate" style="font-size:14px;font-weight:700;color:var(--teal);">―</span>
@@ -464,7 +464,7 @@ tr:hover td { background: var(--bg-2); }
       <tbody>
         <tr>
           <td><strong>① 超過課税の廃止</strong></td>
-          <td>法人税割（15市町村・6.7〜8.4%、うち11市町村が制限税率8.4%）／法人均等割（10市町村・標準額の1.2倍）／固定資産税（高知市・土佐市・1.5%）／道府県民税（高知県・法人税割1.8%・個人均等割1,500円・法人均等割+500円）</td>
+          <td>法人税割（15市町村・6.7〜8.4%、うち11市町村が制限税率8.4%）／法人均等割（10市町村・標準額の1.2倍）／固定資産税（高知市・土佐市・1.5%）／県民税（高知県・法人税割1.8%・個人均等割1,500円・法人均等割+500円）</td>
           <td><a href="/kochi-genzei/zei/#section-1">税の状況 ①</a></td>
           <td>各議会の条例改正が必要</td>
         </tr>
@@ -529,7 +529,7 @@ const _NONE = `<td style="color:var(--text-3);text-align:right;font-size:12px;">
 
 function renderPrefCols() {
   document.getElementById('sheet-left-col').innerHTML = `
-<div class="sheet-col-title">道府県民税</div>
+<div class="sheet-col-title">県民税</div>
 <table class="stax-table">
   <thead><tr><th>項目</th><th>収入済額（千円）</th><th>超過課税分（千円）</th><th>10%減税額（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
   <tbody>
@@ -931,7 +931,7 @@ function calc() {
   setTxt('d-shotoku-10',     fmt(Math.round(n('s-shotoku')     * 0.1)));
   setTxt('d-hojin-kinto-10', fmt(Math.round(n('s-hojin-kinto') * 0.1)));
   setTxt('d-hojin-wari-10',  fmt(Math.round(n('s-hojin-wari')  * 0.1)));
-  // 10%減税額（道府県民税のみ）
+  // 10%減税額（県民税のみ）
   setTxt('d-rishi-10',       fmt(Math.round(n('s-rishi')       * 0.1)));
   setTxt('d-haitou-10',      fmt(Math.round(n('s-haitou')      * 0.1)));
   setTxt('d-kabushiki-10',   fmt(Math.round(n('s-kabushiki')   * 0.1)));
