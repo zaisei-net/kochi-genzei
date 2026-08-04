@@ -130,6 +130,7 @@ tr:hover td { background: var(--bg-2); }
 .row-ng td { background: color-mix(in srgb, var(--red-light) 40%, transparent); }
 .row-warn td { background: color-mix(in srgb, var(--orange-light) 40%, transparent); }
 .row-highlight td { font-weight: 700; background: color-mix(in srgb, var(--teal-light) 30%, transparent); }
+.row-ok td { background: color-mix(in srgb, var(--green-light) 40%, transparent); }
 .badge { display: inline-flex; align-items: center; font-size: 10px; font-weight: 600; padding: 1px 6px; border-radius: 3px; white-space: nowrap; }
 .badge-r { background: var(--red-light); color: var(--red); }
 .badge-o { background: var(--orange-light); color: var(--orange); }
@@ -177,6 +178,12 @@ footer strong { color: var(--text-2); }
 .join-banner-text{font-size:.95rem;color:rgba(255,255,255,.95);line-height:1.6;font-weight:500;}
 .join-banner-btn{font-size:.86rem;font-weight:700;color:var(--blue);background:#fff;border-radius:6px;padding:.6rem 1.4rem;white-space:nowrap;text-decoration:none;flex-shrink:0;}
 .join-banner-btn:hover{opacity:.9;text-decoration:none;}
+
+/* Quick nav */
+.quick-nav { display: flex; gap: 6px; flex-wrap: wrap; padding: 10px 24px; background: var(--bg-2); border-bottom: 1px solid var(--border); align-items: center; }
+.quick-nav-label { font-size: 11px; color: var(--text-3); white-space: nowrap; }
+.quick-nav a { font-size: 11px; padding: 3px 10px; border-radius: 4px; background: var(--bg); border: 1px solid var(--border); color: var(--text-2); text-decoration: none; white-space: nowrap; }
+.quick-nav a:hover { border-color: var(--teal); color: var(--teal); }
 
 @media (max-width: 640px) {
   .topbar { gap: 12px; padding: 0 16px; }
@@ -258,6 +265,17 @@ footer strong { color: var(--text-2); }
   </div>
 </div>
 
+<div class="quick-nav">
+  <span class="quick-nav-label">セクション：</span>
+  <a href="#section-1">① 超過課税</a>
+  <a href="#section-2">② 法定外税</a>
+  <a href="#section-3">③ 法定任意税</a>
+  <a href="#section-4">④ 赤字税・不採算税</a>
+  <a href="#section-5">⑤ 法定目的税</a>
+  <a href="#section-6">⑥ 軽自動車税</a>
+  <a href="#section-summary">全体概況</a>
+</div>
+
 <!-- ======================================
      ① 超過課税
 ====================================== -->
@@ -326,6 +344,61 @@ footer strong { color: var(--text-2); }
   <div class="warn-box" style="margin-top:16px;">
     <strong>減税の観点：</strong>個人・法人均等割への上乗せ（森林環境税）は令和10年3月末、法人税割の超過課税は令和9年8月末に終了予定です。期限到来後は速やかに廃止・標準税率化し、超過課税を恒久化しないことを求めます。
   </div>
+
+  <div class="section-sub" style="margin-top:36px;">個人住民税の税率（参考）</div>
+  <div class="commentary blue">
+    <strong>個人住民税は所得割（所得比例）と均等割（定額）の合算。</strong>所得割は県民税4%・市町村民税6%の合計10%が標準で、高知県内は全市町村が標準税率を適用。均等割は高知県が500円の超過課税（高知県森林環境税）を実施中（令和10年3月末まで）。均等割のみで一律課税されるため、低所得者・高齢者への逆進性が高い。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>課税主体</th>
+          <th>区分</th>
+          <th>標準税率</th>
+          <th>高知県・市町村の適用</th>
+          <th>超過状況</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td rowspan="2">県民税</td>
+          <td>所得割</td>
+          <td>4%</td>
+          <td>4%（全市町村・標準）</td>
+          <td class="td-ok">超過なし</td>
+        </tr>
+        <tr class="row-ng">
+          <td>均等割</td>
+          <td>1,000円</td>
+          <td><strong>1,500円</strong>（500円超過）</td>
+          <td class="td-ng">超過課税中<br><small>H15〜R10.3</small></td>
+        </tr>
+        <tr>
+          <td rowspan="2">市町村民税</td>
+          <td>所得割</td>
+          <td>6%</td>
+          <td>6%（全市町村・標準）</td>
+          <td class="td-ok">超過なし</td>
+        </tr>
+        <tr>
+          <td>均等割</td>
+          <td>3,000円</td>
+          <td>3,000円（全市町村・標準）</td>
+          <td class="td-ok">超過なし</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2"><strong>個人住民税 合計</strong></td>
+          <td>所得割10%＋均等割4,000円</td>
+          <td><strong>所得割10%＋均等割4,500円</strong>（R10.3まで）</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p class="source-note">出典：地方税法（標準税率）、高知県森林環境税条例、令和６年度課税状況調（高知県）</p>
 
   <div class="section-sub" style="margin-top:36px;">高知県内市町村（市町村民税　法人税割）</div>
   <div class="commentary">
@@ -515,6 +588,33 @@ footer strong { color: var(--text-2); }
   <div class="warn-box" style="margin-top:16px;">
     <strong>減税の観点：</strong>現在ゼロである状況の維持を求めます。特に宿泊税の新設は宿泊業者・観光客への直接負担増となるため、高知減税会は強く反対します。
   </div>
+
+  <div class="section-sub" style="margin-top:32px;">宿泊税（全国の状況と高知）</div>
+  <div class="info-box">
+    <strong>高知県・県内全市町村で宿泊税は課税されていません（令和８年時点）。</strong>
+    宿泊税は宿泊者に課す法定外目的税。東京都・大阪府・京都市・福岡市・金沢市・北海道倶知安町など全国10を超える自治体で導入済みであり、さらに導入を検討する動きが広がっている。高知県・県内市町村への導入の動きは現時点でない。
+  </div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>自治体</th>
+          <th>税率（主な例）</th>
+          <th>備考</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>東京都</td><td>1泊1万円未満：非課税／1〜1.5万円：100円／1.5万円以上：200円</td><td>平成14年導入</td></tr>
+        <tr><td>大阪府</td><td>1泊7千円未満：非課税／7千〜2万円：200円／2万円以上：300円</td><td>平成29年導入</td></tr>
+        <tr><td>京都市</td><td>1泊2万円未満：200円〜 / 段階制</td><td>平成30年導入</td></tr>
+        <tr><td>福岡市</td><td>1泊1万円未満：50円／以上：200円</td><td>令和元年導入</td></tr>
+        <tr class="row-ok"><td>高知県・県内市町村</td><td>—</td><td class="td-ok">未導入（なし）</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warn-box" style="margin-top:12px;">
+    <strong>減税の観点：</strong>宿泊税は宿泊者・宿泊業者への直接的な負担増となり、観光客誘致と相反します。観光立県を目指す高知にとって逆効果であり、高知減税会は宿泊税の導入に反対します。
+  </div>
 </div>
 
 <!-- ======================================
@@ -560,6 +660,9 @@ footer strong { color: var(--text-2); }
   </div>
   <div class="alert-box">
     いの町の令和６年度水利地益税収は <strong>288千円（約28.8万円）</strong>。税収が極めて少額であり、赤字税の可能性が高い（未検証。詳細は④参照）。
+  </div>
+  <div class="warn-box" style="margin-top:8px;">
+    <strong>減税の観点：</strong>税収288千円は職員1人の人件費にも及ばない水準で、徴収コストが税収を上回る赤字税の可能性があります（未検証）。全国的に廃止が進む希少な税目であり、高知減税会はいの町に廃止を求めます。
   </div>
 
   <div class="section-sub" style="margin-top:32px;">国民健康保険税</div>
@@ -672,6 +775,9 @@ footer strong { color: var(--text-2); }
     </table>
   </div>
   <p class="source-note">出典：令和６年度課税状況調（１）市町村民税の納税義務者数等（高知県総務部市町村振興課）</p>
+  <div class="warn-box" style="margin-top:16px;">
+    <strong>減税の観点：</strong>均等割のみ課税者は53,797人で、納税者全体（332,362人）の約16%を占めます。所得割が非課税となる低所得・高齢層にも一律課税される均等割の引き下げ・廃止は、最も直接的な逆進性の是正につながります。高知減税会は均等割の引き下げを求めます。
+  </div>
 </div>
 
 <!-- ======================================
@@ -963,6 +1069,101 @@ footer strong { color: var(--text-2); }
   <div class="commentary">
     <strong>高知県内34市町村の令和６年度軽自動車税（種別割）調定額の合計は約28.2億円。</strong>市部が約22.2億円（78.8%）、町村部が約6.0億円（21.2%）を占める。高知市だけで全体の約39%を占める。
   </div>
+
+  <div class="section-sub" style="margin-top:8px;">標準税率（車種別・年額）</div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>車種</th>
+          <th>用途・区分</th>
+          <th>平成27年4月以降登録（新税率）</th>
+          <th>平成27年3月以前登録（旧税率）</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>原動機付自転車</td>
+          <td>50cc以下（ミニカー除く）</td>
+          <td class="td-num">2,000円</td>
+          <td class="td-num">1,000円</td>
+        </tr>
+        <tr>
+          <td>原動機付自転車</td>
+          <td>50cc超90cc以下</td>
+          <td class="td-num">2,000円</td>
+          <td class="td-num">1,200円</td>
+        </tr>
+        <tr>
+          <td>原動機付自転車</td>
+          <td>90cc超125cc以下</td>
+          <td class="td-num">2,400円</td>
+          <td class="td-num">1,600円</td>
+        </tr>
+        <tr>
+          <td>ミニカー</td>
+          <td>50cc以下・三輪以上</td>
+          <td class="td-num">3,700円</td>
+          <td class="td-num">2,500円</td>
+        </tr>
+        <tr>
+          <td>軽二輪</td>
+          <td>125cc超250cc以下</td>
+          <td class="td-num">3,600円</td>
+          <td class="td-num">2,400円</td>
+        </tr>
+        <tr>
+          <td>小型二輪</td>
+          <td>250cc超</td>
+          <td class="td-num">6,000円</td>
+          <td class="td-num">4,000円</td>
+        </tr>
+        <tr>
+          <td>小型特殊自動車</td>
+          <td>農耕作業用</td>
+          <td class="td-num">2,400円</td>
+          <td class="td-num">1,600円</td>
+        </tr>
+        <tr>
+          <td>小型特殊自動車</td>
+          <td>その他</td>
+          <td class="td-num">5,900円</td>
+          <td class="td-num">4,700円</td>
+        </tr>
+        <tr>
+          <td>軽三輪</td>
+          <td>—</td>
+          <td class="td-num">3,900円</td>
+          <td class="td-num">3,100円</td>
+        </tr>
+        <tr class="row-ng">
+          <td rowspan="2"><strong>軽四輪（乗用）</strong></td>
+          <td>自家用</td>
+          <td class="td-num"><strong>10,800円</strong></td>
+          <td class="td-num">7,200円</td>
+        </tr>
+        <tr class="row-ng">
+          <td>営業用</td>
+          <td class="td-num"><strong>6,900円</strong></td>
+          <td class="td-num">5,500円</td>
+        </tr>
+        <tr>
+          <td rowspan="2">軽四輪（貨物）</td>
+          <td>自家用</td>
+          <td class="td-num">5,000円</td>
+          <td class="td-num">4,000円</td>
+        </tr>
+        <tr>
+          <td>営業用</td>
+          <td class="td-num">3,800円</td>
+          <td class="td-num">3,000円</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="source-note">注：18年超の軽四輪（経年重課）は新税率の1.25倍。グリーン化特例（低燃費車）による軽減措置あり。高知県内全市町村は標準税率を適用（超過課税なし）。</p>
+
+  <div class="section-sub" style="margin-top:24px;">市町村別　調定額（令和６年度）</div>
   <div class="table-wrap">
     <table>
       <thead>
@@ -1037,7 +1238,7 @@ footer strong { color: var(--text-2); }
      参考：全体まとめ
 ====================================== -->
 <hr class="section-divider">
-<div class="section">
+<div class="section" id="section-summary">
   <div class="section-header">
     <h2 class="section-title">高知の税　全体概況</h2>
   </div>
@@ -1054,39 +1255,39 @@ footer strong { color: var(--text-2); }
       <tbody>
         <tr class="row-ng">
           <td>① 超過課税</td>
-          <td>県民税 法人税割（高知県）</td>
-          <td>1.8%（標準0.7%）S51〜R9.8</td>
-          <td class="td-ng">課税中</td>
-        </tr>
-        <tr class="row-ng">
-          <td>① 超過課税</td>
           <td>県民税 個人均等割（高知県）</td>
           <td>1,500円（標準1,000円）H15〜R10.3</td>
-          <td class="td-ng">課税中</td>
+          <td class="td-ng">課税中（期限付き）</td>
         </tr>
         <tr class="row-ng">
           <td>① 超過課税</td>
           <td>県民税 法人均等割（高知県）</td>
           <td>+500円 H15〜R10.3</td>
-          <td class="td-ng">課税中</td>
+          <td class="td-ng">課税中（期限付き）</td>
+        </tr>
+        <tr class="row-ng">
+          <td>① 超過課税</td>
+          <td>県民税 法人税割（高知県）</td>
+          <td>1.8%（標準0.7%）S51〜R9.8</td>
+          <td class="td-ng">課税中（期限付き）</td>
         </tr>
         <tr class="row-ng">
           <td>① 超過課税</td>
           <td>市町村民税 法人税割（15市町村）</td>
           <td>6.7〜8.4%（標準6%）</td>
-          <td class="td-ng">課税中</td>
+          <td class="td-ng">廃止求める</td>
         </tr>
         <tr class="row-ng">
           <td>① 超過課税</td>
           <td>市町村民税 法人均等割（10市町村）</td>
-          <td>60千円〜（標準50千円〜）</td>
-          <td class="td-ng">課税中</td>
+          <td>標準額の1.2倍</td>
+          <td class="td-ng">廃止求める</td>
         </tr>
         <tr class="row-ng">
           <td>① 超過課税</td>
           <td>固定資産税（高知市・土佐市）</td>
           <td>1.5%（標準1.4%）</td>
-          <td class="td-ng">課税中</td>
+          <td class="td-ng">引下げ求める</td>
         </tr>
         <tr>
           <td>② 法定外税</td>
@@ -1095,16 +1296,22 @@ footer strong { color: var(--text-2); }
           <td class="td-ok">非課税</td>
         </tr>
         <tr>
+          <td>② 法定外目的税</td>
+          <td>宿泊税</td>
+          <td>県・全市町村でなし</td>
+          <td class="td-ok">未導入（維持求める）</td>
+        </tr>
+        <tr>
           <td>③ 法定任意税</td>
           <td>都市計画税</td>
           <td>全市町村でなし</td>
-          <td class="td-ok">非課税</td>
+          <td class="td-ok">非課税（維持求める）</td>
         </tr>
         <tr class="row-warn">
           <td>③ 法定任意税</td>
-          <td>水利地益税</td>
-          <td>いの町のみ</td>
-          <td class="td-warn">課税中</td>
+          <td>水利地益税（いの町）</td>
+          <td>288千円（R6決算）</td>
+          <td class="td-warn">廃止求める</td>
         </tr>
         <tr>
           <td>③ 法定任意税</td>
@@ -1115,38 +1322,44 @@ footer strong { color: var(--text-2); }
         <tr class="row-ng">
           <td>④ 赤字税（候補）</td>
           <td>水利地益税（いの町）</td>
-          <td>288千円（R6決算）</td>
-          <td class="td-warn">未検証</td>
+          <td>288千円（R6決算）・徴収コスト未検証</td>
+          <td class="td-warn">要検証</td>
         </tr>
         <tr class="row-ng">
           <td>④ 赤字税（候補）</td>
           <td>入湯税（香美市）</td>
-          <td>492千円（R6決算）</td>
-          <td class="td-warn">未検証</td>
+          <td>492千円（R6決算）・徴収コスト未検証</td>
+          <td class="td-warn">要検証</td>
         </tr>
         <tr class="row-warn">
           <td>④ 不採算税</td>
           <td>狩猟税（高知県）</td>
           <td>16,842千円（R6）・県税収に占める構成比0.018%</td>
-          <td class="td-warn">不採算税</td>
+          <td class="td-warn">廃止求める</td>
         </tr>
         <tr>
           <td>⑤ 法定目的税</td>
           <td>狩猟税（高知県）</td>
-          <td>課税中・16,842千円（R6決算）</td>
-          <td class="td-warn">不採算税</td>
+          <td>16,842千円（R6決算）・不採算税と判定</td>
+          <td class="td-warn">廃止求める</td>
         </tr>
         <tr>
           <td>⑤ 法定目的税</td>
-          <td>入湯税（10市町村）</td>
+          <td>入湯税（課税10市町村）</td>
           <td>合計62,362千円（R6決算）</td>
-          <td class="td-warn">香美市は不採算税</td>
+          <td class="td-warn">廃止・引下げ求める</td>
         </tr>
         <tr>
           <td>⑤ 法定目的税</td>
           <td>事業所税（高知市）</td>
           <td>高知市のみ</td>
-          <td class="td-warn">課税中</td>
+          <td class="td-warn">免税点引上げ求める</td>
+        </tr>
+        <tr>
+          <td>⑥ 軽自動車税</td>
+          <td>軽自動車税（種別割）・34市町村</td>
+          <td>調定合計約28.2億円（R6）・全市町村が標準税率</td>
+          <td class="td-warn">税率引下げ求める</td>
         </tr>
       </tbody>
     </table>
