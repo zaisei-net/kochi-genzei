@@ -177,6 +177,15 @@ tr:hover td { background: var(--bg-2); }
 .plan-pct-value { font-size: 26px; font-weight: 900; color: var(--red); font-variant-numeric: tabular-nums; }
 .note-small { font-size: 11px; color: var(--text-3); margin-top: 4px; line-height: 1.5; }
 
+/* 体験コーナー詳細パネル */
+.taiken-extra { display: none; margin-top: 10px; padding: 10px 12px; background: var(--bg-2); border-radius: 6px; border: 1px solid var(--border); }
+.taiken-mode .taiken-extra { display: block; }
+.taiken-row { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 6px; font-size: 12px; color: var(--text-2); }
+.taiken-row:last-child { margin-bottom: 0; }
+.taiken-input { width: 62px; border: none; border-bottom: 1.5px solid var(--border-strong); background: transparent; color: var(--text); font-size: 13px; font-weight: 700; text-align: right; font-family: inherit; padding: 1px 3px; }
+.taiken-input:focus { outline: none; border-bottom-color: var(--teal); }
+.taiken-label { font-size: 11px; color: var(--text-3); font-weight: 600; white-space: nowrap; }
+
 /* 自治体セレクター */
 .muni-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
 .muni-select { padding: 6px 10px; border: 1px solid var(--border-strong); border-radius: 5px; background: var(--bg); color: var(--text); font-size: 13px; font-family: inherit; cursor: pointer; }
@@ -387,7 +396,19 @@ tr:hover td { background: var(--bg-2); }
             <input type="number" class="sheet-num-input" id="p2-amount" placeholder="0" min="0" oninput="this.style.color='';this.style.fontWeight='';calc()" style="width:110px;">
             <span class="unit">千円</span>
           </div>
-          <p class="note-small">例：150円→100円への引き下げ ≒ 62,362千円×33% ＝ 約20,579千円</p>
+          <!-- 体験コーナー: 入湯税 税率入力 -->
+          <div class="taiken-extra">
+            <div class="taiken-label" style="margin-bottom:8px;">税率を変えて試算</div>
+            <div class="taiken-row">
+              <span>現行</span>
+              <input type="number" class="taiken-input" id="p2-rate-cur" value="150" min="1" oninput="calcP2Taiken()">
+              <span>円/人泊 → 目標</span>
+              <input type="number" class="taiken-input" id="p2-rate-new" value="100" min="0" oninput="calcP2Taiken()">
+              <span>円/人泊</span>
+              <span id="p2-taiken-pct" style="color:var(--teal);font-weight:700;font-size:11px;"></span>
+            </div>
+          </div>
+          <p class="note-small">例：150円→100円への引き下げ ≒ 33%削減</p>
           <div class="plan-row" style="margin-top:8px;">
             <span class="plan-row-label">削減率</span>
             <span id="p2-rate" style="font-size:14px;font-weight:700;color:var(--teal);">―</span>
@@ -395,13 +416,37 @@ tr:hover td { background: var(--bg-2); }
         </div>
 
         <div class="plan-section">
-          <div class="plan-name">プラン３）住民税10%引下げ <span style="font-weight:400;color:var(--teal);">⑥</span></div>
+          <div class="plan-name">プラン３）住民税引下げ <span style="font-weight:400;color:var(--teal);">⑥</span></div>
           <div class="plan-row">
             <span class="plan-row-label">必要額</span>
             <input type="number" class="sheet-num-input" id="p3-amount" placeholder="0" min="0" oninput="this.style.color='';this.style.fontWeight='';calc()" style="width:110px;">
             <span class="unit">千円</span>
           </div>
-          <p class="note-small">個人市民税均等割：標準3,000円×10%＝▲300円。所得割：6%→5.4%。<br>（参考）高知県内市民税均等割のみ：332,362人×300円 ≈ <strong>99,709千円</strong><br><small>※R5まで均等割は3,500円（復興特別税+500円）。R6から3,000円に戻った。県民税均等割（標準1,000円）は別途。</small></p>
+          <!-- 体験コーナー: 住民税 各項目の減税率 -->
+          <div class="taiken-extra">
+            <div class="taiken-label" style="margin-bottom:8px;">項目ごとに減税率を指定</div>
+            <div class="taiken-row">
+              <span style="min-width:90px;">個人均等割</span>
+              <input type="number" class="taiken-input" id="p3-kinto-unit" min="0" oninput="calcP3TaikenFromUnit()">
+              <span>円/人</span>
+              <span style="color:var(--text-3);">or</span>
+              <input type="number" class="taiken-input" id="p3-kinto-pct" value="10" min="0" max="100" step="0.1" oninput="calcP3TaikenFromPct()">
+              <span>% 減税</span>
+            </div>
+            <div class="taiken-row">
+              <span style="min-width:90px;">所得割</span>
+              <span style="min-width:90px;color:var(--text-3);font-size:11px;">（収入ベース）</span>
+              <input type="number" class="taiken-input" id="p3-shotoku-pct" value="10" min="0" max="100" step="0.1" oninput="calcP3TaikenFromPct()">
+              <span>% 減税</span>
+            </div>
+            <div class="taiken-row">
+              <span style="min-width:90px;">法人均等割<br>法人税割</span>
+              <span style="min-width:90px;color:var(--text-3);font-size:11px;">（収入ベース）</span>
+              <input type="number" class="taiken-input" id="p3-hojin-pct" value="10" min="0" max="100" step="0.1" oninput="calcP3TaikenFromPct()">
+              <span>% 減税</span>
+            </div>
+          </div>
+          <p class="note-small">個人均等割：標準3,000円（市）・1,000円（県）。所得割：6%（市）・4%（県）標準。</p>
           <div class="plan-row" style="margin-top:8px;">
             <span class="plan-row-label">削減率</span>
             <span id="p3-rate" style="font-size:14px;font-weight:700;color:var(--teal);">―</span>
@@ -409,13 +454,22 @@ tr:hover td { background: var(--bg-2); }
         </div>
 
         <div class="plan-section">
-          <div class="plan-name">プラン４）その他普通税10%引下げ <span style="font-weight:400;color:var(--blue);">⑦</span></div>
+          <div class="plan-name">プラン４）その他普通税引下げ <span style="font-weight:400;color:var(--blue);">⑦</span></div>
           <div class="plan-row">
             <span class="plan-row-label">必要額</span>
             <input type="number" class="sheet-num-input" id="p4-amount" placeholder="0" min="0" oninput="this.style.color='';this.style.fontWeight='';calc()" style="width:110px;">
             <span class="unit">千円</span>
           </div>
-          <p class="note-small">（参考）軽自動車税のみ：2,818,394千円×10% ＝ <strong>281,839千円</strong></p>
+          <!-- 体験コーナー: 普通税 一律減税率 -->
+          <div class="taiken-extra">
+            <div class="taiken-label" style="margin-bottom:8px;">一律減税率を指定</div>
+            <div class="taiken-row">
+              <span>住民税系以外の普通税を一律</span>
+              <input type="number" class="taiken-input" id="p4-pct" value="10" min="0" max="100" step="0.1" oninput="calcP4Taiken()">
+              <span>% 引き下げ</span>
+            </div>
+          </div>
+          <p class="note-small">固定資産税・軽自動車税・事業税・たばこ税・自動車税等が対象。</p>
           <div class="plan-row" style="margin-top:8px;">
             <span class="plan-row-label">削減率</span>
             <span id="p4-rate" style="font-size:14px;font-weight:700;color:var(--blue);">―</span>
@@ -531,6 +585,105 @@ function toggleTheme() {
   root.setAttribute('data-theme', cur === 'dark' ? 'light' : 'dark');
   localStorage.setItem('theme', cur === 'dark' ? 'light' : 'dark');
 }
+function setAutoV(id, val, color) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  el.value = (val || val === 0) ? val : '';
+  el.style.color = val ? color : '';
+  el.style.fontWeight = val ? '800' : '';
+}
+
+// ─── 体験コーナー計算ヘルパー ───
+let _taikenNyuAmt    = 0;  // 入湯税収入（プラン２用）
+let _taikenOtherFutsu = 0; // 住民税系以外の普通税合計（プラン４用）
+let _taikenIsPref    = false;
+
+function isTaiken() {
+  return document.getElementById('sheet-wrap')?.classList.contains('taiken-mode');
+}
+
+function calcP2Taiken() {
+  if (!isTaiken()) return;
+  const cur = parseFloat(document.getElementById('p2-rate-cur')?.value) || 150;
+  const nw  = parseFloat(document.getElementById('p2-rate-new')?.value) || 0;
+  const amt = _taikenNyuAmt;
+  if (cur > 0 && amt > 0) {
+    const reduction = Math.round(amt * Math.max(0, 1 - nw / cur));
+    setAutoV('p2-amount', reduction, 'var(--teal)');
+    const pctEl = document.getElementById('p2-taiken-pct');
+    if (pctEl) pctEl.textContent = '→ ' + ((1 - nw / cur) * 100).toFixed(1) + '%削減';
+  }
+  calc();
+}
+
+function calcP3Total() {
+  const kintoPct   = (parseFloat(document.getElementById('p3-kinto-pct')?.value)   || 0) / 100;
+  const shotokuPct = (parseFloat(document.getElementById('p3-shotoku-pct')?.value) || 0) / 100;
+  const hojinPct   = (parseFloat(document.getElementById('p3-hojin-pct')?.value)   || 0) / 100;
+  const extraPct   = _taikenIsPref ? hojinPct : 0;
+  return Math.round(
+    n('s-kojin-kinto') * kintoPct
+    + n('s-shotoku')   * shotokuPct
+    + n('s-hojin-kinto') * hojinPct
+    + n('s-hojin-wari')  * hojinPct
+    + (n('s-rishi') + n('s-haitou') + n('s-kabushiki')) * extraPct
+  );
+}
+
+function calcP3TaikenFromPct() {
+  if (!isTaiken()) return;
+  // 均等割%→円/人 に逆算
+  const standard = _taikenIsPref ? 1000 : 3000;
+  const kintoPct = parseFloat(document.getElementById('p3-kinto-pct')?.value) || 0;
+  const unitEl = document.getElementById('p3-kinto-unit');
+  if (unitEl) unitEl.value = Math.round(standard * (1 - kintoPct / 100));
+  setAutoV('p3-amount', calcP3Total(), 'var(--teal)');
+  calc();
+}
+
+function calcP3TaikenFromUnit() {
+  if (!isTaiken()) return;
+  const standard = _taikenIsPref ? 1000 : 3000;
+  const unit = parseFloat(document.getElementById('p3-kinto-unit')?.value);
+  if (!isNaN(unit) && standard > 0) {
+    const pct = Math.max(0, (standard - unit) / standard * 100);
+    const pctEl = document.getElementById('p3-kinto-pct');
+    if (pctEl) pctEl.value = pct.toFixed(1);
+  }
+  setAutoV('p3-amount', calcP3Total(), 'var(--teal)');
+  calc();
+}
+
+function calcP4Taiken() {
+  if (!isTaiken()) return;
+  const pct = (parseFloat(document.getElementById('p4-pct')?.value) || 0) / 100;
+  setAutoV('p4-amount', Math.round(_taikenOtherFutsu * pct), 'var(--blue)');
+  calc();
+}
+
+function initTaikenInputs(isPref, nyuAmt, otherFutsu) {
+  _taikenNyuAmt     = nyuAmt;
+  _taikenOtherFutsu = otherFutsu;
+  _taikenIsPref     = isPref;
+  // 入湯税
+  const rCur = document.getElementById('p2-rate-cur');
+  const rNew = document.getElementById('p2-rate-new');
+  if (rCur) rCur.value = 150;
+  if (rNew) rNew.value = 100;
+  const pctEl = document.getElementById('p2-taiken-pct');
+  if (pctEl) pctEl.textContent = '→ 33.3%削減';
+  // 住民税
+  const standard = isPref ? 1000 : 3000;
+  const unitEl = document.getElementById('p3-kinto-unit');
+  if (unitEl) unitEl.value = Math.round(standard * 0.9);
+  ['p3-kinto-pct','p3-shotoku-pct','p3-hojin-pct'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.value = 10;
+  });
+  // 普通税
+  const p4pct = document.getElementById('p4-pct');
+  if (p4pct) p4pct.value = 10;
+}
+
 function toggleTaiken() {
   const wrap = document.getElementById('sheet-wrap');
   const btn  = document.getElementById('taiken-btn');
@@ -888,13 +1041,6 @@ async function loadMuniData() {
     }
 
     // ─── プラン自動入力 ───
-    const setAutoV = (id, val, color) => {
-      const el = document.getElementById(id);
-      if (!el) return;
-      el.value = (val || val === 0) ? val : '';
-      el.style.color = val ? color : '';
-      el.style.fontWeight = val ? '800' : '';
-    };
 
     // プラン２: 入湯税引下げ（33%削減想定 / 香美市は廃止のため対象外）
     const nyuAmt = getTax(td, '入湯税').amount;
@@ -927,6 +1073,9 @@ async function loadMuniData() {
                  + getTax(td, '市町村たばこ税').amount + getTax(td, '鉱産税').amount;
     }
     setAutoV('p4-amount', Math.round(otherFutsu * 0.1), 'var(--blue)');
+
+    // 体験コーナー初期値セット
+    initTaikenInputs(isPref, nyuAmt, otherFutsu);
 
     // 目的税（tax1が「目的税」のもの）
     const mokus = td
