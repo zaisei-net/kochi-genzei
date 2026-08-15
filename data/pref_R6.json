@@ -638,7 +638,7 @@
     },
     {
       "label": "狩猟税",
-      "tax1": "小計",
+      "tax1": "目的税",
       "amount": 16842,
       "pct": 0,
       "extra_tax": null

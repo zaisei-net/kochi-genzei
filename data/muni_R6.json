@@ -518,7 +518,7 @@
           "tax1": "普通税",
           "amount": 1162942,
           "pct": 2.6,
-          "extra_tax": 27546
+          "extra_tax": null
         },
         {
           "label": "市町村たばこ税",
@@ -3397,7 +3397,7 @@
           "tax1": "普通税",
           "amount": 1383874,
           "pct": 53.6,
-          "extra_tax": 278
+          "extra_tax": null
         },
         {
           "label": "うち純固定資産税",
@@ -3411,7 +3411,7 @@
           "tax1": "普通税",
           "amount": 102116,
           "pct": 4,
-          "extra_tax": 2957
+          "extra_tax": null
         },
         {
           "label": "市町村たばこ税",

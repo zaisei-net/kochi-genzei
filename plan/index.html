@@ -321,13 +321,8 @@ tr:hover td { background: var(--bg-2); }
 
   <!-- 自治体・年度 -->
   <div class="muni-row">
-    <label for="sheet-year" style="font-size:13px;font-weight:600;color:var(--text);">年度</label>
-    <select id="sheet-year" class="muni-select" oninput="calc()">
-      <option value="令和６">令和６</option>
-      <option value="令和５">令和５</option>
-      <option value="令和４">令和４</option>
-      <option value="令和３">令和３</option>
-    </select>
+    <label style="font-size:13px;font-weight:600;color:var(--text);">年度</label>
+    <span id="sheet-year" style="font-size:13px;color:var(--text-2);padding:0 8px;">令和６</span>
     <label for="muni-name" style="font-size:13px;font-weight:600;color:var(--text);">自治体名</label>
     <select id="muni-name" class="muni-select" onchange="loadMuniData()">
       <option value="">-- 選択してください --</option>
@@ -382,7 +377,7 @@ tr:hover td { background: var(--bg-2); }
             <span id="p1-auto" style="font-size:18px;font-weight:800;color:var(--red);font-variant-numeric:tabular-nums;min-width:100px;text-align:right;">―</span>
             <span class="unit">千円（自動計算）</span>
           </div>
-          <p class="note-small" id="p1-note-muni">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・入湯税・狩猟税）。<br>水利地益税（地税法5条6項2号）・入湯税（5条4項）・狩猟税（4条4項）はいずれも条例により廃止可能。</p>
+          <p class="note-small" id="p1-note-muni">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・入湯税）。<br>水利地益税（地税法5条6項2号）・入湯税（5条4項）はいずれも条例により廃止可能。</p>
           <p class="note-small" id="p1-note-pref" style="display:none">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・狩猟税）。<br>水利地益税（地税法4条5項）・狩猟税（4条4項）はいずれも条例により廃止可能。</p>
           <div class="plan-row" style="margin-top:8px;">
             <span class="plan-row-label">削減率</span>
@@ -732,7 +727,7 @@ function renderPrefCols() {
     <tr><td>事業税（法人）</td><td>${_T('s-jigyou-hojin')}</td>${_NONE}<td id="d-jigyou-hojin-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
     <tr><td>不動産取得税</td><td>${_T('s-fudosan')}</td>${_NONE}<td id="d-fudosan-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
     <tr><td>ゴルフ場利用税<small style="display:block;color:var(--text-3)">標準税率あり・起債制限あり</small></td><td>${_T('s-golf')}</td>${_NONE}<td id="d-golf-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
-    <tr><td>自動車税（種別割）</td><td>${_T('s-jidosha')}</td><td>${_T('s-jidosha-ex',1)}</td><td id="d-jidosha-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--red);font-weight:700">①⑦</td></tr>
+    <tr><td>自動車税（種別割）</td><td>${_T('s-jidosha')}</td>${_NONE}<td id="d-jidosha-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
     <tr><td>鉱区税</td><td>${_T('s-kouiku')}</td>${_NONE}<td id="d-kouiku-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
   </tbody>
 </table>
@@ -998,7 +993,7 @@ async function loadMuniData() {
     if (p1NotePref) p1NotePref.style.display = isPref ? '' : 'none';
 
     // プラン２（入湯税）は入湯税のある市町村のみ表示
-    const hasNyu = !isPref && getTax(td, '入湯税').amount > 0;
+    const hasNyu = !isPref && getTax(td, '入湯税').amount > 0 && muniName !== '香美市';
     document.getElementById('plan2-section').style.display = hasNyu ? '' : 'none';
 
     const setV = (id, val) => {
