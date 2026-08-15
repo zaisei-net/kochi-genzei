@@ -824,18 +824,15 @@ let _kochiPref  = null;
 async function fetchKochiData() {
   if (_kochiMunis && _kochiPref) return;
 
-  const [muniRes, prefRes] = await Promise.all([
-    fetch('https://raw.githubusercontent.com/zaisei-net/jsons/main/json/all_datasets_R6.json'),
-    fetch('https://raw.githubusercontent.com/zaisei-net/jsons/main/pref_json/all_pref_datasets_R6.json')
+  const [muniData, prefRaw] = await Promise.all([
+    fetch('/kochi-genzei/data/muni_R6.json').then(r => r.json()),
+    fetch('/kochi-genzei/data/pref_R6.json').then(r => r.json())
   ]);
-  const [muniAll, prefAll] = await Promise.all([muniRes.json(), prefRes.json()]);
 
   // 市町村データ
-  const muniEntry = muniAll.find(d => d.prefecture === '高知県');
-  _kochiMunis = muniEntry ? muniEntry.municipalities : {};
+  _kochiMunis = muniData.municipalities ?? {};
 
   // 高知県（道府県）データ — ラベルの先頭スペースを正規化
-  const prefRaw = prefAll[0].municipalities['高知県'];
   _kochiPref = {
     expenditure: prefRaw.expenditure,
     tax_detail: (prefRaw.tax_detail || []).map(t => ({
