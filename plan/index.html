@@ -382,7 +382,8 @@ tr:hover td { background: var(--bg-2); }
             <span id="p1-auto" style="font-size:18px;font-weight:800;color:var(--red);font-variant-numeric:tabular-nums;min-width:100px;text-align:right;">―</span>
             <span class="unit">千円（自動計算）</span>
           </div>
-          <p class="note-small">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・入湯税・狩猟税）。<br>水利地益税（地税法5条6項2号）・入湯税（5条4項）・狩猟税（4条4項）はいずれも条例により廃止可能。</p>
+          <p class="note-small" id="p1-note-muni">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・入湯税・狩猟税）。<br>水利地益税（地税法5条6項2号）・入湯税（5条4項）・狩猟税（4条4項）はいずれも条例により廃止可能。</p>
+          <p class="note-small" id="p1-note-pref" style="display:none">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・狩猟税）。<br>水利地益税（地税法4条5項）・狩猟税（4条4項）はいずれも条例により廃止可能。</p>
           <div class="plan-row" style="margin-top:8px;">
             <span class="plan-row-label">削減率</span>
             <span id="p1-rate" style="font-size:14px;font-weight:700;color:var(--red);">―</span>
@@ -712,7 +713,7 @@ function renderPrefCols() {
 <table class="stax-table">
   <thead><tr><th>項目</th><th>収入済額（千円）</th><th>超過課税分（千円）</th><th>10%減税額（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
   <tbody>
-    <tr><td>個人均等割</td><td>${_T('s-kojin-kinto')}</td>${_NONE}<td id="d-kojin-kinto-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--teal);font-weight:700">⑥</td></tr>
+    <tr><td>個人均等割</td><td>${_T('s-kojin-kinto')}</td><td>${_T('s-kojin-kinto-ex',1)}</td><td id="d-kojin-kinto-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--red);font-weight:700">①⑥</td></tr>
     <tr><td>所得割</td><td>${_T('s-shotoku')}</td>${_NONE}<td id="d-shotoku-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--teal);font-weight:700">⑥</td></tr>
     <tr><td>法人均等割</td><td>${_T('s-hojin-kinto')}</td><td>${_T('s-hojin-kinto-ex',1)}</td><td id="d-hojin-kinto-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--red);font-weight:700">①⑥</td></tr>
     <tr><td>法人税割</td><td>${_T('s-hojin-wari')}</td><td>${_T('s-hojin-wari-ex',1)}</td><td id="d-hojin-wari-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--red);font-weight:700">①⑥</td></tr>
@@ -990,6 +991,12 @@ async function loadMuniData() {
     // 左カラム描画
     if (isPref) renderPrefCols(); else renderMuniCols();
 
+    // プラン１注記文切り替え
+    const p1NoteMuni = document.getElementById('p1-note-muni');
+    const p1NotePref = document.getElementById('p1-note-pref');
+    if (p1NoteMuni) p1NoteMuni.style.display = isPref ? 'none' : '';
+    if (p1NotePref) p1NotePref.style.display = isPref ? '' : 'none';
+
     // プラン２（入湯税）は入湯税のある市町村のみ表示
     const hasNyu = !isPref && getTax(td, '入湯税').amount > 0;
     document.getElementById('plan2-section').style.display = hasNyu ? '' : 'none';
@@ -1004,6 +1011,7 @@ async function loadMuniData() {
 
     // 共通：民税
     setV('s-kojin-kinto',    getTax(td, '個人均等割').amount);
+    setV('s-kojin-kinto-ex', getTax(td, '個人均等割').extra);
     setV('s-shotoku',        getTax(td, '所得割').amount);
     setV('s-hojin-kinto',    getTax(td, '法人均等割').amount);
     setV('s-hojin-kinto-ex', getTax(td, '法人均等割').extra);
@@ -1058,10 +1066,9 @@ async function loadMuniData() {
     // プラン４: その他普通税10%引下げ（住民税系を除く普通税合計）
     let otherFutsu = 0;
     if (isPref) {
+      // 一定税率（地方消費税・軽油引取税・道府県たばこ税）は除外
       otherFutsu = getTax(td, '個人分').amount + getTax(td, '法人分').amount
-                 + getTax(td, '地方消費税').amount + getTax(td, '不動産取得税').amount
-                 + getTax(td, '道府県たばこ税').amount + getTax(td, 'ゴルフ場利用税').amount
-                 + getTax(td, '軽油引取税').amount
+                 + getTax(td, '不動産取得税').amount + getTax(td, 'ゴルフ場利用税').amount
                  + (getTax(td, '自動車税（種別割）').amount || getTax(td, '自動車税').amount)
                  + getTax(td, '鉱区税').amount;
     } else {
@@ -1111,7 +1118,7 @@ function calc() {
   const exp = n('s-expenditure');
 
   // 超過課税合計（存在しないフィールドはn()が0を返す）
-  const excess = n('s-hojin-kinto-ex') + n('s-hojin-wari-ex')
+  const excess = n('s-kojin-kinto-ex') + n('s-hojin-kinto-ex') + n('s-hojin-wari-ex')
                + n('s-kotei-ex') + n('s-kei-ex') + n('s-jidosha-ex');
   setTxt('d-excess-total', fmt(excess));
 
