@@ -1065,7 +1065,7 @@ function setTxt(id, val) {
 }
 
 function calc() {
-  const yr = document.getElementById('sheet-year').value;
+  const yr = document.getElementById('sheet-year').textContent;
   const mn = document.getElementById('muni-name').value;
   document.getElementById('meta-display').textContent = (yr && mn) ? yr + '年度　' + mn : (yr || mn || '');
 
