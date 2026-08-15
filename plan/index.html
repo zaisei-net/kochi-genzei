@@ -190,6 +190,42 @@ tr:hover td { background: var(--bg-2); }
 .muni-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
 .muni-select { padding: 6px 10px; border: 1px solid var(--border-strong); border-radius: 5px; background: var(--bg); color: var(--text); font-size: 13px; font-family: inherit; cursor: pointer; }
 .muni-select:focus { outline: none; border-color: var(--teal); }
+
+/* ── Goals compact list ── */
+.goals-list { display: flex; flex-direction: column; border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-bottom: 24px; }
+.goal-row { display: grid; grid-template-columns: 36px 1fr auto; align-items: center; gap: 12px; padding: 12px 16px; background: var(--bg); border-bottom: 1px solid var(--border); transition: background .12s; }
+.goal-row:last-child { border-bottom: none; }
+.goal-row:hover { background: var(--bg-2); }
+.goal-num-lg { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; flex-shrink: 0; }
+.goal-num-lg.red { background: var(--red-light); color: var(--red); }
+.goal-num-lg.teal { background: var(--teal-light); color: var(--teal); }
+.goal-num-lg.blue { background: var(--blue-light); color: var(--blue); }
+.goal-num-lg.orange { background: var(--orange-light); color: var(--orange); }
+.goal-row-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.goal-row-desc { font-size: 11px; color: var(--text-2); line-height: 1.5; }
+.goal-chip { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 3px; white-space: nowrap; flex-shrink: 0; }
+.goal-chip.red { background: var(--red-light); color: var(--red); }
+.goal-chip.teal { background: var(--teal-light); color: var(--teal); }
+.goal-chip.blue { background: var(--blue-light); color: var(--blue); }
+.goal-chip.green { background: var(--green-light); color: var(--green); }
+
+/* ── Plan cards ── */
+.plan-card { border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; margin-bottom: 10px; background: var(--bg); }
+.plan-card-hd { display: flex; align-items: baseline; justify-content: space-between; gap: 8px; margin-bottom: 8px; }
+.plan-card-name { font-size: 12px; font-weight: 700; color: var(--text); }
+.plan-amount-row { display: flex; align-items: baseline; gap: 6px; margin-bottom: 6px; }
+.plan-amount-big { font-size: 20px; font-weight: 900; font-variant-numeric: tabular-nums; min-width: 80px; }
+.impact-bar-wrap { height: 5px; background: var(--border); border-radius: 3px; overflow: hidden; margin: 2px 0 4px; }
+.impact-bar-fill { height: 100%; border-radius: 3px; transition: width .35s ease; width: 0%; }
+.plan-rate-sm { font-size: 11px; color: var(--text-3); }
+
+/* ── Total block ── */
+.total-block { background: var(--bg-2); border: 1px solid var(--border-strong); border-radius: 10px; padding: 18px 20px; margin-top: 4px; }
+.total-label-sm { font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--text-3); margin-bottom: 6px; }
+.total-amount-big { font-size: 28px; font-weight: 900; font-variant-numeric: tabular-nums; letter-spacing: -.02em; color: var(--red); }
+.scale-bar-outer { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin: 12px 0 4px; }
+.scale-bar-inner { height: 100%; background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); border-radius: 5px; transition: width .4s ease; width: 0%; }
+.scale-label-row { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-3); }
 </style>
 </head>
 <body>
@@ -240,66 +276,62 @@ tr:hover td { background: var(--bg-2); }
     <p class="section-desc">高知減税会は以下の７項目を減税の目標とします。高知県及び各市町村はこれらの目標の実現に向けて、「減税計画シート」に基づく具体的な計画を策定・実行することを求めます。</p>
   </div>
 
-  <div class="goals-grid">
-    <div class="goal-card">
-      <div class="goal-num">①</div>
-      <div class="goal-title">超過課税の廃止</div>
-      <div class="goal-body">法定の標準税率を超えて課税している税目を廃止し、標準税率に引き下げる。<br>
-高知県内の超過課税：<br>
-・市町村民税<strong>法人税割</strong>（15市町村・6.7〜8.4%、うち11市町村が制限税率8.4%）<br>
-・市町村民税<strong>法人均等割</strong>（10市町村・標準額の1.2倍）<br>
-・<strong>固定資産税</strong>（高知市・土佐市・1.5%、標準1.4%）<br>
-・県民税<strong>法人税割・個人均等割・法人均等割</strong>（高知県・各超過課税実施中）
-      <div style="margin-top:8px;"><a href="/kochi-genzei/zei/#section-excess" style="font-size:11px;color:var(--teal);">税の状況｜超過課税の詳細 →</a></div></div>
-    </div>
-    <div class="goal-card">
-      <div class="goal-num">②</div>
-      <div class="goal-title">宿泊税などの法定外税の新設阻止</div>
-      <div class="goal-body">地方税法に規定のない独自税目（法定外普通税・法定外目的税）の新設を阻止する。現時点で高知県・県内市町村の法定外税はゼロ（達成済み）。<strong style="color:var(--red);">宿泊税</strong>（宿泊者への法定外目的税）等の新設に反対する。
-      <div style="margin-top:8px;"><a href="/kochi-genzei/zei/#section-muni" style="font-size:11px;color:var(--teal);">税の状況｜市町村税（法定外税）→</a></div></div>
-    </div>
-    <div class="goal-card">
-      <div class="goal-num">③</div>
-      <div class="goal-title">赤字税・不採算税の廃止</div>
-      <div class="goal-body">
-        <strong>赤字税</strong>（徴収コストが税収を上回る税）および<strong>不採算税</strong>（税収が極めて少額で経済的悪影響が大きい税）を廃止する。<br>
-        対象：<br>
-        ・狩猟税（高知県・16,842千円）<br>
-        ・水利地益税（いの町・288千円）<br>
-        ・入湯税（香美市・492千円等）<br>
-        「課するものとする」とされる税も条例による廃止・不課税は可能。目的税の廃止は地方財政法上の起債制限の対象外。
-        <div style="margin-top:8px;"><a href="/kochi-genzei/zei/#section-pref" style="font-size:11px;color:var(--teal);">税の状況｜高知県税（狩猟税等）→</a>　<a href="/kochi-genzei/zei/#section-muni" style="font-size:11px;color:var(--teal);">市町村税（入湯税等）→</a></div>
+  <div class="goals-list">
+    <div class="goal-row">
+      <div class="goal-num-lg red">①</div>
+      <div>
+        <div class="goal-row-title">超過課税の廃止</div>
+        <div class="goal-row-desc">法人税割（15市町村・6.7〜8.4%）・法人均等割（10市町村）・固定資産税（高知市・土佐市）・県民税（高知県）が標準税率超過中 <a href="/kochi-genzei/zei/#section-excess" style="color:var(--teal);">詳細→</a></div>
       </div>
+      <span class="goal-chip red">廃止要請</span>
     </div>
-    <div class="goal-card">
-      <div class="goal-num">④</div>
-      <div class="goal-title">法定任意目的税の廃止</div>
-      <div class="goal-body">地方税法が「課することができる」と定める<strong>法定任意目的税</strong>は全て廃止を求める。<br>
-市町村：水利地益税・都市計画税・共同施設税・宅地開発税・国民健康保険税<br>
-道府県：水利地益税<br>
-※国保税は除く。<br>
-高知県内の対象：水利地益税（いの町・288千円）
-      <div style="margin-top:8px;"><a href="/kochi-genzei/zei/#section-muni" style="font-size:11px;color:var(--teal);">税の状況｜市町村税（水利地益税）→</a></div></div>
+    <div class="goal-row">
+      <div class="goal-num-lg orange">②</div>
+      <div>
+        <div class="goal-row-title">法定外税の新設阻止</div>
+        <div class="goal-row-desc">現状ゼロ（達成済み）。宿泊税など法定外税の新設に引き続き反対する <a href="/kochi-genzei/zei/#section-muni" style="color:var(--teal);">詳細→</a></div>
+      </div>
+      <span class="goal-chip green">達成中</span>
     </div>
-    <div class="goal-card">
-      <div class="goal-num">⑤</div>
-      <div class="goal-title">法定目的税の税率引下げ・廃止</div>
-      <div class="goal-body">地方税法が「課するものとする」と定める目的税（入湯税・狩猟税）も、条例で税率を引き下げまたは廃止することができる。入湯税は条例で1人1泊の税額を設定でき、引下げ・廃止が可能。担い手不足に逆行する狩猟税も廃止を求める。
-      <div style="margin-top:8px;"><a href="/kochi-genzei/zei/#section-muni" style="font-size:11px;color:var(--teal);">税の状況｜市町村税（入湯税）→</a>　<a href="/kochi-genzei/zei/#section-pref" style="font-size:11px;color:var(--teal);">高知県税（狩猟税）→</a></div></div>
+    <div class="goal-row">
+      <div class="goal-num-lg red">③</div>
+      <div>
+        <div class="goal-row-title">赤字税・不採算税の廃止</div>
+        <div class="goal-row-desc">狩猟税（高知県・16,842千円）・水利地益税（いの町・288千円）・入湯税（香美市・492千円）。条例による廃止は目的税廃止のため起債制限の対象外 <a href="/kochi-genzei/zei/#section-pref" style="color:var(--teal);">詳細→</a></div>
+      </div>
+      <span class="goal-chip red">廃止要請</span>
     </div>
-    <div class="goal-card">
-      <div class="goal-num">⑥</div>
-      <div class="goal-title">住民税の10%引下げ（均等割については税額の引下げ）</div>
-      <div class="goal-body">個人市民税・法人市民税の税率を10%引き下げる。特に均等割は所得に関係なく課税される逆進的な税であり、税額そのものの10%引き下げを求める。<br>高知県内の均等割納税者数は合計332,362人（R6年度）。
-      <div style="margin-top:8px;"><a href="/kochi-genzei/zei/#section-data" style="font-size:11px;color:var(--teal);">税の状況｜データ集（均等割納税者数）→</a></div></div>
+    <div class="goal-row">
+      <div class="goal-num-lg red">④</div>
+      <div>
+        <div class="goal-row-title">法定任意目的税の廃止</div>
+        <div class="goal-row-desc">地税法5条6項で「課することができる」とされる税。いの町の水利地益税（第703条・288千円）が高知県内の対象 <a href="/kochi-genzei/zei/#section-muni" style="color:var(--teal);">詳細→</a></div>
+      </div>
+      <span class="goal-chip red">廃止要請</span>
     </div>
-    <div class="goal-card">
-      <div class="goal-num">⑦</div>
-      <div class="goal-title">その他の普通税の10%引下げ</div>
-      <div class="goal-body">固定資産税・軽自動車税など、住民税以外の普通税についても、標準税率未満への引き下げを求める（国への要請を含む）。目標削減率は10%。<br>
-軽自動車税（種別割）県内合計 約28.2億円の10%削減で 約2.8億円の減税。<br>
-<strong style="color:var(--orange);">注：</strong>普通税を標準税率未満に引き下げると、地方財政法5条の4第4項により地方債起債に総務大臣・知事の許可が必要となる。目的税廃止は同条の対象外。
-      <div style="margin-top:8px;"><a href="/kochi-genzei/zei/#section-data" style="font-size:11px;color:var(--teal);">税の状況｜データ集（軽自動車税調定額）→</a></div></div>
+    <div class="goal-row">
+      <div class="goal-num-lg teal">⑤</div>
+      <div>
+        <div class="goal-row-title">法定目的税の税率引下げ・廃止</div>
+        <div class="goal-row-desc">入湯税（10市町村・合計62,362千円）・狩猟税（高知県・16,842千円）。条例で税率を引き下げ・廃止が可能 <a href="/kochi-genzei/zei/#section-muni" style="color:var(--teal);">詳細→</a></div>
+      </div>
+      <span class="goal-chip teal">引下げ要請</span>
+    </div>
+    <div class="goal-row">
+      <div class="goal-num-lg teal">⑥</div>
+      <div>
+        <div class="goal-row-title">住民税の10%引下げ</div>
+        <div class="goal-row-desc">個人・法人市民税の税率10%引下げ。均等割は逆進的な税であり税額そのものの削減を求める。県内均等割納税者332,362人（R6） <a href="/kochi-genzei/zei/#section-data" style="color:var(--teal);">詳細→</a></div>
+      </div>
+      <span class="goal-chip teal">引下げ要請</span>
+    </div>
+    <div class="goal-row">
+      <div class="goal-num-lg blue">⑦</div>
+      <div>
+        <div class="goal-row-title">その他普通税の10%引下げ</div>
+        <div class="goal-row-desc">固定資産税・軽自動車税等。軽自動車税 県内合計約28.2億円の10%削減で約2.8億円の減税。起債制限あり・国への要請も含む <a href="/kochi-genzei/zei/#section-data" style="color:var(--teal);">詳細→</a></div>
+      </div>
+      <span class="goal-chip blue">引下げ要請</span>
     </div>
   </div>
 
@@ -370,31 +402,37 @@ tr:hover td { background: var(--bg-2); }
       <div>
         <div class="sheet-col-title">減税プラン</div>
 
-        <div class="plan-section">
-          <div class="plan-name">プラン１）超過課税・不採算目的税の廃止 <span style="font-weight:400;color:var(--red);">①③④</span></div>
-          <div class="plan-row">
-            <span class="plan-row-label">必要額</span>
-            <span id="p1-auto" style="font-size:18px;font-weight:800;color:var(--red);font-variant-numeric:tabular-nums;min-width:100px;text-align:right;">―</span>
-            <span class="unit">千円（自動計算）</span>
+        <!-- プラン１ -->
+        <div class="plan-card">
+          <div class="plan-card-hd">
+            <span class="plan-card-name">プラン１ 超過課税・不採算目的税の廃止</span>
+            <span style="font-size:12px;font-weight:700;color:var(--red);">①③④</span>
           </div>
-          <p class="note-small" id="p1-note-muni">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・入湯税）。<br>水利地益税（地税法5条6項2号）・入湯税（5条4項）はいずれも条例により廃止可能。</p>
-          <p class="note-small" id="p1-note-pref" style="display:none">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・狩猟税）。<br>水利地益税（地税法4条5項）・狩猟税（4条4項）はいずれも条例により廃止可能。</p>
-          <div class="plan-row" style="margin-top:8px;">
-            <span class="plan-row-label">削減率</span>
-            <span id="p1-rate" style="font-size:14px;font-weight:700;color:var(--red);">―</span>
+          <div class="plan-amount-row">
+            <span id="p1-auto" class="plan-amount-big" style="color:var(--red);">―</span>
+            <span class="unit">千円</span>
+            <span style="font-size:10px;color:var(--text-3);margin-left:4px;">自動計算</span>
           </div>
+          <div class="impact-bar-wrap"><div class="impact-bar-fill" id="p1-bar" style="background:var(--red);"></div></div>
+          <div class="plan-rate-sm"><span id="p1-rate" style="color:var(--red);font-weight:700;">―</span> ／ 歳出総額</div>
+          <p class="note-small" id="p1-note-muni" style="margin-top:6px;">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・入湯税）。<br>水利地益税（地税法5条6項2号）・入湯税（5条4項）はいずれも条例により廃止可能。</p>
+          <p class="note-small" id="p1-note-pref" style="display:none;margin-top:6px;">超過課税額合計 ＋ 廃止対象の目的税（水利地益税・狩猟税）。<br>水利地益税（地税法4条5項）・狩猟税（4条4項）はいずれも条例により廃止可能。</p>
         </div>
 
-        <div class="plan-section" id="plan2-section">
-          <div class="plan-name">プラン２）入湯税の引下げ <span style="font-weight:400;color:var(--teal);">⑤</span></div>
-          <div class="plan-row">
-            <span class="plan-row-label">必要額</span>
-            <input type="number" class="sheet-num-input" id="p2-amount" placeholder="0" min="0" oninput="this.style.color='';this.style.fontWeight='';calc()" style="width:110px;">
+        <!-- プラン２ -->
+        <div class="plan-card" id="plan2-section">
+          <div class="plan-card-hd">
+            <span class="plan-card-name">プラン２ 入湯税の引下げ</span>
+            <span style="font-size:12px;font-weight:700;color:var(--teal);">⑤</span>
+          </div>
+          <div class="plan-amount-row">
+            <input type="number" class="sheet-num-input plan-amount-big" id="p2-amount" placeholder="0" min="0" oninput="this.style.color='';this.style.fontWeight='';calc()" style="width:120px;color:var(--teal);">
             <span class="unit">千円</span>
           </div>
-          <!-- 体験コーナー: 入湯税 税率入力 -->
-          <div class="taiken-extra">
-            <div class="taiken-label" style="margin-bottom:8px;">税率を変えて試算</div>
+          <div class="impact-bar-wrap"><div class="impact-bar-fill" id="p2-bar" style="background:var(--teal);"></div></div>
+          <div class="plan-rate-sm"><span id="p2-rate" style="color:var(--teal);font-weight:700;">―</span> ／ 歳出総額</div>
+          <div class="taiken-extra" style="margin-top:8px;">
+            <div class="taiken-label" style="margin-bottom:6px;">税率を変えて試算</div>
             <div class="taiken-row">
               <span>現行</span>
               <input type="number" class="taiken-input" id="p2-rate-cur" value="150" min="1" oninput="calcP2Taiken()">
@@ -404,23 +442,23 @@ tr:hover td { background: var(--bg-2); }
               <span id="p2-taiken-pct" style="color:var(--teal);font-weight:700;font-size:11px;"></span>
             </div>
           </div>
-          <p class="note-small">例：150円→100円への引き下げ ≒ 33%削減</p>
-          <div class="plan-row" style="margin-top:8px;">
-            <span class="plan-row-label">削減率</span>
-            <span id="p2-rate" style="font-size:14px;font-weight:700;color:var(--teal);">―</span>
-          </div>
+          <p class="note-small" style="margin-top:6px;">例：150円→100円への引き下げ ≒ 33%削減</p>
         </div>
 
-        <div class="plan-section">
-          <div class="plan-name">プラン３）住民税引下げ <span style="font-weight:400;color:var(--teal);">⑥</span></div>
-          <div class="plan-row">
-            <span class="plan-row-label">必要額</span>
-            <input type="number" class="sheet-num-input" id="p3-amount" placeholder="0" min="0" oninput="this.style.color='';this.style.fontWeight='';calc()" style="width:110px;">
+        <!-- プラン３ -->
+        <div class="plan-card">
+          <div class="plan-card-hd">
+            <span class="plan-card-name">プラン３ 住民税の引下げ</span>
+            <span style="font-size:12px;font-weight:700;color:var(--teal);">⑥</span>
+          </div>
+          <div class="plan-amount-row">
+            <input type="number" class="sheet-num-input plan-amount-big" id="p3-amount" placeholder="0" min="0" oninput="this.style.color='';this.style.fontWeight='';calc()" style="width:120px;color:var(--teal);">
             <span class="unit">千円</span>
           </div>
-          <!-- 体験コーナー: 住民税 各項目の減税率 -->
-          <div class="taiken-extra">
-            <div class="taiken-label" style="margin-bottom:8px;">項目ごとに減税率を指定</div>
+          <div class="impact-bar-wrap"><div class="impact-bar-fill" id="p3-bar" style="background:var(--teal);"></div></div>
+          <div class="plan-rate-sm"><span id="p3-rate" style="color:var(--teal);font-weight:700;">―</span> ／ 歳出総額</div>
+          <div class="taiken-extra" style="margin-top:8px;">
+            <div class="taiken-label" style="margin-bottom:6px;">項目ごとに減税率を指定</div>
             <div class="taiken-row">
               <span style="min-width:90px;">個人均等割</span>
               <input type="number" class="taiken-input" id="p3-kinto-unit" min="0" oninput="calcP3TaikenFromUnit()">
@@ -431,69 +469,57 @@ tr:hover td { background: var(--bg-2); }
             </div>
             <div class="taiken-row">
               <span style="min-width:90px;">所得割</span>
-              <span style="min-width:90px;color:var(--text-3);font-size:11px;">（収入ベース）</span>
               <input type="number" class="taiken-input" id="p3-shotoku-pct" value="10" min="0" max="100" step="0.1" oninput="calcP3TaikenFromPct()">
               <span>% 減税</span>
             </div>
             <div class="taiken-row">
-              <span style="min-width:90px;">法人均等割<br>法人税割</span>
-              <span style="min-width:90px;color:var(--text-3);font-size:11px;">（収入ベース）</span>
+              <span style="min-width:90px;">法人均等割・法人税割</span>
               <input type="number" class="taiken-input" id="p3-hojin-pct" value="10" min="0" max="100" step="0.1" oninput="calcP3TaikenFromPct()">
               <span>% 減税</span>
             </div>
           </div>
-          <p class="note-small">個人均等割：標準3,000円（市）・1,000円（県）。所得割：6%（市）・4%（県）標準。</p>
-          <div class="plan-row" style="margin-top:8px;">
-            <span class="plan-row-label">削減率</span>
-            <span id="p3-rate" style="font-size:14px;font-weight:700;color:var(--teal);">―</span>
-          </div>
+          <p class="note-small" style="margin-top:6px;">個人均等割：標準3,000円（市）・1,000円（県）。所得割：6%（市）・4%（県）標準。</p>
         </div>
 
-        <div class="plan-section">
-          <div class="plan-name">プラン４）その他普通税引下げ <span style="font-weight:400;color:var(--blue);">⑦</span></div>
-          <div class="plan-row">
-            <span class="plan-row-label">必要額</span>
-            <input type="number" class="sheet-num-input" id="p4-amount" placeholder="0" min="0" oninput="this.style.color='';this.style.fontWeight='';calc()" style="width:110px;">
+        <!-- プラン４ -->
+        <div class="plan-card">
+          <div class="plan-card-hd">
+            <span class="plan-card-name">プラン４ その他普通税の引下げ</span>
+            <span style="font-size:12px;font-weight:700;color:var(--blue);">⑦</span>
+          </div>
+          <div class="plan-amount-row">
+            <input type="number" class="sheet-num-input plan-amount-big" id="p4-amount" placeholder="0" min="0" oninput="this.style.color='';this.style.fontWeight='';calc()" style="width:120px;color:var(--blue);">
             <span class="unit">千円</span>
           </div>
-          <!-- 体験コーナー: 普通税 一律減税率 -->
-          <div class="taiken-extra">
-            <div class="taiken-label" style="margin-bottom:8px;">一律減税率を指定</div>
+          <div class="impact-bar-wrap"><div class="impact-bar-fill" id="p4-bar" style="background:var(--blue);"></div></div>
+          <div class="plan-rate-sm"><span id="p4-rate" style="color:var(--blue);font-weight:700;">―</span> ／ 歳出総額</div>
+          <div class="taiken-extra" style="margin-top:8px;">
+            <div class="taiken-label" style="margin-bottom:6px;">一律減税率を指定</div>
             <div class="taiken-row">
-              <span>住民税系以外の普通税を一律</span>
+              <span>普通税（住民税系除く）を一律</span>
               <input type="number" class="taiken-input" id="p4-pct" value="10" min="0" max="100" step="0.1" oninput="calcP4Taiken()">
               <span>% 引き下げ</span>
             </div>
           </div>
-          <p class="note-small">固定資産税・軽自動車税・事業税・たばこ税・自動車税等が対象。</p>
-          <div class="plan-row" style="margin-top:8px;">
-            <span class="plan-row-label">削減率</span>
-            <span id="p4-rate" style="font-size:14px;font-weight:700;color:var(--blue);">―</span>
-          </div>
+          <p class="note-small" style="margin-top:6px;">固定資産税・軽自動車税・事業税・たばこ税・自動車税等が対象。</p>
         </div>
 
-        <!-- 合計 -->
-        <div class="plan-total-section">
-          <div class="plan-total-label">減税プランに必要な歳出削減額</div>
-          <div><span class="plan-result" id="d-total-reduction">―</span><span class="unit"> 千円</span></div>
-          <div class="plan-pct-row">
-            <div class="plan-pct-label">必要歳出削減額 ／ 歳出総額 × 100</div>
-            <div><span class="plan-pct-value" id="d-pct">―</span><span class="unit"> %</span></div>
+        <!-- 合計ブロック -->
+        <div class="total-block">
+          <div class="total-label-sm">合計削減額</div>
+          <div style="display:flex;align-items:baseline;gap:8px;">
+            <span class="total-amount-big" id="d-total-reduction">―</span>
+            <span class="unit">千円</span>
           </div>
-        </div>
-
-        <!-- 備考凡例 -->
-        <div style="margin-top:20px;padding:12px 14px;background:var(--bg-2);border-radius:6px;border:1px solid var(--border);">
-          <div style="font-size:11px;font-weight:700;color:var(--text-2);margin-bottom:8px;">備考欄　目標番号の対応</div>
-          <table style="width:100%;font-size:11px;border-collapse:collapse;">
-            <tr><td style="padding:2px 4px;color:var(--red);font-weight:700;white-space:nowrap;">① 超過課税廃止</td><td style="padding:2px 4px;color:var(--text-2);">法人税割の超過課税分</td></tr>
-            <tr><td style="padding:2px 4px;color:var(--text-3);font-weight:700;">② 法定外税阻止</td><td style="padding:2px 4px;color:var(--text-3);">現状ゼロ・新設阻止</td></tr>
-            <tr><td style="padding:2px 4px;color:var(--red);font-weight:700;">③ 赤字・不採算税廃止</td><td style="padding:2px 4px;color:var(--text-2);">狩猟税・入湯税（香美市）等</td></tr>
-            <tr><td style="padding:2px 4px;color:var(--red);font-weight:700;">④ 法定任意目的税廃止</td><td style="padding:2px 4px;color:var(--text-2);">水利地益税（いの町）ほか法定任意目的税</td></tr>
-            <tr><td style="padding:2px 4px;color:var(--teal);font-weight:700;">⑤ 法定目的税引下げ</td><td style="padding:2px 4px;color:var(--text-2);">入湯税（廃止以外の市町村）</td></tr>
-            <tr><td style="padding:2px 4px;color:var(--teal);font-weight:700;">⑥ 住民税10%引下げ</td><td style="padding:2px 4px;color:var(--text-2);">個人均等割・所得割・法人税割</td></tr>
-            <tr><td style="padding:2px 4px;color:var(--blue);font-weight:700;">⑦ 普通税10%引下げ</td><td style="padding:2px 4px;color:var(--text-2);">軽自動車税・固定資産税等</td></tr>
-          </table>
+          <div class="scale-bar-outer">
+            <div class="scale-bar-inner" id="d-scale-bar"></div>
+          </div>
+          <div class="scale-label-row">
+            <span>0%</span>
+            <span id="d-pct" style="font-weight:700;color:var(--red);">―</span>
+            <span>歳出総額</span>
+          </div>
+          <div style="font-size:10px;color:var(--text-3);margin-top:4px;">必要歳出削減額 ÷ 歳出総額（スケール：10%＝100%バー幅）</div>
         </div>
       </div>
     </div>
@@ -506,73 +532,6 @@ tr:hover td { background: var(--bg-2); }
   </p>
 </div>
 
-<!-- ======================================
-     各目標の実施状況
-====================================== -->
-<hr class="section-divider">
-<div class="section">
-  <div class="section-header">
-    <h2 class="section-title">現状と目標の対応</h2>
-    <p class="section-desc">「税の状況」ページの実態把握と、減税目標の対応関係をまとめます。</p>
-  </div>
-
-  <div class="table-wrap">
-    <table>
-      <thead>
-        <tr>
-          <th>目標</th>
-          <th>現状（高知県内）</th>
-          <th>詳細</th>
-          <th>実現難易度</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>① 超過課税の廃止</strong></td>
-          <td>法人税割（15市町村・6.7〜8.4%、うち11市町村が制限税率8.4%）／法人均等割（10市町村・標準額の1.2倍）／固定資産税（高知市・土佐市・1.5%）／県民税（高知県・法人税割1.8%・個人均等割1,500円・法人均等割+500円）</td>
-          <td><a href="/kochi-genzei/zei/#section-excess">税の状況｜超過課税</a></td>
-          <td>各議会の条例改正が必要</td>
-        </tr>
-        <tr>
-          <td><strong>② 宿泊税などの法定外税の新設阻止</strong></td>
-          <td>高知県・県内全市町村ともゼロ（達成済み）。宿泊税等の新設に反対</td>
-          <td><a href="/kochi-genzei/zei/#section-muni">税の状況｜市町村税（法定外税）</a></td>
-          <td>新設阻止に注力</td>
-        </tr>
-        <tr>
-          <td><strong>③ 赤字税・不採算税の廃止</strong></td>
-          <td>水利地益税（いの町・任意目的税）・入湯税（香美市492千円、地税法5条4項）・狩猟税（高知県16,842千円、4条4項）。「課するものとする」でも条例による廃止は可能。普通税の標準税率未満は地財法5条の4第4項の起債制限があるが目的税廃止は対象外。</td>
-          <td><a href="/kochi-genzei/zei/#section-pref">税の状況｜高知県税</a>・<a href="/kochi-genzei/zei/#section-muni">市町村税</a></td>
-          <td>条例廃止（法改正不要）</td>
-        </tr>
-        <tr>
-          <td><strong>④ 法定任意目的税の廃止</strong></td>
-          <td>現在課税中：水利地益税（いの町・288千円）。潜在対象：都市計画税・共同施設税・宅地開発税（高知県内未課税）・道府県水利地益税（高知県未課税）。地税法5条6項・4条5項による法定任意目的税はすべて条例で廃止可能</td>
-          <td><a href="/kochi-genzei/zei/#section-muni">税の状況｜市町村税（水利地益税）</a></td>
-          <td>いの町の条例廃止（法改正不要）</td>
-        </tr>
-        <tr>
-          <td><strong>⑤ 法定目的税の税率引下げ・廃止</strong></td>
-          <td>入湯税（10市町村・合計62,362千円、地税法5条4項）・狩猟税（高知県・16,842千円、4条4項）。「課するものとする」でも条例で税率引下げ・廃止が可能</td>
-          <td><a href="/kochi-genzei/zei/#section-muni">税の状況｜市町村税（入湯税）</a></td>
-          <td>条例で税率引下げ・廃止</td>
-        </tr>
-        <tr>
-          <td><strong>⑥ 住民税の引下げ</strong></td>
-          <td>均等割納税義務者 332,362人（高知県内合計）。超過課税廃止が第一歩</td>
-          <td><a href="/kochi-genzei/zei/#section-data">税の状況｜データ集（均等割）</a></td>
-          <td>法改正または条例改正</td>
-        </tr>
-        <tr>
-          <td><strong>⑦ その他普通税の引下げ</strong></td>
-          <td>軽自動車税（34市町村合計 約28.2億円）・固定資産税等</td>
-          <td><a href="/kochi-genzei/zei/#section-data">税の状況｜データ集（軽自動車税）</a></td>
-          <td>国への標準税率引下げ要請</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
 
 <script>
 function toggleTheme() {
@@ -1177,7 +1136,20 @@ function calc() {
 
   const total = p1 + p2 + p3 + p4;
   document.getElementById('d-total-reduction').textContent = total > 0 ? total.toLocaleString('ja-JP') : '―';
-  document.getElementById('d-pct').textContent = exp > 0 && total > 0 ? (total / exp * 100).toFixed(2) : '―';
+  const totalPct = exp > 0 && total > 0 ? (total / exp * 100).toFixed(2) : '―';
+  document.getElementById('d-pct').textContent = totalPct !== '―' ? totalPct + ' %' : '―';
+
+  // インパクトバー更新（10%歳出 = バー100%）
+  function setBar(id, amount) {
+    const el = document.getElementById(id);
+    if (el) el.style.width = (exp > 0 ? Math.min(100, amount / exp * 1000).toFixed(1) : 0) + '%';
+  }
+  setBar('p1-bar', p1);
+  setBar('p2-bar', p2);
+  setBar('p3-bar', p3);
+  setBar('p4-bar', p4);
+  const sb = document.getElementById('d-scale-bar');
+  if (sb) sb.style.width = (exp > 0 ? Math.min(100, total / exp * 1000).toFixed(1) : 0) + '%';
 }
 
 calc();
