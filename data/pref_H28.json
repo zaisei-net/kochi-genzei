@@ -1,0 +1,609 @@
+{
+  "name": "高知県",
+  "pop_r2": 728276,
+  "pop_h27": 764456,
+  "pop_change_pct": -4.7,
+  "area": 7104,
+  "density": 103,
+  "pop_juki_r6": 732535,
+  "pop_juki_r6_jp": 728616,
+  "pop_juki_r5": 740059,
+  "revenue": 453349565,
+  "expenditure": 441132452,
+  "net_balance": 12217113,
+  "real_balance": 990151,
+  "annual_balance": -1643749,
+  "reserve_fund": 18100,
+  "reserve_fund_withdrawal": 2047778,
+  "real_annual_balance": -3673427,
+  "revenue_prev": 461271339,
+  "expenditure_prev": 444314897,
+  "real_balance_prev": 2633900,
+  "annual_balance_prev": 283379,
+  "base_fiscal_income": 63164299,
+  "base_fiscal_demand": 235049582,
+  "standard_tax_revenue": 78579463,
+  "standard_fiscal_scale": 270592548,
+  "fiscal_strength_index": 0.2582,
+  "real_surplus_ratio": 0.4,
+  "debt_service_ratio": 22.9,
+  "real_debt_ratio": 10.2,
+  "future_burden_ratio": 161.3,
+  "reserve_financial_adj": 8392579,
+  "reserve_debt_redemption": 21141436,
+  "reserve_specific": 13461716,
+  "local_bond_outstanding": 848433896,
+  "current_expenditure_ratio": 103.9,
+  "laspeyres_index": 99,
+  "employees": [
+    {
+      "label": "一般職員",
+      "count": 4413,
+      "salary_total_100yen": 14333424,
+      "avg_salary_100yen": 3248
+    },
+    {
+      "label": "うち技能労務職員",
+      "count": 39,
+      "salary_total_100yen": 119652,
+      "avg_salary_100yen": 3068
+    },
+    {
+      "label": "警察官",
+      "count": 1623,
+      "salary_total_100yen": 5143287,
+      "avg_salary_100yen": 3169
+    },
+    {
+      "label": "教育公務員",
+      "count": 6629,
+      "salary_total_100yen": 25575879,
+      "avg_salary_100yen": 3858
+    }
+  ],
+  "revenue_detail": [
+    {
+      "label": "地方税",
+      "amount": 78715881,
+      "pct": 17.4,
+      "general_revenue": 64210863
+    },
+    {
+      "label": "地方譲与税",
+      "amount": 12116777,
+      "pct": 2.7,
+      "general_revenue": 12116777
+    },
+    {
+      "label": "　地方揮発油譲与税",
+      "amount": 2226015,
+      "indent": 1,
+      "pct": 0.5,
+      "general_revenue": 2226015
+    },
+    {
+      "label": "　石油ガス譲与税",
+      "amount": 102548,
+      "indent": 1,
+      "pct": 0,
+      "general_revenue": 102548
+    },
+    {
+      "label": "　航空機燃料譲与税",
+      "amount": 5690,
+      "indent": 1,
+      "pct": 0,
+      "general_revenue": 5690
+    },
+    {
+      "label": "　地方特例交付金",
+      "amount": 171353,
+      "indent": 1,
+      "pct": 0,
+      "general_revenue": 171353
+    },
+    {
+      "label": "地方交付税",
+      "amount": 174700025,
+      "pct": 38.5,
+      "general_revenue": 171691918
+    },
+    {
+      "label": "　普通交付税",
+      "amount": 171691918,
+      "indent": 1,
+      "pct": 37.9,
+      "general_revenue": 171691918
+    },
+    {
+      "label": "　特別交付税",
+      "amount": 3001499,
+      "indent": 1,
+      "pct": 0.7
+    },
+    {
+      "label": "　震災復興特別交付税",
+      "amount": 6608,
+      "indent": 1,
+      "pct": 0
+    },
+    {
+      "label": "（一般財源計）",
+      "amount": 265704036,
+      "pct": 58.6,
+      "general_revenue": 248190911
+    },
+    {
+      "label": "交通安全対策特別交付金",
+      "amount": 215967,
+      "pct": 0,
+      "general_revenue": 215967
+    },
+    {
+      "label": "分担金・負担金",
+      "amount": 4016955,
+      "pct": 0.9
+    },
+    {
+      "label": "使用料",
+      "amount": 4149725,
+      "pct": 0.9,
+      "general_revenue": 1271181
+    },
+    {
+      "label": "手数料",
+      "amount": 1203596,
+      "pct": 0.3
+    },
+    {
+      "label": "国庫支出金",
+      "amount": 69305427,
+      "pct": 15.3
+    },
+    {
+      "label": "財産収入",
+      "amount": 1259012,
+      "pct": 0.3,
+      "general_revenue": 148012
+    },
+    {
+      "label": "寄附金",
+      "amount": 53610,
+      "pct": 0
+    },
+    {
+      "label": "繰入金",
+      "amount": 8271404,
+      "pct": 1.8
+    },
+    {
+      "label": "繰越金",
+      "amount": 15656083,
+      "pct": 3.5
+    },
+    {
+      "label": "諸収入",
+      "amount": 14026550,
+      "pct": 3.1,
+      "general_revenue": 914980
+    },
+    {
+      "label": "地方債",
+      "amount": 69487200,
+      "pct": 15.3
+    },
+    {
+      "label": "　うち臨時財政対策債",
+      "amount": 20321000,
+      "indent": 1,
+      "pct": 4.5
+    },
+    {
+      "label": "歳入合計",
+      "amount": 453349565,
+      "pct": 100,
+      "general_revenue": 250741051
+    }
+  ],
+  "regular_general_revenue": 260514778,
+  "total_general_revenue": 306987157,
+  "payout_total": 369594,
+  "expenditure_by_nature": [
+    {
+      "label": "義務的経費計",
+      "amount": 200951575,
+      "pct": 45.6,
+      "alloc_general": 173077313,
+      "current_alloc": 170833052,
+      "current_ratio": 63
+    },
+    {
+      "label": "　人件費",
+      "amount": 116819925,
+      "pct": 26.5,
+      "alloc_general": 97373521,
+      "current_alloc": 95167475,
+      "current_ratio": 35.1
+    },
+    {
+      "label": "　　うち職員給",
+      "amount": 83287624,
+      "pct": 18.9,
+      "alloc_general": 69402494,
+      "current_alloc": 69400120,
+      "current_ratio": 25.6
+    },
+    {
+      "label": "　扶助費",
+      "amount": 12902082,
+      "pct": 2.9,
+      "alloc_general": 5299374,
+      "current_alloc": 5261159,
+      "current_ratio": 1.9
+    },
+    {
+      "label": "　公債費",
+      "amount": 71229568,
+      "pct": 16.1,
+      "alloc_general": 70404418,
+      "current_alloc": 70404418,
+      "current_ratio": 26
+    },
+    {
+      "label": "　　元金",
+      "amount": 63478353,
+      "pct": 14.4,
+      "alloc_general": 62655114,
+      "current_alloc": 62655114,
+      "current_ratio": 23.1
+    },
+    {
+      "label": "　　利子",
+      "amount": 7751215,
+      "pct": 1.8,
+      "alloc_general": 7749304,
+      "current_alloc": 7749304,
+      "current_ratio": 2.9
+    },
+    {
+      "label": "その他の経費",
+      "amount": 134569425,
+      "pct": 30.5,
+      "alloc_general": 111542958,
+      "current_alloc": 89681726,
+      "current_ratio": 33.1
+    },
+    {
+      "label": "　物件費",
+      "amount": 20569266,
+      "pct": 4.7,
+      "alloc_general": 15639893,
+      "current_alloc": 13521543,
+      "current_ratio": 5
+    },
+    {
+      "label": "　維持補修費",
+      "amount": 6021173,
+      "pct": 1.4,
+      "alloc_general": 5440898,
+      "current_alloc": 5440898,
+      "current_ratio": 2
+    },
+    {
+      "label": "　補助費等",
+      "amount": 96890467,
+      "pct": 22,
+      "alloc_general": 87817070,
+      "current_alloc": 69499128,
+      "current_ratio": 25.6
+    },
+    {
+      "label": "　繰出金",
+      "amount": 369594,
+      "pct": 0.1,
+      "alloc_general": 369594
+    },
+    {
+      "label": "　積立金",
+      "amount": 2564534,
+      "pct": 0.6,
+      "alloc_general": 848722
+    },
+    {
+      "label": "　投資及び出資金",
+      "amount": 21924,
+      "pct": 0,
+      "alloc_general": 9924
+    },
+    {
+      "label": "　貸付金",
+      "amount": 8132467,
+      "pct": 1.8,
+      "alloc_general": 1416857,
+      "current_alloc": 1220157,
+      "current_ratio": 0.5
+    },
+    {
+      "label": "投資的経費計",
+      "amount": 105611452,
+      "pct": 23.9,
+      "alloc_general": 13132758
+    },
+    {
+      "label": "　うち人件費",
+      "amount": 2285887,
+      "pct": 0.5,
+      "alloc_general": 1388239,
+      "current_alloc": 260514778
+    },
+    {
+      "label": "　普通建設事業費",
+      "amount": 99492641,
+      "pct": 22.6,
+      "alloc_general": 12874775
+    },
+    {
+      "label": "　　うち補助",
+      "amount": 60215419,
+      "pct": 13.7,
+      "alloc_general": 2655090
+    },
+    {
+      "label": "　　うち単独",
+      "amount": 31257550,
+      "pct": 7.1,
+      "alloc_general": 9580665
+    },
+    {
+      "label": "　災害復旧事業費",
+      "amount": 6118811,
+      "pct": 1.4,
+      "alloc_general": 257983
+    },
+    {
+      "label": "歳出合計",
+      "amount": 441132452,
+      "pct": 100,
+      "alloc_general": 297753029
+    }
+  ],
+  "expenditure_by_purpose": [
+    {
+      "label": "議会費",
+      "amount": 1025248,
+      "pct": 0.2
+    },
+    {
+      "label": "総務費",
+      "amount": 23019833,
+      "pct": 5.2
+    },
+    {
+      "label": "民生費",
+      "amount": 64845627,
+      "pct": 14.7
+    },
+    {
+      "label": "衛生費",
+      "amount": 16824284,
+      "pct": 3.8
+    },
+    {
+      "label": "労働費",
+      "amount": 1210404,
+      "pct": 0.3
+    },
+    {
+      "label": "農林水産業費",
+      "amount": 30542611,
+      "pct": 6.9
+    },
+    {
+      "label": "商工費",
+      "amount": 10548467,
+      "pct": 2.4
+    },
+    {
+      "label": "土木費",
+      "amount": 74562322,
+      "pct": 16.9
+    },
+    {
+      "label": "警察費",
+      "amount": 21165671,
+      "pct": 4.8
+    },
+    {
+      "label": "教育費",
+      "amount": 105902210,
+      "pct": 24
+    },
+    {
+      "label": "災害復旧費",
+      "amount": 6118811,
+      "pct": 1.4
+    },
+    {
+      "label": "公債費",
+      "amount": 71301783,
+      "pct": 16.2
+    },
+    {
+      "label": "諸支出金",
+      "amount": 3840,
+      "pct": 0
+    }
+  ],
+  "tax_detail": [
+    {
+      "label": "普通税",
+      "tax1": "小計",
+      "amount": 78692214,
+      "pct": 100,
+      "extra_tax": 443677
+    },
+    {
+      "label": "法定普通税",
+      "tax1": "小計",
+      "amount": 78692214,
+      "pct": 100,
+      "extra_tax": 443677
+    },
+    {
+      "label": "道府県民税",
+      "tax1": "小計",
+      "amount": 23383843,
+      "pct": 29.7,
+      "extra_tax": 443677
+    },
+    {
+      "label": "個人均等割",
+      "tax1": "普通税",
+      "amount": 664177,
+      "pct": 0.8,
+      "extra_tax": 165474
+    },
+    {
+      "label": "所得割",
+      "tax1": "普通税",
+      "amount": 19283243,
+      "pct": 24.5,
+      "extra_tax": null
+    },
+    {
+      "label": "法人均等割",
+      "tax1": "普通税",
+      "amount": 824206,
+      "pct": 1,
+      "extra_tax": 6932
+    },
+    {
+      "label": "法人税割",
+      "tax1": "普通税",
+      "amount": 1532150,
+      "pct": 1.9,
+      "extra_tax": 271271
+    },
+    {
+      "label": "利子割",
+      "tax1": "普通税",
+      "amount": 438463,
+      "pct": 0.6,
+      "extra_tax": null
+    },
+    {
+      "label": "配当割",
+      "tax1": "普通税",
+      "amount": 403772,
+      "pct": 0.5,
+      "extra_tax": null
+    },
+    {
+      "label": "株式等譲渡所得割",
+      "tax1": "普通税",
+      "amount": 237832,
+      "pct": 0.3,
+      "extra_tax": null
+    },
+    {
+      "label": "事業税",
+      "tax1": "小計",
+      "amount": 13768474,
+      "pct": 17.5,
+      "extra_tax": null
+    },
+    {
+      "label": "個人分",
+      "tax1": "普通税",
+      "amount": 819596,
+      "pct": 1,
+      "extra_tax": null
+    },
+    {
+      "label": "法人分",
+      "tax1": "普通税",
+      "amount": 12948878,
+      "pct": 16.5,
+      "extra_tax": null
+    },
+    {
+      "label": "地方消費税",
+      "tax1": "普通税",
+      "amount": 25979750,
+      "pct": 33,
+      "extra_tax": null
+    },
+    {
+      "label": "不動産取得税",
+      "tax1": "普通税",
+      "amount": 1309654,
+      "pct": 1.7,
+      "extra_tax": null
+    },
+    {
+      "label": "道府県たばこ税",
+      "tax1": "普通税",
+      "amount": 868684,
+      "pct": 1.1,
+      "extra_tax": null
+    },
+    {
+      "label": "ゴルフ場利用税",
+      "tax1": "普通税",
+      "amount": 245676,
+      "pct": 0.3,
+      "extra_tax": null
+    },
+    {
+      "label": "自動車取得税",
+      "tax1": "普通税",
+      "amount": 645302,
+      "pct": 0.8,
+      "extra_tax": null
+    },
+    {
+      "label": "軽油引取税",
+      "tax1": "普通税",
+      "amount": 4744141,
+      "pct": 6,
+      "extra_tax": null
+    },
+    {
+      "label": "自動車税",
+      "tax1": "普通税",
+      "amount": 7739998,
+      "pct": 9.8,
+      "extra_tax": null
+    },
+    {
+      "label": "目的税",
+      "tax1": "小計",
+      "amount": 23667,
+      "pct": 0,
+      "extra_tax": null
+    },
+    {
+      "label": "法定目的税",
+      "tax1": "小計",
+      "amount": 23667,
+      "pct": 0,
+      "extra_tax": null
+    },
+    {
+      "label": "狩猟税",
+      "tax1": "目的税",
+      "amount": 23667,
+      "pct": 0,
+      "extra_tax": null
+    },
+    {
+      "label": "合計",
+      "tax1": "合計",
+      "amount": 78715881,
+      "pct": 100,
+      "extra_tax": 443677
+    }
+  ],
+  "local_tax": 78715881,
+  "unit": "千円"
+}
