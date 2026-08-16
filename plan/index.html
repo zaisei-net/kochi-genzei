@@ -687,7 +687,6 @@ function renderPrefCols() {
     <tr><td>不動産取得税</td><td>${_T('s-fudosan')}</td>${_NONE}<td id="d-fudosan-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
     <tr><td>ゴルフ場利用税<small style="display:block;color:var(--text-3)">標準税率あり・起債制限あり</small></td><td>${_T('s-golf')}</td>${_NONE}<td id="d-golf-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
     <tr><td>自動車税（種別割）</td><td>${_T('s-jidosha')}</td>${_NONE}<td id="d-jidosha-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
-    <tr><td>鉱区税</td><td>${_T('s-kouiku')}</td>${_NONE}<td id="d-kouiku-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
   </tbody>
 </table>
 
@@ -697,6 +696,7 @@ function renderPrefCols() {
   <tbody>
     <tr><td>道府県たばこ税<small style="display:block;color:var(--text-3)">一定税率</small></td><td>${_T('s-pref-tabako')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
     <tr><td>軽油引取税<small style="display:block;color:var(--text-3)">一定税率</small></td><td>${_T('s-keiyu')}</td><td style="color:var(--text-3);font-size:12px">一定税率</td></tr>
+    <tr><td>鉱区税<small style="display:block;color:var(--text-3)">一定税率・廃止は国への要請</small></td><td>${_T('s-kouiku')}</td><td style="color:var(--text-3);font-size:12px">一定税率・廃止要請</td></tr>
     <tr><td>地方消費税<small style="display:block;color:var(--text-3)">国税に上乗せ・地方へ交付</small></td><td>${_T('s-shohi')}</td><td style="color:var(--text-3);font-size:12px">参考</td></tr>
   </tbody>
 </table>
@@ -1019,11 +1019,10 @@ async function loadMuniData() {
     // プラン４: その他普通税10%引下げ（住民税系を除く普通税合計）
     let otherFutsu = 0;
     if (isPref) {
-      // 一定税率（地方消費税・軽油引取税・道府県たばこ税）は除外
+      // 一定税率（地方消費税・軽油引取税・道府県たばこ税・鉱区税）は除外
       otherFutsu = getTax(td, '個人分').amount + getTax(td, '法人分').amount
                  + getTax(td, '不動産取得税').amount + getTax(td, 'ゴルフ場利用税').amount
-                 + (getTax(td, '自動車税（種別割）').amount || getTax(td, '自動車税').amount)
-                 + getTax(td, '鉱区税').amount;
+                 + (getTax(td, '自動車税（種別割）').amount || getTax(td, '自動車税').amount);
     } else {
       otherFutsu = getTax(td, '固定資産税').amount
                  + (getTax(td, '軽自動車税').amount || getTax(td, '軽自動車税（種別割）').amount || 0)
@@ -1103,7 +1102,6 @@ function calc() {
   setTxt('d-fudosan-10',      fmt(Math.round(n('s-fudosan')      * 0.1)));
   setTxt('d-golf-10',         fmt(Math.round(n('s-golf')         * 0.1)));
   setTxt('d-jidosha-10',      fmt(Math.round(n('s-jidosha')      * 0.1)));
-  setTxt('d-kouiku-10',       fmt(Math.round(n('s-kouiku')       * 0.1)));
   // 10%削減見込み（市町村税）
   setTxt('d-kotei-10',        fmt(Math.round(n('s-kotei')        * 0.1)));
   setTxt('d-kei-10',          fmt(Math.round(n('s-kei')          * 0.1)));
