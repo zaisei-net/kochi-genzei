@@ -879,10 +879,15 @@ function updateMokuTable(muniName, mokus) {
     } else {
       rows += _mN('入湯税', '地税法5条4項（課するものとする）', '⑤');
     }
-    // 事業所税（地税法5条5項「課するものとする」・高知市のみ）
+    // 事業所税（地税法5条5項・高知市のみ・税率法定固定→国への廃止要請のみ・計画対象外）
     const jigyo = get('事業所税');
     if (jigyo) {
-      rows += _mI('事業所税', `${muniName}・R6決算（地税法5条5項）`, jigyo.amount, 's-other-moku-red', '⑤');
+      rows += `<tr>
+        <td>事業所税<small style="display:block;color:var(--text-3);">${muniName}・R6決算 ${jigyo.amount.toLocaleString('ja-JP')}千円（地税法5条5項・税率法定固定）</small></td>
+        <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--text-3);">${jigyo.amount.toLocaleString('ja-JP')}</td>
+        <td style="text-align:right;color:var(--text-3);font-size:12px;">国への廃止要請</td>
+        <td style="color:var(--text-3);font-size:12px;">参考</td>
+      </tr>`;
     }
     // 水利地益税（地税法5条6項2号「課することができる」）
     const suiri = get('水利地益税');
@@ -895,12 +900,6 @@ function updateMokuTable(muniName, mokus) {
     rows += _mRef('宅地開発税', '地税法5条6項4号（課することができる）・高知県内 課税なし');
     // 国民健康保険税（参考のみ・減税プラン対象外）
     rows += _mRef('国民健康保険税', '地税法703条の4（課することができる）・減税プラン対象外');
-    // 事業所税（高知市のみ）の % 表示欄
-    rows += `<tr id="jigyosho-pct-row" style="display:none">
-      <td colspan="2" style="color:var(--text-3);font-size:12px;text-align:right">事業所税 ÷ 歳出総額</td>
-      <td id="d-jigyosho-pct" style="text-align:right;font-variant-numeric:tabular-nums;color:var(--blue);font-weight:700">―</td>
-      <td style="color:var(--text-3);font-size:12px">%</td>
-    </tr>`;
     // 狩猟税（参考・県税・mokuTotal に含めない）
     rows += `<tr data-ref="1">
       <td>狩猟税<small style="display:block;color:var(--text-3);">高知県・R6：16,842千円（地税法4条4項・県税）参考</small></td>
@@ -1086,21 +1085,7 @@ function calc() {
     }
   });
 
-  // 事業所税 収入済額 ÷ 歳出 %（高知市のみ）
-  const jigyoshoPctRow = document.getElementById('jigyosho-pct-row');
-  const jigyoshoEl = document.getElementById('d-jigyosho-pct');
-  if (jigyoshoPctRow && jigyoshoEl) {
-    const jiRow = [...document.querySelectorAll('#moku-tbody tr')]
-      .find(r => r.cells[0]?.textContent?.includes('事業所税') && !r.dataset.ref);
-    const jiAmt = jiRow ? parseFloat((jiRow.cells[1]?.textContent || '').replace(/[^0-9.]/g,'')) || 0 : 0;
-    if (jiAmt > 0 && exp > 0) {
-      jigyoshoPctRow.style.display = '';
-      jigyoshoEl.textContent = (jiAmt / exp * 100).toFixed(2) + ' %';
-    } else {
-      jigyoshoPctRow.style.display = 'none';
-    }
-  }
-  const mokuTotal = fixedMoku + n('s-nyu-reduce') + n('s-other-moku-red');
+  const mokuTotal = fixedMoku + n('s-nyu-reduce');
   setTxt('d-moku-total', fmt(mokuTotal));
 
   // 10%減税額（民税・共通）
