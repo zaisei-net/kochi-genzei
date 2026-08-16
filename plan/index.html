@@ -329,7 +329,7 @@ tr:hover td { background: var(--bg-2); }
       <div class="goal-num-lg blue">⑦</div>
       <div>
         <div class="goal-row-title">その他普通税の10%引下げ</div>
-        <div class="goal-row-desc">固定資産税・軽自動車税等。軽自動車税 県内合計約28.2億円の10%削減で約2.8億円の減税。起債制限あり・国への要請も含む <a href="/kochi-genzei/zei/#section-data" style="color:var(--teal);">詳細→</a></div>
+        <div class="goal-row-desc">固定資産税・軽自動車税等。軽自動車税 県内合計約28.2億円の10%削減で約2.8億円の減税。地方財政法第5条の4により税率を標準税率未満とする場合は公共施設等の建設事業費を財源とする地方債に都道府県知事（政令市は総務大臣）の許可が必要。<a href="/kochi-genzei/zei/#section-data" style="color:var(--teal);">詳細→</a></div>
       </div>
       <span class="goal-chip blue">引下げ要請</span>
     </div>
@@ -685,7 +685,7 @@ function renderPrefCols() {
     <tr><td>事業税（個人）</td><td>${_T('s-jigyou-kojin')}</td>${_NONE}<td id="d-jigyou-kojin-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
     <tr><td>事業税（法人）</td><td>${_T('s-jigyou-hojin')}</td>${_NONE}<td id="d-jigyou-hojin-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
     <tr><td>不動産取得税</td><td>${_T('s-fudosan')}</td>${_NONE}<td id="d-fudosan-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
-    <tr><td>ゴルフ場利用税<small style="display:block;color:var(--text-3)">標準税率あり・起債制限あり</small></td><td>${_T('s-golf')}</td>${_NONE}<td id="d-golf-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
+    <tr><td>ゴルフ場利用税<small style="display:block;color:var(--text-3)">標準税率あり・地財法5条の4：標準税率未満は起債制限</small></td><td>${_T('s-golf')}</td>${_NONE}<td id="d-golf-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
     <tr><td>自動車税（種別割）</td><td>${_T('s-jidosha')}</td>${_NONE}<td id="d-jidosha-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--blue);font-weight:700">⑦</td></tr>
   </tbody>
 </table>
@@ -700,6 +700,7 @@ function renderPrefCols() {
     <tr><td>地方消費税<small style="display:block;color:var(--text-3)">国税に上乗せ・地方へ交付</small></td><td>${_T('s-shohi')}</td><td style="color:var(--text-3);font-size:12px">参考</td></tr>
   </tbody>
 </table>
+<p class="note-small" style="margin-top:6px;">一定税率のため条例による税率変更は不可。地方税法第6条（課税免除）・第7条（不均一課税・一部課税）等を活用した減免措置の適用は検討可。税の廃止は国への要請が必要。</p>
 
 <div class="sheet-col-title" style="margin-top:22px">法定外普通税</div>
 <table class="stax-table">
@@ -759,6 +760,7 @@ function renderMuniCols() {
     <tr><td>特別土地保有税<small style="display:block;color:var(--text-3)">H15年度以降 新規課税停止</small></td><td style="color:var(--text-3);text-align:right;font-size:12px">課税停止</td><td style="color:var(--text-3);font-size:12px">課税停止</td></tr>
   </tbody>
 </table>
+<p class="note-small" style="margin-top:6px;">一定税率のため条例による税率変更は不可。地方税法第6条（課税免除）・第7条（不均一課税・一部課税）等を活用した減免措置の適用は検討可。税の廃止は国への要請が必要。</p>
 
 <div class="sheet-col-title" style="margin-top:22px">法定外普通税</div>
 <table class="stax-table">
