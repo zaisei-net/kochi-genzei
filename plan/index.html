@@ -575,13 +575,11 @@ function calcP3Total() {
   const kintoPct   = (parseFloat(document.getElementById('p3-kinto-pct')?.value)   || 0) / 100;
   const shotokuPct = (parseFloat(document.getElementById('p3-shotoku-pct')?.value) || 0) / 100;
   const hojinPct   = (parseFloat(document.getElementById('p3-hojin-pct')?.value)   || 0) / 100;
-  const extraPct   = _taikenIsPref ? hojinPct : 0;
   return Math.round(
     n('s-kojin-kinto') * kintoPct
     + n('s-shotoku')   * shotokuPct
     + n('s-hojin-kinto') * hojinPct
     + n('s-hojin-wari')  * hojinPct
-    + (n('s-rishi') + n('s-haitou') + n('s-kabushiki')) * extraPct
   );
 }
 
@@ -671,9 +669,9 @@ function renderPrefCols() {
     <tr><td>所得割</td><td>${_T('s-shotoku')}</td>${_NONE}<td id="d-shotoku-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--teal);font-weight:700">⑥</td></tr>
     <tr><td>法人均等割</td><td>${_T('s-hojin-kinto')}</td><td>${_T('s-hojin-kinto-ex',1)}</td><td id="d-hojin-kinto-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--red);font-weight:700">①⑥</td></tr>
     <tr><td>法人税割</td><td>${_T('s-hojin-wari')}</td><td>${_T('s-hojin-wari-ex',1)}</td><td id="d-hojin-wari-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--red);font-weight:700">①⑥</td></tr>
-    <tr><td>利子割</td><td>${_T('s-rishi')}</td>${_NONE}<td id="d-rishi-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--teal);font-weight:700">⑥</td></tr>
-    <tr><td>配当割</td><td>${_T('s-haitou')}</td>${_NONE}<td id="d-haitou-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--teal);font-weight:700">⑥</td></tr>
-    <tr><td>株式等譲渡所得割</td><td>${_T('s-kabushiki')}</td>${_NONE}<td id="d-kabushiki-10" style="text-align:right;color:var(--blue);font-variant-numeric:tabular-nums">0</td><td style="color:var(--teal);font-weight:700">⑥</td></tr>
+    <tr><td>利子割<small style="display:block;color:var(--text-3)">一定税率</small></td><td>${_T('s-rishi')}</td>${_NONE}<td style="text-align:right;color:var(--text-3);font-size:12px">一定税率</td><td style="color:var(--text-3);font-size:12px">国への要請</td></tr>
+    <tr><td>配当割<small style="display:block;color:var(--text-3)">一定税率</small></td><td>${_T('s-haitou')}</td>${_NONE}<td style="text-align:right;color:var(--text-3);font-size:12px">一定税率</td><td style="color:var(--text-3);font-size:12px">国への要請</td></tr>
+    <tr><td>株式等譲渡所得割<small style="display:block;color:var(--text-3)">一定税率</small></td><td>${_T('s-kabushiki')}</td>${_NONE}<td style="text-align:right;color:var(--text-3);font-size:12px">一定税率</td><td style="color:var(--text-3);font-size:12px">国への要請</td></tr>
     <tr class="total-row"><td colspan="3" style="color:var(--text-2)">超過課税合計（自動計算）</td><td id="d-excess-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red)">0</td><td style="color:var(--red);font-weight:700">①</td></tr>
   </tbody>
 </table>
@@ -881,13 +879,13 @@ function updateMokuTable(muniName, mokus) {
     } else {
       rows += _mN('入湯税', '地税法5条4項（課するものとする）', '⑤');
     }
-    // 事業所税（地税法5条5項・高知市のみ・税率法定固定→国への廃止要請のみ・計画対象外）
+    // 事業所税（地税法5条5項・高知市のみ・一定税率→不均一課税（地税法7条）または国への廃止要請）
     const jigyo = get('事業所税');
     if (jigyo) {
       rows += `<tr>
-        <td>事業所税<small style="display:block;color:var(--text-3);">${muniName}・R6決算 ${jigyo.amount.toLocaleString('ja-JP')}千円（地税法5条5項・税率法定固定）</small></td>
+        <td>事業所税<small style="display:block;color:var(--text-3);">${muniName}・R6決算 ${jigyo.amount.toLocaleString('ja-JP')}千円（地税法5条5項・一定税率）</small></td>
         <td style="text-align:right;font-variant-numeric:tabular-nums;color:var(--text-3);">${jigyo.amount.toLocaleString('ja-JP')}</td>
-        <td style="text-align:right;color:var(--text-3);font-size:12px;">国への廃止要請</td>
+        <td style="text-align:right;color:var(--text-3);font-size:12px;">不均一課税（地税法7条）・国への廃止要請</td>
         <td style="color:var(--text-3);font-size:12px;">参考</td>
       </tr>`;
     }
@@ -1013,9 +1011,7 @@ async function loadMuniData() {
 
     // プラン３: 住民税（民税）10%引下げ
     const juminBase = getTax(td, '個人均等割').amount + getTax(td, '所得割').amount
-                    + getTax(td, '法人均等割').amount + getTax(td, '法人税割').amount
-                    + (isPref ? (getTax(td, '利子割').amount + getTax(td, '配当割').amount
-                                + getTax(td, '株式等譲渡所得割').amount) : 0);
+                    + getTax(td, '法人均等割').amount + getTax(td, '法人税割').amount;
     setAutoV('p3-amount', Math.round(juminBase * 0.1), 'var(--teal)');
 
     // プラン４: その他普通税10%引下げ（住民税系を除く普通税合計）
@@ -1094,10 +1090,6 @@ function calc() {
   setTxt('d-shotoku-10',     fmt(Math.round(n('s-shotoku')     * 0.1)));
   setTxt('d-hojin-kinto-10', fmt(Math.round(n('s-hojin-kinto') * 0.1)));
   setTxt('d-hojin-wari-10',  fmt(Math.round(n('s-hojin-wari')  * 0.1)));
-  // 10%減税額（県民税のみ）
-  setTxt('d-rishi-10',       fmt(Math.round(n('s-rishi')       * 0.1)));
-  setTxt('d-haitou-10',      fmt(Math.round(n('s-haitou')      * 0.1)));
-  setTxt('d-kabushiki-10',   fmt(Math.round(n('s-kabushiki')   * 0.1)));
   // 10%減税額（その他普通税）
   setTxt('d-jigyou-kojin-10', fmt(Math.round(n('s-jigyou-kojin') * 0.1)));
   setTxt('d-jigyou-hojin-10', fmt(Math.round(n('s-jigyou-hojin') * 0.1)));
