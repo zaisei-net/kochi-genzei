@@ -501,7 +501,7 @@ tr:hover td { background: var(--bg-2); }
               <span>% 引き下げ</span>
             </div>
           </div>
-          <p class="note-small" style="margin-top:6px;">固定資産税・軽自動車税・たばこ税・自動車税等が対象。</p>
+          <p class="note-small" style="margin-top:6px;">固定資産税・軽自動車税・自動車税・鉱産税等が対象（一定税率のたばこ税・鉱区税は除く）。<br>【地財法5条の4】超過課税廃止（標準税率に戻す）は許可不要。標準税率未満に引き下げる場合は公共施設等建設の地方債に都道府県知事の許可が必要。</p>
         </div>
 
         <!-- 合計ブロック -->
@@ -1022,9 +1022,10 @@ async function loadMuniData() {
                  + getTax(td, '不動産取得税').amount + getTax(td, 'ゴルフ場利用税').amount
                  + (getTax(td, '自動車税（種別割）').amount || getTax(td, '自動車税').amount);
     } else {
+      // 一定税率（市町村たばこ税・特別土地保有税）は除外
       otherFutsu = getTax(td, '固定資産税').amount
                  + (getTax(td, '軽自動車税').amount || getTax(td, '軽自動車税（種別割）').amount || 0)
-                 + getTax(td, '市町村たばこ税').amount + getTax(td, '鉱産税').amount;
+                 + getTax(td, '鉱産税').amount;
     }
     setAutoV('p4-amount', Math.round(otherFutsu * 0.1), 'var(--blue)');
 
