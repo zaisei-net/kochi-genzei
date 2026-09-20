@@ -226,6 +226,21 @@ tr:hover td { background: var(--bg-2); }
 .scale-bar-outer { height: 10px; background: var(--border); border-radius: 5px; overflow: hidden; margin: 12px 0 4px; }
 .scale-bar-inner { height: 100%; background: linear-gradient(90deg, var(--red) 0%, var(--orange) 100%); border-radius: 5px; transition: width .4s ease; width: 0%; }
 .scale-label-row { display: flex; justify-content: space-between; font-size: 10px; color: var(--text-3); }
+
+/* ── 集計サマリー ── */
+.summary-bar { display: none; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+.summary-bar.loaded { display: flex; }
+.sum-card { flex: 1 1 140px; border: 1px solid var(--border); border-radius: 8px; padding: 12px 16px; background: var(--bg-2); }
+.sum-card-label { font-size: 10px; font-weight: 700; letter-spacing: .06em; color: var(--text-3); text-transform: uppercase; margin-bottom: 6px; }
+.sum-card-val { font-size: 18px; font-weight: 900; font-variant-numeric: tabular-nums; color: var(--text); }
+.sum-card-sub { font-size: 11px; color: var(--text-3); margin-top: 2px; }
+.sum-card.accent { border-color: var(--red); }
+.sum-card.accent .sum-card-val { color: var(--red); }
+
+/* ── 左カラム折りたたみ ── */
+.tax-detail-toggle { display: flex; align-items: center; justify-content: space-between; cursor: pointer; user-select: none; padding: 6px 0 10px; border-bottom: 1px solid var(--border); margin-bottom: 14px; }
+.tax-detail-toggle-label { font-size: 12px; font-weight: 700; color: var(--text-2); }
+.tax-detail-toggle-caret { font-size: 10px; color: var(--text-3); letter-spacing: .5px; }
 </style>
 </head>
 <body>
@@ -362,7 +377,7 @@ tr:hover td { background: var(--bg-2); }
       <optgroup label="市">
         <option>高知市</option><option>室戸市</option><option>安芸市</option><option>南国市</option>
         <option>土佐市</option><option>須崎市</option><option>宿毛市</option><option>土佐清水市</option>
-        <option>四万十市</option><option>香南市</option><option>香美市</option>
+        <option>四万十市</option><option>香南市</option><option selected>香美市</option>
       </optgroup>
       <optgroup label="町村">
         <option>東洋町</option><option>奈半利町</option><option>田野町</option><option>安田町</option>
@@ -373,6 +388,30 @@ tr:hover td { background: var(--bg-2); }
         <option>大月町</option><option>三原村</option><option>黒潮町</option>
       </optgroup>
     </select>
+  </div>
+
+  <!-- 集計サマリー（自治体選択後に表示） -->
+  <div class="summary-bar" id="summary-bar">
+    <div class="sum-card">
+      <div class="sum-card-label">市町村税合計</div>
+      <div class="sum-card-val" id="sum-tax-total">―</div>
+      <div class="sum-card-sub">千円</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-card-label">超過課税合計</div>
+      <div class="sum-card-val" id="sum-extra-total">―</div>
+      <div class="sum-card-sub">千円</div>
+    </div>
+    <div class="sum-card">
+      <div class="sum-card-label">超過課税率</div>
+      <div class="sum-card-val" id="sum-extra-rate">―</div>
+      <div class="sum-card-sub">超過課税 ÷ 市町村税</div>
+    </div>
+    <div class="sum-card accent">
+      <div class="sum-card-label">合計削減見込み</div>
+      <div class="sum-card-val" id="sum-reduction">―</div>
+      <div class="sum-card-sub">千円（P1〜P4合算）</div>
+    </div>
   </div>
 
   <div class="sheet-wrap" id="sheet-wrap">
@@ -661,6 +700,11 @@ const _NONE = `<td style="color:var(--text-3);text-align:right;font-size:12px;">
 
 function renderPrefCols() {
   document.getElementById('sheet-left-col').innerHTML = `
+<div class="tax-detail-toggle" onclick="toggleTaxDetail(this)">
+  <span class="tax-detail-toggle-label">税収データ（R6決算）</span>
+  <span class="tax-detail-toggle-caret" id="tax-detail-caret">▼ 閉じる</span>
+</div>
+<div id="tax-detail-body">
 <div class="sheet-col-title">県民税</div>
 <table class="stax-table">
   <thead><tr><th>項目</th><th>収入済額（千円）</th><th>超過課税分（千円）</th><th>10%減税額（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
@@ -716,11 +760,17 @@ function renderPrefCols() {
   <thead><tr><th>税名</th><th>収入済額（千円）</th><th>廃止・削減額（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
   <tbody id="moku-tbody"><tr><td colspan="4" style="color:var(--text-3);text-align:center;padding:10px">読み込み中…</td></tr></tbody>
   <tfoot><tr class="total-row"><td colspan="2" style="color:var(--text-2)">廃止・削減合計（自動計算）</td><td id="d-moku-total" style="text-align:right;font-weight:800;font-variant-numeric:tabular-nums;color:var(--red)">0</td><td style="color:var(--red);font-weight:700">③</td></tr></tfoot>
-</table>`;
+</table>
+</div>`;
 }
 
 function renderMuniCols() {
   document.getElementById('sheet-left-col').innerHTML = `
+<div class="tax-detail-toggle" onclick="toggleTaxDetail(this)">
+  <span class="tax-detail-toggle-label">税収データ（R6決算）</span>
+  <span class="tax-detail-toggle-caret" id="tax-detail-caret">▼ 閉じる</span>
+</div>
+<div id="tax-detail-body">
 <div class="sheet-col-title">市町村民税</div>
 <table class="stax-table">
   <thead><tr><th>項目</th><th>収入済額（千円）</th><th>超過課税分（千円）</th><th>10%減税額（千円）</th><th style="color:var(--teal)">備考</th></tr></thead>
@@ -769,7 +819,17 @@ function renderMuniCols() {
     <td style="text-align:right;color:var(--text-3);font-size:12px">―</td>
     <td style="color:var(--text-3);font-weight:700;font-size:14px">②</td></tr>
   </tbody>
-</table>`;
+</table>
+</div>`;
+}
+
+function toggleTaxDetail(el) {
+  const body = document.getElementById('tax-detail-body');
+  const caret = document.getElementById('tax-detail-caret');
+  if (!body) return;
+  const hidden = body.style.display === 'none';
+  body.style.display = hidden ? '' : 'none';
+  if (caret) caret.textContent = hidden ? '▼ 閉じる' : '▶ 開く';
 }
 
 // ─── JSON キャッシュ ───
@@ -1031,6 +1091,7 @@ async function loadMuniData() {
 
     // 体験コーナー初期値セット
     initTaikenInputs(isPref, nyuAmt, otherFutsu);
+    meta.textContent = '令和６年度　' + muniName;
 
     // 目的税（tax1が「目的税」のもの）
     const mokus = td
@@ -1117,6 +1178,22 @@ function calc() {
   const totalPct = exp > 0 && total > 0 ? (total / exp * 100).toFixed(2) : '―';
   document.getElementById('d-pct').textContent = totalPct !== '―' ? totalPct + ' %' : '―';
 
+  // ── サマリーバー更新 ──
+  const muniTax = n('s-kojin-kinto') + n('s-shotoku') + n('s-hojin-kinto') + n('s-hojin-wari')
+                + n('s-kotei') + n('s-kei') + n('s-kousan') + n('s-muni-tabako')
+                + n('s-jigyou-kojin') + n('s-jigyou-hojin') + n('s-fudosan')
+                + n('s-golf') + n('s-jidosha');
+  const sumExtraTotal = excess;
+  const sumExtraRate = muniTax > 0 ? (sumExtraTotal / muniTax * 100).toFixed(2) + ' %' : '―';
+  const sb2 = document.getElementById('summary-bar');
+  if (sb2 && document.getElementById('muni-name').value) {
+    sb2.classList.add('loaded');
+    setTxt('sum-tax-total', muniTax > 0 ? muniTax.toLocaleString('ja-JP') : '―');
+    setTxt('sum-extra-total', sumExtraTotal > 0 ? sumExtraTotal.toLocaleString('ja-JP') : '0');
+    setTxt('sum-extra-rate', sumExtraRate);
+    setTxt('sum-reduction', total > 0 ? total.toLocaleString('ja-JP') : '―');
+  }
+
   // インパクトバー更新（10%歳出 = バー100%）
   function setBar(id, amount) {
     const el = document.getElementById(id);
@@ -1132,8 +1209,10 @@ function calc() {
 
 calc();
 
-// JSON を先読み（選択前にキャッシュ）
-fetchKochiData().catch(() => {});
+// 初期表示：香美市をデフォルトロード
+document.addEventListener('DOMContentLoaded', () => {
+  loadMuniData();
+});
 </script>
 </body>
 </html>

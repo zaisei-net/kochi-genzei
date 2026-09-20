@@ -289,49 +289,121 @@ body{background:var(--bg);color:var(--text);font-family:"Hiragino Kaku Gothic Pr
   <div class="section-header">
     <div class="section-num blue">3</div>
     <div>
-      <h2 class="section-h2">削減効果の試算イメージ</h2>
-      <p class="section-lead">非公表情報が多いため正確な試算は困難ですが、公表されている類似規模自治体のデータを参考に概算します。</p>
+      <h2 class="section-h2">減税計画の試算（R6決算ベース）</h2>
+      <p class="section-lead">令和６年度決算データ（総務省提供）をもとに、香美市の市町村税の現状と減税計画の削減効果を試算します。詳細は<a href="/kochi-genzei/plan/" style="color:var(--blue)">減税計画シート</a>で確認できます。</p>
     </div>
   </div>
 
-  <div class="sim-box">
-    <h3>歳出削減の試算（R6決算ベース・概算）</h3>
-    <div class="sim-row">
-      <span class="sim-label">市バス事業繰出金の20%削減</span>
-      <span class="sim-val neg">△ 約6,600万円/年</span>
-      <span style="font-size:0.75rem;color:var(--text-3);">R6繰出3.3億円の20%。路線再編・需要応答型への転換が前提</span>
+  <!-- 集計サマリー -->
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:20px;">
+    <div style="border:1px solid var(--border);border-radius:8px;padding:14px 16px;background:var(--bg-2);">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--text-3);text-transform:uppercase;margin-bottom:6px;">歳出総額</div>
+      <div style="font-size:16px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--text);">18,657,752</div>
+      <div style="font-size:11px;color:var(--text-3);margin-top:2px;">千円（R6決算）</div>
     </div>
-    <div class="sim-row">
-      <span class="sim-label">美術館指定管理化（コスト20%減）</span>
-      <span class="sim-val neg">△ 規模不明</span>
-      <span style="font-size:0.75rem;color:var(--text-3);">運営費の情報公開が前提（現在非公表）</span>
+    <div style="border:1px solid var(--border);border-radius:8px;padding:14px 16px;background:var(--bg-2);">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--text-3);text-transform:uppercase;margin-bottom:6px;">市町村税合計</div>
+      <div style="font-size:16px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--text);">2,633,722</div>
+      <div style="font-size:11px;color:var(--text-3);margin-top:2px;">千円（R6決算）</div>
     </div>
-    <div class="sim-row">
-      <span class="sim-label">政務活動費の実使用額相当に削減</span>
-      <span class="sim-val neg">△ 約36万円/年</span>
-      <span style="font-size:0.75rem;color:var(--text-3);">R8年度72万円交付×50%未使用 = 36万円の過剰交付</span>
+    <div style="border:1px solid var(--border);border-radius:8px;padding:14px 16px;background:var(--bg-2);">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--text-3);text-transform:uppercase;margin-bottom:6px;">超過課税</div>
+      <div style="font-size:16px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--green);">0</div>
+      <div style="font-size:11px;color:var(--text-3);margin-top:2px;">千円（超過課税なし）</div>
     </div>
-    <div class="sim-row">
-      <span class="sim-label">給食費完全無償化（小中全学年）</span>
-      <span class="sim-val" style="color:var(--text);">＋ 約8,000万円/年 必要</span>
-      <span style="font-size:0.75rem;color:var(--text-3);">R6小学生+中学生数×月額×12ヶ月の概算</span>
+    <div style="border:1px solid var(--border);border-color:var(--red);border-radius:8px;padding:14px 16px;background:var(--bg-2);">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.06em;color:var(--text-3);text-transform:uppercase;margin-bottom:6px;">合計削減見込み</div>
+      <div style="font-size:16px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--red);">249,439</div>
+      <div style="font-size:11px;color:var(--text-3);margin-top:2px;">千円（P1〜P3合算）</div>
     </div>
-    <div class="sim-row sim-total">
-      <span class="sim-label" style="font-weight:700;">差し引き試算（バス削減のみで）</span>
-      <span class="sim-val neg">△ 約1,400万円〜の財源創出可能</span>
-    </div>
-    <p style="margin-top:1rem;font-size:0.75rem;color:var(--text-3);">※市バス繰出金3.3億円はR6年度決算データ（総務省提供）より。美術館・学童委託費は市公式サイト上で非公表のため試算不可。情報公開請求による数値取得で精度向上予定。</p>
   </div>
+
+  <!-- 減税プラン -->
+  <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:20px;">
+
+    <!-- P1 入湯税廃止 -->
+    <div style="border:1px solid var(--border);border-radius:8px;padding:14px 16px;background:var(--bg);">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:12px;font-weight:700;color:var(--text);">プラン１ 入湯税の廃止</span>
+        <span style="font-size:11px;font-weight:700;color:var(--red);">③</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:6px;">
+        <span style="font-size:20px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--red);">492</span>
+        <span style="font-size:13px;color:var(--text-2);">千円</span>
+        <span style="font-size:10px;color:var(--text-3);margin-left:4px;">自動計算</span>
+      </div>
+      <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:2px 0 4px;">
+        <div style="height:100%;border-radius:3px;background:var(--red);width:0.3%;"></div>
+      </div>
+      <div style="font-size:11px;color:var(--text-3);">0.003 % ／ 歳出総額</div>
+      <p style="font-size:11px;color:var(--text-3);margin-top:6px;">入湯税492千円（地税法5条4項）。超過課税はゼロ。入湯税廃止は「課するものとする」のため国への要請が必要。</p>
+    </div>
+
+    <!-- P2 住民税10%引下げ -->
+    <div style="border:1px solid var(--border);border-radius:8px;padding:14px 16px;background:var(--bg);">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:12px;font-weight:700;color:var(--text);">プラン２ 住民税の10%引下げ</span>
+        <span style="font-size:11px;font-weight:700;color:var(--blue);">⑥</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:6px;">
+        <span style="font-size:20px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--blue);">98,717</span>
+        <span style="font-size:13px;color:var(--text-2);">千円</span>
+        <span style="font-size:10px;color:var(--text-3);margin-left:4px;">自動計算</span>
+      </div>
+      <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:2px 0 4px;">
+        <div style="height:100%;border-radius:3px;background:var(--blue);width:53%;"></div>
+      </div>
+      <div style="font-size:11px;color:var(--text-3);">0.53 % ／ 歳出総額</div>
+      <p style="font-size:11px;color:var(--text-3);margin-top:6px;">個人均等割35,207＋所得割859,270＋法人均等割46,293＋法人税割46,401＝987,171千円の10%。</p>
+    </div>
+
+    <!-- P3 その他普通税10%引下げ -->
+    <div style="border:1px solid var(--border);border-radius:8px;padding:14px 16px;background:var(--bg);">
+      <div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:8px;">
+        <span style="font-size:12px;font-weight:700;color:var(--text);">プラン３ 固定資産税・軽自動車税の10%引下げ</span>
+        <span style="font-size:11px;font-weight:700;color:var(--blue);">⑦</span>
+      </div>
+      <div style="display:flex;align-items:baseline;gap:6px;margin-bottom:6px;">
+        <span style="font-size:20px;font-weight:900;font-variant-numeric:tabular-nums;color:var(--blue);">150,230</span>
+        <span style="font-size:13px;color:var(--text-2);">千円</span>
+        <span style="font-size:10px;color:var(--text-3);margin-left:4px;">自動計算</span>
+      </div>
+      <div style="height:5px;background:var(--border);border-radius:3px;overflow:hidden;margin:2px 0 4px;">
+        <div style="height:100%;border-radius:3px;background:var(--blue);width:81%;"></div>
+      </div>
+      <div style="font-size:11px;color:var(--text-3);">0.81 % ／ 歳出総額</div>
+      <p style="font-size:11px;color:var(--text-3);margin-top:6px;">固定資産税1,384,988＋軽自動車税117,308＝1,502,296千円の10%。</p>
+    </div>
+
+    <!-- 合計 -->
+    <div style="background:var(--bg-2);border:1px solid var(--border-strong);border-radius:10px;padding:18px 20px;">
+      <div style="font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);margin-bottom:6px;">合計削減額（P1〜P3）</div>
+      <div style="display:flex;align-items:baseline;gap:8px;">
+        <span style="font-size:28px;font-weight:900;font-variant-numeric:tabular-nums;letter-spacing:-.02em;color:var(--red);">249,439</span>
+        <span style="font-size:13px;color:var(--text-2);">千円</span>
+      </div>
+      <div style="height:10px;background:var(--border);border-radius:5px;overflow:hidden;margin:12px 0 4px;">
+        <div style="height:100%;background:linear-gradient(90deg,var(--red) 0%,var(--orange) 100%);border-radius:5px;width:100%;"></div>
+      </div>
+      <div style="display:flex;justify-content:space-between;font-size:10px;color:var(--text-3);">
+        <span>0%</span>
+        <span style="font-weight:700;color:var(--red);">1.34 %</span>
+        <span>歳出総額比</span>
+      </div>
+      <div style="font-size:10px;color:var(--text-3);margin-top:4px;">スケール：2.5%＝100%バー幅（P1〜P3合算 249,439千円 ÷ 歳出 18,657,752千円）</div>
+    </div>
+  </div>
+
+  <p style="font-size:11px;color:var(--text-3);margin-bottom:16px;">出典：令和６年度決算・課税状況調（総務省提供）</p>
 
   <div class="callout" style="border-left:4px solid var(--blue);background:var(--bg-blue);">
-    <h4>財政シミュレーションを自分でやってみる</h4>
+    <h4>詳細な減税計画シートを確認する</h4>
     <ul>
-      <li>「自治体決算ビューア」では香美市の実際の財政指標・歳入歳出を閲覧できます</li>
-      <li>減税シミュレーション機能で「もし○%削減できたら税率をどれだけ下げられるか」を試算できます</li>
-      <li>H27〜R6年度の推移グラフで、人口減少と歳出の関係も確認できます</li>
+      <li><a href="/kochi-genzei/plan/" style="color:var(--blue)">減税計画シート</a>では香美市を選択して全税目のデータと試算を確認できます</li>
+      <li><a href="https://zaisei-net.github.io/Municipal-Accounting/?pref=高知県&muni=香美市" target="_blank" rel="noopener" style="color:var(--blue)">自治体決算ビューア</a>では財政指標・歳入歳出の詳細を閲覧できます</li>
     </ul>
-    <a class="ext-link" href="https://zaisei-net.github.io/Municipal-Accounting/?pref=高知県&muni=香美市" target="_blank" rel="noopener">
-      → 自治体決算ビューアで香美市の財政シミュレーションを試す
+    <a class="ext-link" href="/kochi-genzei/plan/" style="display:inline-block;margin-top:6px;">
+      → 減税計画シートで香美市の全試算を確認する
     </a>
   </div>
 </section>
