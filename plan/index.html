@@ -377,7 +377,7 @@ tr:hover td { background: var(--bg-2); }
       <optgroup label="市">
         <option>高知市</option><option>室戸市</option><option>安芸市</option><option>南国市</option>
         <option>土佐市</option><option>須崎市</option><option>宿毛市</option><option>土佐清水市</option>
-        <option>四万十市</option><option>香南市</option><option selected>香美市</option>
+        <option>四万十市</option><option>香南市</option><option>香美市</option>
       </optgroup>
       <optgroup label="町村">
         <option>東洋町</option><option>奈半利町</option><option>田野町</option><option>安田町</option>
@@ -1209,10 +1209,8 @@ function calc() {
 
 calc();
 
-// 初期表示：香美市をデフォルトロード
-document.addEventListener('DOMContentLoaded', () => {
-  loadMuniData();
-});
+// JSON を先読み（選択前にキャッシュ）
+fetchKochiData().catch(() => {});
 </script>
 </body>
 </html>
