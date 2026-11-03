@@ -90,6 +90,10 @@ foreach ($f in $files) {
 }
 ```
 
+## 調査メモ
+
+- `_notes/zei-research.md` — 高知市の事業所税、香美市の市債の買入消却・繰上償還、高知県の都市計画税についての調査の要点（2026年8〜9月）。`_notes/` は GitHub Pages では公開されない。
+
 ## パブコメページの更新方針（pubcom/index.html）
 
 - 最終確認日を毎回更新する（`最終確認: YYYY年M月D日`）
