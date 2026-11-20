@@ -161,7 +161,7 @@ a:hover{text-decoration:underline;}
     <span class="hero-sub-badge">令和8〜9年度</span>
   </div>
   <h1>高知県 <strong>選挙日程</strong>ポータル</h1>
-  <p class="hero-desc">令和8〜9年度に予定される高知県内の市町村議会・首長選挙を一覧表示。行政改革の状況と合わせて確認できます。</p>
+  <p class="hero-desc">令和8〜9年度に予定される高知県内の県議会・市町村議会・首長選挙を一覧表示。行政改革の状況と合わせて確認できます。</p>
 </div>
 
 <div class="main">
@@ -195,7 +195,7 @@ a:hover{text-decoration:underline;}
 </div>
 
 <div style="background:var(--bg-2);border-top:1px solid var(--border);padding:12px 24px;font-size:11px;color:var(--text-3);">
-  出典：高知県選挙管理委員会「市町村等の議員及び長の任期満了調（R8.6.25現在）」／ R9年以降の日程は任期満了日から推定・未確定 ／ 行政評価：総務省「地方行政サービス改革の取組状況等に関する調査（R7.12公表）」
+  出典：高知県選挙管理委員会「市町村等の議員及び長の任期満了調（R8.6.25現在）」／ 統一地方選挙の投票日は臨時特例法（R8.11.11成立：前半戦R9.4.11・後半戦R9.4.25）／ それ以外のR9年の日程は任期満了日から推定・未確定 ／ 行政評価：総務省「地方行政サービス改革の取組状況等に関する調査（R7.12公表）」
 </div>
 
 <script>
@@ -235,23 +235,24 @@ const ELECTIONS = [
   {name:"香美市",  type:"議会", date:"2026-09-06", seats:16, confirmed:true, note:"高知減税会 注目選挙区"},
   {name:"須崎市",  type:"議会", date:"2026-11-01", seats:14, confirmed:true},
   {name:"室戸市",  type:"首長", date:"2026-11-15", seats:null, confirmed:true},
-  // ── R9年 推定（任期満了から逆算） ──
-  {name:"四万十町",type:"議会", date:"2027-02-01", seats:null, confirmed:false, note:"満了 R9.2.10"},
-  {name:"大豊町",  type:"議会", date:"2027-03-01", seats:null, confirmed:false, note:"満了 R9.3.5"},
-  {name:"高知市",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.5.1"},
-  {name:"宿毛市",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.26"},
-  {name:"奈半利町",type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.30"},
-  {name:"田野町",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.30"},
-  {name:"安田町",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.29"},
-  {name:"北川村",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.30"},
-  {name:"大川村",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.30"},
-  {name:"土佐町",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.5.9"},
-  {name:"梼原町",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.30"},
-  {name:"三原村",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.30"},
-  {name:"黒潮町",  type:"議会", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.30"},
-  {name:"東洋町",  type:"首長", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.25"},
-  {name:"北川村",  type:"首長", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.25"},
-  {name:"土佐町",  type:"首長", date:"2027-04-01", seats:null, confirmed:false, note:"満了 R9.4.29"},
+  // ── R9年 統一地方選挙（臨時特例法 R8.11.11成立：前半戦4/11・後半戦4/25） ──
+  {name:"四万十町",type:"議会", date:"2027-02-01", seats:null, confirmed:false, note:"満了 R9.2.10（統一地方選の対象外）"},
+  {name:"大豊町",  type:"議会", date:"2027-02-15", seats:null, confirmed:false, note:"満了 R9.3.5（前回R5.2.19は統一地方選より前に実施）"},
+  {name:"高知県",  type:"議会", date:"2027-04-11", seats:null, confirmed:true, note:"統一地方選 前半戦（特例法で投票日確定）／満了 R9.4.29"},
+  {name:"高知市",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.5.1"},
+  {name:"宿毛市",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.26"},
+  {name:"奈半利町",type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.30"},
+  {name:"田野町",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.30"},
+  {name:"安田町",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.29"},
+  {name:"北川村",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.30"},
+  {name:"大川村",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.30"},
+  {name:"土佐町",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.5.9"},
+  {name:"梼原町",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.30"},
+  {name:"三原村",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.30"},
+  {name:"黒潮町",  type:"議会", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.30"},
+  {name:"東洋町",  type:"首長", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.25"},
+  {name:"北川村",  type:"首長", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.25"},
+  {name:"土佐町",  type:"首長", date:"2027-04-25", seats:null, confirmed:true, note:"統一地方選 後半戦（特例法で投票日確定）／満了 R9.4.29"},
   {name:"宿毛市",  type:"首長", date:"2027-11-01", seats:null, confirmed:false, note:"満了 R9.12.25"},
   {name:"大川村",  type:"首長", date:"2027-11-01", seats:null, confirmed:false, note:"満了 R9.12.10"},
   {name:"高知県",  type:"知事", date:"2027-11-01", seats:null, confirmed:false, note:"満了 R9.12.6"},
@@ -364,7 +365,9 @@ function renderCards() {
   Object.keys(groups).sort().forEach(key => {
     const label = document.createElement('div');
     label.className = 'section-head';
-    label.textContent = monthLabel(key) + (key < '2027-01' ? ' ── 投票日確定' : ' ── 任期満了より推定');
+    const allConf = groups[key].every(e => e.confirmed);
+    const anyConf = groups[key].some(e => e.confirmed);
+    label.textContent = monthLabel(key) + (allConf ? ' ── 投票日確定' : anyConf ? ' ── 投票日確定・推定' : ' ── 任期満了より推定');
     container.appendChild(label);
 
     const list = document.createElement('div');
