@@ -6,6 +6,7 @@
 ## 送付手段（案）
 - 候補者本人または事務所の公開しているX・Facebook・メール・事務所あての郵送。
 - 高知減税会の @kochi_genzei からのDMが基本。DMが閉じている人は、公開されたメールアドレスか郵送。
+- 受付先：@kochi_genzei へのDM、またはメール kochi-genzei@googlegroups.com（Googleグループ https://groups.google.com/g/kochi-genzei ）。グループあてのメールはメンバー全員に届く点に注意。
 - 送り先は、本人が公開している連絡先に限る。
 
 ## 文面（X DM用・約400字）
@@ -21,7 +22,7 @@
 誓約書と「増税」の定義はこちらです。
 https://zaisei-net.github.io/kochi-genzei/touitsu2027/seiyaku.html
 
-署名した誓約書の写真をこのDMにお送りいただくか、ご本人のSNSで表明していただければ、当会のページに掲載し、推薦いたします。政党・会派は問いません。
+署名した誓約書の写真をこのDMか、メール（kochi-genzei@googlegroups.com）にお送りいただくか、ご本人のSNSで表明していただければ、当会のページに掲載し、推薦いたします。政党・会派は問いません。
 
 ご検討のほど、よろしくお願いいたします。
 
